@@ -6,6 +6,7 @@ import totalcross.ui.Container;
 import totalcross.ui.Label;
 import totalcross.ui.Radio;
 import totalcross.ui.RadioGroupController;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
@@ -13,6 +14,7 @@ import totalcross.ui.gfx.Color;
 
 public class CheckRadioSample extends Container {
 	
+	private ScrollContainer sc;
 	private Check simpleCheck;
 	private Check backgroundCheck;
 	private Check foregroundCheck;
@@ -20,6 +22,7 @@ public class CheckRadioSample extends Container {
 	private Radio backgroundRadio;
 	private Radio foregroundRadio;
 	
+	private int SC_GAP = fmH/2;
 	private int GAP = fmH*4;
 	
 	@Override
@@ -28,6 +31,10 @@ public class CheckRadioSample extends Container {
 		try {
 			
 			super.initUI();
+			
+			sc = new ScrollContainer(false, true);
+			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
+		    add(sc,LEFT,TOP,FILL,FILL);
 
 			Label lbCheck = new Label("Checks");
 			lbCheck.setFont(lbCheck.getFont().asBold());
@@ -76,14 +83,14 @@ public class CheckRadioSample extends Container {
 		        }
 		    });
 		    
-		    add(lbCheck, LEFT + GAP, TOP + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    add(simpleCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    add(backgroundCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    add(foregroundCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    add(lbRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    add(simpleRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    add(backgroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    add(foregroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(lbCheck, LEFT + GAP, TOP + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(simpleCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(backgroundCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(foregroundCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(lbRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(simpleRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(backgroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(foregroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
 	      
 	    } catch (Exception e) {
 	      MessageBox.showException(e,true);

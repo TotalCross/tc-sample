@@ -5,6 +5,7 @@ import totalcross.sample.util.Colors;
 import totalcross.sample.util.Images;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.Toast;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
@@ -13,8 +14,7 @@ import totalcross.ui.gfx.Color;
 
 public class MessageBoxSample extends Container {
 	
-	private int GAP = fmH*4;
-	
+	private ScrollContainer sc;
 	private Button btnTitleOnly;
 	private Button btnYesNoTitle;
 	private Button btnNoTitle;
@@ -22,12 +22,19 @@ public class MessageBoxSample extends Container {
 	private Button btnTitleIconTopBottonSeparatorOnly;
 	private Button btnToast;
 	
+	private int SC_GAP = fmH/2;
+	private int GAP = fmH*4;
+	
 	@Override
 	public void initUI() {
 		
 		super.initUI();
 		
 	    try {
+	    	
+	    	sc = new ScrollContainer(false, true);
+			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
+			add(sc,LEFT,TOP,FILL,FILL);
 
 	    	btnTitleOnly = new Button("Title only");
 	    	btnTitleOnly.setBackColor(Colors.BLUE);
@@ -128,12 +135,12 @@ public class MessageBoxSample extends Container {
 		    	}
 	    	});
 	    	
-	      add(btnTitleOnly, LEFT + GAP, TOP + GAP, FILL - GAP, PREFERRED + GAP);
-	      add(btnYesNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
-	      add(btnNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
-	      add(btnTitleIconTopSeparatorOnly, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
+	      sc.add(btnTitleOnly, LEFT + GAP, TOP + GAP, FILL - GAP, PREFERRED + GAP);
+	      sc.add(btnYesNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
+	      sc.add(btnNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
+	      sc.add(btnTitleIconTopSeparatorOnly, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
 	      //add(btnTitleIconTopBottonSeparatorOnly, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
-	      add(btnToast, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
+	      sc.add(btnToast, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
 
 	    }
 	    catch (Exception ee)
