@@ -6,12 +6,14 @@ import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.CaptionPress;
 import totalcross.ui.Edit;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.TimeBox;
 import totalcross.ui.gfx.Color;
 
 public class EditSample extends Container {
 	
+	private ScrollContainer sc;
 	private Edit simpleEdit;
 	private Edit imageEdit;
 	private Edit numericEdit;
@@ -22,6 +24,7 @@ public class EditSample extends Container {
 	private Edit passwordHidenEdit;
 	private Edit maskedEdit;
 	
+	private int SC_GAP = fmH/2;
 	private int GAP = fmH*2;
 	private int focusColor = 0xF0F8FF;
 	
@@ -33,6 +36,10 @@ public class EditSample extends Container {
 		try
 	    {
 	      Settings.is24Hour = true;
+	      
+	      sc = new ScrollContainer(false, true);
+		  sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
+		  add(sc,LEFT,TOP,FILL,FILL);
 
 	      simpleEdit = new Edit();
 	      simpleEdit.caption = "Simple Edit";
@@ -96,15 +103,15 @@ public class EditSample extends Container {
 	      maskedEdit.caption = "Masked Edit (999.999.999-99)";
 	      maskedEdit.setMode(Edit.NORMAL,true);
 
-	      add(simpleEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(numericEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(calculatorEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);;
-	      add(calendarEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(timerEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(passwordShowEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(passwordHidenEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(maskedEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(simpleEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(numericEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);;
+	      sc.add(calendarEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(timerEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(passwordShowEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(passwordHidenEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(maskedEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
 	      
 	    }
 	    catch (Exception ee)

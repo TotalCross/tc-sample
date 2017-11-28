@@ -4,14 +4,17 @@ import totalcross.sample.util.Colors;
 import totalcross.sample.util.Images;
 import totalcross.ui.Container;
 import totalcross.ui.ListContainer;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
 public class ListContainerSample extends Container {
 
-	ListContainer lcSocialNetworks = new ListContainer();
+	private ScrollContainer sc;
+	private ListContainer lcSocialNetworks = new ListContainer();
 
+	private int SC_GAP = fmH/2;
 	private int GAP = fmH * 4;
 
 	@Override
@@ -19,10 +22,14 @@ public class ListContainerSample extends Container {
 
 		try {
 			super.initUI();
+			
+			sc = new ScrollContainer(false, true);
+			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
+			add(sc,LEFT,TOP,FILL,FILL);
 
 			lcSocialNetworks.getFlick().longestFlick = 15;
 			lcSocialNetworks.setBackColor(Colors.BACKGROUND);
-			add(lcSocialNetworks, LEFT + GAP, TOP, FILL - GAP, FILL);
+			sc.add(lcSocialNetworks, LEFT + GAP, TOP, FILL - GAP, FILL);
 
 			ListContainer.Item facebook = new ListContainer.Item(getLayout(Images.aplyColor(new Image("Images/facebook.png"), Colors.BLUE)));
 			facebook.items = new String[] { "- ", "Name", "   Facebook", "Like?  ", "" };

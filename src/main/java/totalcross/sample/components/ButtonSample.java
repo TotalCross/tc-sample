@@ -2,6 +2,7 @@ package totalcross.sample.components;
 
 import totalcross.ui.Container;
 import totalcross.ui.MultiButton;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.res.Resources;
@@ -10,12 +11,14 @@ import totalcross.ui.Button;
 
 public class ButtonSample extends Container{
 
+	private ScrollContainer sc;
 	private Button simpleButton;
 	private Button multiLineButton;
 	private Button imageButton;
 	private MultiButton simpleMultiButton;
 	private MultiButton multiButton;
 	
+	private int SC_GAP = fmH/2;
 	private int GAP = fmH*4;
 	private int HEIGHT = fmH*8;
 	
@@ -25,6 +28,10 @@ public class ButtonSample extends Container{
 		super.initUI();
 
 		try {
+			
+			sc = new ScrollContainer(false, true);
+			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
+		    add(sc,LEFT,TOP,FILL,FILL);
 			
 			simpleButton = new Button("Simple button");
 			simpleButton.setBackColor(Colors.BLUE);
@@ -52,11 +59,11 @@ public class ButtonSample extends Container{
 		    multiButton.isSticky = multiButton.is3dText = true;
 		    multiButton.setEnabled(1,false);
 			
-			add(simpleButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);		
-			add(multiLineButton, LEFT + GAP, AFTER + GAP, PREFERRED + GAP, PREFERRED+GAP);
-			add(imageButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
-			add(simpleMultiButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
-			add(multiButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
+			sc.add(simpleButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);		
+			sc.add(multiLineButton, LEFT + GAP, AFTER + GAP, PREFERRED + GAP, PREFERRED+GAP);
+			sc.add(imageButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
+			sc.add(simpleMultiButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
+			sc.add(multiButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

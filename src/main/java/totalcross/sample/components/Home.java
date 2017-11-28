@@ -24,7 +24,7 @@ public class Home extends Container {
 			Label lbWelcome = new Label("Welcome to TotalCross!");
             lbWelcome.setFont(lbWelcome.getFont().asBold());
 
-	        add(ic, LEFT, TOP + GAP, FILL, PARENTSIZE + 20);
+	        add(ic, LEFT, TOP + GAP, FILL, PARENTSIZE + 40);
 	        add(lbWelcome, CENTER, AFTER);
 	        
 		} catch (IOException e) {
