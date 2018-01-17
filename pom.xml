@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>com.totalcross</groupId>
 			<artifactId>totalcross-sdk</artifactId>
-			<version>4.0.2</version>
+			<version>4.1.0</version>
 		</dependency>
 	</dependencies>
 	<repositories>
@@ -101,7 +101,7 @@
 											<pluginExecutionFilter>
 												<groupId>net.orfjackal.retrolambda</groupId>
 												<artifactId>retrolambda-maven-plugin</artifactId>
-												<versionRange>[1.8.0,)</versionRange>
+												<versionRange>[2.5.1,)</versionRange>
 												<goals>
 													<goal>process-main</goal>
 												</goals>
