@@ -31,19 +31,19 @@ public class ListContainerSample extends Container {
 			lcSocialNetworks.setBackColor(Colors.BACKGROUND);
 			sc.add(lcSocialNetworks, LEFT + GAP, TOP, FILL - GAP, FILL);
 
-			ListContainer.Item facebook = new ListContainer.Item(getLayout(Images.aplyColor(new Image("Images/facebook.png"), Colors.BLUE)));
+			ListContainer.Item facebook = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/facebook.png"), Colors.BLUE)));
 			facebook.items = new String[] { "- ", "Name", "   Facebook", "Like?  ", "" };
 
-			ListContainer.Item twitter = new ListContainer.Item(getLayout(Images.aplyColor(new Image("Images/twitter.png"), Colors.PRIMARY)));
+			ListContainer.Item twitter = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/twitter.png"), Colors.PRIMARY)));
 			twitter.items = new String[] { "- ", "Name", "   Twitter", "Like?  ", "" };
 
-			ListContainer.Item instagram = new ListContainer.Item(getLayout(Images.aplyColor(new Image("Images/instagram.png"), Color.BLACK)));
+			ListContainer.Item instagram = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/instagram.png"), Color.BLACK)));
 			instagram.items = new String[] { "- ", "Name", "   Instagram", "Like?  ", "" };
 
-			ListContainer.Item linkedin = new ListContainer.Item(getLayout(Images.aplyColor(new Image("Images/linkedin.png"), Colors.BLUE)));
+			ListContainer.Item linkedin = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/linkedin.png"), Colors.BLUE)));
 			linkedin.items = new String[] { "-", "Name", "   linkedin", "Like?  ", "" };
 
-			ListContainer.Item googlePlus = new ListContainer.Item(getLayout(Images.aplyColor(new Image("Images/google-plus.png"), Colors.RED)));
+			ListContainer.Item googlePlus = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/google-plus.png"), Colors.RED)));
 			googlePlus.items = new String[] { "- ", "Name", "   Google +", "Like?  ", "" };
 
 			Container socialNetworks[] = new Container[5];
@@ -71,9 +71,9 @@ public class ListContainerSample extends Container {
 			layout.insets.set(50, 10, 50, 10);
 			layout.leftImageEnlargeIfSmaller = false;
 			layout.defaultLeftImage = leftImage;
-			layout.defaultRightImage = Images.aplyColor(new Image("Images/thumb-up.png"), Colors.GRAY)
+			layout.defaultRightImage = Images.aplyColor(new Image("images/thumb-up.png"), Colors.GRAY)
 					.hwScaledFixedAspectRatio(fmH * 2, true);
-			layout.defaultRightImage2 = Images.aplyColor(new Image("Images/thumb-up.png"), Colors.GREEN)
+			layout.defaultRightImage2 = Images.aplyColor(new Image("images/thumb-up.png"), Colors.GREEN)
 					.hwScaledFixedAspectRatio(fmH * 2, true);
 			layout.controlGap = 10;
 			layout.lineGap = 25;
