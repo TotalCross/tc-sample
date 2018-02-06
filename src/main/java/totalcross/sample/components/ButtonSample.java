@@ -34,7 +34,7 @@ public class ButtonSample extends Container{
 		    add(sc,LEFT,TOP,FILL,FILL);
 			
 			simpleButton = new Button("Simple button");
-			simpleButton.setBackColor(Colors.BLUE);
+			simpleButton.setBackColor(Colors.P_DARK);
 			simpleButton.setForeColor(Color.WHITE);
 			
 			multiLineButton = new Button("This is\na multi-line\nButton");
