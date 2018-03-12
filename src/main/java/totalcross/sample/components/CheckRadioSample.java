@@ -22,8 +22,8 @@ public class CheckRadioSample extends Container {
 	private Radio backgroundRadio;
 	private Radio foregroundRadio;
 	
-	private int SC_GAP = fmH/2;
-	private int GAP = fmH*4;
+	private final int H = 225;
+	private final int GAP = 50;
 	
 	@Override
 	public void initUI() {
@@ -33,7 +33,6 @@ public class CheckRadioSample extends Container {
 			super.initUI();
 			
 			sc = new ScrollContainer(false, true);
-			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
 		    add(sc,LEFT,TOP,FILL,FILL);
 
 			Label lbCheck = new Label("Checks");
@@ -83,14 +82,14 @@ public class CheckRadioSample extends Container {
 		        }
 		    });
 		    
-		    sc.add(lbCheck, LEFT + GAP, TOP + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    sc.add(simpleCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    sc.add(backgroundCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    sc.add(foregroundCheck, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    sc.add(lbRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    sc.add(simpleRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    sc.add(backgroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
-		    sc.add(foregroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + GAP);
+		    sc.add(lbCheck, LEFT + GAP, TOP + GAP,FILL - GAP,PREFERRED + H);
+		    sc.add(simpleCheck, LEFT + GAP, AFTER + GAP,FILL - GAP,PREFERRED + H);
+		    sc.add(backgroundCheck, LEFT + GAP, AFTER + GAP,FILL - GAP,PREFERRED + H);
+		    sc.add(foregroundCheck, LEFT + GAP, AFTER + GAP,FILL - GAP,PREFERRED + H);
+		    sc.add(lbRadio, LEFT + GAP, AFTER + GAP,FILL - GAP,PREFERRED + H);
+		    sc.add(simpleRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + H);
+		    sc.add(backgroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + H);
+		    sc.add(foregroundRadio, LEFT + GAP, AFTER + GAP,PREFERRED + GAP,PREFERRED + H);
 	      
 	    } catch (Exception e) {
 	      MessageBox.showException(e,true);

@@ -18,9 +18,8 @@ public class ButtonSample extends Container{
 	private MultiButton simpleMultiButton;
 	private MultiButton multiButton;
 	
-	private int SC_GAP = fmH/2;
-	private int GAP = fmH*4;
-	private int HEIGHT = fmH*8;
+	private final int H = 225;
+	private final int B = 50;
 	
 	@Override
 	public void initUI()
@@ -30,7 +29,6 @@ public class ButtonSample extends Container{
 		try {
 			
 			sc = new ScrollContainer(false, true);
-			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
 		    add(sc,LEFT,TOP,FILL,FILL);
 			
 			simpleButton = new Button("Simple button");
@@ -44,7 +42,7 @@ public class ButtonSample extends Container{
 			Image img = Resources.warning.getSmoothScaledInstance(fmH, fmH);			
 		    img.applyColor2(Color.WHITE);
 		    
-		    imageButton = new Button("This is an image Button", img, RIGHT, GAP);
+		    imageButton = new Button("This is an image Button", img, RIGHT, 0);
 		    imageButton.setBackColor(Colors.RED);
 		    imageButton.setForeColor(Color.WHITE);
 		    
@@ -59,11 +57,11 @@ public class ButtonSample extends Container{
 		    multiButton.isSticky = multiButton.is3dText = true;
 		    multiButton.setEnabled(1,false);
 			
-			sc.add(simpleButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);		
-			sc.add(multiLineButton, LEFT + GAP, AFTER + GAP, PREFERRED + GAP, PREFERRED+GAP);
-			sc.add(imageButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
-			sc.add(simpleMultiButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
-			sc.add(multiButton, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + HEIGHT);
+			sc.add(simpleButton, LEFT+B, AFTER+B, FILL-B, PREFERRED+H);		
+			sc.add(multiLineButton, LEFT+B, AFTER+B, PREFERRED+B, PREFERRED+H);
+			sc.add(imageButton, LEFT+B, AFTER+B, FILL-B, PREFERRED+H);
+			sc.add(simpleMultiButton, LEFT+B , AFTER+B , FILL-B , PREFERRED+H);
+			sc.add(multiButton, LEFT+B , AFTER+B, FILL-B, PREFERRED+H);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

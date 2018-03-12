@@ -22,9 +22,9 @@ import totalcross.ui.media.Camera;
 
 public class CameraSample extends Container {
 
-	private int GAP = fmH * 2;
-	private int BUTTON_HEIGHT = fmH * 2;
-	private int BUTTON_WIDTH = fmH * 10;
+	private int GAP = 50;
+	private int BUTTON_HEIGHT = 50;
+	private int BUTTON_WIDTH = 160;
 
 	private Button btnFilm;
 	private Button btnPhoto;

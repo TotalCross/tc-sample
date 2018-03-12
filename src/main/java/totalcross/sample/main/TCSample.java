@@ -15,12 +15,13 @@ import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
-import totalcross.ui.Insets;
 import totalcross.ui.Label;
 import totalcross.ui.MainWindow;
 import totalcross.ui.SideMenuContainer;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
+import totalcross.ui.icon.Icon;
+import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 
@@ -28,7 +29,6 @@ import totalcross.ui.image.ImageException;
 public class TCSample extends MainWindow {
 
 	SideMenuContainer sideMenu;
-	private final int COMPONENT_H = fmH-16;
 		
 	static {
 		Settings.applicationId = "VKSS";
@@ -85,10 +85,10 @@ public class TCSample extends MainWindow {
 						ImageControl profile = new ImageControl(new Image("images/logoV.png"));
 						profile.scaleToFit = true;
 						profile.transparentBackground = true;
-						add(profile, CENTER+65, BOTTOM-250, PARENTSIZE, PARENTSIZE+53);
+						add(profile, CENTER+65, BOTTOM-250, PARENTSIZE, PARENTSIZE+40);
 						
 						Label title = new Label("Components", CENTER, Color.WHITE, false);
-						title.setFont(Font.getFont("Lato Bold", false, title.getFont().size + 3));
+						title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
 						title.setForeColor(Color.WHITE);
 						add(title, LEFT+45, BOTTOM-45, PARENTSIZE+38, PREFERRED);
 						
@@ -100,18 +100,21 @@ public class TCSample extends MainWindow {
 				
 				@Override
 				public int getPreferredHeight() {
-				return fmH * 7;
+					return 350;
 				}
 			};
 			
-			sideMenu.topMenu.scInsets = new Insets(0, 0, 0, 0);
-			sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + COMPONENT_H));
+			
+			sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
 	        sideMenu.setBackColor(Colors.PRIMARY);
 	        sideMenu.setForeColor(Color.WHITE);
 	        sideMenu.setItemForeColor(Color.BLACK);
 	        sideMenu.topMenu.drawSeparators = false;
 	        sideMenu.topMenu.itemHeightFactor = 3;
 	        
+	        Icon icon = new Icon(MaterialIcons._MENU);
+	        icon.setBackColor(Color.WHITE);
+	        add(icon, LEFT, TOP);
 			add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
 		
 		} catch (ImageException | IOException e) {

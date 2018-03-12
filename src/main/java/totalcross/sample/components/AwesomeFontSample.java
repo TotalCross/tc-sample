@@ -14,7 +14,8 @@ public class AwesomeFontSample extends Container{
 	
 	private ScrollContainer sc;
 
-	private int GAP = fmH*4;
+	//private final int H = 225;
+	private final int GAP = 50;
 	
 	@Override
 	public void initUI() {
@@ -22,8 +23,8 @@ public class AwesomeFontSample extends Container{
 		super.initUI();
 	    
 		sc = new ScrollContainer(false,true);
-		setAwesome(sc, fmH*2);
-	    add(sc,LEFT,TOP+fmH/4,FILL,FILL-fmH/4);
+		setAwesome(sc, this.getFont().size*2);
+	    add(sc,LEFT,TOP+25,FILL,FILL-25);
 	    
    
 	    Label lbInfo = new Label("Hold char to see its unicode value");
@@ -31,7 +32,7 @@ public class AwesomeFontSample extends Container{
 	    lbInfo.setForeColor(Colors.P_DARK);
 	    sc.add(lbInfo, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED);
 	    
-	    int cols = Math.min(Settings.screenWidth, Settings.screenHeight) / (fmH*3);
+	    int cols = Math.min(Settings.screenWidth, Settings.screenHeight) / (48);
 	    
 	    for (int i = 0xF000,j=0; i <= 0xF27F; i++,j++)
 	    {

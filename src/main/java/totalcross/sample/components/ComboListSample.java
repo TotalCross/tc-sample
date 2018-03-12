@@ -22,15 +22,14 @@ public class ComboListSample extends Container {
 	private ListBox simpleListBox;
 	private MultiListBox multiColorListBox;
 	
-	private int SC_GAP = fmH/2;
-	private int GAP = fmH*4;
+	private final int H = 225;
+	private final int B = 50;
 	
 	@Override
 	public void initUI() {
 		try {
 			
 			sc = new ScrollContainer(false, true);
-			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
 		    add(sc,LEFT,TOP,FILL,FILL);
 			
 			String[] items = {"One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten"};
@@ -38,7 +37,7 @@ public class ComboListSample extends Container {
 			
 			Label lbCombos = new Label("Combos");
 			lbCombos.setFont(lbCombos.getFont().asBold());
-			sc.add(lbCombos, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED);
+			sc.add(lbCombos, LEFT + B, AFTER + B, FILL - B, PREFERRED+H);
 			
 			ComboBox.usePopupMenu = false;
 			simpleComboBox = new ComboBox(items);
@@ -49,7 +48,7 @@ public class ComboListSample extends Container {
 			simpleComboBox.checkColor = Color.WHITE;
 			
 			
-			sc.add(simpleComboBox, LEFT + GAP, AFTER + GAP , FILL - GAP, PREFERRED);
+			sc.add(simpleComboBox, LEFT + B, AFTER + B, FILL - B, PREFERRED+H);
 			ComboBox.usePopupMenu = true;
 			
 			imageComboBox = new ComboBox(items);
@@ -59,7 +58,7 @@ public class ComboListSample extends Container {
 			imageComboBox.enableSearch = false;
 			imageComboBox.setBackColor(Color.BRIGHT);
 			imageComboBox.checkColor = Colors.BLUE;
-			sc.add(imageComboBox, LEFT + GAP, AFTER + GAP , FILL - GAP, PREFERRED);
+			sc.add(imageComboBox, LEFT + B, AFTER + B , FILL - B, PREFERRED+H);
 			imageComboBox.captionPress = new CaptionPress() {
 		        @Override
 		        public void onIconPress()
@@ -78,15 +77,15 @@ public class ComboListSample extends Container {
 			popupComboBox.popupTitle = "Select the item";
 			popupComboBox.setBackColor(Color.BRIGHT);
 			popupComboBox.checkColor = Colors.ORANGE;
-			sc.add(popupComboBox, LEFT + GAP, AFTER + GAP , FILL - GAP, PREFERRED);
+			sc.add(popupComboBox, LEFT + B, AFTER + B , FILL - B, PREFERRED+H);
 			
 			Label lbListBox = new Label("List Box");
 			lbListBox.setFont(lbListBox.getFont().asBold());
-			sc.add(lbListBox, LEFT + GAP, AFTER+ GAP, FILL - GAP, PREFERRED);
+			sc.add(lbListBox, LEFT + B, AFTER+ B, FILL - B, PREFERRED+H);
 			
 			simpleListBox = new ListBox(items);
 			simpleListBox.setBackColor(Colors.BACKGROUND);
-		    sc.add(simpleListBox, LEFT + GAP, AFTER + GAP, FILL - GAP, FONTSIZE+725);
+		    sc.add(simpleListBox, LEFT + B, AFTER + B, FILL - B, FONTSIZE+725);
 
 		    multiColorListBox = new MultiListBox(items2); 
 		    multiColorListBox.setOrderIsImportant(true);
@@ -97,7 +96,7 @@ public class ComboListSample extends Container {
 		    colorsTable.put(3,Colors.ORANGE);
 		    colorsTable.put(4,Colors.PURPLE);
 		    multiColorListBox.ihtForeColors = colorsTable;
-		    sc.add(multiColorListBox,LEFT + GAP,AFTER + GAP, FILL - GAP, PREFERRED);
+		    sc.add(multiColorListBox,LEFT + B,AFTER + B, FILL - B, PREFERRED+H);
 			
 	    } catch (Exception e) {
 	    	MessageBox.showException(e,true);

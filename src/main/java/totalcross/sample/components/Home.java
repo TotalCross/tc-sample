@@ -12,8 +12,6 @@ import totalcross.ui.image.ImageException;
 
 public class Home extends Container {
 	
-	private int GAP = fmH*10;
-	
 	@Override
 	public void initUI(){
 		try {
@@ -22,7 +20,7 @@ public class Home extends Container {
 			ImageControl ic = new ImageControl(new Image("images/logoV.png"));
 			ic.scaleToFit = true;
 			ic.centerImage = true;
-	        add(ic, CENTER, AFTER+GAP, PARENTSIZE, PARENTSIZE+20);
+	        add(ic, CENTER, AFTER+250, PARENTSIZE, PARENTSIZE+20);
 	        
 	        Label lbWelcome = new Label("Welcome!");
             lbWelcome.setFont(Font.getFont("Lato Light", false, lbWelcome.getFont().size + 30));

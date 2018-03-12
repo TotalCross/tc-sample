@@ -14,7 +14,6 @@ public class ListContainerSample extends Container {
 	private ScrollContainer sc;
 	private ListContainer lcSocialNetworks = new ListContainer();
 
-	private int SC_GAP = fmH/2;
 
 	@Override
 	public void initUI() {
@@ -23,8 +22,7 @@ public class ListContainerSample extends Container {
 			super.initUI();
 			
 			sc = new ScrollContainer(false, true);
-			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
-			add(sc,LEFT,TOP,FILL,FILL);
+			add(sc,LEFT+50,TOP+50,FILL-50,FILL);
 
 			lcSocialNetworks.getFlick().longestFlick = 15;
 			lcSocialNetworks.setBackColor(Colors.BACKGROUND);

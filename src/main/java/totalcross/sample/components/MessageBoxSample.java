@@ -22,8 +22,8 @@ public class MessageBoxSample extends Container {
 	private Button btnTitleIconTopBottonSeparatorOnly;
 	private Button btnToast;
 	
-	private int SC_GAP = fmH/2;
-	private int GAP = fmH*4;
+	private int H = 225;
+	private int GAP = 50;
 	
 	@Override
 	public void initUI() {
@@ -33,7 +33,6 @@ public class MessageBoxSample extends Container {
 	    try {
 	    	
 	    	sc = new ScrollContainer(false, true);
-			sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
 			add(sc,LEFT,TOP,FILL,FILL);
 
 	    	btnTitleOnly = new Button("Title only");
@@ -135,12 +134,11 @@ public class MessageBoxSample extends Container {
 		    	}
 	    	});
 	    	
-	      sc.add(btnTitleOnly, LEFT + GAP, TOP + GAP, FILL - GAP, PREFERRED + GAP);
-	      sc.add(btnYesNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
-	      sc.add(btnNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
-	      sc.add(btnTitleIconTopSeparatorOnly, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
-	      //add(btnTitleIconTopBottonSeparatorOnly, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
-	      sc.add(btnToast, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + GAP);
+	      sc.add(btnTitleOnly, LEFT + GAP, TOP + GAP, FILL - GAP, PREFERRED + H);
+	      sc.add(btnYesNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+	      sc.add(btnNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+	      sc.add(btnTitleIconTopSeparatorOnly, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+	      sc.add(btnToast, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
 
 	    }
 	    catch (Exception ee)

@@ -26,8 +26,8 @@ public class EditSample extends Container {
 	private Edit passwordHidenEdit;
 	private Edit maskedEdit;
 	
-	private int SC_GAP = fmH/2;
-	private int GAP = fmH*2;
+	private final int H = 225;
+	private int GAP = 50;
 	private int focusColor = 0xF0F8FF;
 	
 	@Override
@@ -43,7 +43,6 @@ public class EditSample extends Container {
 	      UIColors.calendarBack = Colors.BACKGROUND;
 	      UIColors.timeboxVisorBack = Colors.BACKGROUND;
 	      sc = new ScrollContainer(false, true);
-		  sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
 		  add(sc,LEFT,TOP,FILL,FILL);
 
 	      simpleEdit = new Edit();
@@ -109,15 +108,15 @@ public class EditSample extends Container {
 	      maskedEdit.caption = "Masked Edit (999.999.999-99)";
 	      maskedEdit.setMode(Edit.NORMAL,true);
 
-	      sc.add(simpleEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      sc.add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      sc.add(numericEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);;
-	      sc.add(calendarEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      sc.add(timerEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      sc.add(passwordShowEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      sc.add(passwordHidenEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      sc.add(maskedEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      sc.add(simpleEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(numericEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);;
+	      sc.add(calendarEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(timerEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(passwordShowEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(passwordHidenEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(maskedEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
 	      
 	    }
 	    catch (Exception ee)
