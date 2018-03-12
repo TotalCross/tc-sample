@@ -1,12 +1,14 @@
 package totalcross.sample.components;
 
-import totalcross.ui.Container;
+import totalcross.sample.util.Colors;
 import totalcross.sample.util.Util;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.CaptionPress;
+import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.ScrollContainer;
+import totalcross.ui.UIColors;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.TimeBox;
 import totalcross.ui.gfx.Color;
@@ -36,7 +38,10 @@ public class EditSample extends Container {
 		try
 	    {
 	      Settings.is24Hour = true;
-	      
+	      UIColors.calculatorFore = Colors.BACKGROUND;
+	      UIColors.numericboxBack = Colors.BACKGROUND;
+	      UIColors.calendarBack = Colors.BACKGROUND;
+	      UIColors.timeboxVisorBack = Colors.BACKGROUND;
 	      sc = new ScrollContainer(false, true);
 		  sc.setInsets(SC_GAP, SC_GAP, SC_GAP, SC_GAP);
 		  add(sc,LEFT,TOP,FILL,FILL);
@@ -69,6 +74,7 @@ public class EditSample extends Container {
 	      numericEdit.setMode(Edit.CURRENCY); 
 	      numericEdit.setBackColor(Color.darker(Color.CYAN));
 	      numericEdit.setKeyboard(Edit.KBD_NUMERIC);
+	      
 
 	      calculatorEdit = new Edit();
 	      calculatorEdit.caption = "Calculator Edit";

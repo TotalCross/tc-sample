@@ -15,7 +15,6 @@ public class ListContainerSample extends Container {
 	private ListContainer lcSocialNetworks = new ListContainer();
 
 	private int SC_GAP = fmH/2;
-	private int GAP = fmH * 4;
 
 	@Override
 	public void initUI() {
@@ -29,28 +28,28 @@ public class ListContainerSample extends Container {
 
 			lcSocialNetworks.getFlick().longestFlick = 15;
 			lcSocialNetworks.setBackColor(Colors.BACKGROUND);
-			sc.add(lcSocialNetworks, LEFT + GAP, TOP, FILL - GAP, FILL);
+			sc.add(lcSocialNetworks, LEFT, TOP, FILL, FILL);
+			
+			ListContainer.Item facebook = new ListContainer.Item(getLayout(new Image("images/fb_icon_40.png")));
+			facebook.items = new String[] { "  ", " Name", "   Facebook", "", "" };
 
-			ListContainer.Item facebook = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/facebook.png"), Colors.BLUE)));
-			facebook.items = new String[] { "- ", "Name", "   Facebook", "Like?  ", "" };
+			ListContainer.Item twitter = new ListContainer.Item(getLayout(new Image("images/tt_icon_40.png")));
+			twitter.items = new String[] { "  ", " Name", "   Twitter", "", "" };
 
-			ListContainer.Item twitter = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/twitter.png"), Colors.PRIMARY)));
-			twitter.items = new String[] { "- ", "Name", "   Twitter", "Like?  ", "" };
+			ListContainer.Item instagram = new ListContainer.Item(getLayout(new Image("images/insta_icon_40.png")));
+			instagram.items = new String[] { "  ", " Name", "   Instagram", "", "" };
 
-			ListContainer.Item instagram = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/instagram.png"), Color.BLACK)));
-			instagram.items = new String[] { "- ", "Name", "   Instagram", "Like?  ", "" };
+			ListContainer.Item tumblr = new ListContainer.Item(getLayout(new Image("images/tumblr_icon_40.png")));
+			tumblr.items = new String[] { "  ", " Name", "   Tumblr", "", "" };
 
-			ListContainer.Item linkedin = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/linkedin.png"), Colors.BLUE)));
-			linkedin.items = new String[] { "-", "Name", "   linkedin", "Like?  ", "" };
-
-			ListContainer.Item googlePlus = new ListContainer.Item(getLayout(Images.aplyColor(new Image("images/google-plus.png"), Colors.RED)));
-			googlePlus.items = new String[] { "- ", "Name", "   Google +", "Like?  ", "" };
+			ListContainer.Item googlePlus = new ListContainer.Item(getLayout(new Image("images/gmail_icon_40.png")));
+			googlePlus.items = new String[] { "  ", " Name", "   Google +", "", "" };
 
 			Container socialNetworks[] = new Container[5];
 			socialNetworks[0] = facebook;
 			socialNetworks[1] = twitter;
 			socialNetworks[2] = instagram;
-			socialNetworks[3] = linkedin;
+			socialNetworks[3] = tumblr;
 			socialNetworks[4] = googlePlus;
 
 			lcSocialNetworks.addContainers(socialNetworks);
@@ -72,17 +71,18 @@ public class ListContainerSample extends Container {
 			layout.leftImageEnlargeIfSmaller = false;
 			layout.defaultLeftImage = leftImage;
 			layout.defaultRightImage = Images.aplyColor(new Image("images/thumb-up.png"), Colors.GRAY)
-					.hwScaledFixedAspectRatio(fmH * 2, true);
-			layout.defaultRightImage2 = Images.aplyColor(new Image("images/thumb-up.png"), Colors.GREEN)
-					.hwScaledFixedAspectRatio(fmH * 2, true);
-			layout.controlGap = 10;
-			layout.lineGap = 25;
-			layout.boldItems[2] = true;
-			layout.defaultItemColors[2] = Colors.ORANGE;
+					.hwScaledFixedAspectRatio(fmH, true);
+			layout.defaultRightImage2 = Images.aplyColor(new Image("images/thumb-up.png"), Colors.BLUE)
+					.hwScaledFixedAspectRatio(fmH, true);
+			layout.controlGap = 30;
+			layout.lineGap = 1;
+			layout.boldItems[2] = false;
+			layout.fontNames[2] = "Lato Bold";
+			layout.defaultItemColors[2] = Color.BLACK;
+			layout.relativeFontSizes[1] = -5;
 			layout.relativeFontSizes[2] = +2;
-			layout.relativeFontSizes[3] = +2;
+			layout.relativeFontSizes[3] = -15;
 			layout.positions[3] = RIGHT;
-			layout.boldItems[3] = true;
 			layout.setup();
 
 		} catch (Exception ee) {

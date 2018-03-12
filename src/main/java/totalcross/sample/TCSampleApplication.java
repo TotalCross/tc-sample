@@ -8,11 +8,6 @@ public class TCSampleApplication {
 	    TotalCrossApplication.run(
 	        TCSample.class,
 	        "/r",
-	        "",
-	        "/scr",
-	        "400x600",
-	        "/fontsize",
-	        "24",
-	        "/fingertouch");
+	        "544353541A8E8B2A28D5B8E0");
 	  }
 }

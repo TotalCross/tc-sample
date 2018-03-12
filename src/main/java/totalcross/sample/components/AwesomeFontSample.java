@@ -28,7 +28,7 @@ public class AwesomeFontSample extends Container{
    
 	    Label lbInfo = new Label("Hold char to see its unicode value");
 	    lbInfo.setFont(lbInfo.getFont().asBold());
-	    lbInfo.setForeColor(Colors.RED);
+	    lbInfo.setForeColor(Colors.P_DARK);
 	    sc.add(lbInfo, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED);
 	    
 	    int cols = Math.min(Settings.screenWidth, Settings.screenHeight) / (fmH*3);

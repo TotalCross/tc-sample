@@ -220,6 +220,7 @@ public class CameraSample extends Container {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	private String copyToSD(File f) {
 		String ret = f.getPath();
 		try {
