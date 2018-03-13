@@ -26,8 +26,8 @@ public class EditSample extends Container {
 	private Edit passwordHidenEdit;
 	private Edit maskedEdit;
 	
-	private final int H = 225;
-	private int GAP = 50;
+	private final int H = 25;
+	private int GAP = 100;
 	private int focusColor = 0xF0F8FF;
 	
 	@Override

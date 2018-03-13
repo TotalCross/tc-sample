@@ -22,8 +22,8 @@ public class ComboListSample extends Container {
 	private ListBox simpleListBox;
 	private MultiListBox multiColorListBox;
 	
-	private final int H = 225;
-	private final int B = 50;
+	private final int H = 0;
+	private final int B = 100;
 	
 	@Override
 	public void initUI() {

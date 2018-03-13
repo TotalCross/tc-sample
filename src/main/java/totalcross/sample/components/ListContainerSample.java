@@ -22,7 +22,7 @@ public class ListContainerSample extends Container {
 			super.initUI();
 			
 			sc = new ScrollContainer(false, true);
-			add(sc,LEFT+50,TOP+50,FILL-50,FILL);
+			add(sc,LEFT,TOP,FILL,FILL);
 
 			lcSocialNetworks.getFlick().longestFlick = 15;
 			lcSocialNetworks.setBackColor(Colors.BACKGROUND);
@@ -65,7 +65,7 @@ public class ListContainerSample extends Container {
 
 		try {
 
-			layout.insets.set(50, 10, 50, 10);
+			layout.insets.set(50, 50, 50, 50);
 			layout.leftImageEnlargeIfSmaller = false;
 			layout.defaultLeftImage = leftImage;
 			layout.defaultRightImage = Images.aplyColor(new Image("images/thumb-up.png"), Colors.GRAY)
