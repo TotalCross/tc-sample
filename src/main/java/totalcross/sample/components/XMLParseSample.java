@@ -66,9 +66,7 @@ public class XMLParseSample extends Container{
 	}
 	
 	private void readXml() {
-
 		try {
-			
 			UserHandler userHandler = new UserHandler();
 			XmlReader rdr = new XmlReader();
 			rdr.setContentHandler(userHandler);
