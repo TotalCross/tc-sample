@@ -12,6 +12,7 @@ import totalcross.sample.components.ListContainerSample;
 import totalcross.sample.components.Login;
 import totalcross.sample.components.MessageBoxSample;
 import totalcross.sample.components.SQLiteFormGridTabbedContainer;
+import totalcross.sample.components.XMLParseSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
@@ -63,6 +64,7 @@ public class TCSample extends MainWindow {
 			SideMenuContainer.Item camera = new SideMenuContainer.Item("Camera", new Image("images/bt_camera.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new CameraSample(); });
 			SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new MessageBoxSample(); });
 			SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new SQLiteFormGridTabbedContainer(); });
+			SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new XMLParseSample(); });
 			
 			sideMenu = new SideMenuContainer(null,
 	        		home,
@@ -75,7 +77,8 @@ public class TCSample extends MainWindow {
 	        		awesomeFont,
 	        		camera,
 	        		messageBox,
-	        		sqlite
+	        		sqlite,
+	        		xml
 	        ); 
 			
 			sideMenu.topMenu.header = new Container() {
