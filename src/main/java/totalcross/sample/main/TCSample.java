@@ -49,79 +49,68 @@ public class TCSample extends MainWindow {
 	}
 	
 	@Override
-	public void initUI() {
-		try{
+public void initUI() {
+		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Colors.PRIMARY, false, () -> { return new Home();});
+		SideMenuContainer.Item login= new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Colors.PRIMARY,  () -> { return new Login(); });
+		SideMenuContainer.Item buttons = new SideMenuContainer.Item("Button", MaterialIcons._TOUCH_APP, Colors.PRIMARY,  () -> { return new ButtonSample(); });
+		SideMenuContainer.Item edits = new SideMenuContainer.Item("Edit", MaterialIcons._TEXT_FORMAT, Colors.PRIMARY,  () -> { return new EditSample(); });
+		SideMenuContainer.Item checkRadio = new SideMenuContainer.Item("Check and Radio", MaterialIcons._CHECK_BOX, Colors.PRIMARY,  () -> { return new CheckRadioSample(); });
+		SideMenuContainer.Item comboList = new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Colors.PRIMARY,  () -> { return new ComboListSample(); });
+		SideMenuContainer.Item listContainer = new SideMenuContainer.Item("List Container", MaterialIcons._VIEW_LIST, Colors.PRIMARY,  () -> { return new ListContainerSample(); });	
+		SideMenuContainer.Item awesomeFont = new SideMenuContainer.Item("Material Icons", MaterialIcons._FONT_DOWNLOAD, Colors.PRIMARY,  () -> { return new AwesomeFontSample(); });
+		SideMenuContainer.Item camera = new SideMenuContainer.Item("Camera", MaterialIcons._PHOTO_CAMERA, Colors.PRIMARY,  () -> { return new CameraSample(); });
+		SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Colors.PRIMARY,  () -> { return new MessageBoxSample(); });
+		SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Colors.PRIMARY,  () -> { return new SQLiteFormGridTabbedContainer(); });
 		
-			SideMenuContainer.Item home = new SideMenuContainer.Item("Home", new Image("images/home_icon.png").hwScaledFixedAspectRatio(fmH*2, true),  () -> { return new Home();});
-			SideMenuContainer.Item login= new SideMenuContainer.Item("Login", new Image("images/bt_login.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new Login(); });
-			SideMenuContainer.Item buttons = new SideMenuContainer.Item("Button", new Image("images/button_icon.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new ButtonSample(); });
-			SideMenuContainer.Item edits = new SideMenuContainer.Item("Edit", new Image("images/edit.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new EditSample(); });
-			SideMenuContainer.Item checkRadio = new SideMenuContainer.Item("Check and Radio", new Image("images/checkbox-marked.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new CheckRadioSample(); });
-			SideMenuContainer.Item comboList = new SideMenuContainer.Item("Combo and List", new Image("images/arrow-down-drop-circle.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new ComboListSample(); });
-			SideMenuContainer.Item listContainer = new SideMenuContainer.Item("List Container", new Image("images/list_container.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new ListContainerSample(); });	
-			SideMenuContainer.Item awesomeFont = new SideMenuContainer.Item("Awesome Font", new Image("images/awesomefont-icon.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new AwesomeFontSample(); });
-			SideMenuContainer.Item camera = new SideMenuContainer.Item("Camera", new Image("images/bt_camera.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new CameraSample(); });
-			SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new MessageBoxSample(); });
-			SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new SQLiteFormGridTabbedContainer(); });
-			
-			sideMenu = new SideMenuContainer(null,
-	        		home,
-	        		login,
-	        		buttons,
-	        		edits,
-	        		checkRadio,
-	        		comboList,
-	        		listContainer,
-	        		awesomeFont,
-	        		camera,
-	        		messageBox,
-	        		sqlite
-	        ); 
-			
-			sideMenu.topMenu.header = new Container() {
-				@Override
-				public void initUI() {
-					
-					try {
-						setBackColor(Colors.REDDESIGN);
-						
-						ImageControl profile = new ImageControl(new Image("images/logoV.png"));
-						profile.scaleToFit = true;
-						profile.transparentBackground = true;
-						add(profile, CENTER+65, BOTTOM-250, PARENTSIZE, PARENTSIZE+40);
-						
-						Label title = new Label("Components", CENTER, Color.WHITE, false);
-						title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
-						title.setForeColor(Color.WHITE);
-						add(title, LEFT+45, BOTTOM-45, PARENTSIZE+38, PREFERRED);
-						
-					} catch (IOException | ImageException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+		sideMenu = new SideMenuContainer(null,
+        		home,
+        		login,
+        		buttons,
+        		edits,
+        		checkRadio,
+        		comboList,
+        		listContainer,
+        		awesomeFont,
+        		camera,
+        		messageBox,
+        		sqlite
+        ); 
+		
+		sideMenu.topMenu.header = new Container() {
+			@Override
+			public void initUI() {
 				
-				@Override
-				public int getPreferredHeight() {
-					return 350;
+				try {
+					setBackColor(Colors.REDDESIGN);
+					
+					Label title = new Label("Components", CENTER, Color.WHITE, false);
+					title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
+					title.setForeColor(Color.WHITE);
+					add(title, LEFT+45, BOTTOM-45, PARENTSIZE+38, DP + 56);
+					
+					ImageControl profile = new ImageControl(new Image("images/logoV.png"));
+					profile.scaleToFit = true;
+					profile.transparentBackground = true;
+					add(profile, LEFT + 45, TOP + 45, PREFERRED, FIT);
+					
+				} catch (IOException | ImageException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			};
-			
-			
-			sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
-	        sideMenu.setBackColor(Colors.PRIMARY);
-	        sideMenu.setForeColor(Color.WHITE);
-	        sideMenu.setItemForeColor(Color.BLACK);
-	        sideMenu.topMenu.drawSeparators = false;
-	        sideMenu.topMenu.itemHeightFactor = 3;
-	        
-	        Icon icon = new Icon(MaterialIcons._MENU);
-	        icon.setBackColor(Color.WHITE);
-	        add(icon, LEFT, TOP);
-			add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
+			}
+		};
 		
-		} catch (ImageException | IOException e) {
-			e.printStackTrace();
-		} 
+		
+		sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
+        sideMenu.setBackColor(Colors.PRIMARY);
+        sideMenu.setForeColor(Color.WHITE);
+        sideMenu.setItemForeColor(Color.BLACK);
+        sideMenu.topMenu.drawSeparators = false;
+        sideMenu.topMenu.itemHeightFactor = 3;
+        
+        Icon icon = new Icon(MaterialIcons._MENU);
+        icon.setBackColor(Color.WHITE);
+        add(icon, LEFT, TOP);
+		add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
 	}
 }
