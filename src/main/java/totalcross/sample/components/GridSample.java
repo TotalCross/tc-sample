@@ -16,7 +16,7 @@ import totalcross.ui.gfx.Color;
 public class GridSample extends Container {
 	
 	private Grid grid;
-	private Button chargeButton;
+	private Button loadButton;
 	private int GAP = 50;
 	private final int H = 225;
 	
@@ -30,15 +30,15 @@ public class GridSample extends Container {
 
       grid = new Grid(gridCaptions, gridWidths, gridAligns, false);
       
-      chargeButton = new Button("Charge");
-      chargeButton.setBackColor(Colors.P_DARK);
-      chargeButton.setForeColor(Color.WHITE);
+      loadButton = new Button("Load");
+      loadButton.setBackColor(Colors.P_DARK);
+      loadButton.setForeColor(Color.WHITE);
 
       add(grid, LEFT + GAP, TOP + GAP, FILL - GAP, FILL - GAP*9);
-      add(chargeButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED+H);
+      add(loadButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED+H);
       
       
-      chargeButton.addPressListener(new PressListener() {
+      loadButton.addPressListener(new PressListener() {
 	        @Override
 	        public void controlPressed(ControlEvent e)
 	        {
