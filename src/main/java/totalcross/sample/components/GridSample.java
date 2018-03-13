@@ -25,8 +25,8 @@ public class GridSample extends Container {
     {
 	
       String []gridCaptions = {"Name", "Phone", "Email" };
-      int gridWidths[] = {-30, -30, -40};
-      int gridAligns[] = {CENTER,CENTER,CENTER};
+      int gridWidths[] = {-35, -35, -30};
+      int gridAligns[] = {LEFT,LEFT,LEFT};
 
       grid = new Grid(gridCaptions, gridWidths, gridAligns, false);
       
@@ -45,7 +45,7 @@ public class GridSample extends Container {
 	        	
 	        	ArrayList<User> users = SQLiteManager.getInstance().getUsers();
 	        	
-		        	if (users.size() > 0) {
+	        	if (users.size() > 0) {
 		        	
 		        	String items[][] = new String[users.size()][3];
 		        	
@@ -68,10 +68,5 @@ public class GridSample extends Container {
 	            }
 	        }
 	    });
-      
-      
     }
-	
-	
-	
 }

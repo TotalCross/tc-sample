@@ -19,8 +19,6 @@
 			<groupId>com.totalcross</groupId>
 			<artifactId>totalcross-sdk</artifactId>
 			<version>5.0.0-SNAPSHOT</version>
-			<scope>system</scope>
-			<systemPath>C:\Program Files\TotalCross\sdk\dist\totalcross-sdk.jar</systemPath>
 		</dependency>
 		
 		<dependency>

@@ -8,6 +8,9 @@ public class TCSampleApplication {
 	    TotalCrossApplication.run(
 	        TCSample.class,
 	        "/r",
-	        "544353541A8E8B2A28D5B8E0");
+	        "544353541A8E8B2A28D5B8E0",
+	        "/scr",
+	        "360x640"
+	        );
 	  }
 }

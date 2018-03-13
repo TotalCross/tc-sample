@@ -12,6 +12,7 @@ import totalcross.sample.components.ListContainerSample;
 import totalcross.sample.components.Login;
 import totalcross.sample.components.MessageBoxSample;
 import totalcross.sample.components.SQLiteFormGridTabbedContainer;
+import totalcross.sample.components.XMLParseSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
@@ -61,6 +62,8 @@ public void initUI() {
 		SideMenuContainer.Item camera = new SideMenuContainer.Item("Camera", MaterialIcons._PHOTO_CAMERA, Colors.PRIMARY,  () -> { return new CameraSample(); });
 		SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Colors.PRIMARY,  () -> { return new MessageBoxSample(); });
 		SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Colors.PRIMARY,  () -> { return new SQLiteFormGridTabbedContainer(); });
+		SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new XMLParseSample(); });
+
 		
 		sideMenu = new SideMenuContainer(null,
         		home,
@@ -73,7 +76,8 @@ public void initUI() {
         		awesomeFont,
         		camera,
         		messageBox,
-        		sqlite
+        		sqlite,
+        		xml
         ); 
 		
 		sideMenu.topMenu.header = new Container() {
