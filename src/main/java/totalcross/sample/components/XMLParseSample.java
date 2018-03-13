@@ -1,5 +1,9 @@
 package totalcross.sample.components;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import totalcross.io.File;
 import totalcross.io.IOException;
@@ -7,6 +11,7 @@ import totalcross.io.IllegalArgumentIOException;
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.User;
 import totalcross.sys.Settings;
+import totalcross.sys.Vm;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.Grid;
@@ -68,37 +73,43 @@ public class XMLParseSample extends Container{
 			XmlReader rdr = new XmlReader();
 			rdr.setContentHandler(userHandler);
 			
-			File f = new File(Settings.appPath+"user.xml", File.READ_ONLY);
-			rdr.parse(new XmlReadableFile(f));
+			byte[] xml = Vm.getFile(Settings.appPath+"user.xml");
 			
-			ArrayList<User> users = userHandler.getUsers();
-			
-			if (users.size() > 0) {
-	        	
-	        	String items[][] = new String[users.size()][3];
-	        	
-	        	for (int i = 0; i < users.size(); i++) {
-	        		
-	        		User user = users.get(i);
-	        		
-	        		items[i] =  new String[] {user.getName(), user.getPhone(), user.getMail()};
-	        		
-	        	}
+			if (xml != null) {
+				
+				rdr.parse(xml, 0, xml.length);
+				
+				ArrayList<User> users = userHandler.getUsers();
+				
+				if (users.size() > 0) {
+		        	
+		        	String items[][] = new String[users.size()][3];
+		        	
+		        	for (int i = 0; i < users.size(); i++) {
+		        		
+		        		User user = users.get(i);
+		        		
+		        		items[i] =  new String[] {user.getName(), user.getPhone(), user.getMail()};
+		        		
+		        	}
 
-	            grid.setItems(items);
-	            
-            } else {
+		            grid.setItems(items);
+		            
+	            } else {
+	            	
+	            	MessageBox mb = new MessageBox("Message" , "No registered users.", new String[]{"Close"});
+		        	mb.setBackColor(Colors.BACKGROUND);
+		        	mb.setForeColor(Colors.FOREGROUND);
+		        	mb.popup();
+	            }
+			} else {
             	
-            	MessageBox mb = new MessageBox("Message" , "No registered users.", new String[]{"Close"});
+            	MessageBox mb = new MessageBox("Message" , "XML not found.", new String[]{"Close"});
 	        	mb.setBackColor(Colors.BACKGROUND);
 	        	mb.setForeColor(Colors.FOREGROUND);
 	        	mb.popup();
             }
 			
-		} catch (IllegalArgumentIOException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (SyntaxException e) {
 			e.printStackTrace();
 		}
