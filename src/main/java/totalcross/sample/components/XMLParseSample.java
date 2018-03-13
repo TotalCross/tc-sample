@@ -73,7 +73,7 @@ public class XMLParseSample extends Container{
 			XmlReader rdr = new XmlReader();
 			rdr.setContentHandler(userHandler);
 			
-			byte[] xml = Vm.getFile(Settings.appPath+"user.xml");
+			byte[] xml = Vm.getFile("user.xml");
 			
 			if (xml != null) {
 				
