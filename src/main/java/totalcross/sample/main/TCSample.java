@@ -40,7 +40,7 @@ public class TCSample extends MainWindow {
 	
 	public TCSample() {
 		
-		super("TotalCross Sample", NO_BORDER);
+		super("TotalCross Showcase", NO_BORDER);
 		
         setUIStyle(Settings.Material);
         Settings.uiAdjustmentsBasedOnFontHeight = true;
