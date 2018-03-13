@@ -50,7 +50,7 @@ public class TCSample extends MainWindow {
 	}
 	
 	@Override
-public void initUI() {
+	public void initUI() {
 		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Colors.PRIMARY, false, () -> { return new Home();});
 		SideMenuContainer.Item login= new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Colors.PRIMARY,  () -> { return new Login(); });
 		SideMenuContainer.Item buttons = new SideMenuContainer.Item("Button", MaterialIcons._TOUCH_APP, Colors.PRIMARY,  () -> { return new ButtonSample(); });
@@ -62,7 +62,7 @@ public void initUI() {
 		SideMenuContainer.Item camera = new SideMenuContainer.Item("Camera", MaterialIcons._PHOTO_CAMERA, Colors.PRIMARY,  () -> { return new CameraSample(); });
 		SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Colors.PRIMARY,  () -> { return new MessageBoxSample(); });
 		SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Colors.PRIMARY,  () -> { return new SQLiteFormGridTabbedContainer(); });
-		SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new XMLParseSample(); });
+		SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Colors.PRIMARY, () -> { return new XMLParseSample(); });
 
 		
 		sideMenu = new SideMenuContainer(null,
