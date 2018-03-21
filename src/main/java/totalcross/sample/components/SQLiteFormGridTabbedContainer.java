@@ -10,7 +10,7 @@ import totalcross.ui.font.Font;
 
 public class SQLiteFormGridTabbedContainer extends TabbedContainer{
 	
-	private static final String [] tabs = {"Form", "Grid"};
+	private static final String [] tabs = {"  Form  ", "  Grid  "};
 	private final Container bottomBar;
 	
 	private ArrayList<ButtonContainerAction> btnContainerActionList = new ArrayList<>();
