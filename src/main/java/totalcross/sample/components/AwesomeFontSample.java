@@ -8,6 +8,8 @@ import totalcross.ui.icon.MaterialIcons;
 
 public class AwesomeFontSample extends ScrollContainer {
 
+  static final int ICON_WIDTH = 64;
+
   public AwesomeFontSample() {
     super(false, true);
   }
@@ -16,7 +18,8 @@ public class AwesomeFontSample extends ScrollContainer {
   public void initUI() {
     int cols =
         (int)
-            (Math.min(Settings.screenWidth, Settings.screenHeight) / (48 * Settings.screenDensity));
+            (Math.min(Settings.screenWidth, Settings.screenHeight)
+                / (ICON_WIDTH * Settings.screenDensity));
 
     Container c =
         new Container() {
@@ -24,16 +27,17 @@ public class AwesomeFontSample extends ScrollContainer {
           public void initUI() {
             for (int i = 0, j = 0; i < MaterialIcons.values().length; i++, j++) {
               Icon icon = new Icon(MaterialIcons.values()[i]);
+              icon.setFont(icon.getFont().adjustedBy(10));
               add(
                   icon,
-                  ((j % cols) == 0 ? LEFT : AFTER) + 10,
+                  (j % cols) == 0 ? LEFT : AFTER,
                   (j % cols) == 0 ? AFTER : SAME,
-                  (int) (48 * Settings.screenDensity),
-                  DP + 48);
-              this.resizeHeight();
+                  PARENTSIZE + (100 / cols),
+                  DP + ICON_WIDTH);
             }
+            resizeHeight();
           }
         };
-    add(c, CENTER, TOP + 100, (int) (cols * 48 * Settings.screenDensity), WILL_RESIZE);
+    add(c, CENTER, TOP + 100, (int) (cols * ICON_WIDTH * Settings.screenDensity), WILL_RESIZE);
   }
 }
