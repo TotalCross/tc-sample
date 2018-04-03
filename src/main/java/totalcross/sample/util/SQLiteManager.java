@@ -17,7 +17,6 @@ public class SQLiteManager {
 	private SQLiteManager() {
 		
 		try {
-			
 			util = new SQLiteUtil(Settings.appPath,"SQLiteExample.db");
 			createUserTable();
 			
@@ -40,7 +39,12 @@ public class SQLiteManager {
 		try {
 			
 			Statement st = util.con().createStatement();
-			st.execute("CREATE TABLE IF NOT EXISTS USERS (NAME VARCHAR(50), PHONE VARCHAR(15), EMAIL VARCHAR(20), PASSWORD VARCHAR(20))");
+			st.execute("CREATE TABLE IF NOT EXISTS USERS (
+				   NAME VARCHAR(50), 
+				   PHONE VARCHAR(15), 
+				   EMAIL VARCHAR(20), 
+				   PASSWORD VARCHAR(20))
+				");
 			st.close();
 			
 		} catch (SQLException e) {
@@ -48,6 +52,16 @@ public class SQLiteManager {
 		}
 	}
 	
+	public void deleteUser(String email) {
+		try {
+			Statement st = util.con().createStatement();
+			st.execute("Delete from USERS where EMAIL = 'email' ");
+			st.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	public Boolean insertUsers(User user) {
