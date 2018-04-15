@@ -11,6 +11,7 @@ import totalcross.sample.components.Home;
 import totalcross.sample.components.ListContainerSample;
 import totalcross.sample.components.Login;
 import totalcross.sample.components.MessageBoxSample;
+import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
@@ -61,6 +62,7 @@ public class TCSample extends MainWindow {
 			SideMenuContainer.Item awesomeFont = new SideMenuContainer.Item("Awesome Font", new Image("images/awesomefont-icon.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new AwesomeFontSample(); });
 			SideMenuContainer.Item camera = new SideMenuContainer.Item("Camera", new Image("images/bt_camera.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new CameraSample(); });
 			SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", new Image("images/message.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new MessageBoxSample(); });
+			SideMenuContainer.Item cards = new SideMenuContainer.Item("Cards", new Image("images/cards.png").hwScaledFixedAspectRatio(fmH*2,true),  () -> { return new CardsSample(); });
 			
 			sideMenu = new SideMenuContainer(null,
 	        		home,
@@ -72,7 +74,8 @@ public class TCSample extends MainWindow {
 	        		listContainer,
 	        		awesomeFont,
 	        		camera,
-	        		messageBox
+	        		messageBox,
+	        		cards
 	        ); 
 			
 			sideMenu.topMenu.header = new Container() {
