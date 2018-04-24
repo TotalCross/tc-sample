@@ -13,6 +13,7 @@ import totalcross.sample.components.Login;
 import totalcross.sample.components.MessageBoxSample;
 import totalcross.sample.components.SQLiteFormGridTabbedContainer;
 import totalcross.sample.components.XMLParseSample;
+import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
@@ -63,58 +64,60 @@ public class TCSample extends MainWindow {
 		SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Colors.PRIMARY,  () -> { return new MessageBoxSample(); });
 		SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Colors.PRIMARY,  () -> { return new SQLiteFormGridTabbedContainer(); });
 		SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Colors.PRIMARY, () -> { return new XMLParseSample(); });
-
 		
-		sideMenu = new SideMenuContainer(null,
-        		home,
-        		login,
-        		buttons,
-        		edits,
-        		checkRadio,
-        		comboList,
-        		listContainer,
-        		awesomeFont,
-        		camera,
+			SideMenuContainer.Item cards = new SideMenuContainer.Item("Cards", MaterialIcons._VIEW_AGENDA, Colors.PRIMARY,  () -> { return new CardsSample(); });
+			
+			sideMenu = new SideMenuContainer(null,
+	        		home,
+	        		login,
+	        		buttons,
+	        		edits,
+	        		checkRadio,
+	        		comboList,
+	        		listContainer,
+	        		awesomeFont,
+	        		camera,
         		messageBox,
         		sqlite,
-        		xml
-        ); 
-		
-		sideMenu.topMenu.header = new Container() {
-			@Override
-			public void initUI() {
-				
-				try {
-					setBackColor(Colors.REDDESIGN);
+        		xml,
+	        		cards
+	        ); 
+			
+			sideMenu.topMenu.header = new Container() {
+				@Override
+				public void initUI() {
 					
+					try {
+						setBackColor(Colors.REDDESIGN);
+						
 					Label title = new Label("Components", CENTER, Color.WHITE, false);
 					title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
 					title.setForeColor(Color.WHITE);
 					add(title, LEFT+45, BOTTOM-45, PARENTSIZE+38, DP + 56);
 					
-					ImageControl profile = new ImageControl(new Image("images/logoV.png"));
-					profile.scaleToFit = true;
-					profile.transparentBackground = true;
+						ImageControl profile = new ImageControl(new Image("images/logoV.png"));
+						profile.scaleToFit = true;
+						profile.transparentBackground = true;
 					add(profile, LEFT + 45, TOP + 45, PREFERRED, FIT);
-					
-				} catch (IOException | ImageException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+						
+					} catch (IOException | ImageException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-			}
-		};
-		
-		
-		sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
-        sideMenu.setBackColor(Colors.PRIMARY);
-        sideMenu.setForeColor(Color.WHITE);
-        sideMenu.setItemForeColor(Color.BLACK);
-        sideMenu.topMenu.drawSeparators = false;
-        sideMenu.topMenu.itemHeightFactor = 3;
-        
-        Icon icon = new Icon(MaterialIcons._MENU);
-        icon.setBackColor(Color.WHITE);
-        add(icon, LEFT, TOP);
-		add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
+			};
+			
+			
+			sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
+	        sideMenu.setBackColor(Colors.PRIMARY);
+	        sideMenu.setForeColor(Color.WHITE);
+	        sideMenu.setItemForeColor(Color.BLACK);
+	        sideMenu.topMenu.drawSeparators = false;
+	        sideMenu.topMenu.itemHeightFactor = 3;
+	        
+	        Icon icon = new Icon(MaterialIcons._MENU);
+	        icon.setBackColor(Color.WHITE);
+	        add(icon, LEFT, TOP);
+			add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
 	}
 }
