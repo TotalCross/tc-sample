@@ -13,8 +13,6 @@ import totalcross.ui.font.Font;
 public class AwesomeFontSample extends Container{
 	
 	private ScrollContainer sc;
-
-	//private final int H = 225;
 	private final int GAP = 50;
 	
 	@Override
