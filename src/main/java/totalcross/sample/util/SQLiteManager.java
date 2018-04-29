@@ -39,12 +39,7 @@ public class SQLiteManager {
 		try {
 			
 			Statement st = util.con().createStatement();
-			st.execute("CREATE TABLE IF NOT EXISTS USERS (
-				   NAME VARCHAR(50), 
-				   PHONE VARCHAR(15), 
-				   EMAIL VARCHAR(20), 
-				   PASSWORD VARCHAR(20))
-				");
+			st.execute("CREATE TABLE IF NOT EXISTS USERS (NAME VARCHAR(50), PHONE VARCHAR(15), EMAIL VARCHAR(20), PASSWORD VARCHAR(20))");
 			st.close();
 			
 		} catch (SQLException e) {
