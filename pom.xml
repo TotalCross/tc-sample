@@ -11,7 +11,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<totalcross.activation_key>544353541A8E8B2A28D5B8E0</totalcross.activation_key>
+		<totalcross.activation_key>place holder</totalcross.activation_key>
 	</properties>
 
 	<dependencies>
