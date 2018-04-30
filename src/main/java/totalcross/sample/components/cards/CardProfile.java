@@ -114,26 +114,50 @@ public class CardProfile extends Container {
       cont2.add(lbDraft, CENTER_OF, AFTER, PREFERRED, PREFERRED, lbDraftValue);
       cont2.add(lbSpam, CENTER_OF, AFTER, PREFERRED, PREFERRED, lbSpamValue);
 
-      btSend =
-          new Button(
-              Images.aplyColor(new Image("images/send.png"), 0xffffff)
-                  .hwScaledFixedAspectRatio((int) (fmH * 1.3), true));
+      btSend = new Button(Images.aplyColor(new Image("images/send.png"), 0xffffff));
       btSend.setBackColor(0xC10828);
-      btAttach =
-          new Button(
-              Images.aplyColor(new Image("images/attach.png"), 0xFFFFFF)
-                  .hwScaledFixedAspectRatio((int) (fmH * 1.3), true));
+      btSend.imageHeightFactor = 50;
+      btAttach = new Button(Images.aplyColor(new Image("images/attach.png"), 0xFFFFFF));
       btAttach.setBackColor(0xC10828);
-      btOthers =
-          new Button(
-              Images.aplyColor(new Image("images/settings.png"), 0xFFFFFF)
-                  .hwScaledFixedAspectRatio((int) (fmH * 1.3), true));
+      btAttach.imageHeightFactor = 50;
+      btOthers = new Button(Images.aplyColor(new Image("images/settings.png"), 0xFFFFFF));
       btOthers.setBackColor(0xC10828);
+      btOthers.imageHeightFactor = 50;
 
-      add(btAttach, CENTER, BOTTOM - 40, PARENTSIZE + 25, PARENTSIZE + 20);
-      add(btSend, BEFORE - fmH * 10, BOTTOM - 40, PARENTSIZE + 25, PARENTSIZE + 20);
-      add(btOthers, AFTER + fmH * 10, BOTTOM - 40, PARENTSIZE + 25, PARENTSIZE + 20, btAttach);
-
+      add(
+          new Container() {
+            @Override
+            public void initUI() {
+              add(btAttach, CENTER, CENTER, DP + 80, DP + 40);
+              add(
+                  new Container() {
+                    @Override
+                    public void initUI() {
+                      add(btSend, CENTER, CENTER, DP + 80, DP + 40);
+                    }
+                  },
+                  LEFT,
+                  TOP,
+                  FIT,
+                  FILL);
+              add(
+                  new Container() {
+                    @Override
+                    public void initUI() {
+                      add(btOthers, CENTER, CENTER, DP + 80, DP + 40);
+                    }
+                  },
+                  AFTER,
+                  TOP,
+                  FILL,
+                  FILL,
+                  btAttach);
+            }
+          },
+          LEFT,
+          AFTER,
+          FILL,
+          FILL);
     } catch (ImageException | IOException e) {
       e.printStackTrace();
     }
