@@ -19,21 +19,42 @@ public class CardSocial extends Container {
         borderColor = 0xFFFFFF;
 		
 		try {
-			
-			btFacebook = new Button(new Image("images/fb_icon_40.png").hwScaledFixedAspectRatio((int)(fmH*1.5), true));
-			btFacebook.setBorder(Button.BORDER_NONE);
-			btInstagram = new Button(new Image("images/insta_icon_40.png").hwScaledFixedAspectRatio((int)(fmH*1.5), true));
-			btInstagram.setBorder(Button.BORDER_NONE);
-			btTwitter = new Button(new Image("images/tt_icon_40.png").hwScaledFixedAspectRatio((int)(fmH*1.5), true));
-			btTwitter.setBorder(Button.BORDER_NONE);
-			
-			add(btInstagram, CENTER, CENTER, PREFERRED, PREFERRED);
-			add(btFacebook, BEFORE-fmH*18, CENTER, PREFERRED, PREFERRED);
-			add(btTwitter, AFTER+fmH*18, CENTER, PREFERRED, PREFERRED, btInstagram);
-			
-		} catch (ImageException | IOException e) {
-			e.printStackTrace();
-		} 
-	}
+      btFacebook = new Button(new Image("images/fb_icon_40.png"));
+      btFacebook.setBorder(Button.BORDER_NONE);
+      btFacebook.imageHeightFactor = 50;
+      btInstagram = new Button(new Image("images/insta_icon_40.png"));
+      btInstagram.setBorder(Button.BORDER_NONE);
+      btInstagram.imageHeightFactor = 50;
+      btTwitter = new Button(new Image("images/tt_icon_40.png"));
+      btTwitter.setBorder(Button.BORDER_NONE);
+      btTwitter.imageHeightFactor = 50;
 
+      add(btInstagram, CENTER, CENTER, PREFERRED, PREFERRED);
+      add(
+          new Container() {
+            @Override
+            public void initUI() {
+              add(btFacebook, CENTER, CENTER);
+            }
+          },
+          LEFT,
+          TOP,
+          FIT,
+          FILL);
+      add(
+          new Container() {
+            @Override
+            public void initUI() {
+              add(btTwitter, CENTER, CENTER);
+            }
+          },
+          AFTER,
+          TOP,
+          FILL,
+          FILL,
+          btInstagram);
+    } catch (ImageException | IOException e) {
+      e.printStackTrace();
+    }
+  }
 }

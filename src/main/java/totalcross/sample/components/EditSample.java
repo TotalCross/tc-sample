@@ -4,11 +4,7 @@ import totalcross.sample.util.Colors;
 import totalcross.sample.util.Util;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
-import totalcross.ui.CaptionPress;
-import totalcross.ui.Container;
-import totalcross.ui.Edit;
-import totalcross.ui.ScrollContainer;
-import totalcross.ui.UIColors;
+import totalcross.ui.*;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.TimeBox;
 import totalcross.ui.gfx.Color;
@@ -25,9 +21,10 @@ public class EditSample extends Container {
 	private Edit passwordShowEdit;
 	private Edit passwordHidenEdit;
 	private Edit maskedEdit;
+	private MultiEdit me;
 	
-	private final int H = 225;
-	private int GAP = 50;
+	private final int H = 25;
+	private int GAP = 100;
 	private int focusColor = 0xF0F8FF;
 	
 	@Override
@@ -107,8 +104,12 @@ public class EditSample extends Container {
 	      maskedEdit.setValidChars(Edit.numbersSet);
 	      maskedEdit.caption = "Masked Edit (999.999.999-99)";
 	      maskedEdit.setMode(Edit.NORMAL,true);
+	      
+	      me = new MultiEdit();
+	      me.caption = "MultiEdit";
 
 	      sc.add(simpleEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+	      sc.add(me, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
 	      sc.add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
 	      sc.add(numericEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
 	      sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);;

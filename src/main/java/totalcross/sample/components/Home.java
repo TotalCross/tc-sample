@@ -27,9 +27,6 @@ public class Home extends Container {
             lbWelcome.setForeColor(Color.WHITE);
 	        add(lbWelcome, CENTER, AFTER+40);
 	        
-	        Label af = new Label("\uF039");
-	        af.setFont(Font.getFont("FontAwesome", false, af.getFont().size));
-	        
 	        Label lbWelcome3 = new Label("Use the menu on the top left\n     to see the components");
             lbWelcome3.setFont(Font.getFont("Lato Bold", false, lbWelcome3.getFont().size));
             lbWelcome3.setForeColor(Color.WHITE);

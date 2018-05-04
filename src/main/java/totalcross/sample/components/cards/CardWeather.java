@@ -30,21 +30,23 @@ public class CardWeather extends Container {
 			add(cont, LEFT, TOP, PARENTSIZE+50, PARENTSIZE);
 			add(cont2, RIGHT, TOP, PARENTSIZE+50, PARENTSIZE);
 			
-			imgIcon = new ImageControl(new Image("images/partly-cloudly.png").hwScaledFixedAspectRatio((int)(fmH*5), true));		
-			lbValue = new Label("22°");
-			lbValue.setFont(Font.getFont("Lato Medium", false, lbValue.getFont().size + 30));
-			lbValue.setForeColor(0x215968);
-			lbText = new Label("Partly Cloudly");
-			lbText.setFont(Font.getFont("Lato Medium", false, lbText.getFont().size + 10));
-			lbText.setForeColor(0x215968);
-			
-			cont.add(imgIcon, CENTER, CENTER, PREFERRED, PREFERRED);
-			cont2.add(lbValue, CENTER, CENTER-30, PREFERRED, PREFERRED);
-			cont2.add(lbText, CENTER, AFTER, PREFERRED, PREFERRED);
-			
-		} catch (ImageException | IOException e) {
-			e.printStackTrace();
-		} 
-	}
-	
+      imgIcon =
+          new ImageControl(
+              new Image("images/partly-cloudly.png")
+                  .hwScaledFixedAspectRatio((int) (fmH * 5), true));
+      lbValue = new Label("22°");
+      lbValue.setFont(Font.getFont("Lato Medium", false, lbValue.getFont().size + 30));
+      lbValue.setForeColor(0x215968);
+      lbText = new Label("Partly Cloudly");
+      lbText.setFont(Font.getFont("Lato Medium", false, lbText.getFont().size + 10));
+      lbText.setForeColor(0x215968);
+
+      cont.add(imgIcon, CENTER, CENTER, PREFERRED, PREFERRED);
+      cont2.add(lbValue, CENTER, CENTER - 30, PREFERRED, PREFERRED);
+      cont2.add(lbText, CENTER, AFTER, PREFERRED, PREFERRED);
+
+    } catch (ImageException | IOException e) {
+      e.printStackTrace();
+    }
+  }
 }

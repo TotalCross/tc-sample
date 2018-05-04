@@ -22,8 +22,8 @@ public class CheckRadioSample extends Container {
 	private Radio backgroundRadio;
 	private Radio foregroundRadio;
 	
-	private final int H = 225;
-	private final int GAP = 50;
+	private final int H = 25;
+	private final int GAP = 100;
 	
 	@Override
 	public void initUI() {

@@ -1,16 +1,22 @@
 package totalcross.sample.components.cards;
 
-import totalcross.ui.Container;
+import totalcross.sys.Settings;
+import totalcross.ui.ScrollContainer;
 
-public class CardsSample extends Container {
-	
-	public void initUI() {
-		setBackColor(0xDCDCDC);
-		
-		add(new CardSearch(),CENTER,TOP+50,PARENTSIZE+96,PARENTSIZE+10);
-		add(new CardProfile(),CENTER,AFTER+50,PARENTSIZE+96,PARENTSIZE+40);
-		add(new CardWeather(),CENTER,AFTER+50,PARENTSIZE+96,PARENTSIZE+30);	
-		add(new CardSocial(),CENTER,AFTER+50,PARENTSIZE+96,PARENTSIZE+10);
-	}
+public class CardsSample extends ScrollContainer {
 
+  public CardsSample() {
+    super(false, true);
+  }
+
+  public void initUI() {
+    setBackColor(0xDCDCDC);
+    final int DP_10 = (int) (Settings.screenDensity * 10);
+    setInsets(0, 0, DP_10, DP_10);
+
+    add(new CardSearch(), LEFT + 30, TOP, FILL - 30, DP + 60);
+    add(new CardProfile(), LEFT + 30, AFTER + 50, FILL - 30, DP + 240);
+    add(new CardWeather(), LEFT + 30, AFTER + 50, FILL - 30, DP + 120);
+    add(new CardSocial(), LEFT + 30, AFTER + 50, FILL - 30, DP + 60);
+  }
 }

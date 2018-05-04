@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+  <user>
+    <name>Peter Parker</name>
+    <phone>(12)98748-9843</phone>
+    <email>webhead@email.com</email>
+    <password>maryjane</password>
+  </user>
+  <user>
+    <name>Matt Murdock</name>
+    <phone>(12)46534-9374</phone>
+    <email>notdaredevil@email.com</email>
+    <password>battlinmurdock</password>
+  </user>
+  <user>
+    <name>Bruce Wayne</name>
+    <phone>(45)85748-9753</phone>
+    <email>iambatman@email.com</email>
+    <password>mommyanddaddy</password>
+  </user>
+  <user>
+    <name>Clark Kent</name>
+    <phone>(35)98574-3984</phone>
+    <email>kal-el@email.com</email>
+    <password>mommyanddaddy</password>
+  </user>
+</users> 

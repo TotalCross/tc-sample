@@ -2,6 +2,7 @@ package totalcross.sample.components;
 
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.Images;
+import totalcross.sys.Settings;
 import totalcross.ui.Container;
 import totalcross.ui.ListContainer;
 import totalcross.ui.ScrollContainer;
@@ -22,25 +23,25 @@ public class ListContainerSample extends Container {
 			super.initUI();
 			
 			sc = new ScrollContainer(false, true);
-			add(sc,LEFT+50,TOP+50,FILL-50,FILL);
+			add(sc,LEFT,TOP,FILL,FILL);
 
 			lcSocialNetworks.getFlick().longestFlick = 15;
 			lcSocialNetworks.setBackColor(Colors.BACKGROUND);
 			sc.add(lcSocialNetworks, LEFT, TOP, FILL, FILL);
 			
-			ListContainer.Item facebook = new ListContainer.Item(getLayout(new Image("images/fb_icon_40.png")));
+			ListContainer.Item facebook = new ListContainer.Item(getLayout(new Image("images/fb_icon_40.png").hwScaledFixedAspectRatio((int) (48 * Settings.screenDensity), true)));
 			facebook.items = new String[] { "  ", " Name", "   Facebook", "", "" };
 
-			ListContainer.Item twitter = new ListContainer.Item(getLayout(new Image("images/tt_icon_40.png")));
+			ListContainer.Item twitter = new ListContainer.Item(getLayout(new Image("images/tt_icon_40.png").hwScaledFixedAspectRatio((int) (48 * Settings.screenDensity), true)));
 			twitter.items = new String[] { "  ", " Name", "   Twitter", "", "" };
 
-			ListContainer.Item instagram = new ListContainer.Item(getLayout(new Image("images/insta_icon_40.png")));
+			ListContainer.Item instagram = new ListContainer.Item(getLayout(new Image("images/insta_icon_40.png").hwScaledFixedAspectRatio((int) (48 * Settings.screenDensity), true)));
 			instagram.items = new String[] { "  ", " Name", "   Instagram", "", "" };
 
-			ListContainer.Item tumblr = new ListContainer.Item(getLayout(new Image("images/tumblr_icon_40.png")));
+			ListContainer.Item tumblr = new ListContainer.Item(getLayout(new Image("images/tumblr_icon_40.png").hwScaledFixedAspectRatio((int) (48 * Settings.screenDensity), true)));
 			tumblr.items = new String[] { "  ", " Name", "   Tumblr", "", "" };
 
-			ListContainer.Item googlePlus = new ListContainer.Item(getLayout(new Image("images/gmail_icon_40.png")));
+			ListContainer.Item googlePlus = new ListContainer.Item(getLayout(new Image("images/gmail_icon_40.png").hwScaledFixedAspectRatio((int) (48 * Settings.screenDensity), true)));
 			googlePlus.items = new String[] { "  ", " Name", "   Google +", "", "" };
 
 			Container socialNetworks[] = new Container[5];
@@ -51,6 +52,7 @@ public class ListContainerSample extends Container {
 			socialNetworks[4] = googlePlus;
 
 			lcSocialNetworks.addContainers(socialNetworks);
+			lcSocialNetworks.highlightColor = lcSocialNetworks.getBackColor();
 			lcSocialNetworks.autoScroll = true;
 			lcSocialNetworks.requestFocus();
 
@@ -65,13 +67,13 @@ public class ListContainerSample extends Container {
 
 		try {
 
-			layout.insets.set(50, 10, 50, 10);
+			layout.insets.set(100, 50, 50, 100);
 			layout.leftImageEnlargeIfSmaller = false;
 			layout.defaultLeftImage = leftImage;
 			layout.defaultRightImage = Images.aplyColor(new Image("images/thumb-up.png"), Colors.GRAY)
-					.hwScaledFixedAspectRatio(fmH, true);
+					.hwScaledFixedAspectRatio((int) (24 * Settings.screenDensity), true);
 			layout.defaultRightImage2 = Images.aplyColor(new Image("images/thumb-up.png"), Colors.BLUE)
-					.hwScaledFixedAspectRatio(fmH, true);
+					.hwScaledFixedAspectRatio((int) (24 * Settings.screenDensity), true);
 			layout.controlGap = 30;
 			layout.lineGap = 1;
 			layout.boldItems[2] = false;
