@@ -75,10 +75,10 @@ public class TCSample extends MainWindow {
             try {
               setBackColor(Colors.REDDESIGN);
 
-              Label title = new Label("Components", CENTER, Color.WHITE, false);
+              Label title = new Label("Showcase", LEFT, Color.WHITE, false);
               title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
               title.setForeColor(Color.WHITE);
-              add(title, LEFT + 45, BOTTOM - 30, PARENTSIZE + 38, DP + 56);
+              add(title, LEFT + 45, BOTTOM - 30, FILL, DP + 56);
 
               ImageControl profile = new ImageControl(new Image("images/logoV.png"));
               profile.scaleToFit = true;
