@@ -18,7 +18,7 @@ public class TCSample extends MainWindow {
 
   static {
     Settings.applicationId = "VKSS";
-    Settings.appVersion = "1.0.4";
+    Settings.appVersion = "2.0.1";
     Settings.iosCFBundleIdentifier = "com.totalcross.showcase";
   }
 	
