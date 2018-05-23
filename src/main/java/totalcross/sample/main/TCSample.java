@@ -47,18 +47,19 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); });
 	SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Color.BLACK,  () -> { return new SQLiteFormGridTabbedContainer(); });
 	SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
-	SideMenuContainer.Item cards = new SideMenuContainer.Item("Cards",MaterialIcons._VIEW_AGENDA, Color.BLACK,  () -> { return new CardsSample(); });
-
+	SideMenuContainer.Item cards = new SideMenuContainer.Item("Cards", MaterialIcons._VIEW_AGENDA, Color.BLACK,  () -> { return new CardsSample(); });
+			
+    SideMenuContainer.Sub group =
+        new SideMenuContainer.Sub("Components", buttons, edits, checkRadio);
+	
     sideMenu =
         new SideMenuContainer(
             null,
             home,
             login,
-            buttons,
+            group,
             cards,
             notifications,
-            edits,
-            checkRadio,
             comboList,
             listContainer,
             materialicons,
