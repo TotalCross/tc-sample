@@ -48,7 +48,14 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Color.BLACK,  () -> { return new SQLiteFormGridTabbedContainer(); });
 	SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
 	SideMenuContainer.Item cards = new SideMenuContainer.Item("Cards", MaterialIcons._VIEW_AGENDA, Color.BLACK,  () -> { return new CardsSample(); });
-			
+	SideMenuContainer.Item progressBox = new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); });
+	SideMenuContainer.Item imageModifiers = new SideMenuContainer.Item("Image Modifiers", MaterialIcons._IMAGE, Color.BLACK,  () -> { return new ImageModifiersSample(); });
+	SideMenuContainer.Item slider = new SideMenuContainer.Item("Slider", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SliderSample(); });
+	SideMenuContainer.Item accordion = new SideMenuContainer.Item("Accordion Container", MaterialIcons._MENU, Color.BLACK,  () -> { return new AccordionSample(); });
+	SideMenuContainer.Item colorPicker = new SideMenuContainer.Item("Color Picker", MaterialIcons._COLORIZE, Color.BLACK,  () -> { return new ColorPickerSample(); });
+	
+	
+	
     SideMenuContainer.Sub group =
         new SideMenuContainer.Sub("Components", buttons, edits, checkRadio);
 	
@@ -66,7 +73,12 @@ public class TCSample extends MainWindow {
             camera,
             messageBox,
             sqlite,
-            xml);
+            xml,
+            progressBox,
+            imageModifiers,
+            slider,
+            accordion,
+            colorPicker);
 
     sideMenu.topMenu.header =
         new Container() {
