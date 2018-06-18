@@ -21,7 +21,7 @@ public class NotificationsSample extends Container{
 		try {
 			
 			Label lbl = new Label("Notify Me !");
-            lbl.setFont(Font.getFont("Lato Light", false, lbl.getFont().size + 20));
+            lbl.setFont(Font.getFont("Lato Light", false, lbl.getFont().getSize() + 20));
             lbl.setForeColor(Colors.PRIMARY);
 	        add(lbl, CENTER, CENTER-400);
 			

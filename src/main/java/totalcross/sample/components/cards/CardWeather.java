@@ -35,10 +35,10 @@ public class CardWeather extends Container {
               new Image("images/partly-cloudly.png")
                   .hwScaledFixedAspectRatio((int) (fmH * 5), true));
       lbValue = new Label("22°");
-      lbValue.setFont(Font.getFont("Lato Medium", false, lbValue.getFont().size + 30));
+      lbValue.setFont(Font.getFont("Lato Medium", false, lbValue.getFont().getSize() + 30));
       lbValue.setForeColor(0x215968);
       lbText = new Label("Partly Cloudly");
-      lbText.setFont(Font.getFont("Lato Medium", false, lbText.getFont().size + 10));
+      lbText.setFont(Font.getFont("Lato Medium", false, lbText.getFont().getSize() + 10));
       lbText.setForeColor(0x215968);
 
       cont.add(imgIcon, CENTER, CENTER, PREFERRED, PREFERRED);
