@@ -87,7 +87,7 @@
 								<argument>/r</argument>
 								<argument>${totalcross.activation_key}</argument>
 								<argument>/m</argument>
-								<argument>C:\Users\TotalCross\Downloads\iOSCertificadosEnterpriseSoftSite</argument>								
+								<argument>{put ios certificate path here}</argument>								
 							</arguments>
 						</configuration>
 					</execution>
