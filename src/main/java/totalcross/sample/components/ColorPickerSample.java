@@ -58,11 +58,11 @@ public class ColorPickerSample extends Container {
 			int cy = imHeight/2;
 			for (int x = 0; x < imWidth; x++) {
 				for (int y = 0; y < imHeight; y++) {
-					double dc = Math.hypot(x - cx, y - cy);
+					double dc = Math.sqrt((double) Math.pow(x - cx, 2) +  Math.pow(y - cy, 2));
 					double vAux = 1;
 					double sAux = dc/r;
 					int yAux = y;
-					double hAux = Math.acos(((x - cx)/(Math.hypot((double) x - cx, y - cy))));
+					double hAux = Math.acos(((x - cx)/dc));
 					if (yAux > cy)
 						hAux *= -1;
 					double[] rgb = hsvToRgb(hAux, sAux, vAux);
@@ -140,7 +140,7 @@ public class ColorPickerSample extends Container {
 						int r = imHeight/2;
 						int cx = imWidth/2;
 						int cy = imHeight/2;
-						double dc = Math.hypot(e.x - cx, e.y - cy);
+						double dc = Math.sqrt((double) Math.pow(e.x - cx, 2) +  Math.pow(e.y - cy, 2));
 						double sAux = dc/r;
 						
 						//check if this is within the generated circle
@@ -148,7 +148,7 @@ public class ColorPickerSample extends Container {
 						{
 							//set the h and s values while dragging
 							s = sAux;
-							h = Math.acos(((e.x - cx)/(Math.hypot((double) e.x - cx, (double) e.y - cy))));
+							h = Math.acos(((e.x - cx)/dc));
 							if (e.y > cy)
 								h *= -1;
 							//add a tracking label
@@ -172,12 +172,12 @@ public class ColorPickerSample extends Container {
 						int r = imHeight/2;
 						int cx = imWidth/2;
 						int cy = imHeight/2;
-						double dc = Math.hypot(e.x - cx, e.y - cy);
+						double dc = Math.sqrt((double) Math.pow(e.x - cx, 2) +  Math.pow(e.y - cy, 2));
 						double sAux = dc/r;
 						if(sAux <=1)
 						{
 							s = sAux;
-							h = Math.acos(((e.x - cx)/(Math.hypot((double) e.x - cx, (double) e.y - cy))));
+							h = Math.acos(((e.x - cx)/dc));
 							if (e.y > cy)
 								h *= -1;
 								add(lblCursor, e.x+4, e.y+32, 8, 8, imcGen);
