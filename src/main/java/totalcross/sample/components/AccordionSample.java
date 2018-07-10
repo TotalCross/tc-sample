@@ -19,16 +19,18 @@ public class AccordionSample extends Container {
     // using default arrows
     AccordionContainer.Group gr = new AccordionContainer.Group();
     AccordionContainer ac = new AccordionContainer(gr);
-    ac.setForeColor(Color.BLACK);
-    ac.setBackColor(Color.ORANGE);
+    ac.setForeColor(Color.WHITE);
+    ac.setBackColor(Color.getRGB(60, 226, 180));
+    
     int gap = fmH / 2;
     sc.add(ac,(Settings.screenWidth/2 - 125), TOP + 200, 250 , PREFERRED);
     ac.add(ac.new Caption("Type text 1"), LEFT, TOP, FILL, PREFERRED);
     ac.add(new MultiEdit(), LEFT + gap, AFTER + gap, FILL - gap, FONTSIZE + 1400);
     
     ac = new AccordionContainer(gr);
-    ac.setForeColor(Color.BLACK);
-    ac.setBackColor(Color.getRGB("bc69e5"));
+    ac.setForeColor(Color.WHITE);
+    ac.setBackColor(Color.getRGB(74, 144, 226));
+    
     
    
     sc.add(ac,(Settings.screenWidth/2 - 125), AFTER, 250, PREFERRED);
@@ -37,8 +39,8 @@ public class AccordionSample extends Container {
 
 
     ac = new AccordionContainer(gr);
-    ac.setForeColor(Color.BLACK);
-    ac.setBackColor(Color.CYAN);
+    ac.setForeColor(Color.WHITE);
+    ac.setBackColor(Color.getRGB(99, 84, 229));
    
     sc.add(ac,(Settings.screenWidth/2 - 125), AFTER, 250, PREFERRED);
     ac.add(ac.new Caption("Type text 3"), LEFT, AFTER, FILL, PREFERRED);

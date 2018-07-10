@@ -36,16 +36,27 @@ public class ProgressBoxSample extends Container {
     if (e.type == ControlEvent.PRESSED && e.target == menu) {
       int sel = menu.getSelectedIndex();
       Spinner.spinnerType = sel >= 2 ? Spinner.ANDROID : Spinner.IPHONE;
-      String msg = sel == 0 || sel == 2 ? "Loading, please wait."
+      String msg = sel == 0 || sel == 2 ? "Please wait\n 2 seconds."
           : "Please wait\n 4 seconds.";
-      ProgressBox pb = new ProgressBox("Message", msg, null);
+      ProgressBox pb = new ProgressBox("Alert!", msg, null);
+      pb.setBackColor(Color.getRGB(12, 98, 200));
       pb.popupNonBlocking();
       // we can't just block using Vm.sleep because it would also 
       // block a screen rotation from correctly paint the screen
-      if(sel == 1 || sel == 3)
-    	  Vm.safeSleep(4000);
+      if(sel == 1 || sel == 3) {
+    	for(int i=3; i>0; i--) {
+    		Vm.safeSleep(1000);
+    		if(i!=1)
+    		pb.setText("Please wait\n " +i+ " seconds.");
+    		else
+    		pb.setText("Please wait\n " +i+ " seconds.");
+    			
+    	}
+      }
       else
     	  Vm.safeSleep(1000);
+          pb.setText("Please wait\n 1 second.");
+          Vm.safeSleep(1000);
       pb.unpop();
       //setInfo(sel == 1 || sel == 3 ? "BUM!!!!" : "Loaded");
     }

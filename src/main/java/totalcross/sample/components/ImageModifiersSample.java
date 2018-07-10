@@ -81,7 +81,7 @@ public class ImageModifiersSample extends Container {
     lbBrightness.setText("0");
     lbScale.setText("100");
 
-    slRotate.sliderColor = slScale.sliderColor = slContrast.sliderColor = slBrightness.sliderColor = 0xFF5252;
+    slRotate.sliderColor = slScale.sliderColor = slContrast.sliderColor = slBrightness.sliderColor = 0xa75ed;
 
     add(imgFrm = new ImageControl());
     imgFrm.setRect(LEFT + 1, AFTER, FILL - 2, FILL - 2, lbBrightness);
@@ -90,7 +90,7 @@ public class ImageModifiersSample extends Container {
     imgFrm.centerImage = true;
     imgFrm.setEventsEnabled(true);
 
-    loadImage("images/logoV.png");
+    loadImage("images/toModify2.png");
   }
 
   private void loadImage(String dsc) {
