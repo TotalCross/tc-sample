@@ -90,7 +90,7 @@ public class ImageModifiersSample extends Container {
     imgFrm.centerImage = true;
     imgFrm.setEventsEnabled(true);
 
-    loadImage("images/toModify2.png");
+    loadImage("images/lenna.png");
   }
 
   private void loadImage(String dsc) {
