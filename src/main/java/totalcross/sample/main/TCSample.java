@@ -20,6 +20,7 @@ import totalcross.sample.components.ui.NotificationsSample;
 import totalcross.sample.components.ui.ProgressBoxSample;
 import totalcross.sample.components.ui.SliderSample;
 import totalcross.sample.components.crypto.CipherSample;
+import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.*;
@@ -72,6 +73,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item colorPicker = new SideMenuContainer.Item("Color Picker", MaterialIcons._COLORIZE, Color.BLACK,  () -> { return new ColorPickerSample(); });
 	SideMenuContainer.Item alignedLabels = new SideMenuContainer.Item("Aligned Labels", MaterialIcons._MENU, Color.BLACK,  () -> { return new AlignedLabelsSample(); });
 	SideMenuContainer.Item cipher = new SideMenuContainer.Item("Cipher", MaterialIcons._ADD_CIRCLE, Color.BLACK,  () -> { return new CipherSample(); });
+	SideMenuContainer.Item digest = new SideMenuContainer.Item("Digest", MaterialIcons._ADD_CIRCLE, Color.BLACK,  () -> { return new DigestSample(); });
 	
 	
 	
@@ -80,7 +82,7 @@ public class TCSample extends MainWindow {
 		messageBox, sqlite, xml, progressBox, imageModifiers, slider, accordion, alignedLabels,
 		colorPicker);
 	
-    SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher);
+    SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest);
     
     sideMenu =
         new SideMenuContainer(
