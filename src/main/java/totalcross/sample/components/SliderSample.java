@@ -25,7 +25,7 @@ public class SliderSample extends Container {
       Slider sl;
       sl = new Slider(ScrollBar.HORIZONTAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE));
-      add(sl, LEFT + fmH + Settings.screenWidth + 100, TOP + fmH * 2 + 150, PARENTSIZE + 50, PREFERRED);
+      add(sl, Settings.screenWidth/10, TOP + fmH * 2 + 150, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
       sl.appId = 1;
       sl.setLiveScrolling(true);
       sl.setBackColor(Color.getRGB(158, 197, 244));
@@ -36,7 +36,7 @@ public class SliderSample extends Container {
       
       sl = new Slider(ScrollBar.HORIZONTAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE / 2 * 3));
-      add(sl, SAME, AFTER + fmH + 100, PARENTSIZE + 50, PREFERRED);
+      add(sl, Settings.screenWidth/10, AFTER + fmH + 100, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
       sl.appId = 2;
       sl.setUnitIncrement(5);
       sl.drawTicks = false;
@@ -47,7 +47,7 @@ public class SliderSample extends Container {
 
       sl = new Slider(ScrollBar.HORIZONTAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE / 2 * 4));
-      add(sl, SAME, AFTER + fmH + 50, PARENTSIZE + 50, PREFERRED);
+      add(sl, Settings.screenWidth/10, AFTER + fmH + 50, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
       sl.appId = 3;
       sl.invertDirection = true;
       sl.setBackColor(Color.getRGB(255, 192, 157));
@@ -56,7 +56,7 @@ public class SliderSample extends Container {
 
       sl = new Slider(ScrollBar.VERTICAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE));
-      add(sl, LEFT+ fmH + Settings.screenWidth + 100 , AFTER + fmH + 200, PREFERRED, FONTSIZE + 400);
+      add(sl, Settings.screenWidth/10 , AFTER + fmH + 200, PREFERRED, Settings.screenHeight/3);
       sl.appId = 4;
       sl.setLiveScrolling(true);
       sl.setBackColor(Color.getRGB(149, 243, 230));
@@ -65,7 +65,7 @@ public class SliderSample extends Container {
 
       sl = new Slider(ScrollBar.VERTICAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE / 2 * 3));
-      add(sl, LEFT+ Settings.screenWidth + 150, SAME, PREFERRED, FONTSIZE + 400);
+      add(sl, ((Settings.screenWidth/10)*3) , SAME, PREFERRED, Settings.screenHeight/3);
       sl.appId = 5;
       //sl.setUnitIncrement(10);
       //sl.drawTicks = true;
@@ -76,7 +76,7 @@ public class SliderSample extends Container {
 
       sl = new Slider(ScrollBar.VERTICAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE / 2 * 4));
-      add(sl, LEFT+ Settings.screenWidth + 200, SAME, PREFERRED, FONTSIZE + 400);
+      add(sl, ((Settings.screenWidth/10)*5), SAME, PREFERRED, Settings.screenHeight/3);
       sl.appId = 6;
       sl.invertDirection = true;
       sl.setBackColor(Color.getRGB(254, 156, 165));
