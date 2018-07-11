@@ -17,6 +17,7 @@ import totalcross.sample.components.UI.MessageBoxSample;
 import totalcross.sample.components.UI.NotificationsSample;
 import totalcross.sample.components.UI.ProgressBoxSample;
 import totalcross.sample.components.UI.SliderSample;
+import totalcross.sample.components.UI.AlignedLabelsSample;
 import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.components.ui.AccordionSample;
 import totalcross.sample.components.ui.ButtonSample;
@@ -83,32 +84,22 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item slider = new SideMenuContainer.Item("Slider", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SliderSample(); });
 	SideMenuContainer.Item accordion = new SideMenuContainer.Item("Accordion Container", MaterialIcons._MENU, Color.BLACK,  () -> { return new AccordionSample(); });
 	SideMenuContainer.Item colorPicker = new SideMenuContainer.Item("Color Picker", MaterialIcons._COLORIZE, Color.BLACK,  () -> { return new ColorPickerSample(); });
+	SideMenuContainer.Item alignedLabels = new SideMenuContainer.Item("Aligned Labels", MaterialIcons._MENU, Color.BLACK,  () -> { return new AlignedLabelsSample(); });
 	
 	
 	
-    SideMenuContainer.Sub group =
-        new SideMenuContainer.Sub("Components", buttons, edits, checkRadio);
+    SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", login, buttons,
+		edits, checkRadio, cards, notifications, comboList, listContainer, materialicons, camera,
+		messageBox, sqlite, xml, progressBox, imageModifiers, slider, accordion, alignedLabels,
+		colorPicker);
 	
     sideMenu =
         new SideMenuContainer(
             null,
             home,
-            login,
-            group,
-            cards,
-            notifications,
-            comboList,
-            listContainer,
-            materialicons,
-            camera,
-            messageBox,
+            uiGroup,
             sqlite,
-            xml,
-            progressBox,
-            imageModifiers,
-            slider,
-            accordion,
-            colorPicker);
+            xml);
 
     sideMenu.topMenu.header =
         new Container() {
