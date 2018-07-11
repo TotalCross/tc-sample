@@ -8,6 +8,6 @@ public class TCSampleApplication {
 	    TotalCrossApplication.run(
 	        TCSample.class,
 	        "/r",
-	        "put your key here");
+	        "5443535418482B72E881B6EE");
 	  }
 }

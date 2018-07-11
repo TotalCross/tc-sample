@@ -1,4 +1,4 @@
-package totalcross.sample.components;
+package totalcross.sample.components.UI;
 
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.Util;

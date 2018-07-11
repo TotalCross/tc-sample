@@ -2,6 +2,8 @@ package totalcross.sample.components;
 
 import java.util.ArrayList;
 
+import totalcross.sample.components.UI.FormSample;
+import totalcross.sample.components.UI.GridSample;
 import totalcross.sample.util.Colors;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
