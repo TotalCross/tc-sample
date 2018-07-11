@@ -1,4 +1,4 @@
-package totalcross.sample.components.UI;
+package totalcross.sample.components.ui;
 
 import totalcross.sys.Convert;
 import totalcross.sys.Vm;
