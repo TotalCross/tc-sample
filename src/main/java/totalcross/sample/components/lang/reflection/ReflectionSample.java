@@ -44,7 +44,7 @@ public class ReflectionSample extends Container {
 			logLabel.setText("");
 			add(logLabel, LEFT, AFTER, FILL, FILL);
 			// get access to Data's fields
-			Class<?> data = Class.forName("tc.samples.api.lang.reflection.Data");
+			Class<?> data = Class.forName("totalcross.sample.components.lang.reflection.Data");
 			c = data.getConstructor(new Class[] { String.class, String.class, int.class, byte.class });
 			fname = data.getField("name");
 			faddr = data.getField("address");
