@@ -32,6 +32,7 @@ import totalcross.sample.components.ui.SliderSample;
 import totalcross.sample.components.ui.SpinnerSample;
 import totalcross.sample.components.ui.SwitchSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
+import totalcross.sample.components.ui.OtherControlsSample;
 
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
@@ -99,6 +100,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item spinnerInsideLoop = new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); });	
 	SideMenuContainer.Item switchSample = new SideMenuContainer.Item("Switch", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SwitchSample(); });	
 	SideMenuContainer.Item tabbedContainer = new SideMenuContainer.Item("Tabbed Container", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TabbedContainerSample(); });	
+	SideMenuContainer.Item otherControls = new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); });	
 	
 	//Crypto
 	SideMenuContainer.Item cipher = new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); });
@@ -107,14 +109,18 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Color.BLACK,  () -> { return new SQLiteFormGridTabbedContainer(); });
 	//XML
 	SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
+	//IO
+	//SideMenuContainer.Item 
 	
-    SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
+	
+	SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
     		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox, 
-    		multitouch, notifications, progressBox,  slider, spinnerInsideLoop, switchSample, tabbedContainer);
+    		multitouch, notifications, progressBox,  slider, spinnerInsideLoop, switchSample, tabbedContainer, otherControls);
     
     SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite);
     SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest);
     SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
+    //SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", items)
 	
     sideMenu =
         new SideMenuContainer(
