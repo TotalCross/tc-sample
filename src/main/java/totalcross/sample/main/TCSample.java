@@ -17,6 +17,7 @@ import totalcross.sample.components.ui.EditSample;
 import totalcross.sample.components.ui.FontSample;
 import totalcross.sample.components.ui.GridSample;
 import totalcross.sample.components.ui.HTMLContainerSample;
+import totalcross.sample.components.ui.HWSignatureSample;
 import totalcross.sample.components.ui.ImageAnimationSample;
 import totalcross.sample.components.ui.ImageBookSample;
 import totalcross.sample.components.ui.ImageControlSample;
@@ -32,6 +33,8 @@ import totalcross.sample.components.ui.SliderSample;
 import totalcross.sample.components.ui.SpinnerSample;
 import totalcross.sample.components.ui.SwitchSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
+import totalcross.sample.components.ui.TopMenuSample;
+import totalcross.sample.components.ui.VelocimeterSample;
 import totalcross.sample.components.ui.OtherControlsSample;
 
 import totalcross.sample.components.crypto.CipherSample;
@@ -101,17 +104,19 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item messageBox = new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); });
 	SideMenuContainer.Item multitouch = new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); });
 	SideMenuContainer.Item notifications = new SideMenuContainer.Item("Notifications", MaterialIcons._NOTIFICATIONS_ACTIVE, Color.BLACK,  () -> { return new NotificationsSample(); });
+	SideMenuContainer.Item otherControls = new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); });	
 	SideMenuContainer.Item progressBox = new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); });
-	SideMenuContainer.Item slider = new SideMenuContainer.Item("Slider", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SliderSample(); });	
+	SideMenuContainer.Item signatureHW = new SideMenuContainer.Item("HandWrite Signature", MaterialIcons._DASHBOARD, Color.BLACK,  () -> { return new HWSignatureSample(); });	
+	SideMenuContainer.Item slider = new SideMenuContainer.Item("Slider", MaterialIcons._POWER_SETTINGS_NEW, Color.BLACK,  () -> { return new SliderSample(); });	
 	SideMenuContainer.Item spinnerInsideLoop = new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); });	
 	SideMenuContainer.Item switchSample = new SideMenuContainer.Item("Switch", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SwitchSample(); });	
 	SideMenuContainer.Item tabbedContainer = new SideMenuContainer.Item("Tabbed Container", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TabbedContainerSample(); });	
-	SideMenuContainer.Item otherControls = new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); });	
-	
+	SideMenuContainer.Item topMenu = new SideMenuContainer.Item("TopMenu", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TopMenuSample(); });
+	SideMenuContainer.Item velocimeter = new SideMenuContainer.Item("Velocimeter", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new VelocimeterSample(); });
 	//Crypto
 	SideMenuContainer.Item cipher = new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); });
 	SideMenuContainer.Item digest = new SideMenuContainer.Item("Digest", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new DigestSample(); });
-	SideMenuContainer.Item signature = new SideMenuContainer.Item("Digest", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK,  () -> { return new SignatureSample(); });
+	SideMenuContainer.Item signatureCR = new SideMenuContainer.Item("Signature", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK,  () -> { return new SignatureSample(); });
 	//SQL
 	SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Color.BLACK,  () -> { return new SQLiteFormGridTabbedContainer(); });
 	//XML
@@ -124,10 +129,10 @@ public class TCSample extends MainWindow {
 	
 	SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
     		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox, 
-    		multitouch, notifications, progressBox,  slider, spinnerInsideLoop, switchSample, tabbedContainer, otherControls);
+    		multitouch, notifications, progressBox, signatureHW, slider, spinnerInsideLoop, switchSample, tabbedContainer, topMenu, velocimeter, otherControls);
     
     SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite);
-    SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signature);
+    SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signatureCR);
     SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
     SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
     SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
