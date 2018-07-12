@@ -37,6 +37,9 @@ import totalcross.sample.components.ui.OtherControlsSample;
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.components.crypto.SignatureSample;
+
+import totalcross.sample.components.io.FileSample;
+
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.*;
@@ -112,6 +115,7 @@ public class TCSample extends MainWindow {
 	//XML
 	SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
 	//IO
+	SideMenuContainer.Item file = new SideMenuContainer.Item("File", MaterialIcons._ATTACH_FILE, Color.BLACK, () -> { return new FileSample(); });
 	//SideMenuContainer.Item 
 	
 	
@@ -122,7 +126,7 @@ public class TCSample extends MainWindow {
     SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite);
     SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signature);
     SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
-    //SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", items)
+    SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
 	
     sideMenu =
         new SideMenuContainer(
@@ -131,7 +135,8 @@ public class TCSample extends MainWindow {
             uiGroup,
             sqlGroup,
             xmlGroup,
-            cryptoGroup);
+            cryptoGroup,
+            ioGroup);
 
     sideMenu.topMenu.header =
         new Container() {
