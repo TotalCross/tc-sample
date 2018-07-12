@@ -36,6 +36,7 @@ import totalcross.sample.components.ui.OtherControlsSample;
 
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
+import totalcross.sample.components.crypto.SignatureSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.*;
@@ -104,7 +105,8 @@ public class TCSample extends MainWindow {
 	
 	//Crypto
 	SideMenuContainer.Item cipher = new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); });
-	SideMenuContainer.Item digest = new SideMenuContainer.Item("Digest", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new DigestSample(); });	
+	SideMenuContainer.Item digest = new SideMenuContainer.Item("Digest", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new DigestSample(); });
+	SideMenuContainer.Item signature = new SideMenuContainer.Item("Digest", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK,  () -> { return new SignatureSample(); });
 	//SQL
 	SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Color.BLACK,  () -> { return new SQLiteFormGridTabbedContainer(); });
 	//XML
@@ -118,7 +120,7 @@ public class TCSample extends MainWindow {
     		multitouch, notifications, progressBox,  slider, spinnerInsideLoop, switchSample, tabbedContainer, otherControls);
     
     SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite);
-    SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest);
+    SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signature);
     SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
     //SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", items)
 	

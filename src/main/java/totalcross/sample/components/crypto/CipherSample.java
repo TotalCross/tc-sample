@@ -26,7 +26,7 @@ import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
-import totalcross.util.Logger;
+import totalcross.ui.gfx.Color;
 
 /*
  * Comment about PKCS#5 padding: 
@@ -54,7 +54,7 @@ public class CipherSample extends Container {
   private ComboBox cboChaining;
   private ComboBox cboPadding;
   private Button btnGo;
-  private Label resultLabel;
+  private Label logLabel;
 
   private byte[] AES_KEY = new byte[] { (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
       (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
@@ -83,6 +83,7 @@ public class CipherSample extends Container {
   @Override
   public void initUI() {
     super.initUI();
+    this.backColor = Color.WHITE;
     ciphers = new Object[2];
     ciphers[0] = new AESCipher();
     ciphers[1] = new RSACipher();
@@ -112,13 +113,12 @@ public class CipherSample extends Container {
     add(cboChaining, AFTER + 2, SAME, PREFERRED, PREFERRED);
     add(cboPadding, AFTER + 2, SAME, PREFERRED, PREFERRED);
     add(btnGo, AFTER + 2, SAME, PREFERRED, PREFERRED);
-    resultLabel = new Label();
-    add(resultLabel, LEFT +2, AFTER, FILL, FILL);
-//    addLog(LEFT + 2, AFTER + 2, FILL - 2, FILL - 2, null);
-    resultLabel.setText("Valid options:");
-    resultLabel.setText(resultLabel.getText() + "\nAES / CBC / PKCS#5");
-    resultLabel.setText(resultLabel.getText() + "\nAES / ECB / PKCS#5");
-    resultLabel.setText(resultLabel.getText() + "\nRSA / ECB / PKCS#1");
+    logLabel = new Label();
+    add(logLabel, LEFT +2, AFTER, FILL, FILL);
+    logLabel.setText("Valid options:");
+    logLabel.setText(logLabel.getText() + "\nAES / CBC / PKCS#5");
+    logLabel.setText(logLabel.getText() + "\nAES / ECB / PKCS#5");
+    logLabel.setText(logLabel.getText() + "\nRSA / ECB / PKCS#1");
   }
 
   @Override
@@ -133,31 +133,30 @@ public class CipherSample extends Container {
 
         Cipher cipher = (Cipher) ciphers[index];
         try {
-        	resultLabel.setText(resultLabel.getText() + "\nMessage: '" + message + "'");
-//          log("Message: '" + message + "'");
+        	logLabel.setText(logLabel.getText() + "\nMessage: '" + message + "'");
 
           byte[] iv = null; // no initialization vector => let the cipher generate a random one
           cipher.reset(Cipher.OPERATION_ENCRYPT, encKeys[index], chaining, iv, padding);
           iv = cipher.getIV(); // store the generated iv
           if (iv != null) {
-            resultLabel.setText(resultLabel.getText() + "\nGenerated iv: " + Convert.bytesToHexString(iv));
+            logLabel.setText(logLabel.getText() + "\nGenerated iv: " + Convert.bytesToHexString(iv));
           }
 
           cipher.update(message.getBytes());
           byte[] encrypted = cipher.getOutput();
 
-          resultLabel.setText(resultLabel.getText() + "\nEncrypted: " + Convert.bytesToHexString(encrypted) + " (" + encrypted.length + " bytes)");
+          logLabel.setText(logLabel.getText() + "\nEncrypted: " + Convert.bytesToHexString(encrypted) + " (" + encrypted.length + " bytes)");
 
           cipher.reset(Cipher.OPERATION_DECRYPT, decKeys[index], chaining, iv, padding);
           cipher.update(encrypted);
           byte[] decrypted = cipher.getOutput();
 
-          resultLabel.setText(resultLabel.getText() + "\nDecrypted: '" + new String(decrypted) + "'");
+          logLabel.setText(logLabel.getText() + "\nDecrypted: '" + new String(decrypted) + "'");
         } catch (CryptoException ex) {
-        	resultLabel.setText(resultLabel.getText() + "\nException: " + ex.toString());
+        	logLabel.setText(logLabel.getText() + "\nException: " + ex.toString());
         	ex.printStackTrace();
         }
-        resultLabel.setText(resultLabel.getText() + "\n=========================");
+        logLabel.setText(logLabel.getText() + "\n=========================");
       }
       break;
     }
