@@ -31,6 +31,8 @@ import totalcross.sample.components.ui.ProgressBoxSample;
 import totalcross.sample.components.ui.SliderSample;
 import totalcross.sample.components.ui.SpinnerSample;
 import totalcross.sample.components.ui.SwitchSample;
+import totalcross.sample.components.ui.TabbedContainerSample;
+
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.util.Colors;
@@ -94,8 +96,9 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item notifications = new SideMenuContainer.Item("Notifications", MaterialIcons._NOTIFICATIONS_ACTIVE, Color.BLACK,  () -> { return new NotificationsSample(); });
 	SideMenuContainer.Item progressBox = new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); });
 	SideMenuContainer.Item slider = new SideMenuContainer.Item("Slider", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SliderSample(); });	
-	SideMenuContainer.Item spinnerInsideLoop = new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._3D_ROTATION , Color.BLACK,  () -> { return new SpinnerSample(); });	
+	SideMenuContainer.Item spinnerInsideLoop = new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); });	
 	SideMenuContainer.Item switchSample = new SideMenuContainer.Item("Switch", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SwitchSample(); });	
+	SideMenuContainer.Item tabbedContainer = new SideMenuContainer.Item("Tabbed Container", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TabbedContainerSample(); });	
 	
 	//Crypto
 	SideMenuContainer.Item cipher = new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); });
@@ -107,7 +110,7 @@ public class TCSample extends MainWindow {
 	
     SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
     		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox, 
-    		multitouch, notifications, progressBox,  slider, spinnerInsideLoop, switchSample);
+    		multitouch, notifications, progressBox,  slider, spinnerInsideLoop, switchSample, tabbedContainer);
     
     SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite);
     SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest);
