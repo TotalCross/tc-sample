@@ -45,6 +45,8 @@ import totalcross.sample.components.io.FileSample;
 
 import totalcross.sample.components.json.JSONSample;
 
+import totalcross.sample.components.lang.thread.*;
+
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.*;
@@ -125,7 +127,8 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item file = new SideMenuContainer.Item("File", MaterialIcons._ATTACH_FILE, Color.BLACK, () -> { return new FileSample(); });
 	//JSON
 	SideMenuContainer.Item json = new SideMenuContainer.Item("JSON Parser", MaterialIcons._HTTP, Color.BLACK, () ->{ return new JSONSample(); });
-	
+	//Lang
+	SideMenuContainer.Item thread = new SideMenuContainer.Item("Thread", MaterialIcons._LINE_STYLE, Color.BLACK, () -> { return new ThreadSample(); });
 	
 	SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
     		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox, 
@@ -136,6 +139,7 @@ public class TCSample extends MainWindow {
     SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
     SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
     SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
+    SideMenuContainer.Sub langGroup = new SideMenuContainer.Sub("Lang", thread);
 	
     sideMenu =
         new SideMenuContainer(
@@ -146,7 +150,8 @@ public class TCSample extends MainWindow {
             xmlGroup,
             cryptoGroup,
             ioGroup,
-            jsonGroup);
+            jsonGroup,
+            langGroup);
 
     sideMenu.topMenu.header =
         new Container() {
