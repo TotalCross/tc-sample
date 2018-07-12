@@ -40,6 +40,8 @@ import totalcross.sample.components.crypto.SignatureSample;
 
 import totalcross.sample.components.io.FileSample;
 
+import totalcross.sample.components.json.JSONSample;
+
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.*;
@@ -116,7 +118,8 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
 	//IO
 	SideMenuContainer.Item file = new SideMenuContainer.Item("File", MaterialIcons._ATTACH_FILE, Color.BLACK, () -> { return new FileSample(); });
-	//SideMenuContainer.Item 
+	//JSON
+	SideMenuContainer.Item json = new SideMenuContainer.Item("JSON Parser", MaterialIcons._HTTP, Color.BLACK, () ->{ return new JSONSample(); });
 	
 	
 	SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
@@ -127,6 +130,7 @@ public class TCSample extends MainWindow {
     SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signature);
     SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
     SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
+    SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
 	
     sideMenu =
         new SideMenuContainer(
@@ -136,7 +140,8 @@ public class TCSample extends MainWindow {
             sqlGroup,
             xmlGroup,
             cryptoGroup,
-            ioGroup);
+            ioGroup,
+            jsonGroup);
 
     sideMenu.topMenu.header =
         new Container() {
