@@ -6,6 +6,8 @@ import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.components.crypto.SignatureSample;
+
+import totalcross.sample.components.io.BTPrinterCitizenSample;
 import totalcross.sample.components.io.FileSample;
 import totalcross.sample.components.io.PDBFileSample;
 
