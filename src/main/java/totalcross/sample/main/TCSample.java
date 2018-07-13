@@ -61,14 +61,16 @@ import totalcross.sample.components.sql.SQLiteBenchSample;
 import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
 
 import totalcross.sample.components.sys.SettingsSample;
+import totalcross.sample.components.sys.ExternalViewersSample;
+
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
-import totalcross.ui.ImageControl;
 import totalcross.ui.Label;
 import totalcross.ui.MainWindow;
 import totalcross.ui.SideMenuContainer;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
+import totalcross.ui.ImageControl;
 import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
@@ -160,6 +162,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item phoneSms = new SideMenuContainer.Item("SMS", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneSmsSample(); });
 	//System
 	SideMenuContainer.Item settings = new SideMenuContainer.Item("Settings", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SettingsSample(); });
+	SideMenuContainer.Item extViewers = new SideMenuContainer.Item("External viewers", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ExternalViewersSample(); });
 	//util
 	SideMenuContainer.Item pdfWriter = new SideMenuContainer.Item("PDF Writer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PDFWriterSample(); });
 	SideMenuContainer.Item zipSample = new SideMenuContainer.Item("Zip", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZipSample(); });
@@ -184,7 +187,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Sub mapGroup = new SideMenuContainer.Sub("Map", googleMaps);
 	SideMenuContainer.Sub netGroup = new SideMenuContainer.Sub("net", mail,ftpSample, SecureSocketSample, ServerSocketSample, SocketSample);
 	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
-	SideMenuContainer.Sub sysGroup = new SideMenuContainer.Sub("System", settings);
+	SideMenuContainer.Sub sysGroup = new SideMenuContainer.Sub("System", settings, extViewers);
 	SideMenuContainer.Sub utilGroup = new SideMenuContainer.Sub("Util", pdfWriter, zipSample, zLibSample);
 	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", soap);
 	
