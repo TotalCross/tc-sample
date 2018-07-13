@@ -13,6 +13,10 @@ import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.reflection.ReflectionSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
 import totalcross.sample.components.map.GoogleMapsSample;
+import totalcross.sample.components.net.FTPSample;
+import totalcross.sample.components.net.SecureSocketSample;
+import totalcross.sample.components.net.ServerSocketSample;
+import totalcross.sample.components.net.SocketSample;
 import totalcross.sample.components.phone.PhoneDialerSample;
 import totalcross.sample.components.phone.PhoneSmsSample;
 import totalcross.sample.components.ui.AccordionSample;
@@ -141,6 +145,14 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item reflection = new SideMenuContainer.Item("Reflection", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ReflectionSample(); });
 	//Map
 	SideMenuContainer.Item googleMaps = new SideMenuContainer.Item("Google Maps", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new GoogleMapsSample(); });
+	//net
+	SideMenuContainer.Item ftpSample = new SideMenuContainer.Item("FTP ", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new FTPSample(); });
+	SideMenuContainer.Item SecureSocketSample = new SideMenuContainer.Item("Secure Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SecureSocketSample(); });
+	SideMenuContainer.Item ServerSocketSample = new SideMenuContainer.Item("Server Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ServerSocketSample(); });
+	SideMenuContainer.Item SocketSample = new SideMenuContainer.Item("Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SocketSample(); });
+	
+	
+	
 	//Phone
 	SideMenuContainer.Item phoneDialer = new SideMenuContainer.Item("Dialer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneDialerSample(); });
 	SideMenuContainer.Item phoneSms = new SideMenuContainer.Item("SMS", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneSmsSample(); });
@@ -165,6 +177,7 @@ public class TCSample extends MainWindow {
     SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
     SideMenuContainer.Sub langGroup = new SideMenuContainer.Sub("Lang", thread, reflection);
 	SideMenuContainer.Sub mapGroup = new SideMenuContainer.Sub("Map", googleMaps);
+	SideMenuContainer.Sub netGroup = new SideMenuContainer.Sub("net", ftpSample, SecureSocketSample, ServerSocketSample, SocketSample);
 	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
 	SideMenuContainer.Sub utilGroup = new SideMenuContainer.Sub("Util", pdfWriter, zipSample, zLibSample);
 	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", soap);
@@ -181,6 +194,7 @@ public class TCSample extends MainWindow {
             jsonGroup,
             langGroup,
             mapGroup,
+            netGroup,
             phoneGroup,
             utilGroup,
             xmlGroup);
