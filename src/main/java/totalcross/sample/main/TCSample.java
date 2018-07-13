@@ -1,8 +1,20 @@
 package totalcross.sample.main;
 
 import totalcross.io.IOException;
-import totalcross.sample.components.*;
+import totalcross.sample.components.Home;
+import totalcross.sample.components.SQLiteFormGridTabbedContainer;
+import totalcross.sample.components.XMLParseSample;
 import totalcross.sample.components.cards.CardsSample;
+import totalcross.sample.components.crypto.CipherSample;
+import totalcross.sample.components.crypto.DigestSample;
+import totalcross.sample.components.crypto.SignatureSample;
+import totalcross.sample.components.io.FileSample;
+import totalcross.sample.components.json.JSONSample;
+import totalcross.sample.components.lang.reflection.ReflectionSample;
+import totalcross.sample.components.lang.thread.ThreadSample;
+import totalcross.sample.components.map.GoogleMapsSample;
+import totalcross.sample.components.phone.PhoneDialerSample;
+import totalcross.sample.components.phone.PhoneSmsSample;
 import totalcross.sample.components.ui.AccordionSample;
 import totalcross.sample.components.ui.AlignedLabelsSample;
 import totalcross.sample.components.ui.ButtonSample;
@@ -28,6 +40,7 @@ import totalcross.sample.components.ui.MaterialIconsSample;
 import totalcross.sample.components.ui.MessageBoxSample;
 import totalcross.sample.components.ui.MultiTouchSample;
 import totalcross.sample.components.ui.NotificationsSample;
+import totalcross.sample.components.ui.OtherControlsSample;
 import totalcross.sample.components.ui.ProgressBoxSample;
 import totalcross.sample.components.ui.SliderSample;
 import totalcross.sample.components.ui.SpinnerSample;
@@ -35,27 +48,17 @@ import totalcross.sample.components.ui.SwitchSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
 import totalcross.sample.components.ui.VelocimeterSample;
-import totalcross.sample.components.ui.OtherControlsSample;
-
-import totalcross.sample.components.crypto.CipherSample;
-import totalcross.sample.components.crypto.DigestSample;
-import totalcross.sample.components.crypto.SignatureSample;
-
-import totalcross.sample.components.io.FileSample;
-
-import totalcross.sample.components.json.JSONSample;
-
-import totalcross.sample.components.lang.thread.*;
-import totalcross.sample.components.lang.reflection.*;
-
-import totalcross.sample.components.map.GoogleMapsSample;
-
-import totalcross.sample.components.phone.PhoneDialerSample;
-import totalcross.sample.components.phone.PhoneSmsSample;
-
+import totalcross.sample.components.util.PDFWriterSample;
+import totalcross.sample.components.util.ZLibSample;
+import totalcross.sample.components.util.ZipSample;
+import totalcross.sample.components.xml.SoapSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
-import totalcross.ui.*;
+import totalcross.ui.Container;
+import totalcross.ui.ImageControl;
+import totalcross.ui.Label;
+import totalcross.ui.MainWindow;
+import totalcross.ui.SideMenuContainer;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.icon.MaterialIcons;
@@ -141,6 +144,13 @@ public class TCSample extends MainWindow {
 	//Phone
 	SideMenuContainer.Item phoneDialer = new SideMenuContainer.Item("Dialer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneDialerSample(); });
 	SideMenuContainer.Item phoneSms = new SideMenuContainer.Item("SMS", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneSmsSample(); });
+	//util
+	SideMenuContainer.Item pdfWriter = new SideMenuContainer.Item("PDF Writer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PDFWriterSample(); });
+	SideMenuContainer.Item zipSample = new SideMenuContainer.Item("Zip", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZipSample(); });
+	SideMenuContainer.Item zLibSample = new SideMenuContainer.Item("ZLib", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZLibSample(); });
+	
+	//xml
+	SideMenuContainer.Item soap = new SideMenuContainer.Item("Soap", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SoapSample(); });
 	
 	
 	
@@ -150,12 +160,14 @@ public class TCSample extends MainWindow {
     
     SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite);
     SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signatureCR);
-    SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
+    //SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
     SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
     SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
     SideMenuContainer.Sub langGroup = new SideMenuContainer.Sub("Lang", thread, reflection);
 	SideMenuContainer.Sub mapGroup = new SideMenuContainer.Sub("Map", googleMaps);
 	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
+	SideMenuContainer.Sub utilGroup = new SideMenuContainer.Sub("Util", pdfWriter, zipSample, zLibSample);
+	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", soap);
 	
     sideMenu =
         new SideMenuContainer(
@@ -163,13 +175,15 @@ public class TCSample extends MainWindow {
             home,
             uiGroup,
             sqlGroup,
-            xmlGroup,
+           // xmlGroup,
             cryptoGroup,
             ioGroup,
             jsonGroup,
             langGroup,
             mapGroup,
-            phoneGroup);
+            phoneGroup,
+            utilGroup,
+            xmlGroup);
 
     sideMenu.topMenu.header =
         new Container() {
