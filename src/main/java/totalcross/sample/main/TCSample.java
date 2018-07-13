@@ -189,7 +189,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
 	SideMenuContainer.Sub sysGroup = new SideMenuContainer.Sub("System", settings, extViewers);
 	SideMenuContainer.Sub utilGroup = new SideMenuContainer.Sub("Util", pdfWriter, zipSample, zLibSample);
-	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", soap);
+	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml, soap);
 	
     sideMenu =
         new SideMenuContainer(

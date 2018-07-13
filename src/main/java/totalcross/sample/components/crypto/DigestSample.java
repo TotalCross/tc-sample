@@ -22,15 +22,16 @@ import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.Label;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 
-public class DigestSample extends Container {
+public class DigestSample extends ScrollContainer {
+//	private ScrollContainer sc;
 	private Edit edtInput;
 	private ComboBox cboDigests;
 	private Button btnGo;
 	private Object[] comboItems;
-	private Label logLabel;
 
 	public DigestSample() {
 		try {
@@ -43,6 +44,8 @@ public class DigestSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
+//		sc = new ScrollContainer(false, true);
+//		add(sc, LEFT, TOP, FILL, FILL);
 		edtInput = new Edit();
 		edtInput.setText("0123456789ABCDEF");
 		cboDigests = new ComboBox(comboItems);
@@ -53,8 +56,6 @@ public class DigestSample extends Container {
 				PREFERRED);
 		add(cboDigests, LEFT + 2, AFTER + 2, PREFERRED, PREFERRED);
 		add(btnGo, AFTER + 2, SAME, PREFERRED, PREFERRED);
-		logLabel = new Label();
-		add(logLabel, LEFT + 2, AFTER + 2, FILL - 2, FILL - 2);
 	}
 
 	@Override
@@ -69,12 +70,18 @@ public class DigestSample extends Container {
 				alg.update(message.getBytes());
 				byte[] digest = alg.getDigest();
 
-				logLabel.setText("Message: " + message);
-				logLabel.setText(logLabel.getText() + "\nDigest: " + Convert.bytesToHexString(digest) + " ("
+				addLabel("Message: " + message);
+				addLabel("Digest: " + Convert.bytesToHexString(digest) + " ("
 						+ digest.length + " bytes)");
-				logLabel.setText(logLabel.getText() + "\n=========================");
+				addLabel("=========================");
 			}
 			break;
 		}
+	}
+	
+	private void addLabel(String s)
+	{
+		Label lbl = new Label(s);
+		add(lbl, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
 	}
 }
