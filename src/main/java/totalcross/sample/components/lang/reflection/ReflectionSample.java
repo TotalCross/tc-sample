@@ -6,18 +6,17 @@ import java.lang.reflect.Method;
 
 import totalcross.ui.AlignedLabelsContainer;
 import totalcross.ui.Button;
-import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.Label;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 
-public class ReflectionSample extends Container {
+public class ReflectionSample extends ScrollContainer {
 	// ui
 	Button btAdd;
 	Edit edName, edAddr, edNumber, edAge;
-	Label logLabel;
 	
 	// reflection
 	Constructor<?> c;
@@ -40,9 +39,6 @@ public class ReflectionSample extends Container {
 			edAge.setKeyboard(Edit.KBD_NUMERIC);
 			add(btAdd = new Button("ADD"), CENTER, AFTER + g, PARENTSIZE + 50, PREFERRED + g / 2);
 			add(new Label("Constructed and retrieved using reflection:"), LEFT, AFTER + g);
-			logLabel = new Label();
-			logLabel.setText("");
-			add(logLabel, LEFT, AFTER, FILL, FILL);
 			// get access to Data's fields
 			Class<?> data = Class.forName("totalcross.sample.components.lang.reflection.Data");
 			c = data.getConstructor(new Class[] { String.class, String.class, int.class, byte.class });
@@ -75,15 +71,21 @@ public class ReflectionSample extends Container {
 					// ba = d.getAge();
 					byte ba = ((Byte) mage.invoke(o, (Object[]) null)).byteValue();
 					// show in list
-					logLabel.setText(logLabel.getText() +  "\nname: " + sn);
-					logLabel.setText(logLabel.getText() +  "\naddress: " + sa);
-					logLabel.setText(logLabel.getText() +  "\nnumber: " + in);
-					logLabel.setText(logLabel.getText() +  "\nage: " + ba);
-					logLabel.setText(logLabel.getText() +  "\n-------------------");
+					addLabel("name: " + sn);
+					addLabel("address: " + sa);
+					addLabel("number: " + in);
+					addLabel("age: " + ba);
+					addLabel("-------------------");
 				}
 			} catch (Throwable ee) {
 				MessageBox.showException(ee, true);
 			}
 		}
+	}
+	
+	private void addLabel(String s)
+	{
+		Label lbl = new Label(s);
+		add(lbl, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
 	}
 }
