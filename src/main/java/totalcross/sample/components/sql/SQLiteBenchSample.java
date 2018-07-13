@@ -103,7 +103,7 @@ public class SQLiteBenchSample extends Container {
 	private void createTable() throws Exception {
 		driver = DriverManager.getConnection("jdbc:sqlite:" + Convert.appendPath(Settings.appPath, "person.db"));
 
-		log("Creating tables...");
+		addLabel("Creating tables...");
 		(statement = driver.createStatement()).executeUpdate("drop table if exists person");
 		statement.execute("create table PERSON (NAME CHAR(8))");
 	}
@@ -198,7 +198,7 @@ public class SQLiteBenchSample extends Container {
 	 */
 	private int selectBeforeLast() throws Exception {
 		Vm.gc();
-		log("Select name = 'a" + (NRECS - 1) + "'");
+		addLabel("Select name = 'a" + (NRECS - 1) + "'");
 
 		int time = Vm.getTimeStamp();
 		int count = 0;
@@ -207,15 +207,15 @@ public class SQLiteBenchSample extends Container {
 		time = Vm.getTimeStamp() - time;
 
 		while (resultSet.next()) {
-			log("-> Found: " + resultSet.getString(1));
+			addLabel("-> Found: " + resultSet.getString(1));
 			count++;
 		}
 
 		if (count == 0) {
-			log("*** Not found...");
+			addLabel("*** Not found...");
 		}
-		log("-> Found " + count + " elements");
-		log("Finished: " + time + "ms");
+		addLabel("-> Found " + count + " elements");
+		addLabel("Finished: " + time + "ms");
 		return time;
 	}
 
@@ -227,7 +227,7 @@ public class SQLiteBenchSample extends Container {
 	 */
 	private int selectLikeA9() throws Exception {
 		Vm.gc();
-		log("Select like 'a9%'");
+		addLabel("Select like 'a9%'");
 		StringBuffer sb = new StringBuffer();
 		int time = Vm.getTimeStamp(), i = -1;
 		ResultSet resultSet = statement.executeQuery("select * from person where name like 'a9%'");
@@ -240,9 +240,9 @@ public class SQLiteBenchSample extends Container {
 		while (resultSet.next()) {
 			i++;
 		}
-		log("-> Found " + i + " elements");
-		log("First 5:" + sb);
-		log("Finished: " + time + "ms");
+		addLabel("-> Found " + i + " elements");
+		addLabel("First 5:" + sb);
+		addLabel("Finished: " + time + "ms");
 		return time;
 	}
 
@@ -257,7 +257,7 @@ public class SQLiteBenchSample extends Container {
 
 		statement.execute("CREATE INDEX IDX_NAME ON PERSON(NAME)");
 		time = Vm.getTimeStamp() - time;
-		log("= Index creation time: " + time + "ms");
+		addLabel("= Index creation time: " + time + "ms");
 		return time;
 	}
 
@@ -269,14 +269,14 @@ public class SQLiteBenchSample extends Container {
 	 */
 	private int selectStar() throws Exception {
 		Vm.gc();
-		log("Select star");
+		addLabel("Select star");
 		int time = Vm.getTimeStamp();
 		int count = 0;
 		ResultSet resultSet = statement.executeQuery("select * from person");
 
 		time = Vm.getTimeStamp() - time;
 		if (resultSet.next()) {
-			log("-> Found: " + resultSet.getString(1));
+			addLabel("-> Found: " + resultSet.getString(1));
 			count++;
 		}
 		while (resultSet.next()) {
@@ -284,10 +284,10 @@ public class SQLiteBenchSample extends Container {
 		}
 
 		if (count == 0) {
-			log("*** Not found...");
+			addLabel("*** Not found...");
 		}
-		log("-> Found " + count + " elements");
-		log("Finished: " + time + "ms");
+		addLabel("-> Found " + count + " elements");
+		addLabel("Finished: " + time + "ms");
 		return time;
 	}
 
@@ -299,22 +299,22 @@ public class SQLiteBenchSample extends Container {
 	 */
 	private int selectCountStar() throws Exception {
 		Vm.gc();
-		log("Select count(*)");
+		addLabel("Select count(*)");
 		int time = Vm.getTimeStamp();
 		int count = 0;
 		ResultSet resultSet = statement.executeQuery("select count(*) as number from person");
 
 		time = Vm.getTimeStamp() - time;
 		while (resultSet.next()) {
-			log("-> Found: " + resultSet.getString(1));
+			addLabel("-> Found: " + resultSet.getString(1));
 			count++;
 		}
 
 		if (count == 0) {
-			log("*** Not found...");
+			addLabel("*** Not found...");
 		}
-		log("-> Found " + count + " elements");
-		log("Finished: " + time + "ms");
+		addLabel("-> Found " + count + " elements");
+		addLabel("Finished: " + time + "ms");
 		return time;
 	}
 
@@ -326,22 +326,22 @@ public class SQLiteBenchSample extends Container {
 	 */
 	private int selectMax() throws Exception {
 		Vm.gc();
-		log("Select max()");
+		addLabel("Select max()");
 		int time = Vm.getTimeStamp();
 		int count = 0;
 		ResultSet resultSet = statement.executeQuery("select max(name) as mname from person where name >= 'a0'");
 
 		time = Vm.getTimeStamp() - time;
 		while (resultSet.next()) {
-			log("-> Found: " + resultSet.getString(1));
+			addLabel("-> Found: " + resultSet.getString(1));
 			count++;
 		}
 
 		if (count == 0) {
-			log("*** Not found...");
+			addLabel("*** Not found...");
 		}
-		log("-> Found " + count + " elements");
-		log("Finished: " + time + "ms");
+		addLabel("-> Found " + count + " elements");
+		addLabel("Finished: " + time + "ms");
 		return time;
 	}
 
@@ -353,14 +353,14 @@ public class SQLiteBenchSample extends Container {
 	 */
 	private int selectOrderBy() throws Exception {
 		Vm.gc();
-		log("Select with order by");
+		addLabel("Select with order by");
 		int time = Vm.getTimeStamp();
 		int count = 0;
 		ResultSet resultSet = statement.executeQuery("select * from person order by name");
 
 		time = Vm.getTimeStamp() - time;
 		if (resultSet.next()) {
-			log("-> Found: " + resultSet.getString(1));
+			addLabel("-> Found: " + resultSet.getString(1));
 			count++;
 		}
 		while (resultSet.next()) {
@@ -368,10 +368,10 @@ public class SQLiteBenchSample extends Container {
 		}
 
 		if (count == 0) {
-			log("*** Not found...");
+			addLabel("*** Not found...");
 		}
-		log("-> Found " + count + " elements");
-		log("Finished: " + time + "ms");
+		addLabel("-> Found " + count + " elements");
+		addLabel("Finished: " + time + "ms");
 		return time;
 	}
 
@@ -399,7 +399,7 @@ public class SQLiteBenchSample extends Container {
 			driver.setAutoCommit(false);
 
 			// inserts with synchronous mode ON (support to concurrent access)
-			log("Inserts with synchronous mode ON");
+			addLabel("Inserts with synchronous mode ON");
 			pbTotal.setValue(1);
 			int time1 = insertWithPS();
 			pbTotal.setValue(2);
@@ -418,7 +418,7 @@ public class SQLiteBenchSample extends Container {
 				driver.prepareStatement("pragma synchronous=off").executeUpdate();
 				driver.setAutoCommit(false);
 			}
-			log("Inserts with synchronous mode OFF");
+			addLabel("Inserts with synchronous mode OFF");
 			pbTotal.setValue(4);
 			int time1b = insertWithPS();
 			pbTotal.setValue(5);
@@ -460,30 +460,29 @@ public class SQLiteBenchSample extends Container {
 			driver.close();
 
 			// Logs the results.
-			log("With concurrent access mode ON:");
-			log(time1 + " " + time2 + " " + timeInsertsUsingBatch);
-			log("With concurrent access mode OFF:");
-			log(time1b + " " + time2b + " " + timeInsertsUsingBatchb);
-			log(time3 + " " + time4 + " " + time5);
-			log(time6 + " ");
-			log(time7 + " " + time8 + " " + time9);
-			log(time10 + " " + time11 + " " + time12);
+			addLabel("With concurrent access mode ON:");
+			addLabel(time1 + " " + time2 + " " + timeInsertsUsingBatch);
+			addLabel("With concurrent access mode OFF:");
+			addLabel(time1b + " " + time2b + " " + timeInsertsUsingBatchb);
+			addLabel(time3 + " " + time4 + " " + time5);
+			addLabel(time6 + " ");
+			addLabel(time7 + " " + time8 + " " + time9);
+			addLabel(time10 + " " + time11 + " " + time12);
 			int totalInserts = (time1 + time2 + timeInsertsUsingBatch + time1b + time2b + timeInsertsUsingBatchb);
-			log("total: " + (totalInserts + time3 + time4 + time5 + time6
+			addLabel("total: " + (totalInserts + time3 + time4 + time5 + time6
 					+ time7 + time8 + time9 + time10 + time11 + time12));
 		} catch (Exception exception) {
 			exception.printStackTrace();
-			log(exception.getMessage());
+			addLabel(exception.getMessage());
 		}
 		System.out.println(logLabel.getText());
 //		logLabel.setText(logLabel.getText() +  "\n" +"Results are also in the console");
 	}
 	
-	private void log(String s)
+	private void addLabel(String s)
 	{
 		Label logLabel = new Label();
 		logLabel.setText(s);
-		System.out.println(s);
 		sc.add(logLabel, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
 	}
 }
