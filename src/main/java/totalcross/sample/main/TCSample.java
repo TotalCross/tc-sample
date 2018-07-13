@@ -48,6 +48,11 @@ import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.thread.*;
 import totalcross.sample.components.lang.reflection.*;
 
+import totalcross.sample.components.map.GoogleMapsSample;
+
+import totalcross.sample.components.phone.PhoneDialerSample;
+import totalcross.sample.components.phone.PhoneSmsSample;
+
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.*;
@@ -131,6 +136,13 @@ public class TCSample extends MainWindow {
 	//Lang
 	SideMenuContainer.Item thread = new SideMenuContainer.Item("Thread", MaterialIcons._LINE_STYLE, Color.BLACK, () -> { return new ThreadSample(); });
 	SideMenuContainer.Item reflection = new SideMenuContainer.Item("Reflection", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ReflectionSample(); });
+	//Map
+	SideMenuContainer.Item googleMaps = new SideMenuContainer.Item("Google Maps", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new GoogleMapsSample(); });
+	//Phone
+	SideMenuContainer.Item phoneDialer = new SideMenuContainer.Item("Dialer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneDialerSample(); });
+	SideMenuContainer.Item phoneSms = new SideMenuContainer.Item("SMS", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneSmsSample(); });
+	
+	
 	
 	SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
     		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox, 
@@ -142,6 +154,8 @@ public class TCSample extends MainWindow {
     SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
     SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
     SideMenuContainer.Sub langGroup = new SideMenuContainer.Sub("Lang", thread, reflection);
+	SideMenuContainer.Sub mapGroup = new SideMenuContainer.Sub("Map", googleMaps);
+	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
 	
     sideMenu =
         new SideMenuContainer(
@@ -153,7 +167,9 @@ public class TCSample extends MainWindow {
             cryptoGroup,
             ioGroup,
             jsonGroup,
-            langGroup);
+            langGroup,
+            mapGroup,
+            phoneGroup);
 
     sideMenu.topMenu.header =
         new Container() {
