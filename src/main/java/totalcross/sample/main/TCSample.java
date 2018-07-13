@@ -59,6 +59,8 @@ import totalcross.sample.net.mail.MailSample;
 import totalcross.sample.util.Colors;
 import totalcross.sample.components.sql.SQLiteBenchSample;
 import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
+
+import totalcross.sample.components.sys.SettingsSample;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
@@ -153,17 +155,16 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item SecureSocketSample = new SideMenuContainer.Item("Secure Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SecureSocketSample(); });
 	SideMenuContainer.Item ServerSocketSample = new SideMenuContainer.Item("Server Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ServerSocketSample(); });
 	SideMenuContainer.Item SocketSample = new SideMenuContainer.Item("Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SocketSample(); });
-	
-	
 	//Phone
 	SideMenuContainer.Item phoneDialer = new SideMenuContainer.Item("Dialer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneDialerSample(); });
 	SideMenuContainer.Item phoneSms = new SideMenuContainer.Item("SMS", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneSmsSample(); });
+	//System
+	SideMenuContainer.Item settings = new SideMenuContainer.Item("Settings", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SettingsSample(); });
 	//util
 	SideMenuContainer.Item pdfWriter = new SideMenuContainer.Item("PDF Writer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PDFWriterSample(); });
 	SideMenuContainer.Item zipSample = new SideMenuContainer.Item("Zip", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZipSample(); });
 	SideMenuContainer.Item zLibSample = new SideMenuContainer.Item("ZLib", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZLibSample(); });
 	SideMenuContainer.Item mail = new SideMenuContainer.Item("Mail", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new MailSample(); });
-	
 	//xml
 	SideMenuContainer.Item soap = new SideMenuContainer.Item("Soap", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SoapSample(); });
 	
@@ -183,6 +184,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Sub mapGroup = new SideMenuContainer.Sub("Map", googleMaps);
 	SideMenuContainer.Sub netGroup = new SideMenuContainer.Sub("net", mail,ftpSample, SecureSocketSample, ServerSocketSample, SocketSample);
 	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
+	SideMenuContainer.Sub sysGroup = new SideMenuContainer.Sub("System", settings);
 	SideMenuContainer.Sub utilGroup = new SideMenuContainer.Sub("Util", pdfWriter, zipSample, zLibSample);
 	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", soap);
 	
@@ -200,6 +202,7 @@ public class TCSample extends MainWindow {
             mapGroup,
             netGroup,
             phoneGroup,
+            sysGroup,
             utilGroup,
             xmlGroup);
 
