@@ -2,7 +2,6 @@ package totalcross.sample.main;
 
 import totalcross.io.IOException;
 import totalcross.sample.components.Home;
-import totalcross.sample.components.SQLiteFormGridTabbedContainer;
 import totalcross.sample.components.XMLParseSample;
 import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.components.crypto.CipherSample;
@@ -58,6 +57,8 @@ import totalcross.sample.components.util.ZipSample;
 import totalcross.sample.components.xml.SoapSample;
 import totalcross.sample.net.mail.MailSample;
 import totalcross.sample.util.Colors;
+import totalcross.sample.components.sql.SQLiteBenchSample;
+import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
@@ -135,6 +136,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item signatureCR = new SideMenuContainer.Item("Signature", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK,  () -> { return new SignatureSample(); });
 	//SQL
 	SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Color.BLACK,  () -> { return new SQLiteFormGridTabbedContainer(); });
+	SideMenuContainer.Item SQLiteBench = new SideMenuContainer.Item("SQLite Bench", MaterialIcons._INPUT, Color.BLACK, () -> { return new SQLiteBenchSample(); });
 	//XML
 	SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
 	//IO
@@ -153,7 +155,6 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item SocketSample = new SideMenuContainer.Item("Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SocketSample(); });
 	
 	
-	
 	//Phone
 	SideMenuContainer.Item phoneDialer = new SideMenuContainer.Item("Dialer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneDialerSample(); });
 	SideMenuContainer.Item phoneSms = new SideMenuContainer.Item("SMS", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneSmsSample(); });
@@ -168,11 +169,12 @@ public class TCSample extends MainWindow {
 	
 	
 	
+	
 	SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
     		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox, 
     		multitouch, notifications, progressBox, signatureHW, slider, spinnerInsideLoop, switchSample, tabbedContainer, topMenu, velocimeter, otherControls);
     
-    SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite);
+    SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite, SQLiteBench);
     SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signatureCR);
     //SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
     SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
