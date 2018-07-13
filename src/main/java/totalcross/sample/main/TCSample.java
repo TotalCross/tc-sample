@@ -7,6 +7,8 @@ import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.components.crypto.SignatureSample;
 import totalcross.sample.components.io.FileSample;
+import totalcross.sample.components.io.PDBFileSample;
+
 import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
 import totalcross.sample.components.net.SocketSample;
