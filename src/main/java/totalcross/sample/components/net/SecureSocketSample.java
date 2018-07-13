@@ -115,7 +115,7 @@ public class SecureSocketSample extends Container {
     do {
       int endline = s.indexOf('\n', startline);
       String str = (endline > 0) ? s.substring(startline, endline) : s.substring(startline);
-      log(str);
+      //log(str);
       startline += str.length() + 1;
     } while (startline < s.length());
   }
