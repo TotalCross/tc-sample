@@ -56,6 +56,7 @@ import totalcross.sample.components.util.PDFWriterSample;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.util.ZipSample;
 import totalcross.sample.components.xml.SoapSample;
+import totalcross.sample.net.mail.MailSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
@@ -160,6 +161,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item pdfWriter = new SideMenuContainer.Item("PDF Writer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PDFWriterSample(); });
 	SideMenuContainer.Item zipSample = new SideMenuContainer.Item("Zip", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZipSample(); });
 	SideMenuContainer.Item zLibSample = new SideMenuContainer.Item("ZLib", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZLibSample(); });
+	SideMenuContainer.Item mail = new SideMenuContainer.Item("Mail", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new MailSample(); });
 	
 	//xml
 	SideMenuContainer.Item soap = new SideMenuContainer.Item("Soap", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SoapSample(); });
@@ -177,7 +179,7 @@ public class TCSample extends MainWindow {
     SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
     SideMenuContainer.Sub langGroup = new SideMenuContainer.Sub("Lang", thread, reflection);
 	SideMenuContainer.Sub mapGroup = new SideMenuContainer.Sub("Map", googleMaps);
-	SideMenuContainer.Sub netGroup = new SideMenuContainer.Sub("net", ftpSample, SecureSocketSample, ServerSocketSample, SocketSample);
+	SideMenuContainer.Sub netGroup = new SideMenuContainer.Sub("net", mail,ftpSample, SecureSocketSample, ServerSocketSample, SocketSample);
 	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
 	SideMenuContainer.Sub utilGroup = new SideMenuContainer.Sub("Util", pdfWriter, zipSample, zLibSample);
 	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", soap);
