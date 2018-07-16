@@ -51,6 +51,7 @@ import totalcross.sample.components.ui.SwitchSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
 import totalcross.sample.components.ui.VelocimeterSample;
+
 import totalcross.sample.components.util.PDFWriterSample;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.util.ZipSample;
@@ -59,18 +60,14 @@ import totalcross.sample.net.mail.MailSample;
 import totalcross.sample.util.Colors;
 import totalcross.sample.components.sql.SQLiteBenchSample;
 import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
-
-import totalcross.sample.components.sys.SettingsSample;
-import totalcross.sample.components.sys.ExternalViewersSample;
-
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
+import totalcross.ui.ImageControl;
 import totalcross.ui.Label;
 import totalcross.ui.MainWindow;
 import totalcross.ui.SideMenuContainer;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
-import totalcross.ui.ImageControl;
 import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
@@ -129,11 +126,13 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item progressBox = new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); });
 	SideMenuContainer.Item signatureHW = new SideMenuContainer.Item("HandWrite Signature", MaterialIcons._DASHBOARD, Color.BLACK,  () -> { return new HWSignatureSample(); });	
 	SideMenuContainer.Item slider = new SideMenuContainer.Item("Slider", MaterialIcons._POWER_SETTINGS_NEW, Color.BLACK,  () -> { return new SliderSample(); });	
-	SideMenuContainer.Item spinnerInsideLoop = new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); });	
+    SideMenuContainer.Item spinnerInsideLoop = new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); });	
 	SideMenuContainer.Item switchSample = new SideMenuContainer.Item("Switch", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SwitchSample(); });	
 	SideMenuContainer.Item tabbedContainer = new SideMenuContainer.Item("Tabbed Container", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TabbedContainerSample(); });	
 	SideMenuContainer.Item topMenu = new SideMenuContainer.Item("TopMenu", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TopMenuSample(); });
 	SideMenuContainer.Item velocimeter = new SideMenuContainer.Item("Velocimeter", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new VelocimeterSample(); });
+	
+	
 	//Crypto
 	SideMenuContainer.Item cipher = new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); });
 	SideMenuContainer.Item digest = new SideMenuContainer.Item("Digest", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new DigestSample(); });
@@ -142,7 +141,9 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item sqlite = new SideMenuContainer.Item("SQLite / Grid", MaterialIcons._STORAGE, Color.BLACK,  () -> { return new SQLiteFormGridTabbedContainer(); });
 	SideMenuContainer.Item SQLiteBench = new SideMenuContainer.Item("SQLite Bench", MaterialIcons._INPUT, Color.BLACK, () -> { return new SQLiteBenchSample(); });
 	//XML
-	SideMenuContainer.Item xml = new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
+	SideMenuContainer.Item xmlParse = new SideMenuContainer.Item("XML Parse", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); });
+	SideMenuContainer.Item soap = new SideMenuContainer.Item("Soap", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SoapSample(); });
+	
 	//IO
 	SideMenuContainer.Item file = new SideMenuContainer.Item("File", MaterialIcons._ATTACH_FILE, Color.BLACK, () -> { return new FileSample(); });
 	//JSON
@@ -157,39 +158,34 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item SecureSocketSample = new SideMenuContainer.Item("Secure Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SecureSocketSample(); });
 	SideMenuContainer.Item ServerSocketSample = new SideMenuContainer.Item("Server Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ServerSocketSample(); });
 	SideMenuContainer.Item SocketSample = new SideMenuContainer.Item("Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SocketSample(); });
+	
+	
 	//Phone
 	SideMenuContainer.Item phoneDialer = new SideMenuContainer.Item("Dialer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneDialerSample(); });
 	SideMenuContainer.Item phoneSms = new SideMenuContainer.Item("SMS", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PhoneSmsSample(); });
-	//System
-	SideMenuContainer.Item settings = new SideMenuContainer.Item("Settings", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SettingsSample(); });
-	SideMenuContainer.Item extViewers = new SideMenuContainer.Item("External viewers", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ExternalViewersSample(); });
 	//util
 	SideMenuContainer.Item pdfWriter = new SideMenuContainer.Item("PDF Writer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PDFWriterSample(); });
 	SideMenuContainer.Item zipSample = new SideMenuContainer.Item("Zip", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZipSample(); });
 	SideMenuContainer.Item zLibSample = new SideMenuContainer.Item("ZLib", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZLibSample(); });
 	SideMenuContainer.Item mail = new SideMenuContainer.Item("Mail", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new MailSample(); });
-	//xml
-	SideMenuContainer.Item soap = new SideMenuContainer.Item("Soap", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SoapSample(); });
+	
 	
 	
 	
 	
 	SideMenuContainer.Sub uiGroup = new SideMenuContainer.Sub("User Interface", accordion, alignedLabels, buttons, camera, cards, chart, checkRadio, colorPicker, comboList,
-    		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox, 
-    		multitouch, notifications, progressBox, signatureHW, slider, spinnerInsideLoop, switchSample, tabbedContainer, topMenu, velocimeter, otherControls);
+    		controlAnimation, dynScrollContainer, edits, fontSize, grid, html, imgAnimation, imgBook, imgControl, imgModifier, listContainer, login, materialicons, messageBox,     		multitouch, notifications, progressBox, signatureHW, slider, spinnerInsideLoop, switchSample, tabbedContainer, topMenu, velocimeter, otherControls);
     
     SideMenuContainer.Sub sqlGroup = new SideMenuContainer.Sub("SQL", sqlite, SQLiteBench);
     SideMenuContainer.Sub cryptoGroup = new SideMenuContainer.Sub("Crypto", cipher, digest, signatureCR);
-    //SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml);
+    SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xmlParse, soap);
     SideMenuContainer.Sub ioGroup = new SideMenuContainer.Sub("IO", file);
     SideMenuContainer.Sub jsonGroup = new SideMenuContainer.Sub("JSON", json);
     SideMenuContainer.Sub langGroup = new SideMenuContainer.Sub("Lang", thread, reflection);
 	SideMenuContainer.Sub mapGroup = new SideMenuContainer.Sub("Map", googleMaps);
 	SideMenuContainer.Sub netGroup = new SideMenuContainer.Sub("net", mail,ftpSample, SecureSocketSample, ServerSocketSample, SocketSample);
 	SideMenuContainer.Sub phoneGroup = new SideMenuContainer.Sub("Phone", phoneDialer, phoneSms);
-	SideMenuContainer.Sub sysGroup = new SideMenuContainer.Sub("System", settings, extViewers);
 	SideMenuContainer.Sub utilGroup = new SideMenuContainer.Sub("Util", pdfWriter, zipSample, zLibSample);
-	SideMenuContainer.Sub xmlGroup = new SideMenuContainer.Sub("XML", xml, soap);
 	
     sideMenu =
         new SideMenuContainer(
@@ -197,7 +193,7 @@ public class TCSample extends MainWindow {
             home,
             uiGroup,
             sqlGroup,
-           // xmlGroup,
+            xmlGroup,
             cryptoGroup,
             ioGroup,
             jsonGroup,
@@ -205,9 +201,8 @@ public class TCSample extends MainWindow {
             mapGroup,
             netGroup,
             phoneGroup,
-            sysGroup,
-            utilGroup,
-            xmlGroup);
+            utilGroup
+            );
 
     sideMenu.topMenu.header =
         new Container() {
