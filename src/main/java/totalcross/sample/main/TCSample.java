@@ -6,9 +6,8 @@ import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.components.crypto.SignatureSample;
-import totalcross.sample.components.io.BTPrinterCitizenSample;
 import totalcross.sample.components.io.FileSample;
-import totalcross.sample.components.io.PDBFileSample;
+import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.reflection.ReflectionSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
 import totalcross.sample.components.map.GoogleMapsSample;
@@ -28,7 +27,6 @@ import totalcross.sample.components.ui.ButtonSample;
 import totalcross.sample.components.ui.CameraSample;
 import totalcross.sample.components.ui.ChartSample;
 import totalcross.sample.components.ui.CheckRadioSample;
-import totalcross.sample.components.ui.ColorPickerSample;
 import totalcross.sample.components.ui.ComboListSample;
 import totalcross.sample.components.ui.ControlAnimationSample;
 import totalcross.sample.components.ui.DynScrollContainerSample;
@@ -44,7 +42,6 @@ import totalcross.sample.components.ui.ListContainerSample;
 import totalcross.sample.components.ui.Login;
 import totalcross.sample.components.ui.MaterialIconsSample;
 import totalcross.sample.components.ui.MessageBoxSample;
-import totalcross.sample.components.ui.MultiTouchSample;
 import totalcross.sample.components.ui.NotificationsSample;
 import totalcross.sample.components.ui.OtherControlsSample;
 import totalcross.sample.components.ui.ProgressBoxSample;
@@ -122,11 +119,12 @@ public class TCSample extends MainWindow {
             jsonGroup,
             langGroup,
             mapGroup,
-            netGroup,
+//            netGroup,
             phoneGroup,
-            sysGroup,
-            utilGroup,
-            xmlGroup);
+            sysGroup
+//            utilGroup,
+//            xmlGroup
+            );
 
     sideMenu.topMenu.header =
         new Container() {
@@ -188,7 +186,7 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Cards", MaterialIcons._VIEW_AGENDA, Color.BLACK,  () -> { return new CardsSample(); }),
 			   new SideMenuContainer.Item("Charts", MaterialIcons. _EDIT, Color.BLACK,  () -> { return new ChartSample(); }),
 			   new SideMenuContainer.Item("Check and Radio", MaterialIcons._CHECK_BOX, Color.BLACK,  () -> { return new CheckRadioSample(); }),
-			   new SideMenuContainer.Item("Color Picker", MaterialIcons._COLORIZE, Color.BLACK,  () -> { return new ColorPickerSample(); }),
+//			   new SideMenuContainer.Item("Color Picker", MaterialIcons._COLORIZE, Color.BLACK,  () -> { return new ColorPickerSample(); }),
 			   new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Color.BLACK,  () -> { return new ComboListSample(); }),
 			   new SideMenuContainer.Item("Dynamic ScrollContainer", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new DynScrollContainerSample(); }),
 			   new SideMenuContainer.Item("Edit", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new EditSample(); }),
@@ -203,7 +201,7 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),
 			   new SideMenuContainer.Item("Material Icons", MaterialIcons._FONT_DOWNLOAD, Color.BLACK,  () -> { return new MaterialIconsSample(); }),
 			   new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
-			   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
+//			   new SideMenuContainer.Item("Multi touch",. MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
 			   new SideMenuContainer.Item("Notifications", MaterialIcons._NOTIFICATIONS_ACTIVE, Color.BLACK,  () -> { return new NotificationsSample(); }),
 			   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
 			   new SideMenuContainer.Item("Plataform Animations", MaterialIcons._MOOD, Color.BLACK,  () -> { return new ControlAnimationSample(); }),
