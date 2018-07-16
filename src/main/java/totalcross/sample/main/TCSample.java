@@ -6,8 +6,9 @@ import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.components.crypto.SignatureSample;
+import totalcross.sample.components.io.BTPrinterCitizenSample;
 import totalcross.sample.components.io.FileSample;
-import totalcross.sample.components.json.JSONSample;
+import totalcross.sample.components.io.PDBFileSample;
 import totalcross.sample.components.lang.reflection.ReflectionSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
 import totalcross.sample.components.map.GoogleMapsSample;
@@ -265,3 +266,4 @@ public class TCSample extends MainWindow {
 				new SideMenuContainer.Item("ZLib", MaterialIcons._SORT, Color.BLACK, () -> { return new ZLibSample(); }));
 				}
 }
+
