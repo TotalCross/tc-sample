@@ -39,16 +39,16 @@ public class FontSample extends Container {
 			Check ch;
 			RadioGroupController rgSexo = new RadioGroupController();
 
-			add(new Label("Name: "), LEFT, TOP + 5);
+			add(new Label("Name: "), LEFT + (Settings.screenWidth/10), TOP + (Settings.screenHeight/10));
 			add(edname = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(new Label("Adress: "), LEFT, AFTER + 5);
+			add(new Label("Adress: "), LEFT + (Settings.screenWidth/10), AFTER + (Settings.screenHeight/10));
 			add(edadress = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(new Label("Quarter: "), LEFT, AFTER + 5);
+			add(new Label("Quarter: "), LEFT+ (Settings.screenWidth/10), AFTER + (Settings.screenHeight/10));
 			add(edquarter = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(new Label("Gender: "), LEFT, AFTER + 5);
+			add(new Label("Gender: "), LEFT + (Settings.screenWidth/10), AFTER + (Settings.screenHeight/10));
 			add(new Radio("Male", rgSexo), AFTER, SAME, PREFERRED, SAME);
 			add(new Radio("Female", rgSexo), AFTER + 3, SAME, PREFERRED, SAME);
-			add(ch = new Check("Married?"), LEFT, AFTER + 5);
+			add(ch = new Check("Married?"), LEFT + (Settings.screenWidth/10), AFTER + 5);
 			ch.setChecked(true);
 			if (uiAndroid) {
 				ch.checkColor = Color.CYAN;
@@ -85,13 +85,15 @@ public class FontSample extends Container {
 
 		@Override
 		public void initUI() {
+			setBackColor(Color.getRGB(74, 144, 226));
+			setForeColor(Color.WHITE);
 			Label l;
 			int max = Font.MAX_FONT_SIZE * (Settings.isWindowsCE() ? 2 : 3);
-			add(new Label("Typeface: "), LEFT, TOP);
+			add(new Label("Typeface: "), LEFT+(Settings.screenWidth/10), TOP);
 			add(new Radio("Normal", rg), AFTER + fmH, SAME);
 			add(new Radio("Monospace", rg), AFTER + fmH, SAME);
 			rg.setSelectedIndex(0);
-			add(l = new Label("Size:  " + Font.MIN_FONT_SIZE), LEFT, AFTER);
+			add(l = new Label("Size:  " + Font.MIN_FONT_SIZE), LEFT + (Settings.screenWidth/10), AFTER);
 			add(new Label("" + max), RIGHT, SAME);
 			add(slSize = new Slider(), AFTER + 2, SAME, FIT - 2, SAME + fmH / 2, l);
 			slSize.setLiveScrolling(!Settings.isWindowsCE());
@@ -99,7 +101,8 @@ public class FontSample extends Container {
 			slSize.setMaximum(max + 1); // +1: visible items
 			slSize.drawFilledArea = slSize.drawTicks = false;
 			slSize.setValue(Font.NORMAL_SIZE);
-			add(ckBold = new Check("Bold"), LEFT, AFTER);
+			
+			add(ckBold = new Check("Bold"), LEFT + (Settings.screenWidth/10), AFTER);
 			add(lSize = new Label(" 999 "), CENTER_OF, AFTER, slSize);
 			selFont = font;
 			updateSize();
