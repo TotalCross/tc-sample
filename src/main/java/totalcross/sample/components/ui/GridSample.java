@@ -29,6 +29,8 @@ public class GridSample extends Container {
       int gridAligns[] = {LEFT,LEFT,LEFT};
 
       grid = new Grid(gridCaptions, gridWidths, gridAligns, false);
+      grid.verticalLineStyle = Grid.VERT_LINE;
+      grid.secondStripeColor = Color.getRGB(245, 245, 245);
       
       loadButton = new Button("Load");
       loadButton.setBackColor(Colors.P_DARK);
