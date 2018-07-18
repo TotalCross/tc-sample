@@ -39,18 +39,51 @@ public class ControlAnimationSample extends Container{
 	  @Override
 	  public void onEvent(Event e) {
 	    if (e.type == ControlEvent.PRESSED) {
+	    	Button btnAux = null;
 	      switch (((Control) e.target).appId) {
 	      case 1:
-	        PathAnimation.create(btnL, -LEFT, null, -1).then(PathAnimation.create(btnL, LEFT, null, -1)).start();
-	        break;
+	    	if(btnL.appId == 1)
+	    		btnAux = btnL;
+	    	if(btnR.appId == 1)
+	    		btnAux = btnR;
+	    	if(btnT.appId == 1)
+	    		btnAux = btnT;
+	    	if(btnB.appId == 1)
+	    		btnAux = btnB;
+	    	PathAnimation.create(btnAux, -LEFT, null, -1).then(PathAnimation.create(btnAux, LEFT, null, -1)).start();
+	    	break;
 	      case 2:
-	        PathAnimation.create(btnR, -RIGHT, null, -1).then(PathAnimation.create(btnR, RIGHT, null, -1)).start();
+	    	if(btnL.appId == 2)
+	    		btnAux = btnL;
+	    	if(btnR.appId == 2)
+	    		btnAux = btnR;
+	    	if(btnT.appId == 2)
+	    		btnAux = btnT;
+	    	if(btnB.appId == 2)
+	    		btnAux = btnB;
+	          PathAnimation.create(btnAux, -RIGHT, null, -1).then(PathAnimation.create(btnAux, RIGHT, null, -1)).start(); 
 	        break;
 	      case 3:
-	        PathAnimation.create(btnT, -TOP, null, -1).then(PathAnimation.create(btnT, TOP, null, -1)).start();
+	    	if(btnL.appId == 3)
+	    		btnAux = btnL;
+	    	if(btnR.appId == 3)
+	    		btnAux = btnR;
+	    	if(btnT.appId == 3)
+	    		btnAux = btnT;
+	    	if(btnB.appId == 3)
+	    		btnAux = btnB;
+	          PathAnimation.create(btnAux, -TOP, null, -1).then(PathAnimation.create(btnAux, TOP, null, -1)).start(); 
 	        break;
 	      case 4:
-	        PathAnimation.create(btnB, -BOTTOM, null, -1).then(PathAnimation.create(btnB, BOTTOM, null, -1)).start();
+	    	if(btnL.appId == 4)
+	    		btnAux = btnL;
+	    	if(btnR.appId == 4)
+	    		btnAux = btnR;
+	    	if(btnT.appId == 4)
+	    		btnAux = btnT;
+	    	if(btnB.appId == 4)
+		    		btnAux = btnB;
+	        PathAnimation.create(btnAux, -BOTTOM, null, -1).then(PathAnimation.create(btnAux, BOTTOM, null, -1)).start(); 
 	        break;
 	      case 5: {
 	        int xr = btnR.getX(), yr = btnR.getY(), xl = btnL.getX(), yl = btnL.getY();
@@ -70,11 +103,15 @@ public class ControlAnimationSample extends Container{
 	        PathAnimation p2 = PathAnimation.create(btnT, xr, yr, null, 500);
 	        PathAnimation p3 = PathAnimation.create(btnR, xb, yb, null, 500);
 	        PathAnimation p4 = PathAnimation.create(btnB, xl, yl, null, 500);
-	        p1.with(p2);
-	        p2.with(p3);
-	        p3.with(p4);
 	        p1.start();
-
+	        p2.start();
+	        p3.start();
+	        p4.start();
+	        int aux = btnR.appId;
+	        btnR.appId = btnB.appId;
+	        btnB.appId = btnL.appId;
+	        btnL.appId = btnT.appId;
+	        btnT.appId = aux;
 	        break;
 	      }
 	      }
