@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.util.Colors;
 import totalcross.ui.AlignedLabelsContainer;
 import totalcross.ui.Button;
 import totalcross.ui.ComboBox;
@@ -14,9 +15,9 @@ public class AlignedLabelsSample extends ScrollContainer{
 	    ScrollContainer sc = new ScrollContainer(false, true);
 	    add(sc, LEFT, TOP, FILL, FILL);
 
-	    String[] labels = { "Name", "Born date", "Telephone", "Address", "City", "Country", "", };
+	    String[] labels = { "Name", "Born date", "Telephone", "Address", "City", "Country", ""};
 	    AlignedLabelsContainer c = new AlignedLabelsContainer(labels, 4);
-	    c.setBorderStyle(BORDER_LOWERED);
+//	    c.setBorderStyle(BORDER_LOWERED);
 	    c.labelAlign = RIGHT;
 	    c.foreColors = new int[] { Color.RED, Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
 	        Color.BLACK, };
@@ -27,7 +28,10 @@ public class AlignedLabelsSample extends ScrollContainer{
 	      c.add(new Edit(), LEFT + 2, c.getLineY(i));
 	    }
 	    c.add(new ComboBox(new String[] { "Brazil", "USA" }), LEFT + 2, c.getLineY(i));
-	    c.add(new Button("Insert data"), RIGHT, SAME);
-	    c.add(new Button("Clear data"), RIGHT, AFTER + 4, SAME, PREFERRED);
+	    Button btnInsert = new Button("Insert data", (byte) 0);
+	    btnInsert.setBackColor(Colors.PRIMARY);
+	    c.add(btnInsert, RIGHT, c.getLineY(i++) + 2, PREFERRED + 120, PREFERRED + 6);
+	    c.add(new Button("Clear data", (byte) 0), RIGHT, c.getLineY(i) + 3, SAME, SAME - 2);
+	    
 	  }
 }
