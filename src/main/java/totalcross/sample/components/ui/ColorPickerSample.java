@@ -2,6 +2,7 @@ package totalcross.sample.components.ui;
 
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
+import totalcross.sys.Vm;
 import totalcross.ui.AlignedLabelsContainer;
 import totalcross.ui.Container;
 import totalcross.ui.Edit;
@@ -21,6 +22,7 @@ public class ColorPickerSample extends Container {
 	private Graphics gImage, gImValue;
 	final int imWidth = Settings.screenWidth-70;
 	final int imHeight = Settings.screenHeight/2;
+	private int time;
 	
 	private AlignedLabelsContainer alc;
 	private Label lblTitulo, lblCursor, lblValue, lblColor;
@@ -62,7 +64,11 @@ public class ColorPickerSample extends Container {
 					double vAux = 1;
 					double sAux = dc/r;
 					int yAux = y;
-					double hAux = Math.acos(((x - cx)/dc));
+					double hAux;
+					if(dc == 0)
+						hAux = 0;
+					else
+						hAux = Math.acos(((x - cx)/dc));
 					if (yAux > cy)
 						hAux *= -1;
 					double[] rgb = hsvToRgb(hAux, sAux, vAux);
@@ -148,7 +154,10 @@ public class ColorPickerSample extends Container {
 						{
 							//set the h and s values while dragging
 							s = sAux;
-							h = Math.acos(((e.x - cx)/dc));
+							if(dc == 0)
+								h = 0;
+							else
+								h = Math.acos(((e.x - cx)/dc));
 							if (e.y > cy)
 								h *= -1;
 							//add a tracking label
@@ -237,6 +246,8 @@ public class ColorPickerSample extends Container {
 				}
 			}
 		});
+		
+		System.out.println("" + (Vm.getTimeStamp() - time));
 	}
 	
 	/* Transform HSV to RGB color */

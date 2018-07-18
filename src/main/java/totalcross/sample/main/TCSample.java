@@ -8,6 +8,7 @@ import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
 import totalcross.sample.components.crypto.SignatureSample;
 import totalcross.sample.components.io.FileSample;
+import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.reflection.ReflectionSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
 import totalcross.sample.components.map.GoogleMapsSample;
@@ -191,7 +192,6 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Check and Radio", MaterialIcons._CHECK_BOX, Color.BLACK,  () -> { return new CheckRadioSample(); }),
 			   new SideMenuContainer.Item("Color Picker", MaterialIcons._COLORIZE, Color.BLACK,  () -> { return new ColorPickerSample(); }),
 			   new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Color.BLACK,  () -> { return new ComboListSample(); }),
-			   new SideMenuContainer.Item("Plataform Animations", MaterialIcons._MOOD, Color.BLACK,  () -> { return new ControlAnimationSample(); }),
 			   new SideMenuContainer.Item("Dynamic ScrollContainer", MaterialIcons._MOOD, Color.BLACK,  () -> { return new DynScrollContainerSample(); }),
 			   new SideMenuContainer.Item("Edit", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new EditSample(); }),
 			   new SideMenuContainer.Item("Font sizes", MaterialIcons._PALETTE, Color.BLACK,  () -> { return new FontSample(); }),
@@ -208,6 +208,7 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
 			   new SideMenuContainer.Item("Notifications", MaterialIcons._NOTIFICATIONS_ACTIVE, Color.BLACK,  () -> { return new NotificationsSample(); }),
 			   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
+			   new SideMenuContainer.Item("Plataform Animations", MaterialIcons._MOOD, Color.BLACK,  () -> { return new ControlAnimationSample(); }),
 			   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
 			   new SideMenuContainer.Item("HandWrite Signature", MaterialIcons._DASHBOARD, Color.BLACK,  () -> { return new HWSignatureSample(); }),	
 			   new SideMenuContainer.Item("Slider", MaterialIcons._POWER_SETTINGS_NEW, Color.BLACK,  () -> { return new SliderSample(); }),	
@@ -226,7 +227,7 @@ public class TCSample extends MainWindow {
 	}
 	
 	private Sub createJSONSubGroup() {
-		return new SideMenuContainer.Sub("JSON", new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home();}));
+		return new SideMenuContainer.Sub("JSON", new SideMenuContainer.Item("JSON", MaterialIcons._HTTP, Color.BLACK, false, () -> { return new JSONSample();}));
 	}
 
 	private Sub createLangSubGroup() {
