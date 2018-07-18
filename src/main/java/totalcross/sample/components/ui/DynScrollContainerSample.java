@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.ui.Button;
 import totalcross.ui.Check;
@@ -16,11 +17,12 @@ import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 
 public class DynScrollContainerSample extends Container {
-	final int gap = 5;
+	final int gap = 50;
 	private Button goButton;
 	private Edit evenHeightEdit;
 	private Edit oddHeightEdit;
 	private Edit rowCountEdit;
+	String oldOdd, oldEven;
 	private DynamicScrollContainer vsc;
 	private Check dynamicChk;
 	private int rowCount0, oddHeight0, evenHeight0;
@@ -52,13 +54,13 @@ public class DynScrollContainerSample extends Container {
 					text += "Lorem ipsum pretium class porta gravida lobortis ipsum, etiam posuere elit torquent duis nostra elit, sagittis etiam dapibus libero tellus facilisis curabitur facilisis sed sagittis posuere imperdiet bibendum.";
 
 				} else if (id % 4 == 0) {
-					text += "Felis turpis mauris per nullam donec lobortis maecenas metus orci viverra vulputate non nostra platea conubia, lectus proin mauris ligula aenean, adipiscing purus accumsan commodo laoreet facilisis tellus nisl litora vehicula.";
+					text += "Felis turpis mauris per nullam donec lobortis maecenas metus orci viverra vulputate non nostra platea conubia, lectus proin mauris ligula aenean, adipiscing purus accumsan commodo laoreet facilisis tellus nisl litora vehicula. Aliquam aptent netus nisi rutrum fringilla arcu vehicula ut ante nam in.";
 
 				} else if (id % 3 == 0) {
 					text += "Venenatis consequat adipiscing ullamcorper etiam tellus nam mattis vehicula nostra leo rutrum lorem at suscipit, suspendisse aliquam aptent netus nisi rutrum fringilla arcu vehicula ut ante nam in.";
 
 				} else if (id % 2 == 0) {
-					text += "Hendrerit fermentum blandit conubia fringilla class duis non neque blandit condimentum, maecenas neque vel justo magna ornare tempor purus quis porttitor quisque, et nullam turpis ullamcorper a donec consequat auctor ornare.";
+					text += "Hendrerit fermentum blandit conubia fringilla class duis non neque blandit condimentum, maecenas neque vel justo magna ornare tempor purus quis porttitor quisque.";
 
 				} else {
 					text += "Lorem ipsum pretium class porta gravida lobortis ipsum, etiam posuere elit torquent.";
@@ -75,7 +77,7 @@ public class DynScrollContainerSample extends Container {
 		@Override
 		public void initUI() {
 			Container ui = new Container();
-			ui.setBackColor((id % 2 == 0) ? Color.darker(Color.YELLOW, 32) : Color.darker(Color.GREEN, 32));
+			ui.setBackColor((id % 2 == 0) ? Color.getRGB(245, 245, 245) : Color.WHITE);
 			ui.setRect(0, yStart, parentWidth, height);
 			try {
 				Label l = new Label(Convert.insertLineBreak(parentWidth - 10, f.fm, text));
@@ -89,10 +91,10 @@ public class DynScrollContainerSample extends Container {
 	}
 
 	private Edit add(String text) {
-		add(new Label(text), LEFT, AFTER, PARENTSIZE + 80, PREFERRED);
+		add(new Label(text), LEFT + gap, AFTER, PREFERRED, PREFERRED);
 		Edit ed = new Edit();
 		ed.setKeyboard(Edit.KBD_NUMERIC);
-		add(ed, RIGHT, SAME, PARENTSIZE + 20, PREFERRED);
+		add(ed, RIGHT - gap, SAME, SCREENSIZE + 25, PREFERRED);
 		return ed;
 	}
 
@@ -101,24 +103,26 @@ public class DynScrollContainerSample extends Container {
 		super.initUI();
 		add(new Spacer(0, 0), LEFT, TOP + gap); // reset after position
 		rowCountEdit = add("Number of rows to create: ");
+		add(new Spacer(0, 0), LEFT, AFTER + gap/2);
 		oddHeightEdit = add("Odd view height:");
+		add(new Spacer(0, 0), LEFT, AFTER + gap/2);
 		evenHeightEdit = add("Even view height:");
-
+		
 		dynamicChk = new Check("Dynamic height");
-		add(dynamicChk, LEFT, AFTER);
+		add(dynamicChk, LEFT + gap, AFTER + gap + gap/2);
 
 		goButton = new Button("Generate");
-		goButton.setBackColor(Color.GREEN);
-		add(goButton, RIGHT, SAME);
+		goButton.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, evenHeightEdit);
 
 		vsc = new DynamicScrollContainer();
 		vsc.setBackColor(Color.WHITE);
 		vsc.setBorderStyle(BORDER_SIMPLE);
-		add(vsc, LEFT, AFTER + gap, FILL, FILL - 1);
+		add(vsc, LEFT + gap, AFTER + gap, FILL - gap, FILL - 1);
 
-		rowCountEdit.setText(String.valueOf(rowCount0 = 2000));
-		oddHeightEdit.setText(String.valueOf(oddHeight0 = fmH));
-		evenHeightEdit.setText(String.valueOf(evenHeight0 = fmH * 3 / 2));
+		rowCountEdit.setText(String.valueOf(rowCount0 = 30));
+		oddHeightEdit.setText(String.valueOf(oddHeight0 = fmH * 2));
+		evenHeightEdit.setText(String.valueOf(evenHeight0 = fmH * 2));
 	}
 
 	@Override
@@ -135,15 +139,18 @@ public class DynScrollContainerSample extends Container {
 			try {
 				oddHeight = Convert.toInt(oddHeightEdit.getText());
 			} catch (Exception e) {
-				oddHeightEdit.setText(oddHeight + "");
+				if(!dynamicChk.isChecked())
+					oddHeightEdit.setText(oddHeight + "");
 			}
 			try {
 				evenHeight = Convert.toInt(evenHeightEdit.getText());
 			} catch (Exception e) {
-				evenHeightEdit.setText(evenHeight + "");
+				if(!dynamicChk.isChecked())
+					evenHeightEdit.setText(evenHeight + "");
 			}
 
 			ProgressBox pb = new ProgressBox("Generating", "Creating datasource, please wait...", null);
+			pb.setBackColor(Colors.RED);
 			pb.popupNonBlocking();
 			DynamicScrollContainer.DataSource datasource = new DynamicScrollContainer.DataSource(rowCount);
 
@@ -159,7 +166,19 @@ public class DynScrollContainerSample extends Container {
 		}
 		if (event.type == ControlEvent.PRESSED && event.target == dynamicChk) {
 			DynSCTestView.dynamicHeight = dynamicChk.isChecked();
-
+			if(dynamicChk.isChecked()) {
+				oddHeightEdit.setEditable(false);
+				oldOdd = oddHeightEdit.getText();
+				oddHeightEdit.setText("AUTO");
+				evenHeightEdit.setEditable(false);
+				oldEven = evenHeightEdit.getText();
+				evenHeightEdit.setText("AUTO");
+			}else {
+				oddHeightEdit.setEditable(true);
+				oddHeightEdit.setText(oldOdd);
+				evenHeightEdit.setEditable(true);
+				evenHeightEdit.setText(oldEven);
+			}
 		}
 	}
 }
