@@ -14,6 +14,7 @@ import totalcross.ui.Window;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
+import totalcross.ui.gfx.Color;
 import totalcross.util.Properties;
 import totalcross.util.Properties.Value;
 
@@ -45,37 +46,42 @@ public class ConfigurationContainer extends Window {
     } catch (Exception e) {
       MessageBox.showException(e, true);
     }
-    setRect(CENTER, CENTER, SCREENSIZE + 80, fmH * 10);
+    setRect(CENTER, CENTER, (Settings.screenWidth/10)*9, fmH * 10);
+    this.setBackColor(Color.getRGB(74, 144, 226));
+    this.setForeColor(Color.WHITE);
   }
 
   @Override
   public void initUI() {
-    add(new Label("Login: "), LEFT, TOP, PARENTSIZE + 40, PREFERRED);
+	this.setBackColor(Color.getRGB(74, 144, 226));
+	this.setForeColor(Color.WHITE);
+    add(new Label("Login: "), LEFT + Settings.screenWidth/10, TOP, PARENTSIZE + 40, PREFERRED);
     add(edLogin = new Edit(), AFTER, SAME);
 
-    add(new Label("Password: "), LEFT, AFTER, PARENTSIZE + 40, PREFERRED);
+    add(new Label("Password: "), LEFT + Settings.screenWidth/10 , AFTER, PARENTSIZE + 40, PREFERRED);
     add(edPassword = new Edit(), AFTER, SAME);
     edPassword.setMode(Edit.PASSWORD);
 
-    add(new Label("SMTP host: "), LEFT, AFTER, PARENTSIZE + 40, PREFERRED);
+    add(new Label("SMTP host: "), LEFT + Settings.screenWidth/10, AFTER, PARENTSIZE + 40, PREFERRED);
     add(edSmtpHost = new Edit(), AFTER, SAME);
 
-    add(new Label("SMTP port: "), LEFT, AFTER, PARENTSIZE + 40, PREFERRED);
+    add(new Label("SMTP port: "), LEFT + Settings.screenWidth/10, AFTER, PARENTSIZE + 40, PREFERRED);
     add(edSmtpPort = new Edit("12345"), AFTER, SAME);
     edSmtpPort.setValidChars("0123456789");
     edSmtpPort.setMaxLength(5);
     edSmtpPort.setText("25");
 
-    add(new Label("POP3 host: "), LEFT, AFTER, PARENTSIZE + 40, PREFERRED);
+    add(new Label("POP3 host: "), LEFT + Settings.screenWidth/10, AFTER, PARENTSIZE + 40, PREFERRED);
     add(edPopHost = new Edit(), AFTER, SAME);
 
-    add(new Label("POP3 port: "), LEFT, AFTER, PARENTSIZE + 40, PREFERRED);
+    add(new Label("POP3 port: "), LEFT + Settings.screenWidth/10, AFTER, PARENTSIZE + 40, PREFERRED);
     add(edPopPort = new Edit("12345"), AFTER, SAME);
     edPopPort.setValidChars("0123456789");
     edPopPort.setMaxLength(5);
     edPopPort.setText("110");
 
     add(btOk = new Button(" Ok "), RIGHT, BOTTOM);
+    
 
     if (loaded) {
       Value value;

@@ -7,6 +7,7 @@ import totalcross.net.mail.MailSession;
 import totalcross.net.mail.Message;
 import totalcross.net.mail.MessagingException;
 import totalcross.net.mail.Store;
+import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.Control;
@@ -15,6 +16,7 @@ import totalcross.ui.Label;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
+import totalcross.ui.gfx.Color;
 
 /**
 Although not implemented here, here's now to send email to a GMAIL account:
@@ -48,6 +50,7 @@ public class MailSample extends Container {
   Button btReset;
   Button btOpen;
   Button btConnect;
+  Button btConfig;
   Grid inbox;
 
   Store store;
@@ -58,15 +61,29 @@ public class MailSample extends Container {
   @Override
   public void initUI() {
     super.initUI();
-    add(lblPage = new Label("Inbox", Control.CENTER), CENTER, TOP);
-    add(btConnect = new Button("Synchronize"), RIGHT, TOP);
-    add(btReset = new Button("Reset"), LEFT, BOTTOM);
-    add(btOpen = new Button("Open"), CENTER, BOTTOM);
+    this.setBackColor(Color.getRGB(74, 144, 226));
+    add(btConfig = new Button("Configuration"), LEFT + ((Settings.screenWidth/100)*8), TOP,(Settings.screenWidth/10)*4, 25);
+    btConfig.setBackColor(Color.getRGB(69, 131, 212));
+    btConfig.setForeColor(Color.WHITE);
+    add(lblPage = new Label("Inbox", Control.CENTER), CENTER, TOP + ((Settings.screenWidth/100)*8));
+    lblPage.setForeColor(Color.WHITE);
+    add(btConnect = new Button("Synchronize"), RIGHT - ((Settings.screenWidth/100)*8), TOP, (Settings.screenWidth/10)*4, 25);
+    btConnect.setBackColor(Color.getRGB(69, 131, 212));
+    btConnect.setForeColor(Color.WHITE);
+    add(btReset = new Button("Reset"), LEFT + ((Settings.screenWidth/100)*8) ,BOTTOM-(Settings.screenHeight/10), (Settings.screenWidth/10)*4, 25);
+    btReset.setBackColor(Color.getRGB(69, 131, 212));
+    btReset.setForeColor(Color.WHITE);
+    add(btOpen = new Button("Open"), RIGHT -((Settings.screenWidth/100)*8), BOTTOM-(Settings.screenHeight/10), (Settings.screenWidth/10)*4, 25);
+    btOpen.setBackColor(Color.getRGB(69, 131, 212));
+    btOpen.setForeColor(Color.WHITE);
     Grid.useHorizontalScrollBar = true;
-    inbox = new Grid(new String[] { "Subject" }, new int[] { -400 }, new int[] { LEFT }, false);
-    add(inbox, LEFT, AFTER, FILL, FIT, lblPage);
+    inbox = new Grid(new String[] { "Email","Subject" }, new int[] { Settings.screenWidth/2, Settings.screenWidth/2 }, new int[] { LEFT, LEFT }, false);
+    inbox.firstStripeColor = totalcross.ui.gfx.Color.getRGB(255, 255, 255);
+    inbox.secondStripeColor = totalcross.ui.gfx.Color.getRGB(255, 255, 255);
+    inbox.highlightColor = totalcross.ui.gfx.Color.getRGB(224, 224, 224);
+    inbox.verticalLineStyle = Grid.VERT_LINE;
+    add(inbox, LEFT, AFTER+Settings.screenHeight/10, FILL, FIT, lblPage);
 
-    new ConfigurationContainer().popup();
   }
 
   Message[] msgs;
@@ -86,7 +103,9 @@ public class MailSample extends Container {
         }
       } else if (event.target == btConnect && event.type == ControlEvent.PRESSED) {
         connect();
-      }
+      } else if(event.target == btConfig && event.type == ControlEvent.PRESSED) {
+    	new ConfigurationContainer().popup();
+      } 
     } catch (MessagingException e) {
       MessageBox.showException(e, true);
     }
