@@ -19,7 +19,9 @@ import totalcross.crypto.cipher.Key;
 import totalcross.crypto.cipher.RSACipher;
 import totalcross.crypto.cipher.RSAPrivateKey;
 import totalcross.crypto.cipher.RSAPublicKey;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
+import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
@@ -28,6 +30,7 @@ import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
+import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 
 /*
@@ -50,7 +53,9 @@ public class CipherSample extends ScrollContainer {
 	private Object[] ciphers;
 	private Key[] encKeys;
 	private Key[] decKeys;
-
+	
+	private int gap = 50;
+	private Container options, adv;
 	private Edit edtInput;
 	private ComboBox cboCiphers;
 	private ComboBox cboChaining;
@@ -85,6 +90,9 @@ public class CipherSample extends ScrollContainer {
 	public void initUI() {
 		super.initUI();
 		this.backColor = Color.WHITE;
+		options = new Container();
+		options.setBackColor(Colors.GRAY);
+		
 		ciphers = new Object[2];
 		ciphers[0] = new AESCipher();
 		ciphers[1] = new RSACipher();
@@ -98,7 +106,7 @@ public class CipherSample extends ScrollContainer {
 		decKeys[1] = new RSAPrivateKey(RSA_E, RSA_D, RSA_N);
 
 		edtInput = new Edit();
-		edtInput.setText("0123456789ABCDEF");
+		edtInput.setText("0123456789ABCD");
 		cboCiphers = new ComboBox(ciphers);
 		cboCiphers.setSelectedIndex(0);
 
@@ -108,17 +116,32 @@ public class CipherSample extends ScrollContainer {
 		cboPadding = new ComboBox(new Object[] { "NONE", "PKCS#1", "PKCS#5" });
 		cboPadding.setSelectedIndex(0);
 
-		btnGo = new Button(" Go! ");
-		add(edtInput, LEFT + 2, TOP + 2, FILL - 2, PREFERRED);
-		add(cboCiphers, LEFT + 2, AFTER + 2, PREFERRED, PREFERRED);
-		add(cboChaining, AFTER + 2, SAME, PREFERRED, PREFERRED);
-		add(cboPadding, AFTER + 2, SAME, PREFERRED, PREFERRED);
-		add(btnGo, AFTER + 2, SAME, PREFERRED, PREFERRED);
+		btnGo = new Button("Go");
+		btnGo.setBackColor(Colors.P_DARK);
+		btnGo.setForeColor(Color.WHITE);
 		
-		addLabel("Valid options:");
-		addLabel("AES / CBC / PKCS#5");
-		addLabel("AES / ECB / PKCS#5");
-		addLabel("RSA / ECB / PKCS#1");
+		add(options, LEFT + gap, TOP + gap, SCREENSIZE + 80, (int)(Settings.screenHeight * 0.15));
+		options.add(new Label("Message:"), LEFT + gap/2, TOP + gap/2);
+		options.add(edtInput, AFTER + gap, SAME, FILL, PREFERRED);
+		options.add(cboCiphers, LEFT + gap/2, AFTER + gap, SCREENSIZE+22, PREFERRED);
+		options.add(cboChaining, AFTER + gap, SAME, SCREENSIZE+22, PREFERRED);
+		options.add(cboPadding, AFTER + gap, SAME, SCREENSIZE+29, PREFERRED);
+		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME, options);
+		
+		adv = new Container();
+		adv.setForeColor(Color.WHITE);
+		adv.setBackColor(Colors.RED);
+		add(adv, LEFT + gap, AFTER + gap, FILL - gap, (int)(Settings.screenHeight * 0.22), options);
+		Label titleAdv , valid1, valid2, valid3;
+		
+		adv.add(titleAdv = new Label("Valid options:"), CENTER, TOP + gap/2);
+		titleAdv.setFont(Font.getFont(true, 14));
+		adv.add(valid1 = new Label("AES / CBC / PKCS#5"), LEFT + gap, AFTER + gap/2);
+		valid1.setFont(Font.getFont(14));
+		adv.add(valid2 = new Label("AES / ECB / PKCS#5"), LEFT + gap, AFTER + gap/2);
+		valid2.setFont(Font.getFont(14));
+		adv.add(valid3 = new Label("RSA / ECB / PKCS#1"), LEFT + gap, AFTER + gap/2);
+		valid3.setFont(Font.getFont(14));
 	}
 
 	@Override
@@ -129,43 +152,50 @@ public class CipherSample extends ScrollContainer {
 				int index = cboCiphers.getSelectedIndex();
 				int chaining = cboChaining.getSelectedIndex();
 				int padding = cboPadding.getSelectedIndex();
+				boolean validComb = true;
 				String message = edtInput.getText();
-
 				Cipher cipher = (Cipher) ciphers[index];
+				ScrollContainer sc = new ScrollContainer(true, false);
 				try {
-					addLabel("Message: '" + message + "'");
+					validComb = true;
+					sc.add(new Label("Message: '" + message + "'"), LEFT + gap, TOP, PREFERRED, PREFERRED);
 
 					byte[] iv = null; // no initialization vector => let the cipher generate a random one
 					cipher.reset(Cipher.OPERATION_ENCRYPT, encKeys[index], chaining, iv, padding);
 					iv = cipher.getIV(); // store the generated iv
 					if (iv != null) {
-						addLabel("Generated iv: " + Convert.bytesToHexString(iv));
+						sc.add(new Label("Generated iv: " + Convert.bytesToHexString(iv)), LEFT + gap, AFTER, PREFERRED, PREFERRED);
 					}
 
 					cipher.update(message.getBytes());
 					byte[] encrypted = cipher.getOutput();
-
-					addLabel("Encrypted: " + Convert.bytesToHexString(encrypted) + " ("
-							+ encrypted.length + " bytes)");
+					
+					sc.add(new Label("Encrypted: " + Convert.bytesToHexString(encrypted) + " ("
+							+ encrypted.length + " bytes)"), LEFT + gap, AFTER, PREFERRED, PREFERRED);
 
 					cipher.reset(Cipher.OPERATION_DECRYPT, decKeys[index], chaining, iv, padding);
 					cipher.update(encrypted);
 					byte[] decrypted = cipher.getOutput();
-
-					addLabel("Decrypted: '" + new String(decrypted) + "'");
+					
+					sc.add(new Label("Decrypted: '" + new String(decrypted) + "'"), LEFT + gap, AFTER, PREFERRED, PREFERRED);
 				} catch (CryptoException ex) {
-					addLabel("Exception: " + ex.toString());
+					validComb = false;
+					sc.add(new Label("Invalid combination, please try the valid ones"), LEFT, AFTER, PREFERRED, PREFERRED);
 					ex.printStackTrace();
 				}
-				addLabel("=========================");
+				if(validComb) {		
+					add(sc, CENTER, AFTER + gap, SCREENSIZE + 80, (int)(Settings.screenHeight * 0.2));
+				}else {
+					Label adv = new Label("Invalid combination");
+					adv.setBackColor(Colors.RED);
+					adv.setForeColor(Color.WHITE);
+					adv.setFont(Font.getFont(true, 12));
+					adv.align = CENTER;
+					add(adv, CENTER, AFTER + gap, PREFERRED + gap*2, PREFERRED + gap*2);
+				}
+					
 			}
 			break;
 		}
-	}
-	
-	private void addLabel(String s)
-	{
-		Label lbl = new Label(s);
-		add(lbl, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
 	}
 }
