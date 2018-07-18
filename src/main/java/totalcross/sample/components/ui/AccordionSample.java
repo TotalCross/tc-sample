@@ -10,7 +10,7 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
-public class AccordionSample extends Container {
+public class AccordionSample extends ScrollContainer {
   @Override
   public void initUI() {
     super.initUI();
@@ -24,7 +24,7 @@ public class AccordionSample extends Container {
     
     int gap = fmH / 2;
     sc.add(ac,((Settings.screenWidth)/10), TOP + 200, (Settings.screenWidth - ((Settings.screenWidth)/10)*2) , PREFERRED);
-    ac.add(ac.new Caption("Type text 1"), LEFT, TOP, FILL, FILL);
+    ac.add(ac.new Caption("Type text 1"), LEFT, TOP, FILL, PREFERRED);
     ac.add(new MultiEdit(), LEFT + gap, AFTER + gap, FILL - gap, FONTSIZE + 1400);
     
     ac = new AccordionContainer(gr);
