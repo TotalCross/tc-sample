@@ -34,8 +34,11 @@ public class HWSignatureSample extends Container {
 
 		// center the save/load/clear buttons on screen
 		int k = fmH / 2;
+		load.setBackColor(Color.getRGB(69, 131, 212));
 		add(load, CENTER, BOTTOM - mar, PARENTSIZE + 30, PREFERRED + k);
+		save.setBackColor(Color.getRGB(69, 131, 212));
 		add(save, LEFT + mar, SAME, SAME, SAME); // before the load button
+		clear.setBackColor(Color.getRGB(69, 131, 212));
 		add(clear, RIGHT - mar, SAME, SAME, SAME, load); // after the load button add the paint control with a specified
 														// width
 		add(paint);
