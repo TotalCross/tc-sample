@@ -243,6 +243,7 @@ public class TCSample extends MainWindow {
 
 	private Sub createNetSubGroup() {
 		return new SideMenuContainer.Sub("Net",
+				new SideMenuContainer.Item("Mail ", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new MailSample(); }),
 				new SideMenuContainer.Item("FTP ", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new FTPSample(); }),
 				new SideMenuContainer.Item("Secure Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new SecureSocketSample(); }),
 				new SideMenuContainer.Item("Server Socket", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ServerSocketSample(); }),
