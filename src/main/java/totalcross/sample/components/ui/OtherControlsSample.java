@@ -52,19 +52,22 @@ public class OtherControlsSample extends ScrollContainer {
     try {
       super.initUI();
       //setTitle("Other controls");
+      int mar = Settings.screenWidth/10;
       sc = new ScrollContainer(false, true);
+      sc.setForeColor(Color.getRGB(74, 144, 226));
+      sc.setBackColor(Color.WHITE);
       sc.setInsets(gap, gap, gap, gap);
-      add(sc, LEFT, TOP, FILL, FILL);
+      add(sc, LEFT+mar, TOP, FILL, FILL);
 
-      sc.add(lStatus = new Label("", CENTER), LEFT, AFTER);
+      sc.add(lStatus = new Label("", CENTER), LEFT+mar, AFTER);
       lStatus.setHighlighted(true);
 
-      sc.add(new Label("TimeBox"), LEFT, AFTER + gap);
+      sc.add(new Label("TimeBox"), LEFT+mar, AFTER + gap);
       addClock();
 
       final Button btnInput;
-      sc.add(new Label("InputBox"), LEFT, AFTER + gap);
-      sc.add(btnInput = new Button("Click to input your name"), LEFT, AFTER);
+      sc.add(new Label("InputBox"), LEFT+mar, AFTER + gap);
+      sc.add(btnInput = new Button("Click to input your name"), LEFT+mar, AFTER);
       btnInput.addPressListener(new PressListener() {
         @Override
         public void controlPressed(ControlEvent e) {
@@ -78,8 +81,8 @@ public class OtherControlsSample extends ScrollContainer {
       });
 
       final Button btnChooseColor;
-      sc.add(new Label("ColorChooserBox"), LEFT, AFTER + gap);
-      sc.add(btnChooseColor = new Button("Choose new background color"), LEFT, AFTER);
+      sc.add(new Label("ColorChooserBox"), LEFT+mar, AFTER + gap);
+      sc.add(btnChooseColor = new Button("Choose new background color"), LEFT+mar, AFTER);
       btnChooseColor.addPressListener(new PressListener() {
         @Override
         public void controlPressed(ControlEvent e) {
@@ -95,22 +98,22 @@ public class OtherControlsSample extends ScrollContainer {
           }
         }
       });
-
-      sc.add(new Label("SpinList"), LEFT, AFTER + gap);
+     
+      sc.add(new Label("SpinList"), LEFT+mar, AFTER + gap);
       SpinList sl;
-      sc.add(sl = new SpinList(new String[] { "Today", "Day [1,31]" }, !Settings.fingerTouch), LEFT, AFTER,
+      sc.add(sl = new SpinList(new String[] { "Today", "Day [1,31]" }, !Settings.fingerTouch), LEFT+mar, AFTER,
           Settings.fingerTouch ? FILL : PREFERRED, PREFERRED);
       sl.hAlign = CENTER;
 
-      sc.add(new Label("Horizontal ScrollBar"), LEFT, AFTER + gap);
-      sc.add(sb2 = new ScrollBar(ScrollBar.HORIZONTAL), LEFT, AFTER, SCREENSIZE + 50, PREFERRED);
+      sc.add(new Label("Horizontal ScrollBar"), LEFT+mar, AFTER + gap);
+      sc.add(sb2 = new ScrollBar(ScrollBar.HORIZONTAL), CENTER, AFTER, SCREENSIZE + 90, PREFERRED);
       sb2.setVisibleItems(10);
       sb2.setValues(1, 1, 1, 6);
 
-      sc.add(new Label("Ruler"), LEFT, AFTER + gap);
-      sc.add(new Ruler(), LEFT, AFTER + gap);
+      sc.add(new Label("Ruler"), LEFT+mar, AFTER + gap);
+      sc.add(new Ruler(), LEFT+mar, AFTER + gap);
 
-      sc.add(new Label("FileChooser"), LEFT, AFTER + gap);
+      sc.add(new Label("FileChooser"), LEFT+mar, AFTER + gap);
       addFileChooser();
     } catch (Exception ee) {
       MessageBox.showException(ee, true);
@@ -138,8 +141,8 @@ public class OtherControlsSample extends ScrollContainer {
   public void addFileChooser() {
     final Button btn, btn2;
     final Check ch;
-    sc.add(ch = new Check("Multiple selection"), LEFT, AFTER);
-    sc.add(btn = new Button("Choose file"), LEFT, AFTER + gap);
+    sc.add(ch = new Check("Multiple selection"), LEFT+Settings.screenWidth/10, AFTER);
+    sc.add(btn = new Button("Choose file"), LEFT+Settings.screenWidth/10, AFTER + gap);
     sc.add(btn2 = new Button("Delete file"), AFTER + gap, SAME);
     btn2.setEnabled(false);
     btn.addPressListener(new PressListener() {
