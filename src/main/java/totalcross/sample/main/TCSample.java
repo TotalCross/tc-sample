@@ -2,7 +2,6 @@ package totalcross.sample.main;
 
 import totalcross.io.IOException;
 import totalcross.sample.components.Home;
-import totalcross.sample.components.XMLParseSample;
 import totalcross.sample.components.cards.CardsSample;
 import totalcross.sample.components.crypto.CipherSample;
 import totalcross.sample.components.crypto.DigestSample;
@@ -59,6 +58,7 @@ import totalcross.sample.components.util.PDFWriterSample;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.util.ZipSample;
 import totalcross.sample.components.xml.SoapSample;
+import totalcross.sample.components.xml.XMLParseSample;
 import totalcross.sample.net.mail.MailSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;

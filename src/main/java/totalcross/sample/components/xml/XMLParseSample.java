@@ -1,4 +1,4 @@
-package totalcross.sample.components;
+package totalcross.sample.components.xml;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
