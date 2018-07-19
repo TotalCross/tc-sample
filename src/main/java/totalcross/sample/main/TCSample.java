@@ -12,6 +12,7 @@ import totalcross.sample.components.lang.reflection.ReflectionSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
 import totalcross.sample.components.map.GoogleMapsSample;
 import totalcross.sample.components.net.FTPSample;
+import totalcross.sample.components.net.mail.*;
 import totalcross.sample.components.net.SecureSocketSample;
 import totalcross.sample.components.net.ServerSocketSample;
 import totalcross.sample.components.net.SocketSample;
@@ -52,6 +53,7 @@ import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
 import totalcross.sample.components.ui.VelocimeterSample;
 import totalcross.sample.components.util.PDFWriterSample;
+import totalcross.sample.components.util.VideoDownloadSample;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.util.ZipSample;
 import totalcross.sample.components.xml.SoapSample;
@@ -121,8 +123,8 @@ public class TCSample extends MainWindow {
             mapGroup,
 //            netGroup,
             phoneGroup,
-            sysGroup
-//            utilGroup,
+            sysGroup,
+            utilGroup
 //            xmlGroup
             );
 
@@ -201,7 +203,7 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),
 			   new SideMenuContainer.Item("Material Icons", MaterialIcons._FONT_DOWNLOAD, Color.BLACK,  () -> { return new MaterialIconsSample(); }),
 			   new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
-//			   new SideMenuContainer.Item("Multi touch",. MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
+//			   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
 			   new SideMenuContainer.Item("Notifications", MaterialIcons._NOTIFICATIONS_ACTIVE, Color.BLACK,  () -> { return new NotificationsSample(); }),
 			   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
 			   new SideMenuContainer.Item("Plataform Animations", MaterialIcons._MOOD, Color.BLACK,  () -> { return new ControlAnimationSample(); }),
