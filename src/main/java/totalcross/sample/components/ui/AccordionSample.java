@@ -23,7 +23,7 @@ public class AccordionSample extends ScrollContainer {
     ac.setBackColor(Color.getRGB(60, 226, 180));
     
     int gap = fmH / 2;
-    sc.add(ac,((Settings.screenWidth)/10), TOP + 200, (Settings.screenWidth - ((Settings.screenWidth)/10)*2) , PREFERRED);
+    sc.add(ac,CENTER, TOP + 200, SCREENSIZE+80 , PREFERRED);
     ac.add(ac.new Caption("Type text 1"), LEFT, TOP, FILL, PREFERRED);
     ac.add(new MultiEdit(), LEFT + gap, AFTER + gap, FILL - gap, FONTSIZE + 1400);
     
@@ -33,7 +33,7 @@ public class AccordionSample extends ScrollContainer {
     
     
    
-    sc.add(ac,((Settings.screenWidth)/10), AFTER, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
+    sc.add(ac,CENTER, AFTER, SCREENSIZE+80, PREFERRED);
     ac.add(ac.new Caption("Type text 2"), LEFT, AFTER, FILL, PREFERRED );
     ac.add(new MultiEdit(), LEFT + gap, AFTER + gap, FILL - gap, FONTSIZE + 1400);
 
@@ -42,7 +42,7 @@ public class AccordionSample extends ScrollContainer {
     ac.setForeColor(Color.WHITE);
     ac.setBackColor(Color.getRGB(99, 84, 229));
    
-    sc.add(ac,((Settings.screenWidth)/10), AFTER, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
+    sc.add(ac,CENTER, AFTER, SCREENSIZE+80, PREFERRED);
     ac.add(ac.new Caption("Type text 3"), LEFT, AFTER, FILL, PREFERRED);
     ac.add(new MultiEdit(), LEFT + gap, AFTER + gap, FILL - gap, FONTSIZE + 1400);
 
