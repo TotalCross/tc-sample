@@ -24,7 +24,7 @@ public class HWSignatureSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
-
+		int mar = Settings.screenHeight/8;
 		fileName = Settings.platform.equals(Settings.ANDROID) ? "/sdcard/handwrite.png" : "device/handwrite.png";
 
 		save = new Button("Save");
@@ -34,13 +34,13 @@ public class HWSignatureSample extends Container {
 
 		// center the save/load/clear buttons on screen
 		int k = fmH / 2;
-		add(load, CENTER, BOTTOM - k, PARENTSIZE + 30, PREFERRED + k);
-		add(save, LEFT + k, SAME, SAME, SAME); // before the load button
-		add(clear, RIGHT - k, SAME, SAME, SAME, load); // after the load button add the paint control with a specified
+		add(load, CENTER, BOTTOM - mar, PARENTSIZE + 30, PREFERRED + k);
+		add(save, LEFT + mar, SAME, SAME, SAME); // before the load button
+		add(clear, RIGHT - mar, SAME, SAME, SAME, load); // after the load button add the paint control with a specified
 														// width
 		add(paint);
 		paint.borderColor = Color.BLACK;
-		paint.setRect(CENTER, TOP + k, PARENTSIZEMIN + 90, PARENTSIZEMIN + 50); // add the status
+		paint.setRect(CENTER, TOP + Settings.screenHeight/6, PARENTSIZEMIN + 90, SCREENSIZE+50); // add the status
 		add(cbColors = new ComboBox(new ColorList()), CENTER, AFTER + k);
 		cbColors.setSelectedIndex(cbColors.indexOf(new ColorList.Item(Color.BLACK))); // select color 0
 	}
