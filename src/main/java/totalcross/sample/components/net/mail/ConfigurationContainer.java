@@ -1,5 +1,5 @@
  
-package totalcross.sample.net.mail; 
+package totalcross.sample.components.net.mail; 
  
 import totalcross.io.DataStream; 
 import totalcross.io.File; 

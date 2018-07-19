@@ -1,4 +1,4 @@
-package totalcross.sample.net.mail; 
+package totalcross.sample.components.net.mail; 
  
 import totalcross.net.AuthenticationException; 
 import totalcross.net.mail.Folder; 
