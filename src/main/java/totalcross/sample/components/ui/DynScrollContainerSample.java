@@ -2,6 +2,7 @@ package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
+import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Check;
 import totalcross.ui.Container;
@@ -118,7 +119,7 @@ public class DynScrollContainerSample extends Container {
 		vsc = new DynamicScrollContainer();
 		vsc.setBackColor(Color.WHITE);
 		vsc.setBorderStyle(BORDER_SIMPLE);
-		add(vsc, LEFT + gap, AFTER + gap, FILL - gap, FILL - 1);
+		add(vsc, LEFT + gap, AFTER + gap*2, FILL - gap, FILL - gap*2);
 
 		rowCountEdit.setText(String.valueOf(rowCount0 = 30));
 		oddHeightEdit.setText(String.valueOf(oddHeight0 = fmH * 2));
