@@ -18,16 +18,19 @@ public class ImageAnimationSample extends Container {
 	private Animation anim;
 	private ComboBox cbEffect;
 	private int effect;
-
+	private Label effectLabel;
 	@Override
 	public void initUI() {
 		super.initUI();
-		add(btnStartStop = new Button(" Start/Stop "), CENTER, TOP + gap);
-		add(new Label("Effect: "), LEFT + gap, BOTTOM - gap);
+		add(btnStartStop = new Button(" Start/Stop "), CENTER, TOP + Settings.screenHeight/10, SCREENSIZE+50, SCREENSIZE+10);
+		btnStartStop.setBackColor(Color.getRGB(69, 131, 212));
+		btnStartStop.setForeColor(Color.WHITE);
+		add(effectLabel = new Label("Effect: "), LEFT + Settings.screenWidth/7, BOTTOM - Settings.screenHeight/10);
+		
 		String[] items = { "normal", "scaledBy", "smoothScaledBy", "getRotatedScaledInstance", "getTouchedUpInstance",
 				"changeColors", "fadedInstance", "applyColor2/dither" };
 		ComboBox.usePopupMenu = false;
-		add(cbEffect = new ComboBox(items), AFTER + gap, SAME, FILL - gap, PREFERRED);
+		add(cbEffect = new ComboBox(items), AFTER, BOTTOM - Settings.screenHeight/10, FILL - Settings.screenHeight/10, PREFERRED);
 		cbEffect.setSelectedIndex(0);
 		next(false);
 	}
