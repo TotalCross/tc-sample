@@ -59,7 +59,7 @@ import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.util.ZipSample;
 import totalcross.sample.components.xml.SoapSample;
 import totalcross.sample.components.xml.XMLParseSample;
-import totalcross.sample.net.mail.MailSample;
+import totalcross.sample.components.net.mail.MailSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
@@ -266,8 +266,7 @@ public class TCSample extends MainWindow {
 		return new SideMenuContainer.Sub("Util",
 				new SideMenuContainer.Item("PDF Writer", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new PDFWriterSample(); }),
 				new SideMenuContainer.Item("Zip", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZipSample(); }),
-				new SideMenuContainer.Item("ZLib", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZLibSample(); }),
-				new SideMenuContainer.Item("Mail", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new MailSample(); }));
-	}
+				new SideMenuContainer.Item("ZLib", MaterialIcons._ART_TRACK, Color.BLACK, () -> { return new ZLibSample(); }));
+				}
 }
 
