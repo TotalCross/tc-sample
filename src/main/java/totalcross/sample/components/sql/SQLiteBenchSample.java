@@ -28,12 +28,13 @@ import totalcross.ui.Container;
 import totalcross.ui.Label;
 import totalcross.ui.ProgressBar;
 import totalcross.ui.ScrollContainer;
+import totalcross.ui.Spacer;
 
 /**
  * Performs a benchmark in the SQLite.
  */
 public class SQLiteBenchSample extends Container {
-
+	private int gap = 50;
 	/**
 	 * The connection with SQLite.
 	 */
@@ -383,21 +384,21 @@ public class SQLiteBenchSample extends Container {
 		super.initUI();
 		sc = new ScrollContainer(false, true);
 		add(sc,LEFT,TOP,FILL,FILL);
-		sc.add(new Label("Try also BenchLitebase, in the samples folder"), CENTER, TOP, SCREENSIZE, PREFERRED);
 		// User interface.
 		pbTotal = new ProgressBar(0, TOTAL_OF_OPERATIONS);
-		sc.add(pbInserts = new ProgressBar(0, 500), CENTER, AFTER + 5);
-		sc.add(pbTotal, CENTER, AFTER + 5);
+		sc.add(pbInserts = new ProgressBar(0, 500), LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
+		sc.add(pbTotal, LEFT + gap, AFTER + 2, FILL - gap, PREFERRED);
 		pbInserts.suffix = " of " + NRECS;
 		pbTotal.suffix = " of " + TOTAL_OF_OPERATIONS;
-
+		
 		// Executes the bench operations.
 		repaintNow();
 		try {
+			sc.add(new Spacer(), LEFT, AFTER, FILL, gap/2);
 			createTable();
 
 			driver.setAutoCommit(false);
-
+			
 			// inserts with synchronous mode ON (support to concurrent access)
 			addLabel("Inserts with synchronous mode ON");
 			pbTotal.setValue(1);
@@ -483,6 +484,6 @@ public class SQLiteBenchSample extends Container {
 	{
 		Label logLabel = new Label();
 		logLabel.setText(s);
-		sc.add(logLabel, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
+		sc.add(logLabel, LEFT + gap, AFTER + 2, SCREENSIZE, PREFERRED);
 	}
 }
