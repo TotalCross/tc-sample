@@ -16,18 +16,21 @@ import totalcross.crypto.digest.Digest;
 import totalcross.crypto.digest.MD5Digest;
 import totalcross.crypto.digest.SHA1Digest;
 import totalcross.crypto.digest.SHA256Digest;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
+import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
-import totalcross.ui.event.ControlEvent;
-import totalcross.ui.event.Event;
+import totalcross.ui.font.Font;
+import totalcross.ui.gfx.Color;
 
 public class DigestSample extends ScrollContainer {
-//	private ScrollContainer sc;
+	private int gap = 50;
+	private Container menu;
 	private Edit edtInput;
 	private ComboBox cboDigests;
 	private Button btnGo;
@@ -44,44 +47,38 @@ public class DigestSample extends ScrollContainer {
 	@Override
 	public void initUI() {
 		super.initUI();
-//		sc = new ScrollContainer(false, true);
-//		add(sc, LEFT, TOP, FILL, FILL);
+		menu = new Container();
+		menu.setBackColor(Colors.GRAY);
 		edtInput = new Edit();
 		edtInput.setText("0123456789ABCDEF");
 		cboDigests = new ComboBox(comboItems);
 		cboDigests.setSelectedIndex(0);
 		btnGo = new Button(" Go! ");
+		btnGo.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		
+		add(menu, LEFT + gap, TOP + gap, FILL - gap, (int)(Settings.screenHeight * 0.15));
+		menu.add(new Label("Message:"), LEFT + gap, TOP + gap/2);
+		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
+		menu.add(cboDigests, LEFT + gap, BOTTOM - gap, menu);
+		menu.add(btnGo, RIGHT - gap, BOTTOM - gap, SCREENSIZE + 30, PREFERRED + 30);
+		
+		btnGo.addPressListener((e) -> {
+			Digest alg = (Digest) cboDigests.getSelectedItem();
+			String message = edtInput.getText();
 
-		add(edtInput, LEFT + 2, TOP + fmH / 4, FILL - (btnGo.getPreferredWidth() + cboDigests.getPreferredWidth() + 6),
-				PREFERRED);
-		add(cboDigests, LEFT + 2, AFTER + 2, PREFERRED, PREFERRED);
-		add(btnGo, AFTER + 2, SAME, PREFERRED, PREFERRED);
-	}
-
-	@Override
-	public void onEvent(Event e) {
-		switch (e.type) {
-		case ControlEvent.PRESSED:
-			if (e.target == btnGo) {
-				Digest alg = (Digest) cboDigests.getSelectedItem();
-				String message = edtInput.getText();
-
-				alg.reset();
-				alg.update(message.getBytes());
-				byte[] digest = alg.getDigest();
-
-				addLabel("Message: " + message);
-				addLabel("Digest: " + Convert.bytesToHexString(digest) + " ("
-						+ digest.length + " bytes)");
-				addLabel("=========================");
-			}
-			break;
-		}
-	}
-	
-	private void addLabel(String s)
-	{
-		Label lbl = new Label(s);
-		add(lbl, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
+			alg.reset();
+			alg.update(message.getBytes());
+			byte[] digest = alg.getDigest();
+			
+			ScrollContainer sc = new ScrollContainer();
+			sc.setBackColor(Color.darker(Colors.GRAY, 10));
+			add(sc, LEFT + gap*3, AFTER + gap, FILL - gap*3, (int)(Settings.screenHeight * 0.18));
+			Label title = new Label(alg.toString());
+			title.align = CENTER;
+			title.setFont(Font.getFont(true, 16));
+			sc.add(title, CENTER, TOP + gap/2);
+			sc.add(new Label("Message: " + message), LEFT + gap, AFTER + gap/2);
+			sc.add(new Label("Digest: " + Convert.bytesToHexString(digest) + " (" + digest.length + " bytes)"), LEFT + gap, AFTER + gap/2);
+		});
 	}
 }
