@@ -44,7 +44,8 @@ public class XMLParseSample extends Container{
 		    int gridAligns[] = {LEFT,LEFT,LEFT};
 
 		    grid = new Grid(gridCaptions, gridWidths, gridAligns, false);
-		      
+		    grid.verticalLineStyle = Grid.VERT_LINE;
+		    grid.secondStripeColor = Color.getRGB(245, 245, 245);
 		    readXmlButton = new Button("Read XML");
 		    readXmlButton.setBackColor(Colors.P_DARK);
 		    readXmlButton.setForeColor(Color.WHITE);
