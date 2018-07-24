@@ -1,36 +1,29 @@
 package totalcross.sample.components.xml;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import totalcross.io.File;
-import totalcross.io.IOException;
-import totalcross.io.IllegalArgumentIOException;
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.User;
-import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.Button;
-import totalcross.ui.Container;
 import totalcross.ui.Grid;
+import totalcross.ui.Label;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
+import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.xml.AttributeList;
 import totalcross.xml.ContentHandler;
 import totalcross.xml.SyntaxException;
-import totalcross.xml.XmlReadableFile;
 import totalcross.xml.XmlReader;
 
-public class XMLParseSample extends Container{
+public class XMLParseSample extends ScrollContainer{
 	
 	private Grid grid;
+	private Label status;
 	private Button readXmlButton;
-	private int GAP = 50;
-	private final int H = 225;
+	private int gap = 50;
 	
 	@Override
 	public void initUI()
@@ -49,10 +42,14 @@ public class XMLParseSample extends Container{
 		    readXmlButton = new Button("Read XML");
 		    readXmlButton.setBackColor(Colors.P_DARK);
 		    readXmlButton.setForeColor(Color.WHITE);
-
-		    add(grid, LEFT + GAP, TOP + GAP, FILL - GAP, FILL - GAP*9);
-		    add(readXmlButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED+H);
-			
+		    status = new Label("a", CENTER);
+		    status.setForeColor(Colors.RED);
+		    status.setFont(Font.getFont(16));
+		    
+		    add(grid, LEFT + gap, TOP + gap, FILL - gap, SCREENSIZE + 65);
+		    add(status, LEFT + gap, AFTER, FILL - gap, PREFERRED, grid);
+		    add(readXmlButton, LEFT + gap, AFTER, FILL - gap, FILL - gap, status);
+		    
 			readXmlButton.addPressListener(new PressListener() {
 		        @Override
 		        public void controlPressed(ControlEvent e)
@@ -93,7 +90,7 @@ public class XMLParseSample extends Container{
 		        	}
 
 		            grid.setItems(items);
-		            
+		            status.setText("Great! It was found " + users.size() + " users on user.xml file!");
 	            } else {
 	            	
 	            	MessageBox mb = new MessageBox("Message" , "No registered users.", new String[]{"Close"});
