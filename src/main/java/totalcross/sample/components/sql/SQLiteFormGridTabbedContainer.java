@@ -7,6 +7,7 @@ import totalcross.sample.components.ui.GridSample;
 import totalcross.sample.util.Colors;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
+import totalcross.ui.Label;
 import totalcross.ui.TabbedContainer;
 import totalcross.ui.font.Font;
 
@@ -17,8 +18,8 @@ public class SQLiteFormGridTabbedContainer extends TabbedContainer{
 	
 	private ArrayList<ButtonContainerAction> btnContainerActionList = new ArrayList<>();
 	
-	private FormSample gridSample  = new FormSample();
-	private GridSample formSample = new GridSample();
+	private FormSample formSample = new FormSample();
+	private GridSample gridSample = new GridSample();
 	
 	public static final int FORM = 0;
 	public static final int GRID = 1;
@@ -28,8 +29,11 @@ public class SQLiteFormGridTabbedContainer extends TabbedContainer{
 		started = false;
 		setType(TABS_TOP);
 		
-		addBottomContainer2List(createButton(FORM), gridSample, () -> {});
-		addBottomContainer2List(createButton(GRID), formSample, () -> {});
+		formSample.setNumUsers(gridSample.getNumUsers());
+		formSample.updateStatus();
+		
+		addBottomContainer2List(createButton(FORM), formSample, () -> {});
+		addBottomContainer2List(createButton(GRID), gridSample, () -> {});
 		
 		this.bottomBar = new Container() {
 			
