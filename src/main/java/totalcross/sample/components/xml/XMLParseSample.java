@@ -42,7 +42,7 @@ public class XMLParseSample extends ScrollContainer{
 		    readXmlButton = new Button("Read XML");
 		    readXmlButton.setBackColor(Colors.P_DARK);
 		    readXmlButton.setForeColor(Color.WHITE);
-		    status = new Label("a", CENTER);
+		    status = new Label("", CENTER);
 		    status.setForeColor(Colors.RED);
 		    status.setFont(Font.getFont(16));
 		    
