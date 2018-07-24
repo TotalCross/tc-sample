@@ -1,13 +1,13 @@
 package totalcross.sample.components.ui;
 
-import totalcross.ui.Container;
+import totalcross.sample.util.Colors;
+import totalcross.ui.Button;
 import totalcross.ui.Label;
 import totalcross.ui.MultiButton;
 import totalcross.ui.ScrollContainer;
+import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
-import totalcross.sample.util.Colors;
-import totalcross.ui.Button;
 
 public class ButtonSample extends ScrollContainer{
 
@@ -65,8 +65,11 @@ public class ButtonSample extends ScrollContainer{
 			add(imageButton, LEFT+gap, AFTER+gap, FILL-gap, PREFERRED+H);
 			add(simpleMultiButton, LEFT+gap , AFTER+gap , FILL-gap , PREFERRED+H);
 			add(multiButton, LEFT+gap , AFTER+gap, FILL-gap, PREFERRED+H);
-			add(new Label("The magnifier\nis an Image\nButton", CENTER), LEFT + gap, AFTER + gap);
-			add(onlyImageButton, AFTER + gap, SAME);
+			Label label = new Label("The magnifier\nis an Image\nButton", CENTER);
+			label.setFont(Font.getFont("Lato Medium", false, label.getFont().size ));
+			add(label, LEFT+gap, AFTER+gap);
+			//add(new Label("The magnifier\nis an Image\nButton", CENTER), LEFT + gap, AFTER + gap);
+			add(onlyImageButton,CENTER, SAME);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
