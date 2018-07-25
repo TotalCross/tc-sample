@@ -73,8 +73,8 @@ public class DigestSample extends ScrollContainer {
 			ScrollContainer sc = new ScrollContainer();
 			sc.setBackColor(Color.darker(Colors.GRAY, 10));
 			add(sc, LEFT + gap*3, AFTER + gap, FILL - gap*3, (int)(Settings.screenHeight * 0.18));
-			Label title = new Label(alg.toString());
-			title.align = CENTER;
+			Label title = new Label(alg.toString(), CENTER);
+			
 			title.setFont(Font.getFont(true, 16));
 			sc.add(title, CENTER, TOP + gap/2);
 			sc.add(new Label("Message: " + message), LEFT + gap, AFTER + gap/2);

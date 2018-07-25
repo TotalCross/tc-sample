@@ -1,6 +1,6 @@
 package totalcross.sample.components.ui;
 
-import totalcross.sys.Settings;
+import totalcross.sample.util.Colors;
 import totalcross.ui.Check;
 import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
@@ -18,214 +18,264 @@ import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.gfx.Color;
 
-public class ChartSample extends Container {
+public class ChartSample extends ScrollContainer {
+	private Container options;
+	private final int gap = 25;
 	ColumnChart column;
-	  LineChart line;
-	  PieChart pie;
-	  ArcChart arc;
-	  Slider sh, sv;
+	LineChart line;
+	PieChart pie;
+	ArcChart arc;
+	Slider h3DSlider, v3DSlider;
 
-	  Check is3D, showTitle, showCategories, showHGrids, showVGrids, isVGrad, isHGrad, isInvGrad, isDarker, showYValues;
-	  ComboBox legendPosition;
-	  TabbedContainer tp;
+	Label hor, ver;
+	Check is3D, hasLegend, hasShade, showTitle, showCategories, showHGrids, showVGrids, showYValues;
+	ComboBox legendPosition, shadeDirection, shadeType;
+	TabbedContainer tp;
 
-	  @Override
-	  public void initUI() {
-	    super.initUI();
-	    ScrollContainer sc = new ScrollContainer(false, true);
-	    sc.setInsets(5, 5, 5, 5);
-	    add(sc, LEFT, TOP, FILL, FILL);
-	    int color1 = Chart.COLOR2;
-	    int color2 = Chart.COLOR3;
-	    int color3 = Chart.COLOR4;
-	    // setup the column chart
-	    String[] names = { "Jan", "Feb", "Mar", "Apr" };
-	    column = new ColumnChart(names);
-	    column.series.addElement(new Series("Rice", new double[] { 1000, 1020, 1040, 1060 }, color1));
-	    column.series.addElement(new Series("Beans", new double[] { 850, 755, 859, 964 }, color2));
-	    column.series.addElement(new Series("Oil", new double[] { 930, 837, 943, 1000 }, color3));
+	@Override
+	public void initUI() {
+		super.initUI();
 
-	    column.setTitle("Sales Projection");
-	    column.setYAxis(0, 1100, 11);
-	    column.type = Chart.IS_3D;
+		options = new Container();
+		options.setBackForeColors(Colors.GRAY, Colors.P_DARK);
+		options.setFont(font.asBold());
 
-	    is3D = new Check("3D");
-	    is3D.setChecked(true);
-	    showTitle = new Check("Title");
-	    legendPosition = new ComboBox(new String[] { "Legend", "Right", "Left", "Top", "Bottom" });
-	    legendPosition.setSelectedIndex(0);
-	    showCategories = new Check("Category");
-	    showHGrids = new Check("HGrids");
-	    showVGrids = new Check("VGrids");
-	    showYValues = new Check("YValues");
-	    isHGrad = new Check("Horiz");
-	    isVGrad = new Check("Vert");
-	    isInvGrad = new Check("Invert");
-	    isDarker = new Check("Dark");
+		add(options, LEFT + gap, TOP + gap, FILL - gap, 125 + DP);
+		int color1 = Chart.COLOR2;
+		int color2 = Chart.COLOR3;
+		int color3 = Chart.COLOR4;
+		// setup the column chart
+		String[] names = { "Jan", "Feb", "Mar", "Apr" };
+		column = new ColumnChart(names);
+		column.series.addElement(new Series("Rice", new double[] { 1000, 1020, 1040, 1060 }, color1));
+		column.series.addElement(new Series("Beans", new double[] { 850, 755, 859, 964 }, color2));
+		column.series.addElement(new Series("Oil", new double[] { 930, 837, 943, 1000 }, color3));
 
-	    int gap = Settings.screenWidth > 320 ? fmH / 2 : 0;
-	    sc.add(showTitle, LEFT, AFTER + 2 + gap);
-	    sc.add(legendPosition, AFTER + 2, SAME, PREFERRED, SAME);
-	    sc.add(showCategories, AFTER + 2, SAME);
-	    sc.add(showYValues, AFTER + 2, SAME);
-	    sc.add(showHGrids, LEFT, AFTER + 2 + gap);
-	    sc.add(showVGrids, AFTER + 2, SAME);
-	    sc.add(is3D, AFTER + 2, SAME);
+		column.setTitle("Sales Projection");
+		column.setYAxis(0, 1100, 11);
+		column.type = Chart.IS_3D;
 
-	    int r = width - is3D.getRect().x2() - 6;
-	    sc.add(sh = new Slider(), AFTER + 2, SAME, r / 2, FONTSIZE);
-	    sc.add(sv = new Slider(), AFTER + 2, SAME, r / 2, FONTSIZE);
-	    sh.setMinimum(-6);
-	    sh.setMaximum(6);
-	    sv.setMaximum(6);
-	    sh.drawTicks = sv.drawTicks = true;
-	    sh.drawFilledArea = sv.drawFilledArea = false;
-	    sv.setValue(column.perspectiveV);
-	    sh.setValue(column.perspectiveH);
-	    sh.setLiveScrolling(true);
-	    sv.setLiveScrolling(true);
+		hasLegend = new Check("Legend");
+		legendPosition = new ComboBox(new String[] { "Right", "Left", "Top", "Bottom" });
+		legendPosition.setSelectedIndex(0);
+		legendPosition.setEnabled(false);
 
-	    sc.add(new Label("Shade"), LEFT, AFTER + gap, PREFERRED, SAME, is3D);
-	    sc.add(isHGrad, AFTER + 2, SAME);
-	    sc.add(isVGrad, AFTER + 2, SAME);
-	    sc.add(isInvGrad, AFTER + 2, SAME);
-	    sc.add(isDarker, AFTER + 2, SAME);
-	    isInvGrad.setVisible(false);
-	    isDarker.setVisible(false);
+		hasShade = new Check("Shade");
+		shadeDirection = new ComboBox(new String[] { "Direction", "Horizontal", "Vertical" });
+		shadeDirection.setSelectedIndex(0);
+		shadeDirection.setEnabled(false);
 
-	    int bg = Color.darker(backColor, 16);
-	    tp = new TabbedContainer(new String[] { " Column ", " Line ", " Pie ", " Arc " });
-	    tp.extraTabHeight = fmH / 2;
-	    sc.add(tp, LEFT, AFTER + gap * 2, FILL, PARENTSIZE + 90);
+		shadeType = new ComboBox(new String[] { "Type", "Inverted", "Dark" });
+		shadeType.setSelectedIndex(0);
+		shadeType.setEnabled(false);
 
-	    tp.getContainer(0).add(column, LEFT, TOP, FILL, FILL);
-	    column.setBackColor(bg);
+		is3D = new Check("3D");
+		is3D.setChecked(true);
+		showTitle = new Check("Shade");
 
-	    // setup the line chart
-	    line = new LineChart(names);
-	    line.series.addElement(new Series("Rice", new double[] { 100, 102, 104, 106 }, color1));
-	    line.series.addElement(new Series("Beans", new double[] { 150, 155, 159, 164 }, color2));
-	    line.series.addElement(new Series("Oil", new double[] { 130, 137, 143, 150 }, color3));
-	    line.lineThickness = 2;
-	    line.setTitle("Sales Projection");
-	    line.setYAxis(0, 200, 10);
-	    tp.getContainer(1).add(line, LEFT, TOP, FILL, FILL);
-	    line.setBackColor(bg);
+		showCategories = new Check("Category");
+		showHGrids = new Check("HGrids");
+		showVGrids = new Check("VGrids");
+		showYValues = new Check("YValues");
 
-	    // setup the pie chart
-	    pie = new PieChart();
-	    pie.series.addElement(new Series("Rice", new double[] { 100 }, color1));
-	    pie.series.addElement(new Series("Beans", new double[] { 200 }, color2));
-	    pie.series.addElement(new Series("Oil", new double[] { 80 }, color3));
-	    pie.selectedSeries = 2;
-	    pie.yDecimalPlaces = 1; // 1 decimal place
-	    pie.setTitle("Profit Share");
-	    pie.legendValueSuffix = "%"; // show % instead of the value in the tooltip
-	    tp.getContainer(2).add(pie, LEFT, TOP, FILL, FILL);
-	    pie.setBackColor(bg);
-	    pie.type = Chart.IS_3D;
+		options.add(showTitle, LEFT + gap, TOP + gap);
 
-	    arc = new ArcChart();
-	    arc.series.addElement(new Series("Rice", new double[] { 100 }, color1));
-	    arc.series.addElement(new Series("Beans", new double[] { 200 }, color2));
-	    arc.series.addElement(new Series("Oil", new double[] { 80 }, color3));
-	    arc.selectedSeries = 2;
-	    arc.yDecimalPlaces = 1; // 1 decimal place
-	    arc.setTitle("Profit Share");
-	    arc.legendValueSuffix = "%"; // show % instead of the value in the tooltip
-	    tp.getContainer(3).add(arc, LEFT, TOP, FILL, FILL);
-	    arc.setBackColor(bg);
+		options.add(hasLegend, AFTER + gap * 2, SAME);
+		options.add(legendPosition, AFTER + gap, SAME);
 
-	    column.xDecimalPlaces = column.yDecimalPlaces = line.yDecimalPlaces = 0;
-	    line.legendPerspective = pie.legendPerspective = column.legendPerspective = 6;
-	    tp.activeTabBackColor = Color.ORANGE;
-	    tp.pressedColor = Color.YELLOW;
+		options.add(hasShade, SAME, AFTER + gap, showTitle);
+		options.add(shadeDirection, AFTER + gap * 2, SAME, hasLegend.getWidth(), PREFERRED);
+		options.add(shadeType, AFTER + gap, SAME, legendPosition.getWidth(), PREFERRED);
+		showTitle.setText("Title");
 
-	    if (Settings.onJavaSE) {
-	      tp.setActiveTab(3);
-	    }
-	  }
+		options.add(is3D, SAME, AFTER + gap * 2, hasShade);
 
-	  @Override
-	  public void onEvent(Event e) {
-	    if (e.type == ControlEvent.PRESSED) {
-	      if (e.target == tp) {
-	        int sel = tp.getActiveTab();
-	        boolean c = sel == 0;
-	        boolean l = sel == 1;
-	        boolean p = sel == 2;
-	        is3D.setVisible(!l);
-	        showHGrids.setVisible(!p);
-	        showVGrids.setVisible(!p);
-	        showCategories.setVisible(!p);
-	        showYValues.setVisible(!p);
-	        isHGrad.setVisible(c);
-	        if (!c) {
-	          isHGrad.setChecked(false);
-	        }
-	        isVGrad.setVisible(c || p);
-	        if (!c && !p) {
-	          isHGrad.setChecked(false);
-	        }
-	        isInvGrad.setVisible(c || p);
-	        isDarker.setVisible(c || p);
-	        isInvGrad.setVisible(isHGrad.isChecked() || isVGrad.isChecked());
-	        isDarker.setVisible(isInvGrad.isVisible());
-	        sv.setVisible(is3D.isChecked() && !l);
-	        sh.setVisible(is3D.isChecked() && !l);
-	        if (c) {
-	          sv.setMinimum(0);
-	          sh.setValue(column.perspectiveH);
-	          sv.setValue(column.perspectiveV);
-	        } else if (p) {
-	          sv.setMinimum(-6);
-	          sh.setValue(pie.perspectiveH);
-	          sv.setValue(pie.perspectiveV);
-	        }
-	      } else if (e.target instanceof Check || e.target instanceof ComboBox) {
-	        if (e.target == isHGrad && isHGrad.isChecked() && isVGrad.isChecked()) {
-	          isVGrad.setChecked(false);
-	        } else if (e.target == isVGrad && isHGrad.isChecked() && isVGrad.isChecked()) {
-	          isHGrad.setChecked(false);
-	        }
-	        isInvGrad.setVisible(isHGrad.isChecked() || isVGrad.isChecked());
-	        isDarker.setVisible(isHGrad.isChecked() || isVGrad.isChecked());
-	        pie.showTitle = line.showTitle = column.showTitle = showTitle.isChecked();
-	        pie.showLegend = line.showLegend = column.showLegend = legendPosition.getSelectedIndex() != 0;
-	        pie.legendPosition = line.legendPosition = column.legendPosition = getLegendPosition();
-	        pie.showCategories = line.showCategories = column.showCategories = showCategories.isChecked();
-	        line.showHGrids = column.showHGrids = showHGrids.isChecked();
-	        line.showVGrids = column.showVGrids = showVGrids.isChecked();
-	        line.showYValues = column.showYValues = showYValues.isChecked();
-	        column.type = pie.type = (is3D.isChecked() ? Chart.IS_3D : 0)
-	            | (isHGrad.isChecked() ? Chart.GRADIENT_HORIZONTAL : 0)
-	            | (isVGrad.isChecked() ? Chart.GRADIENT_VERTICAL : 0) | (isInvGrad.isChecked() ? Chart.GRADIENT_INVERT : 0)
-	            | (isDarker.isChecked() ? Chart.GRADIENT_DARK : 0);
-	        sv.setVisible(is3D.isChecked() && !line.isVisible());
-	        sh.setVisible(is3D.isChecked() && !line.isVisible());
-	        repaint();
-	      } else if (e.target == sv) {
-	        column.perspectiveV = Math.max(sv.getValue(), 0);
-	        pie.perspectiveV = sv.getValue();
-	        repaint();
-	      } else if (e.target == sh) {
-	        line.legendPerspective = pie.legendPerspective = column.legendPerspective = pie.perspectiveH = column.perspectiveH = sh
-	            .getValue();
-	        repaint();
-	      }
-	    }
-	  }
+		hor = new Label("H:");
+		ver = new Label("V:");
+		options.add(hor, AFTER + gap, SAME - gap * 2, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
+		options.add(ver, SAME, AFTER, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
 
-	  private int getLegendPosition() {
-	    switch (legendPosition.getSelectedIndex()) {
-	    case 2:
-	      return LEFT;
-	    case 3:
-	      return TOP;
-	    case 4:
-	      return BOTTOM;
-	    default:
-	      return RIGHT;
-	    }
-	  }
+		options.add(h3DSlider = new Slider(), AFTER + gap, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
+				FONTSIZE, hor);
+
+		options.add(v3DSlider = new Slider(), AFTER + gap, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
+				FONTSIZE, ver);
+
+		options.add(showCategories, AFTER + gap, SAME, legendPosition);
+		options.add(showYValues, SAME, AFTER + gap, SAME, SAME);
+		options.add(showHGrids, SAME, AFTER + gap, SAME, SAME);
+		options.add(showVGrids, SAME, AFTER, SAME, SAME);
+
+		h3DSlider.setMinimum(-6);
+		h3DSlider.setMaximum(6);
+		v3DSlider.setMaximum(6);
+		h3DSlider.drawTicks = v3DSlider.drawTicks = true;
+		h3DSlider.drawFilledArea = v3DSlider.drawFilledArea = false;
+		v3DSlider.setValue(column.perspectiveV);
+		h3DSlider.setValue(column.perspectiveH);
+		h3DSlider.setLiveScrolling(true);
+		v3DSlider.setLiveScrolling(true);
+
+		int bg = Color.darker(backColor, 16);
+		tp = new TabbedContainer(new String[] { " Column ", " Line ", " Pie ", " Arc " });
+		tp.extraTabHeight = fmH / 2;
+		add(tp, LEFT + gap, AFTER + gap, FILL - gap, PARENTSIZE + 90, options);
+
+		tp.getContainer(0).add(column, LEFT, TOP, FILL, FILL);
+		column.setBackColor(bg);
+
+		// setup the line chart
+		line = new LineChart(names);
+		line.series.addElement(new Series("Rice", new double[] { 100, 102, 104, 106 }, color1));
+		line.series.addElement(new Series("Beans", new double[] { 150, 155, 159, 164 }, color2));
+		line.series.addElement(new Series("Oil", new double[] { 130, 137, 143, 150 }, color3));
+		line.lineThickness = 2;
+		line.setTitle("Sales Projection");
+		line.setYAxis(0, 200, 10);
+		tp.getContainer(1).add(line, LEFT, TOP, FILL, FILL);
+		line.setBackColor(bg);
+
+		// setup the pie chart
+		pie = new PieChart();
+		pie.series.addElement(new Series("Rice", new double[] { 100 }, color1));
+		pie.series.addElement(new Series("Beans", new double[] { 200 }, color2));
+		pie.series.addElement(new Series("Oil", new double[] { 80 }, color3));
+		pie.selectedSeries = 2;
+		pie.yDecimalPlaces = 1; // 1 decimal place
+		pie.setTitle("Profit Share");
+		pie.legendValueSuffix = "%"; // show % instead of the value in the tooltip
+		tp.getContainer(2).add(pie, LEFT, TOP, FILL, FILL);
+		pie.setBackColor(bg);
+		pie.type = Chart.IS_3D;
+
+		arc = new ArcChart();
+		arc.series.addElement(new Series("Rice", new double[] { 100 }, color1));
+		arc.series.addElement(new Series("Beans", new double[] { 200 }, color2));
+		arc.series.addElement(new Series("Oil", new double[] { 80 }, color3));
+		arc.selectedSeries = 2;
+		arc.yDecimalPlaces = 1; // 1 decimal place
+		arc.setTitle("Profit Share");
+		arc.legendValueSuffix = "%"; // show % instead of the value in the tooltip
+		tp.getContainer(3).add(arc, LEFT, TOP, FILL, FILL);
+		arc.setBackColor(bg);
+
+		column.xDecimalPlaces = column.yDecimalPlaces = line.yDecimalPlaces = 0;
+		line.legendPerspective = pie.legendPerspective = column.legendPerspective = 6;
+		tp.activeTabBackColor = Color.ORANGE;
+		tp.pressedColor = Color.YELLOW;
+
+		tp.setActiveTab(0);
+	}
+
+	@Override
+	public void reposition() {
+		showTitle.setText("Shape");
+		super.reposition();
+		showTitle.setText("Title");
+	}
+
+	@Override
+	public void onEvent(Event e) {
+		if (e.type == ControlEvent.PRESSED) {
+			if (e.target == tp) {
+				int sel = tp.getActiveTab();
+				boolean onColumn = sel == 0;
+				boolean onLine = sel == 1;
+				boolean onPie = sel == 2;
+				boolean onArc = sel == 3;
+
+				is3D.setVisible(!onLine && !onArc);
+				ver.setVisible(!onLine && !onArc);
+				hor.setVisible(!onLine && !onArc);
+				h3DSlider.setVisible(!onLine && !onArc);
+				v3DSlider.setVisible(!onLine && !onArc);
+
+				showCategories.setVisible(!onPie && !onArc);
+				showYValues.setVisible(!onPie && !onArc);
+				showHGrids.setVisible(!onPie && !onArc);
+				showVGrids.setVisible(!onPie && !onArc);
+
+				hasShade.setVisible(onColumn);
+				shadeDirection.setVisible(onColumn);
+				shadeType.setVisible(onColumn);
+
+				if (onColumn) {
+					v3DSlider.setMinimum(0);
+					h3DSlider.setValue(column.perspectiveH);
+					v3DSlider.setValue(column.perspectiveV);
+				} else if (onPie) {
+					v3DSlider.setMinimum(-6);
+					h3DSlider.setValue(pie.perspectiveH);
+					v3DSlider.setValue(pie.perspectiveV);
+				}
+			} else if (e.target instanceof Check || e.target instanceof ComboBox) {
+				// if you click to select this Check
+				if (e.target == hasLegend)
+					legendPosition.setEnabled(hasLegend.isChecked());
+				if (e.target == hasShade) {
+					shadeDirection.setEnabled(hasShade.isChecked());
+					shadeType.setEnabled(hasShade.isChecked());
+				}
+				if (e.target == is3D) {
+					h3DSlider.setEnabled(is3D.isChecked());
+					v3DSlider.setEnabled(is3D.isChecked());
+				}
+
+				pie.showTitle = line.showTitle = column.showTitle = arc.showTitle = showTitle.isChecked();
+				pie.showLegend = line.showLegend = column.showLegend = arc.showLegend = hasLegend.isChecked();
+				pie.legendPosition = line.legendPosition = column.legendPosition = arc.legendPosition = getLegendPosition();
+				pie.showCategories = line.showCategories = column.showCategories = showCategories.isChecked();
+				line.showHGrids = column.showHGrids = showHGrids.isChecked();
+				line.showVGrids = column.showVGrids = showVGrids.isChecked();
+				line.showYValues = column.showYValues = showYValues.isChecked();
+				column.type = pie.type = (is3D.isChecked() ? Chart.IS_3D : 0)
+						| ((getShapeDirection() != -1 && hasShade.isChecked()) ? getShapeDirection() : 0)
+						| ((getShapeType() != -1 && hasShade.isChecked()) ? getShapeType() : 0);
+				repaint();
+			} else if (e.target == v3DSlider) {
+				column.perspectiveV = Math.max(v3DSlider.getValue(), 0);
+				pie.perspectiveV = v3DSlider.getValue();
+				repaint();
+			} else if (e.target == h3DSlider) {
+				line.legendPerspective = pie.legendPerspective = column.legendPerspective = pie.perspectiveH = column.perspectiveH = h3DSlider
+						.getValue();
+				repaint();
+			}
+		}
+	}
+
+	private int getShapeType() {
+		switch (shadeType.getSelectedIndex()) {
+		case 1:
+			return Chart.GRADIENT_INVERT;
+		case 2:
+			return Chart.GRADIENT_DARK;
+		default:
+			return -1;
+		}
+	}
+
+	private int getShapeDirection() {
+		switch (shadeDirection.getSelectedIndex()) {
+		case 1:
+			return Chart.GRADIENT_HORIZONTAL;
+		case 2:
+			return Chart.GRADIENT_VERTICAL;
+		default:
+			return -1;
+		}
+	}
+
+	private int getLegendPosition() {
+		switch (legendPosition.getSelectedIndex()) {
+		case 1:
+			return LEFT;
+		case 2:
+			return TOP;
+		case 3:
+			return BOTTOM;
+		default:
+			return RIGHT;
+		}
+	}
 }
