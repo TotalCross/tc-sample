@@ -151,7 +151,7 @@ public class DynScrollContainerSample extends Container {
 			}
 
 			ProgressBox pb = new ProgressBox("Generating", "Creating datasource, please wait...", null);
-			pb.setBackColor(Colors.RED);
+			pb.setBackColor(Color.getRGB(12, 98, 200));
 			pb.popupNonBlocking();
 			DynamicScrollContainer.DataSource datasource = new DynamicScrollContainer.DataSource(rowCount);
 
