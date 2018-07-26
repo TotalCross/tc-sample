@@ -31,6 +31,9 @@ public class HTMLContainerSample extends Container{
 	    String[] items = { "Sample str", "Sample 0", "Sample 1", "Sample 2", "Sample 3", "Sample 4", "Sample 5",
 	        "Sample 6" };
 	    add(cb = new ComboBox(items), LEFT, TOP, FILL, PREFERRED);
+	    this.setBackColor(Color.getRGB(74,144,226));
+	    cb.setBackColor(Color.getRGB(74,144,226));
+	    cb.setForeColor(Color.WHITE);
 	    add(htmlCnr = new HtmlContainer(), LEFT, AFTER, FILL, FILL);
 	    htmlCnr.setBackForeColors(Color.WHITE, Color.BLACK);
 	  }
