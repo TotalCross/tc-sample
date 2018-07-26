@@ -38,7 +38,6 @@ import totalcross.sample.components.ui.HTMLContainerSample;
 import totalcross.sample.components.ui.HWSignatureSample;
 import totalcross.sample.components.ui.ImageAnimationSample;
 import totalcross.sample.components.ui.ImageBookSample;
-import totalcross.sample.components.ui.ImageControlSample;
 import totalcross.sample.components.ui.ImageModifiersSample;
 import totalcross.sample.components.ui.ListContainerSample;
 import totalcross.sample.components.ui.Login;
@@ -200,7 +199,6 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("HTMLContainer", MaterialIcons._WEB, Color.BLACK,  () -> { return new HTMLContainerSample(); }),
 			   new SideMenuContainer.Item("Image Animation", MaterialIcons._GIF, Color.BLACK,  () -> { return new ImageAnimationSample(); }),
 			   new SideMenuContainer.Item("Image Book", MaterialIcons._BOOK, Color.BLACK,  () -> { return new ImageBookSample(); }),
-			   new SideMenuContainer.Item("Image Control", MaterialIcons._IMAGE_ASPECT_RATIO, Color.BLACK,  () -> { return new ImageControlSample(); }),
 			   new SideMenuContainer.Item("Image Modifiers", MaterialIcons._IMAGE, Color.BLACK,  () -> { return new ImageModifiersSample(); }),
 			   new SideMenuContainer.Item("List Container", MaterialIcons._VIEW_LIST, Color.BLACK,  () -> { return new ListContainerSample(); }),
 			   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),
