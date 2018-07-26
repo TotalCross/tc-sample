@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.io.File;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.ColorList;
@@ -14,6 +15,8 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
 public class HWSignatureSample extends Container {
+	private int k = fmH * 6;
+	private int mar = Settings.screenHeight/8;
 	Button save;
 	Button clear;
 	Button load;
@@ -24,16 +27,18 @@ public class HWSignatureSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
-		int mar = Settings.screenHeight/8;
 		fileName = Settings.platform.equals(Settings.ANDROID) ? "/sdcard/handwrite.png" : "device/handwrite.png";
 
 		save = new Button("Save");
+		save.setBackForeColors(Colors.P_DARK, Color.WHITE);
 		clear = new Button("Clear");
+		clear.setBackForeColors(Colors.P_DARK, Color.WHITE);
 		load = new Button("Load");
+		load.setBackForeColors(Colors.P_DARK, Color.WHITE);
 		paint = new Whiteboard();
 
 		// center the save/load/clear buttons on screen
-		int k = fmH / 2;
+		
 		load.setBackColor(Color.getRGB(69, 131, 212));
 		add(load, CENTER, BOTTOM - mar, PARENTSIZE + 30, PREFERRED + k);
 		save.setBackColor(Color.getRGB(69, 131, 212));
@@ -43,11 +48,17 @@ public class HWSignatureSample extends Container {
 														// width
 		add(paint);
 		paint.borderColor = Color.BLACK;
-		paint.setRect(CENTER, TOP + Settings.screenHeight/6, PARENTSIZEMIN + 90, SCREENSIZE+50); // add the status
-		add(cbColors = new ComboBox(new ColorList()), CENTER, AFTER + k);
+		paint.setRect(LEFT + mar, TOP + Settings.screenHeight/6, FILL - mar, SCREENSIZE+40); // add the status
+		add(cbColors = new ComboBox(new ColorList()), CENTER, AFTER + mar, paint);
 		cbColors.setSelectedIndex(cbColors.indexOf(new ColorList.Item(Color.BLACK))); // select color 0
 	}
-
+	
+	@Override
+	public void reposition() {
+		super.reposition();
+		paint.clear();
+	}
+	
 	@Override
 	public void onEvent(Event event) {
 		if (event.type == ControlEvent.PRESSED) {
