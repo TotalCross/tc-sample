@@ -13,7 +13,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.ScrollContainer;
 
 
-public class SliderSample extends Container {
+public class SliderSample extends ScrollContainer {
   private Label l;
   private ScrollContainer sc;
   
@@ -21,9 +21,7 @@ public class SliderSample extends Container {
   public void initUI() {
     try {
       super.initUI();
-      
-      sc = new ScrollContainer(false, true);
-      add(sc,LEFT,TOP,FILL,FILL);
+      setScrollBars(false, true);
       
       add(l = new Label("", CENTER), LEFT, TOP);
 
@@ -35,7 +33,7 @@ public class SliderSample extends Container {
       sl.setBackColor(Color.getRGB(158, 197, 244));
       sl.sliderColor = Color.getRGB(12, 98, 200);
       sl.setValue(10);
-      sc.add(sl,CENTER, TOP + fmH * 2 + 150, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
+      add(sl,CENTER, TOP + fmH * 2 + 150, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
       
       
       
@@ -48,7 +46,7 @@ public class SliderSample extends Container {
       sl.sliderColor = Color.getRGB(255, 199, 0);
       
       sl.setValue(30);
-      sc.add(sl, CENTER, AFTER + fmH + 100, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
+      add(sl, CENTER, AFTER + fmH + 100, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
 
       sl = new Slider(ScrollBar.HORIZONTAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE / 2 * 4));
@@ -57,7 +55,7 @@ public class SliderSample extends Container {
       sl.setBackColor(Color.getRGB(255, 192, 157));
       sl.sliderColor = Color.getRGB(255, 92, 0);
       sl.setValue(50);
-      sc.add(sl, CENTER, AFTER + fmH + 50, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
+      add(sl, CENTER, AFTER + fmH + 50, (Settings.screenWidth - ((Settings.screenWidth)/10)*2), PREFERRED);
 
       sl = new Slider(ScrollBar.VERTICAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE));
@@ -66,7 +64,7 @@ public class SliderSample extends Container {
       sl.setBackColor(Color.getRGB(149, 243, 230));
       sl.sliderColor = Color.getRGB(0, 195, 168);
       sl.setValue(70);
-      sc.add(sl, BEFORE + 200 , AFTER + fmH + 200, PREFERRED, Settings.screenHeight/3);
+      add(sl, BEFORE + 200 , AFTER + fmH + 200, PREFERRED, Settings.screenHeight/3);
 
       sl = new Slider(ScrollBar.VERTICAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE / 2 * 3));
@@ -75,7 +73,7 @@ public class SliderSample extends Container {
       sl.setBackColor(Color.getRGB(255, 220, 157));
       sl.sliderColor = Color.getRGB(255, 164, 0);
       sl.setValue(90);
-      sc.add(sl, CENTER , SAME, PREFERRED, Settings.screenHeight/3);
+      add(sl, CENTER , SAME, PREFERRED, Settings.screenHeight/3);
 
       sl = new Slider(ScrollBar.VERTICAL);
       sl.setFont(Font.getFont(false, Font.NORMAL_SIZE / 2 * 4));
@@ -84,7 +82,7 @@ public class SliderSample extends Container {
       sl.setBackColor(Color.getRGB(254, 156, 165));
       sl.sliderColor = Color.getRGB(255, 0, 24);
       sl.setValue(50);
-      sc.add(sl,AFTER + 200, SAME, PREFERRED, Settings.screenHeight/3);
+      add(sl,AFTER + 200, SAME, PREFERRED, Settings.screenHeight/3);
     } catch (Exception ee) {
       MessageBox.showException(ee, true);
     }
