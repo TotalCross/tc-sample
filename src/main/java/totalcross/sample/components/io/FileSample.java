@@ -3,14 +3,20 @@ package totalcross.sample.components.io;
 import totalcross.io.DataStream;
 import totalcross.io.File;
 import totalcross.io.IOException;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.sys.Time;
 import totalcross.sys.Vm;
 import totalcross.ui.ComboBox;
+import totalcross.ui.Container;
 import totalcross.ui.Label;
+import totalcross.ui.ListBox;
 import totalcross.ui.MainWindow;
 import totalcross.ui.ScrollContainer;
+import totalcross.ui.Spacer;
 import totalcross.ui.dialog.MessageBox;
+import totalcross.ui.font.Font;
+import totalcross.ui.gfx.Color;
 import totalcross.util.Date;
 import totalcross.util.InvalidDateException;
 import totalcross.util.Vector;
@@ -18,6 +24,7 @@ import totalcross.util.Vector;
 public class FileSample extends ScrollContainer implements Runnable {
 
 	private String rootPath = Settings.appPath + "/";
+	private int gap = 50;
 
 	private boolean recursiveList(String path, Vector v) {
 		if (path == null) {
@@ -46,121 +53,151 @@ public class FileSample extends ScrollContainer implements Runnable {
 	}
 
 	private void testFileList() {
-		addLabel("===== testFileList =====");
+		boolean success = true;
+		ListBox lb = new ListBox();
+		String[] files = null;
 		Vector v = new Vector(50);
 		if (!recursiveList(rootPath, v)) {
-			addLabel("recursiveList threw an exception");
+			lb.add("recursiveList threw an exception");
 		} else {
-			addLabel("recursiveList successful");
+			lb.add("recursiveList successful");
 			int start;
 			start = Vm.getTimeStamp();
-			String[] files = (String[]) v.toObjectArray();
+			files = (String[]) v.toObjectArray();
 			if (files == null) {
-				addLabel("recursiveList found no files");
+				success = false;
+				lb.add("recursiveList found no files");
 				files = new String[] { "No files" };
 			} else {
-				addLabel("recursiveList found " + files.length);
+				lb.add("recursiveList found " + files.length);
 				if (files[0].charAt(1) == '[') {
 					files[0] = files[0].substring(1); // remove the preceding slash
 				}
 			}
-			add(new ComboBox(files), LEFT, TOP, FILL, PREFERRED);
-			addLabel("recursiveList took " + (Vm.getTimeStamp() - start) + "ms");
+			lb.add("recursiveList took " + (Vm.getTimeStamp() - start) + "ms");
+		}
+		addStatusBox(success, new Label("Test File List", CENTER), lb);
+		
+		if(success) {
+			Container box = new Container();
+			box.setBackColor(Colors.GRAY);
+			add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			Label title = new Label("List of All Files Found", CENTER);
+			title.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			title.setFont(font.asBold());
+			box.add(title, LEFT, TOP, FILL, 50 + DP);
+			
+			box.add(new ComboBox(files), LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
+			box.add(new Spacer(), LEFT, AFTER, 1, gap/3);
+			box.resizeHeight();
 		}
 	}
 
 	private void testDirectory() {
-		addLabel("" + "===== testDirectory =====");
+		boolean success = true;
+		ListBox lb = new ListBox();
 		try {
 			File f = new File(rootPath + "TempDir");
 			boolean exists = f.exists();
-			addLabel("" + rootPath + "TempDir.exists? " + exists);
+			lb.add("" + rootPath + "TempDir.exists? " + exists);
 			if (!exists) {
-				addLabel("Creating dir...");
+				lb.add("Creating dir...");
 				f.createDir();
 			}
-			addLabel("" + rootPath + "TempDir.exists after create? " + f.exists());
-			addLabel("" + rootPath + "TempDir isDir?" + f.isDir());
+			lb.add("" + rootPath + "TempDir.exists after create? " + f.exists());
+			lb.add("" + rootPath + "TempDir isDir?" + f.isDir());
 			f.delete();
 			f = new File(rootPath + "TempDir");
-			addLabel("" + rootPath + "TempDir.exists after delete? " + f.exists());
+			lb.add("" + rootPath + "TempDir.exists after delete? " + f.exists());
 
-			addLabel("testDirectory successful");
+			lb.add("testDirectory successful");
 		} catch (IOException ioe) {
-			addLabel("testDirectory threw an exception " + ioe.getMessage());
+			success = false;
+			lb.add("testDirectory threw an exception " + ioe.getMessage());
 			ioe.printStackTrace();
 		}
+		
+		addStatusBox(success, new Label("Test Directory", CENTER), lb);
 	}
 
 	private void testFileRename() {
-		addLabel("" + "===== testFileRename =====");
+		boolean success = true;
+		ListBox lb = new ListBox();
 		try {
 			File f = new File(rootPath + "TempRename");
 			if (!f.exists()) {
-				addLabel("" + rootPath + "TempRename does not exist. Creating...");
+				lb.add("" + rootPath + "TempRename does not exist. Creating...");
 				f.createDir();
 			}
-			addLabel("" + rootPath + "TempRename created? " + f.exists());
-			addLabel("renaming tempRename to testRename...");
+			lb.add("" + rootPath + "TempRename created? " + f.exists());
+			lb.add("renaming tempRename to testRename...");
 			f.rename(rootPath + "TestRename");
 			// file object is now invalid. create a new one.
 			f = new File(rootPath + "TestRename");
-			addLabel("TestRename.isDir? " + f.isDir());
+			lb.add("TestRename.isDir? " + f.isDir());
 			f = new File(rootPath + "TestRename/Teste.txt", File.CREATE);
-			addLabel("Renaming Teste.txt to Teste2.txt...");
+			lb.add("Renaming Teste.txt to Teste2.txt...");
 			f.rename(rootPath + "TestRename/Teste2.txt");
 			// file object is now invalid. create a new one
 			f = new File(rootPath + "TestRename/Teste2.txt");
-			addLabel("Teste2.txt exists? " + f.exists());
-			addLabel("Teste2.txt isDir? " + f.isDir());
+			lb.add("Teste2.txt exists? " + f.exists());
+			lb.add("Teste2.txt isDir? " + f.isDir());
 			f.delete();
 			f = new File(rootPath + "TestRename");
-			addLabel("" + rootPath + "TestRename.isDir? " + f.isDir());
-			addLabel("Deleting " + rootPath + "TestRename...");
+			lb.add("" + rootPath + "TestRename.isDir? " + f.isDir());
+			lb.add("Deleting " + rootPath + "TestRename...");
 			f.delete();
 
 			f = new File(rootPath + "TestRename");
-			addLabel("" + rootPath + "TestRename.exists? " + f.exists());
+			lb.add("" + rootPath + "TestRename.exists? " + f.exists());
 
-			addLabel("testFileRename successful");
+			lb.add("testFileRename successful");
 		} catch (IOException ioe) {
-			addLabel("testFileRename threw an exception:\n" + ioe.getMessage());
+			success = false;
+			lb.add("testFileRename threw an exception:\n" + ioe.getMessage());
 			ioe.printStackTrace();
 		}
+		
+		addStatusBox(success, new Label("Test File Rename", CENTER), lb);
 	}
 
 	private void testFileReadWrite() {
-		addLabel("" + "===== testFileReadWrite =====");
+		boolean success = true;
+		ListBox lb = new ListBox();
+
 		try {
 			File f = new File(rootPath + "Teste.txt", File.CREATE);
-			addLabel("writing values to file...");
+			lb.add("writing values to file...");
 			DataStream ds = new DataStream(f);
 			ds.writeString("Test");
 			ds.writeInt(1234);
 			f.setPos(0);
-			addLabel("File size now is: " + f.getSize());
+			lb.add("File size now is: " + f.getSize());
 			String s = ds.readString();
 			int i = ds.readInt();
-			addLabel("read: " + s + "," + i);
-			addLabel("changing values...");
+			lb.add("read: " + s + "," + i);
+			lb.add("changing values...");
 			f.setPos(0);
 			ds.writeString("Abcd");
 			f.setPos(0);
-			addLabel("File size now is: " + f.getSize());
+			lb.add("File size now is: " + f.getSize());
 			s = ds.readString();
 			i = ds.readInt();
-			addLabel("read: " + s + "," + i);
+			lb.add("read: " + s + "," + i);
 			f.delete();
 
 			f = new File(rootPath + "Teste.txt");
-			addLabel("file deleted? " + !f.exists());
+			lb.add("file deleted? " + !f.exists());
 
-			addLabel("testFileReadWrite successful");
+			lb.add("testFileReadWrite successful");
 		} catch (totalcross.io.IOException ioe) {
-			addLabel("Test failed");
-			addLabel("testFileReadWrite threw an exception " + ioe.getMessage());
+			success = false;
+			lb.add("Test failed");
+			lb.add("testFileReadWrite threw an exception " + ioe.getMessage());
 			ioe.printStackTrace();
 		}
+		
+		addStatusBox(success, new Label("Test File Read/Write", CENTER), lb);
 	}
 
 	private String getAttrDescription(int attr) {
@@ -181,95 +218,106 @@ public class FileSample extends ScrollContainer implements Runnable {
 	}
 
 	private void testAttrTime() {
-		addLabel("" + "===== testAttrTime =====");
-		addLabel("creating file " + rootPath + "TestAttr.txt");
+		boolean success = true;
+		ListBox lb = new ListBox();
+		lb.add("creating file " + rootPath + "TestAttr.txt");
 		try {
 			File f = new File(rootPath + "TestAttr.txt", File.CREATE);
 			int attr = f.getAttributes();
-			addLabel("File attributes: " + getAttrDescription(attr));
-			addLabel("Setting to hidden...");
+			lb.add("File attributes: " + getAttrDescription(attr));
+			lb.add("Setting to hidden...");
 			f.setAttributes(attr | File.ATTR_HIDDEN);
 			attr = f.getAttributes();
-			addLabel("Attributes changed to " + getAttrDescription(attr));
+			lb.add("Attributes changed to " + getAttrDescription(attr));
 
 			Time t;
-			addLabel("File Created Time:");
+			lb.add("File Created Time:");
 			t = f.getTime(File.TIME_CREATED);
 			try {
-				addLabel("" + new Date(t) + " " + t);
+				lb.add("" + new Date(t) + " " + t);
 			} catch (InvalidDateException ide) {
-				addLabel("" + ide.getMessage());
+				lb.add("" + ide.getMessage());
 			}
 
-			addLabel("File Modified Time:");
+			lb.add("File Modified Time:");
 			t = f.getTime(File.TIME_MODIFIED);
 			try {
-				addLabel("" + new Date(t) + " " + t);
+				lb.add("" + new Date(t) + " " + t);
 			} catch (InvalidDateException ide) {
-				addLabel("" + ide.getMessage());
+				lb.add("" + ide.getMessage());
 			}
 
-			addLabel("File Acessed Time:");
+			lb.add("File Acessed Time:");
 			t = f.getTime(File.TIME_ACCESSED);
 			try {
-				addLabel("" + new Date(t) + " " + t);
+				lb.add("" + new Date(t) + " " + t);
 			} catch (InvalidDateException ide) {
-				addLabel("" + ide.getMessage());
+				lb.add("" + ide.getMessage());
 			}
 
-			addLabel("Changing Modified time to:");
-			addLabel("25/03/2000 13:30:15");
+			lb.add("Changing Modified time to:");
+			lb.add("25/03/2000 13:30:15");
 			f.setTime(File.TIME_MODIFIED, new Time(2000, 3, 25, 13, 30, 15, 0));
-			addLabel("File Modified Time now is:");
+			lb.add("File Modified Time now is:");
 			t = f.getTime(File.TIME_MODIFIED);
 			try {
-				addLabel("" + new Date(t) + " " + t);
+				lb.add("" + new Date(t) + " " + t);
 			} catch (InvalidDateException ide) {
-				addLabel("" + ide.getMessage());
+				lb.add("" + ide.getMessage());
 			}
 
-			addLabel("Deleting file...");
+			lb.add("Deleting file...");
 			f.delete();
 
 			f = new File(rootPath + "TestAttr.txt");
-			addLabel("File deleted? " + !f.exists());
+			lb.add("File deleted? " + !f.exists());
 
-			addLabel("testAttrTime successful");
+			lb.add("testAttrTime successful");
 		} catch (totalcross.io.IOException ioe) {
-			addLabel("Test failed");
-			addLabel("testAttrTime threw an exception " + ioe.getMessage());
+			success = false;
+			lb.add("Test failed");
+			lb.add("testAttrTime threw an exception " + ioe.getMessage());
 			ioe.printStackTrace();
 		}
+		addStatusBox(success, new Label("Test Attribute Time", CENTER), lb);
 	}
 
 	@Override
 	public void run() {
 		MessageBox mb = new MessageBox("Attention", "Please wait,\nrunning tests...", null);
 		mb.popupNonBlocking();
+
 		testSDCards();
 		try {
 			testFileList();
 		} catch (OutOfMemoryError oome) {
-			addLabel("Not all files are shown");
 		}
 		testAttrTime();
 		testDirectory();
 		testFileRename();
 		testFileReadWrite();
-
+		add(new Spacer(), LEFT, AFTER, 1, gap/3);
 		mb.unpop();
 	}
 
 	private void testSDCards() {
+		boolean success = true;
+		ListBox lb = new ListBox();
 		if (Settings.platform.equals(Settings.ANDROID)) {
 			for (int i = 0; i <= 9; i++) {
 				try {
 					if (File.isCardInserted(i)) {
-						addLabel("/sdcard" + i + " exists");
+						lb.add("/sdcard" + i + " exists");
 					}
 				} catch (Exception e) {
+					success = false;
 				}
 			}
+		}
+		if(lb.size() == 0)
+			success = false;
+		if(success) {
+			addStatusBox(success, new Label("Test SD Cards", CENTER), lb);
 		}
 	}
 
@@ -279,9 +327,31 @@ public class FileSample extends ScrollContainer implements Runnable {
 		MainWindow.getMainWindow().runOnMainThread(this); // allow animation
 	}
 	
-	private void addLabel(String s)
-	{
-		Label lbl = new Label(s);
-		add(lbl, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
+	public void addStatusBox(boolean successful, Label title, ListBox lb) {
+		Container box = new Container();
+		box.setBackColor(Colors.GRAY);
+		
+		add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+
+		title.setFont(font.asBold());
+		title.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		
+		box.add(title, LEFT, TOP, FILL, 50 + DP);
+
+		box.add(lb, LEFT + gap*3, AFTER + gap, FILL - gap*3, PREFERRED);
+		
+		Label status = new Label("SUCESS", CENTER);
+		status.setFont(Font.getFont(true, 20));
+		status.transparentBackground = true;
+		status.setForeColor(Color.getRGB("16963c"));
+		if(!successful) {
+			status.setForeColor(Colors.RED);
+			status.setText("FAIL");
+			add(status, LEFT, AFTER + gap, FILL, PREFERRED);
+		}
+		
+		box.add(status, LEFT, AFTER + gap, FILL, PREFERRED);
+		box.add(new Spacer(), LEFT, AFTER, 1, gap/3);
+		box.resizeHeight();
 	}
 }
