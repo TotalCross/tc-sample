@@ -29,7 +29,10 @@ public class TypingContainer extends Container implements Runnable, ThreadSample
   @Override
   public void initUI() {
     super.initUI();
-    setBackColor(Color.brighter(fill ? Color.YELLOW : Color.GREEN));
+    setBackColor(Color.brighter(fill ? Color.getRGB("3A71B0") : Color.getRGB("4281C9")));
+    if(!fill) {
+    	setForeColor(Color.WHITE);
+    }
     setBorderStyle(BORDER_RAISED);
 
     me = new MultiEdit(0, 0);
