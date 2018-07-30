@@ -20,13 +20,14 @@ import totalcross.ui.gfx.Color;
 public class DynScrollContainerSample extends Container {
 	final int gap = 50;
 	private Button goButton;
-	private Edit evenHeightEdit;
-	private Edit oddHeightEdit;
-	private Edit rowCountEdit;
+	private Edit numberRangeEdit;
+	private Edit primeHeightEdit;
 	String oldOdd, oldEven;
 	private DynamicScrollContainer vsc;
-	private Check dynamicChk;
-	private int rowCount0, oddHeight0, evenHeight0;
+	private Check highlightChk;
+	private Check onlyPrimeChk;
+	
+	private int rowCount0;
 
 	public static class DynSCTestView extends DynamicScrollContainer.AbstractView {
 		public static boolean dynamicHeight;
@@ -45,7 +46,7 @@ public class DynScrollContainerSample extends Container {
 
 		@Override
 		public int getHeight() {
-			text = "Row id: " + id + "\n\n";
+			text =" " + id + "\n\n";
 			if (dynamicHeight) {
 				/*
 				 * if your views height can only be determined on rendering then you will need
@@ -78,7 +79,7 @@ public class DynScrollContainerSample extends Container {
 		@Override
 		public void initUI() {
 			Container ui = new Container();
-			ui.setBackColor((id % 2 == 0) ? Color.getRGB(245, 245, 245) : Color.WHITE);
+		    ui.setBackColor((isPrime(id)) ? Color.getRGB(245, 245, 245) : Color.WHITE);
 			ui.setRect(0, yStart, parentWidth, height);
 			try {
 				Label l = new Label(Convert.insertLineBreak(parentWidth - 10, f.fm, text));
@@ -102,84 +103,83 @@ public class DynScrollContainerSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
-		add(new Spacer(0, 0), LEFT, TOP + gap); // reset after position
-		rowCountEdit = add("Number of rows to create: ");
-		add(new Spacer(0, 0), LEFT, AFTER + gap/2);
-		oddHeightEdit = add("Odd view height:");
-		add(new Spacer(0, 0), LEFT, AFTER + gap/2);
-		evenHeightEdit = add("Even view height:");
 		
-		dynamicChk = new Check("Dynamic height");
-		add(dynamicChk, LEFT + gap, AFTER + gap + gap/2);
+		add(new Spacer(0, 0), LEFT, TOP + gap); 
+		numberRangeEdit = add("Select your number range: ");
+		add(new Spacer(0, 0), LEFT, AFTER + gap/2);
+		onlyPrimeChk = new Check("Show only prime numbers");
+		add(onlyPrimeChk, LEFT + gap, AFTER + gap + gap/2);
 
-		goButton = new Button("Generate");
+		goButton = new Button("Show");
 		goButton.setBackForeColors(Colors.P_DARK, Color.WHITE);
-		add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, evenHeightEdit);
+		add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, onlyPrimeChk);
 
 		vsc = new DynamicScrollContainer();
 		vsc.setBackColor(Color.WHITE);
 		vsc.setBorderStyle(BORDER_SIMPLE);
 		add(vsc, LEFT + gap, AFTER + gap*2, FILL - gap, FILL - gap*2);
 
-		rowCountEdit.setText(String.valueOf(rowCount0 = 30));
-		oddHeightEdit.setText(String.valueOf(oddHeight0 = fmH * 2));
-		evenHeightEdit.setText(String.valueOf(evenHeight0 = fmH * 2));
+		numberRangeEdit.setText(String.valueOf(rowCount0 = 30));
+		
 	}
 
 	@Override
 	public void onEvent(Event event) {
 		if (event.type == ControlEvent.PRESSED && event.target == goButton) {
 			int rowCount = rowCount0;
-			int oddHeight = oddHeight0;
-			int evenHeight = evenHeight0;
 			try {
-				rowCount = Convert.toInt(rowCountEdit.getText());
+				rowCount = Convert.toInt(numberRangeEdit.getText());
 			} catch (Exception e) {
-				rowCountEdit.setText(rowCount + "");
+				numberRangeEdit.setText(rowCount + "");
+				primeHeightEdit.setText(rowCount + "");
 			}
-			try {
-				oddHeight = Convert.toInt(oddHeightEdit.getText());
-			} catch (Exception e) {
-				if(!dynamicChk.isChecked())
-					oddHeightEdit.setText(oddHeight + "");
-			}
-			try {
-				evenHeight = Convert.toInt(evenHeightEdit.getText());
-			} catch (Exception e) {
-				if(!dynamicChk.isChecked())
-					evenHeightEdit.setText(evenHeight + "");
-			}
-
 			ProgressBox pb = new ProgressBox("Generating", "Creating datasource, please wait...", null);
 			pb.setBackColor(Color.getRGB(12, 98, 200));
 			pb.popupNonBlocking();
 			DynamicScrollContainer.DataSource datasource = new DynamicScrollContainer.DataSource(rowCount);
-
 			for (int i = 0; i < rowCount; i++) {
-				DynSCTestView view = new DynSCTestView(i, font);
-				view.height = i % 2 == 0 ? evenHeight : oddHeight;
-				datasource.addView(view);
+				if(onlyPrimeChk.isChecked()) {
+					if(isPrime(i)) {
+						DynSCTestView view = new DynSCTestView(i, font);
+						view.height = 25;
+						datasource.addView(view);
+					}
+				}else {
+					if(isPrime(i)) {
+						DynSCTestView view = new DynSCTestView(i, font);
+						view.height = 25;
+						datasource.addView(view);
+					}else {
+					DynSCTestView view = new DynSCTestView(i, font);
+					view.height = 25;
+					datasource.addView(view);
+					}
+				}
 			}
 
 			pb.unpop();
 			vsc.setDataSource(datasource);
 			vsc.scrollToView(datasource.getView(0));
 		}
-		if (event.type == ControlEvent.PRESSED && event.target == dynamicChk) {
-			DynSCTestView.dynamicHeight = dynamicChk.isChecked();
-			if(dynamicChk.isChecked()) {
-				oddHeightEdit.setEditable(false);
-				oldOdd = oddHeightEdit.getText();
-				oddHeightEdit.setText("AUTO");
-				evenHeightEdit.setEditable(false);
-				oldEven = evenHeightEdit.getText();
-				evenHeightEdit.setText("AUTO");
-			}else {
-				oddHeightEdit.setEditable(true);
-				oddHeightEdit.setText(oldOdd);
-				evenHeightEdit.setEditable(true);
-				evenHeightEdit.setText(oldEven);
+	}
+	private static boolean isPrime(int n) {
+		if (n < 2) {
+			return false;
+		}
+		if (n < 4) {
+			return true;
+		}
+		if (n % 2 == 0 || n % 3 == 0) {
+			return false;
+		}
+		for (int i = 5; i * i <= n; i += 6) {
+			if (n % i == 0) {
+				return false;
+			}
+			if (n % (i + 2) == 0) {
+				return false;
 			}
 		}
+		return true;
 	}
 }
