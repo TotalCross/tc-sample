@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import totalcross.sample.util.Colors;
 import totalcross.ui.AlignedLabelsContainer;
 import totalcross.ui.Button;
 import totalcross.ui.Edit;
@@ -12,16 +13,18 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
+import totalcross.ui.gfx.Color;
 
 public class ReflectionSample extends ScrollContainer {
+	private int gap = 50;
 	// ui
-	Button btAdd;
-	Edit edName, edAddr, edNumber, edAge;
+	private Button btAdd;
+	private Edit edName, edAddr, edNumber, edAge;
 	
 	// reflection
-	Constructor<?> c;
-	Field fname, faddr, fnumb;
-	Method mage;
+	private Constructor<?> c;
+	private Field fname, faddr, fnumb;
+	private Method mage;
 
 	@Override
 	public void initUI() {
@@ -29,16 +32,18 @@ public class ReflectionSample extends ScrollContainer {
 			super.initUI();
 			AlignedLabelsContainer alc = new AlignedLabelsContainer(
 					new String[] { "Name: ", "Address: ", "Addr.Number: ", "Age: " });
-			int g = fmH / 2;
-			add(alc, LEFT, TOP + g, FILL, PREFERRED);
+			alc.setFont(font.asBold());
+			add(alc, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
 			alc.add(edName = new Edit(), LEFT, alc.getLineY(0));
 			alc.add(edAddr = new Edit(), LEFT, alc.getLineY(1));
 			alc.add(edNumber = new Edit(), LEFT, alc.getLineY(2));
 			edNumber.setKeyboard(Edit.KBD_NUMERIC);
 			alc.add(edAge = new Edit(), LEFT, alc.getLineY(3));
 			edAge.setKeyboard(Edit.KBD_NUMERIC);
-			add(btAdd = new Button("ADD"), CENTER, AFTER + g, PARENTSIZE + 50, PREFERRED + g / 2);
-			add(new Label("Constructed and retrieved using reflection:"), LEFT, AFTER + g);
+			btAdd = new Button("ADD");
+			btAdd.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			add(btAdd, CENTER, AFTER + gap*2, SCREENSIZE + 50, PREFERRED +fmH*6);
+			add(new Label("Constructed and retrieved using reflection:"), LEFT, AFTER + gap);
 			// get access to Data's fields
 			Class<?> data = Class.forName("totalcross.sample.components.lang.reflection.Data");
 			c = data.getConstructor(new Class[] { String.class, String.class, int.class, byte.class });
@@ -71,21 +76,18 @@ public class ReflectionSample extends ScrollContainer {
 					// ba = d.getAge();
 					byte ba = ((Byte) mage.invoke(o, (Object[]) null)).byteValue();
 					// show in list
-					addLabel("name: " + sn);
-					addLabel("address: " + sa);
-					addLabel("number: " + in);
-					addLabel("age: " + ba);
-					addLabel("-------------------");
+					ScrollContainer box = new ScrollContainer();
+					add(box, LEFT + gap, AFTER + gap, SCREENSIZE + 50, 150 + DP);
+
+					box.add(new Label("Name: " + sn), LEFT + gap, TOP + gap, PREFERRED, fmH);
+					box.add(new Label("Address: " + sa), LEFT + gap, AFTER + gap, PREFERRED, fmH);
+					box.add(new Label("Number: " + in), LEFT + gap, AFTER + gap, PREFERRED, fmH);
+					box.add(new Label("Age: " + ba), LEFT + gap, AFTER + gap, PREFERRED, fmH);
+					box.resizeHeight();
 				}
 			} catch (Throwable ee) {
 				MessageBox.showException(ee, true);
 			}
 		}
-	}
-	
-	private void addLabel(String s)
-	{
-		Label lbl = new Label(s);
-		add(lbl, LEFT, AFTER + 2, SCREENSIZE, PREFERRED);
 	}
 }
