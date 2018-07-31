@@ -21,11 +21,10 @@ public class DynScrollContainerSample extends Container {
 	final int gap = 50;
 	private Button goButton;
 	private Edit numberRangeEdit;
-	private Edit primeHeightEdit;
 	String oldOdd, oldEven;
 	private DynamicScrollContainer vsc;
-	private Check highlightChk;
 	private Check onlyPrimeChk;
+	private Container c1;
 	
 	private int rowCount0;
 
@@ -79,7 +78,7 @@ public class DynScrollContainerSample extends Container {
 		@Override
 		public void initUI() {
 			Container ui = new Container();
-		    ui.setBackColor((isPrime(id)) ? Color.getRGB(245, 245, 245) : Color.WHITE);
+		    ui.setBackColor((isPrime(id)) ? Color.getRGB(215, 215, 215) : Color.WHITE);
 			ui.setRect(0, yStart, parentWidth, height);
 			try {
 				Label l = new Label(Convert.insertLineBreak(parentWidth - 10, f.fm, text));
@@ -92,33 +91,45 @@ public class DynScrollContainerSample extends Container {
 		}
 	}
 
-	private Edit add(String text) {
-		add(new Label(text), LEFT + gap, AFTER, PREFERRED, PREFERRED);
+	private Edit add(String text, Container parent, int labelBackColor, int labelForeColor) {
+		if (parent == null) {	
+			parent = this;
+		}
+		Label label = new Label(text+" ");
+		label.setBackForeColors(labelBackColor, labelForeColor);
+		parent.add(label, LEFT + gap, AFTER, PREFERRED, PREFERRED);
 		Edit ed = new Edit();
 		ed.setKeyboard(Edit.KBD_NUMERIC);
-		add(ed, RIGHT - gap, SAME, SCREENSIZE + 25, PREFERRED);
+		parent.add(ed, RIGHT - gap, SAME, SCREENSIZE + 20, PREFERRED);
+		
 		return ed;
 	}
 
 	@Override
 	public void initUI() {
 		super.initUI();
+		c1 = new Container();
+		add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
 		
-		add(new Spacer(0, 0), LEFT, TOP + gap); 
-		numberRangeEdit = add("Select your number range: ");
-		add(new Spacer(0, 0), LEFT, AFTER + gap/2);
+		c1.add(new Spacer(0, 0), LEFT, TOP, 1, gap/2); 
+		numberRangeEdit = add("Select your number range: ", c1, Color.getRGB(93,151,244), Color.WHITE);
+		numberRangeEdit.setBackForeColors(Color.WHITE, Color.WHITE);
+		
+		c1.add(new Spacer(0, 0), LEFT, AFTER + gap/2);
 		onlyPrimeChk = new Check("Show only prime numbers");
-		add(onlyPrimeChk, LEFT + gap, AFTER + gap + gap/2);
+		onlyPrimeChk.setBackForeColors(Color.getRGB(93,151,244), Color.WHITE);
+		c1.add(onlyPrimeChk, LEFT+gap, AFTER + gap + gap/2);
 
 		goButton = new Button("Show");
-		goButton.setBackForeColors(Colors.P_DARK, Color.WHITE);
-		add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, onlyPrimeChk);
-
+		goButton.setBackForeColors(Color.getRGB(93,151,244), Color.WHITE);
+		c1.add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, onlyPrimeChk);
+		c1.add(new Spacer(0, 0), LEFT, AFTER, 1, gap/2); 
+		c1.resizeHeight();
+		c1.setBackColor(Color.getRGB(93,151,244));
 		vsc = new DynamicScrollContainer();
 		vsc.setBackColor(Color.WHITE);
 		vsc.setBorderStyle(BORDER_SIMPLE);
 		add(vsc, LEFT + gap, AFTER + gap*2, FILL - gap, FILL - gap*2);
-
 		numberRangeEdit.setText(String.valueOf(rowCount0 = 30));
 		
 	}
@@ -130,10 +141,9 @@ public class DynScrollContainerSample extends Container {
 			try {
 				rowCount = Convert.toInt(numberRangeEdit.getText());
 			} catch (Exception e) {
-				numberRangeEdit.setText(rowCount + "");
-				primeHeightEdit.setText(rowCount + "");
-			}
-			ProgressBox pb = new ProgressBox("Generating", "Creating datasource, please wait...", null);
+				//numberRangeEdit.setText(rowCount + "");
+				}
+			ProgressBox pb = new ProgressBox("Calculating", "Please wait...", null);
 			pb.setBackColor(Color.getRGB(12, 98, 200));
 			pb.popupNonBlocking();
 			DynamicScrollContainer.DataSource datasource = new DynamicScrollContainer.DataSource(rowCount);
