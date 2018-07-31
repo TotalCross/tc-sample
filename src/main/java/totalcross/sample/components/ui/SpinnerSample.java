@@ -30,8 +30,8 @@ public class SpinnerSample extends ScrollContainer {
 		try {
 			super.initUI();
 
-			add(menu = new Container(), LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
-			menu.setBackColor(Colors.GRAY);
+			add(menu = new Container(), LEFT, TOP , FILL, WILL_RESIZE);
+			menu.setBackForeColors(Color.getRGB(74,144,226), Color.WHITE);
 
 			rg = new RadioGroupController();
 
