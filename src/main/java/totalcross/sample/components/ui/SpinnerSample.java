@@ -31,7 +31,7 @@ public class SpinnerSample extends ScrollContainer {
 			super.initUI();
 
 			add(menu = new Container(), LEFT, TOP , FILL, WILL_RESIZE);
-			menu.setBackForeColors(Color.getRGB(74,144,226), Color.WHITE);
+			menu.setBackForeColors(Colors.PRIMARY, Colors.ON_PRIMARY);
 
 			rg = new RadioGroupController();
 
@@ -66,7 +66,7 @@ public class SpinnerSample extends ScrollContainer {
 			});
 
 			add(bt = new Button("Start"), CENTER, BOTTOM - gap, SCREENSIZE + 50, PREFERRED + fmH * 6);
-			bt.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			bt.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);

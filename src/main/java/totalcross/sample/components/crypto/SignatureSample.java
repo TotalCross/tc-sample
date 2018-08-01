@@ -32,13 +32,12 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
-import totalcross.ui.gfx.Color;
 
 public class SignatureSample extends ScrollContainer {
 	private Object[] signatures;
 	private Key[] sigKeys;
 	private Key[] verKeys;
-	
+
 	private final int gap = 50;
 	private Container menu;
 	private ScrollContainer result;
@@ -84,12 +83,12 @@ public class SignatureSample extends ScrollContainer {
 
 		sigKeys = new Key[3];
 		sigKeys[0] = sigKeys[1] = sigKeys[2] = new RSAPrivateKey(RSA_E, RSA_D, RSA_N);
-		
+
 		result = new ScrollContainer();
-		
+
 		menu = new Container();
-		menu.setBackColor(Colors.GRAY);
-		
+		menu.setBackForeColors(Colors.P_300, Colors.ON_P_300);
+
 		edtInput = new Edit();
 		edtInput.setText("0123456789ABCDEF");
 
@@ -97,10 +96,10 @@ public class SignatureSample extends ScrollContainer {
 		cboSignatures.setSelectedIndex(0);
 
 		btnGo = new Button(" Go! ");
-		btnGo.setBackForeColors(Colors.P_DARK, Color.WHITE);
-		
-		add(menu, LEFT + gap, TOP + gap, FILL - gap, (int)(Settings.screenHeight * 0.15));
-		menu.add(new Label("Message:"), LEFT + gap, TOP + gap/2);
+		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
+
+		add(menu, LEFT + gap, TOP + gap, FILL - gap, (int) (Settings.screenHeight * 0.15));
+		menu.add(new Label("Message:"), LEFT + gap, TOP + gap / 2);
 		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
 		menu.add(cboSignatures, LEFT + gap, BOTTOM - gap, menu);
 		menu.add(btnGo, RIGHT - gap, BOTTOM - gap, SCREENSIZE + 30, PREFERRED + 30);
@@ -117,31 +116,34 @@ public class SignatureSample extends ScrollContainer {
 
 				Signature signer = (Signature) signatures[index];
 				result = new ScrollContainer();
+				result.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 				try {
-					result.setBackColor(Color.darker(Colors.GRAY, 10));
-					
+
 					String sgn = cboSignatures.getSelectedItem().toString();
-					add(result, LEFT + gap*3, AFTER + gap, FILL - gap*3, (int)(Settings.screenHeight * 0.22));
-					
+					add(result, LEFT + gap * 3, AFTER + gap, FILL - gap * 3, (int) (Settings.screenHeight * 0.22));
+
 					Label title = new Label(sgn.toString(), CENTER);
 					title.setFont(Font.getFont(true, 16));
-					
-					result.add(title, CENTER, TOP + gap/2);
-					result.add(new Label("Message: '" + message + "'"), LEFT + gap, AFTER + gap/2);
-					
+
+					result.add(title, CENTER, TOP + gap / 2);
+					result.add(new Label("Message: '" + message + "'"), LEFT + gap, AFTER + gap / 2);
+
 					signer.reset(Signature.OPERATION_SIGN, sigKeys[index]);
 					signer.update(data);
 					byte[] signature = signer.sign();
-					
-					result.add(new Label("Signature: " + Convert.bytesToHexString(signature) + " ("
-							+ signature.length + " bytes)"), LEFT + gap, AFTER + gap/2);
+
+					result.add(new Label(
+							"Signature: " + Convert.bytesToHexString(signature) + " (" + signature.length + " bytes)"),
+							LEFT + gap, AFTER + gap / 2);
 
 					signer.reset(Signature.OPERATION_VERIFY, verKeys[index]);
 					signer.update(data);
 
-					result.add(new Label("" + (signer.verify(signature) ? "Signature verified!" : "Invalid signature!")), LEFT + gap, AFTER + gap/2);
+					result.add(
+							new Label("" + (signer.verify(signature) ? "Signature verified!" : "Invalid signature!")),
+							LEFT + gap, AFTER + gap / 2);
 				} catch (CryptoException ex) {
-					result.add(new Label("Exception: " + ex.toString()), LEFT + gap, AFTER + gap/2);
+					result.add(new Label("Exception: " + ex.toString()), LEFT + gap, AFTER + gap / 2);
 				}
 			}
 			break;

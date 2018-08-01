@@ -58,7 +58,7 @@ public class TopMenuSample extends ScrollContainer {
 	public void initUI() {
 		super.initUI();
 		add(menu = new Container(), LEFT + gap, TOP + gap, SCREENSIZE + 78, WILL_RESIZE);
-		menu.setBackColor(Colors.GRAY);
+		menu.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 		menu.add(new Label("Direction: "), LEFT + gap, TOP + gap, PREFERRED, PREFERRED);
 
 		cbSide = new ComboBox(new String[] { "LEFT", "RIGHT", "TOP", "BOTTOM" });
@@ -71,7 +71,7 @@ public class TopMenuSample extends ScrollContainer {
 		menu.resizeHeight();
 		
 		Button confirm = new Button("GO");
-		confirm.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		confirm.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 		add(confirm, AFTER + gap, SAME, FILL - gap, SAME, menu);
 		
 
@@ -85,6 +85,7 @@ public class TopMenuSample extends ScrollContainer {
 		
 		confirm.addPressListener((e) -> {
 			try {
+				boolean canShow = true;
 				switch (cbSide.getSelectedIndex()) {
 				case -1:
 					Toast.show("You must select a direction first", 500);
@@ -102,25 +103,28 @@ public class TopMenuSample extends ScrollContainer {
 						topMenu = new TopMenu(items, RIGHT);
 					break;
 				case 2:
-					if (filter.isChecked()) 
+					if (filter.isChecked()) {
 						Toast.show("You shouldn't use FilterContainer with TOP", 500);
-					else
+						canShow = false;
+					} else
 						topMenu = new TopMenu(items, TOP);
 					break;
 				case 3:
-					if (filter.isChecked())
+					if (filter.isChecked()) {
 						Toast.show("You shouldn't use FilterContainer with BOTTOM", 500);
-					else
+						canShow = false;
+					} else
 						topMenu = new TopMenu(items, BOTTOM);
 					break;
 				}
 				if(topMenu != null) {
-					if (filter.isChecked()) {
+					if (filter.isChecked() && canShow) {
 						topMenu.totalTime = 500;
 						topMenu.autoClose = false;
 						topMenu.backImage = new Image("images/back1.jpg");
 						topMenu.backImageAlpha = 96;
 					}
+					if(canShow)
 						topMenu.popup();
 				}
 			} catch (Exception ee) {

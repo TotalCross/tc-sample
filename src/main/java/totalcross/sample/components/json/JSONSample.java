@@ -18,14 +18,15 @@ public class JSONSample extends ScrollContainer {
 	public void initUI() {
 		super.initUI();
 		setScrollBars(false, true);
+		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		try {
 			Container inputBox = new Container();
-			inputBox.setBackColor(Colors.GRAY);
+			inputBox.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 			add(inputBox, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
 			
 			Label title1 = new Label("Input line", CENTER);
 			title1.setFont(font.asBold());
-			title1.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			title1.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 			inputBox.add(title1, LEFT, TOP, FILL, 50 + DP);
 			
 			String line = "[{\n\t\"name\":\"Mary\",\n\t\"date\":61395803160000,\n\t\"text\":\"My first post\",\n\t\"likes\":1\n},\n{\n\t\"name\":\"John\",\n\t\"date\":61395803820000,\n\t\"text\":\"I like TotalCross\",\n\t\"likes\":200\n}]";
@@ -37,16 +38,16 @@ public class JSONSample extends ScrollContainer {
 			inputBox.resizeHeight();
 			
 			Container arrayBox = new Container();
-			arrayBox.setBackColor(Colors.GRAY);
+			arrayBox.setBackForeColors(Colors.S_300, Colors.ON_S_300);
 			add(arrayBox, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			
 			Label title2 = new Label("As array (The return function is an array)", CENTER);
 			title2.setFont(font.asBold());
-			title2.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			title2.setBackForeColors(Colors.S_700, Colors.ON_S_700);
 			arrayBox.add(title2, LEFT, TOP, FILL, 50 + DP);
 			
 			ScrollContainer results = new ScrollContainer(true, false);
-			results.setBackColor(Colors.GRAY);
+			results.setBackForeColors(Colors.S_300, Colors.ON_S_300);
 			arrayBox.add(results, LEFT, AFTER + gap, FILL, 120 + DP);
 			FacebookPost[] posts = (FacebookPost[]) JSONFactory.parse(line, FacebookPost[].class);
 			for (FacebookPost f : posts) {
@@ -68,16 +69,16 @@ public class JSONSample extends ScrollContainer {
 			arrayBox.resizeHeight();
 			
 			Container listBox = new Container();
-			listBox.setBackColor(Colors.GRAY);
+			listBox.setBackForeColors(Colors.S_300, Colors.ON_S_300);
 			add(listBox, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			
 			Label title3 = new Label("As list (The return function is a list)", CENTER);
 			title3.setFont(font.asBold());
-			title3.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			title3.setBackForeColors(Colors.S_700, Colors.ON_S_700);
 			listBox.add(title3, LEFT, TOP, FILL, 50 + DP);
 			
 			ScrollContainer results2 = new ScrollContainer(true, false);
-			results2.setBackColor(Colors.GRAY);
+			results2.setBackForeColors(Colors.S_300, Colors.ON_S_300);
 			listBox.add(results2, LEFT, AFTER + gap, FILL, 120 + DP);
 
 			List<FacebookPost> posts2 = JSONFactory.asList(line, FacebookPost.class);
@@ -107,7 +108,7 @@ public class JSONSample extends ScrollContainer {
 	
 	private Container createLabelContainer(String data) {
 		Container c = new Container();
-		c.setBackColor(Color.WHITE);
+		c.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 		c.setBorderStyle(BORDER_SIMPLE);			
 		c.add(new Label(data), LEFT + gap, TOP + gap, PREFERRED + gap, PREFERRED);
 		return c;

@@ -33,11 +33,11 @@ public class ThreadSample extends Container implements Runnable {
 		Button.commonGap = fmH / 4;
 		Vm.tweak(Vm.TWEAK_DUMP_MEM_STATS, true);
 		directionButton = new Button("Switch Direction");
-		directionButton.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		directionButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		pauseButton = new Button("Pause");
-		pauseButton.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		pauseButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		unpauseButton = new Button("Unpause");
-		unpauseButton.setBackForeColors(Colors.RED, Color.WHITE);
+		unpauseButton.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 
 		containers = new SetX[3];
 		containers[0] = new TypingContainer(true);

@@ -75,7 +75,7 @@ public class SQLiteFormGridTabbedContainer extends TabbedContainer{
 			return null;
 		}
 		b.setFont(Font.getFont(true, fmH * 8 / 10));
-		b.setForeColor(Colors.P_LIGHT);		
+		b.setForeColor(Colors.P_200);		
 		b.setBorder(Button.BORDER_NONE);
 		return b;
 	}

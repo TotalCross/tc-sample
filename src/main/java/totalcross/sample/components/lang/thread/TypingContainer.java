@@ -1,5 +1,6 @@
 package totalcross.sample.components.lang.thread;
 
+import totalcross.sample.util.Colors;
 import totalcross.sys.Vm;
 import totalcross.ui.Container;
 import totalcross.ui.MultiEdit;
@@ -29,10 +30,7 @@ public class TypingContainer extends Container implements Runnable, ThreadSample
   @Override
   public void initUI() {
     super.initUI();
-    setBackColor(Color.brighter(fill ? Color.getRGB("3A71B0") : Color.getRGB("4281C9")));
-    if(!fill) {
-    	setForeColor(Color.WHITE);
-    }
+    setBackForeColors(fill ? Colors.S_400 : Colors.S_300, fill ? Colors.ON_S_400 : Colors.ON_S_300);
     setBorderStyle(BORDER_RAISED);
 
     me = new MultiEdit(0, 0);

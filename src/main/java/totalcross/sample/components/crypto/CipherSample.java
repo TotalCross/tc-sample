@@ -53,7 +53,7 @@ public class CipherSample extends ScrollContainer {
 	private Object[] ciphers;
 	private Key[] encKeys;
 	private Key[] decKeys;
-	
+
 	private int gap = 50;
 	private Container options, adv;
 	private Edit edtInput;
@@ -91,8 +91,8 @@ public class CipherSample extends ScrollContainer {
 		super.initUI();
 		this.backColor = Color.WHITE;
 		options = new Container();
-		options.setBackColor(Colors.GRAY);
-		
+		options.setBackForeColors(Colors.P_300, Colors.ON_P_300);
+
 		ciphers = new Object[2];
 		ciphers[0] = new AESCipher();
 		ciphers[1] = new RSACipher();
@@ -117,30 +117,29 @@ public class CipherSample extends ScrollContainer {
 		cboPadding.setSelectedIndex(0);
 
 		btnGo = new Button("Go");
-		btnGo.setBackColor(Colors.P_DARK);
-		btnGo.setForeColor(Color.WHITE);
-		
-		add(options, LEFT + gap, TOP + gap, SCREENSIZE + 80, (int)(Settings.screenHeight * 0.15));
-		options.add(new Label("Message:"), LEFT + gap/2, TOP + gap/2);
+		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
+
+		add(options, LEFT + gap, TOP + gap, SCREENSIZE + 80, (int) (Settings.screenHeight * 0.15));
+		options.add(new Label("Message:"), LEFT + gap / 2, TOP + gap / 2);
 		options.add(edtInput, AFTER + gap, SAME, FILL, PREFERRED);
-		options.add(cboCiphers, LEFT + gap/2, AFTER + gap, SCREENSIZE+22, PREFERRED);
-		options.add(cboChaining, AFTER + gap, SAME, SCREENSIZE+22, PREFERRED);
-		options.add(cboPadding, AFTER + gap, SAME, SCREENSIZE+29, PREFERRED);
+		options.add(cboCiphers, LEFT + gap / 2, AFTER + gap, SCREENSIZE + 22, PREFERRED);
+		options.add(cboChaining, AFTER + gap, SAME, SCREENSIZE + 22, PREFERRED);
+		options.add(cboPadding, AFTER + gap, SAME, SCREENSIZE + 29, PREFERRED);
 		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME, options);
-		
+
 		adv = new Container();
-		adv.setForeColor(Color.WHITE);
-		adv.setBackColor(Colors.RED);
-		add(adv, LEFT + gap, AFTER + gap, FILL - gap, (int)(Settings.screenHeight * 0.22), options);
-		Label titleAdv , valid1, valid2, valid3;
-		
-		adv.add(titleAdv = new Label("Valid options:"), CENTER, TOP + gap/2);
+		adv.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+
+		add(adv, LEFT + gap, AFTER + gap, FILL - gap, (int) (Settings.screenHeight * 0.22), options);
+		Label titleAdv, valid1, valid2, valid3;
+
+		adv.add(titleAdv = new Label("Valid options:"), CENTER, TOP + gap / 2);
 		titleAdv.setFont(Font.getFont(true, 14));
-		adv.add(valid1 = new Label("AES / CBC / PKCS#5"), LEFT + gap, AFTER + gap/2);
+		adv.add(valid1 = new Label("AES / CBC / PKCS#5"), LEFT + gap, AFTER + gap / 2);
 		valid1.setFont(Font.getFont(14));
-		adv.add(valid2 = new Label("AES / ECB / PKCS#5"), LEFT + gap, AFTER + gap/2);
+		adv.add(valid2 = new Label("AES / ECB / PKCS#5"), LEFT + gap, AFTER + gap / 2);
 		valid2.setFont(Font.getFont(14));
-		adv.add(valid3 = new Label("RSA / ECB / PKCS#1"), LEFT + gap, AFTER + gap/2);
+		adv.add(valid3 = new Label("RSA / ECB / PKCS#1"), LEFT + gap, AFTER + gap / 2);
 		valid3.setFont(Font.getFont(14));
 	}
 
@@ -156,6 +155,7 @@ public class CipherSample extends ScrollContainer {
 				String message = edtInput.getText();
 				Cipher cipher = (Cipher) ciphers[index];
 				ScrollContainer sc = new ScrollContainer(true, false);
+				sc.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 				try {
 					validComb = true;
 					sc.add(new Label("Message: '" + message + "'"), LEFT + gap, TOP, PREFERRED, PREFERRED);
@@ -164,36 +164,38 @@ public class CipherSample extends ScrollContainer {
 					cipher.reset(Cipher.OPERATION_ENCRYPT, encKeys[index], chaining, iv, padding);
 					iv = cipher.getIV(); // store the generated iv
 					if (iv != null) {
-						sc.add(new Label("Generated iv: " + Convert.bytesToHexString(iv)), LEFT + gap, AFTER, PREFERRED, PREFERRED);
+						sc.add(new Label("Generated iv: " + Convert.bytesToHexString(iv)), LEFT + gap, AFTER, PREFERRED,
+								PREFERRED);
 					}
 
 					cipher.update(message.getBytes());
 					byte[] encrypted = cipher.getOutput();
-					
-					sc.add(new Label("Encrypted: " + Convert.bytesToHexString(encrypted) + " ("
-							+ encrypted.length + " bytes)"), LEFT + gap, AFTER, PREFERRED, PREFERRED);
+
+					sc.add(new Label(
+							"Encrypted: " + Convert.bytesToHexString(encrypted) + " (" + encrypted.length + " bytes)"),
+							LEFT + gap, AFTER, PREFERRED, PREFERRED);
 
 					cipher.reset(Cipher.OPERATION_DECRYPT, decKeys[index], chaining, iv, padding);
 					cipher.update(encrypted);
 					byte[] decrypted = cipher.getOutput();
-					
-					sc.add(new Label("Decrypted: '" + new String(decrypted) + "'"), LEFT + gap, AFTER, PREFERRED, PREFERRED);
+
+					sc.add(new Label("Decrypted: '" + new String(decrypted) + "'"), LEFT + gap, AFTER, PREFERRED,
+							PREFERRED);
 				} catch (CryptoException ex) {
 					validComb = false;
-					sc.add(new Label("Invalid combination, please try the valid ones"), LEFT, AFTER, PREFERRED, PREFERRED);
+					sc.add(new Label("Invalid combination, please try the valid ones"), LEFT, AFTER, PREFERRED,
+							PREFERRED);
 					ex.printStackTrace();
 				}
-				if(validComb) {		
-					add(sc, CENTER, AFTER + gap, SCREENSIZE + 80, (int)(Settings.screenHeight * 0.2));
-				}else {
+				if (validComb) {
+					add(sc, CENTER, AFTER + gap, SCREENSIZE + 80, (int) (Settings.screenHeight * 0.2));
+				} else {
 					Label adv = new Label("Invalid combination");
-					adv.setBackColor(Colors.RED);
-					adv.setForeColor(Color.WHITE);
+					adv.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
 					adv.setFont(Font.getFont(true, 12));
 					adv.align = CENTER;
-					add(adv, CENTER, AFTER + gap, PREFERRED + gap*2, PREFERRED + gap*2);
+					add(adv, CENTER, AFTER + gap, PREFERRED + gap * 2, PREFERRED + gap * 2);
 				}
-					
 			}
 			break;
 		}

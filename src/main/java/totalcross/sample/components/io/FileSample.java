@@ -16,7 +16,6 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.Spacer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.font.Font;
-import totalcross.ui.gfx.Color;
 import totalcross.util.Date;
 import totalcross.util.InvalidDateException;
 import totalcross.util.Vector;
@@ -80,10 +79,10 @@ public class FileSample extends ScrollContainer implements Runnable {
 		
 		if(success) {
 			Container box = new Container();
-			box.setBackColor(Colors.GRAY);
+			box.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 			add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			Label title = new Label("List of All Files Found", CENTER);
-			title.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			title.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 			title.setFont(font.asBold());
 			box.add(title, LEFT, TOP, FILL, 50 + DP);
 			
@@ -328,13 +327,14 @@ public class FileSample extends ScrollContainer implements Runnable {
 	}
 	
 	public void addStatusBox(boolean successful, Label title, ListBox lb) {
+		lb.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 		Container box = new Container();
-		box.setBackColor(Colors.GRAY);
+		box.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 		
 		add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 
 		title.setFont(font.asBold());
-		title.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		title.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 		
 		box.add(title, LEFT, TOP, FILL, 50 + DP);
 
@@ -343,7 +343,7 @@ public class FileSample extends ScrollContainer implements Runnable {
 		Label status = new Label("SUCESS", CENTER);
 		status.setFont(Font.getFont(true, 20));
 		status.transparentBackground = true;
-		status.setForeColor(Color.getRGB("16963c"));
+		status.setForeColor(Colors.SUCESS_GREEN);
 		if(!successful) {
 			status.setForeColor(Colors.RED);
 			status.setText("FAIL");

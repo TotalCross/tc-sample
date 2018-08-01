@@ -2,6 +2,7 @@ package totalcross.sample.components.lang.thread;
 
 import totalcross.io.IOException;
 import totalcross.net.Socket;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Vm;
 import totalcross.ui.Container;
 import totalcross.ui.Label;
@@ -14,14 +15,14 @@ public class HTTPContainer extends Container implements Runnable, ThreadSample.S
 
   @Override
   public void initUI() {
-    setBackColor(Color.brighter(Color.CYAN));
+    setBackForeColors(Colors.S_500, Colors.ON_S_500);
     setBorderStyle(BORDER_RAISED);
 
     add(label = new Label(), LEFT, TOP, FILL, PREFERRED);
     add(me = new MultiEdit(0, 0), LEFT, AFTER, FILL, FILL);
     me.setEditable(false);
     MultiEdit.hasCursorWhenNotEditable = false;
-    me.setBackColor(Color.CYAN);
+    me.setBackForeColors(Colors.S_500, Colors.ON_S_500);
 
     Thread t = new Thread(this);
     t.setPriority(3); // priority must be set BEFORE the thread is started! - palm os never puts working threads with priority 1 if there's another one with priority 5

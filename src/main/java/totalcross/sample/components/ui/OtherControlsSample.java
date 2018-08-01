@@ -60,19 +60,19 @@ public class OtherControlsSample extends ScrollContainer {
       lStatus.setHighlighted(true);
       
       add(timeBoxC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-      timeBoxC.setBackColor(Colors.GRAY);
+      timeBoxC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
       timeBoxC.add(new Label("TimeBox"), CENTER, AFTER + gap);
       addClock();
       timeBoxC.add(new Spacer(), CENTER, AFTER + gap);
       timeBoxC.resizeHeight();
       
       add(inputBoxC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-      inputBoxC.setBackColor(Colors.GRAY);
+      inputBoxC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
       
       final Button btnInput;
       inputBoxC.add(new Label("InputBox"), CENTER, AFTER + gap);
       inputBoxC.add(btnInput = new Button("Click to input your name"), CENTER, AFTER, PREFERRED + fmH * 6, PREFERRED + fmH * 4);
-      btnInput.setBackForeColors(Colors.P_DARK, Color.WHITE);
+      btnInput.setBackForeColors(Colors.P_600, Colors.ON_P_600);
       inputBoxC.add(new Spacer(), CENTER, AFTER + gap);
       inputBoxC.resizeHeight();
       btnInput.addPressListener(new PressListener() {
@@ -88,12 +88,12 @@ public class OtherControlsSample extends ScrollContainer {
       });
 
       add(colorChooserC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-      colorChooserC.setBackColor(Colors.GRAY);
+      colorChooserC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
       
       final Button btnChooseColor;
       colorChooserC.add(new Label("ColorChooserBox"), CENTER, AFTER + gap);
       colorChooserC.add(btnChooseColor = new Button("Choose new background color"), CENTER, AFTER, PREFERRED + fmH * 6, PREFERRED + fmH * 4);
-      btnChooseColor.setBackForeColors(Colors.P_DARK, Color.WHITE);
+      btnChooseColor.setBackForeColors(Colors.P_600, Colors.ON_P_600);
       colorChooserC.add(new Spacer(), CENTER, AFTER + gap);
       colorChooserC.resizeHeight();
       btnChooseColor.addPressListener(new PressListener() {
@@ -113,7 +113,7 @@ public class OtherControlsSample extends ScrollContainer {
       });
      
       add(spinListC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-      spinListC.setBackColor(Colors.GRAY);
+      spinListC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
       
       spinListC.add(new Label("SpinList"), CENTER, AFTER + gap);
       SpinList sl;
@@ -124,7 +124,7 @@ public class OtherControlsSample extends ScrollContainer {
       spinListC.resizeHeight();
       
       add(scrollbarC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-      scrollbarC.setBackColor(Colors.GRAY);
+      scrollbarC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
       
       scrollbarC.add(new Label("Horizontal ScrollBar"), CENTER, AFTER + gap);
       scrollbarC.add(sb2 = new ScrollBar(ScrollBar.HORIZONTAL), CENTER, AFTER, SCREENSIZE + 90, PREFERRED);
@@ -134,7 +134,7 @@ public class OtherControlsSample extends ScrollContainer {
       scrollbarC.resizeHeight();
       
       add(rulerC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-      rulerC.setBackColor(Colors.GRAY);
+      rulerC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
       
       rulerC.add(new Label("Ruler"), CENTER, AFTER + gap);
       rulerC.add(new Ruler(), LEFT, AFTER + gap);
@@ -142,7 +142,7 @@ public class OtherControlsSample extends ScrollContainer {
       rulerC.resizeHeight();
       
       add(fileChooserC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-      fileChooserC.setBackColor(Colors.GRAY);
+      fileChooserC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
       
       fileChooserC.add(new Label("FileChooser"), CENTER, AFTER + gap);
       addFileChooser();
@@ -177,9 +177,9 @@ public class OtherControlsSample extends ScrollContainer {
     Spacer spcr = new Spacer();
     fileChooserC.add(spcr, CENTER, AFTER + gap, gap, gap);
     fileChooserC.add(btn = new Button("Choose file"), BEFORE, SAME, PREFERRED + fmH * 6, PREFERRED + fmH * 4, spcr);
-    btn.setBackForeColors(Colors.P_DARK, Color.WHITE);
+    btn.setBackForeColors(Colors.P_600, Colors.ON_P_600);
     fileChooserC.add(btn2 = new Button("Delete file"), AFTER, SAME, PREFERRED + fmH * 6, PREFERRED + fmH * 4, spcr);
-    btn2.setBackForeColors(Colors.P_DARK, Color.WHITE);
+    btn2.setBackForeColors(Colors.P_600, Colors.ON_P_600);
     btn2.setEnabled(false);
     btn.addPressListener(new PressListener() {
       @Override

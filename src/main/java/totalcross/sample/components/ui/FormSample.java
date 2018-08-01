@@ -60,28 +60,28 @@ public class FormSample extends ScrollContainer {
 		  nameEdit = new Edit();
 		  nameEdit.caption = "Name";
 		  nameEdit.focusColor = focusColor;
-		  nameEdit.setBackColor(Colors.P_DARK);
+		  nameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		  
 	      phoneEdit = new Edit("(99)99999-9999");
 	      phoneEdit.setValidChars(Edit.numbersSet);
 	      phoneEdit.caption = "Phone";
 	      phoneEdit.setMode(Edit.NORMAL,true);
-	      phoneEdit.setBackColor(Colors.P_DARK);
+	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 	      
 	      emailEdit = new Edit();
 		  emailEdit.caption = "Email";
 		  emailEdit.focusColor = focusColor;
-		  emailEdit.setBackColor(Colors.P_DARK);
+		  emailEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 	      
 	      passwordEdit = new Edit("");
 	      passwordEdit.caption = "Password";
 	      passwordEdit.setMode(Edit.PASSWORD); 
-	      passwordEdit.setBackColor(Colors.P_DARK);
+	      passwordEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 	      
 	      status.setFont(Font.getFont(true, 18));
 	      
 	      saveButton = new Button("Save");
-	      saveButton.setBackColor(Colors.P_DARK);
+	      saveButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 	      saveButton.setForeColor(Color.WHITE);
 
 	      add(nameEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
@@ -103,23 +103,20 @@ public class FormSample extends ScrollContainer {
 		        			++numUsers;
 		        			updateStatus();
 		        			MessageBox mb = new MessageBox("Message" , "User successfully saved.", new String[]{"Close"});
-				        	mb.setBackColor(Colors.BACKGROUND);
-				        	mb.setForeColor(Colors.FOREGROUND);
+				        	mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
 				        	mb.popup();
 		        			
 		        		} else {
 		        			
 		        			MessageBox mb = new MessageBox("Message" , "Error saving user.", new String[]{"Close"});
-				        	mb.setBackColor(Colors.BACKGROUND);
-				        	mb.setForeColor(Colors.FOREGROUND);
+		        			mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
 				        	mb.popup();
 		        			
 		        		}
 		        		
 		        	}else {
 		        		MessageBox mb = new MessageBox("Message" , "Complete all fields.", new String[]{"Close"});
-			        	mb.setBackColor(Colors.BACKGROUND);
-			        	mb.setForeColor(Colors.FOREGROUND);
+		        		mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
 			        	mb.popup();
 		        	}
 		        }

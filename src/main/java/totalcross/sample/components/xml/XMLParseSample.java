@@ -38,9 +38,13 @@ public class XMLParseSample extends ScrollContainer{
 
 		    grid = new Grid(gridCaptions, gridWidths, gridAligns, false);
 		    grid.verticalLineStyle = Grid.VERT_LINE;
-		    grid.secondStripeColor = Color.getRGB(245, 245, 245);
+			grid.setForeColor(Colors.ON_SURFACE);
+			grid.firstStripeColor = Colors.P_050;
+			grid.secondStripeColor = Colors.P_100;
+			grid.highlightColor = Colors.S_300;
+			
 		    readXmlButton = new Button("Read XML");
-		    readXmlButton.setBackColor(Colors.P_DARK);
+		    readXmlButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);;
 		    readXmlButton.setForeColor(Color.WHITE);
 		    status = new Label("", CENTER);
 		    status.setForeColor(Colors.RED);
@@ -95,14 +99,14 @@ public class XMLParseSample extends ScrollContainer{
 	            	
 	            	MessageBox mb = new MessageBox("Message" , "No registered users.", new String[]{"Close"});
 		        	mb.setBackColor(Colors.BACKGROUND);
-		        	mb.setForeColor(Colors.FOREGROUND);
+		        	mb.setForeColor(Colors.SURFACE);
 		        	mb.popup();
 	            }
 			} else {
             	
             	MessageBox mb = new MessageBox("Message" , "XML not found.", new String[]{"Close"});
 	        	mb.setBackColor(Colors.BACKGROUND);
-	        	mb.setForeColor(Colors.FOREGROUND);
+	        	mb.setForeColor(Colors.SURFACE);
 	        	mb.popup();
             }
 			

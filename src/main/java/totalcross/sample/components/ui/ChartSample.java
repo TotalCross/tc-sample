@@ -17,6 +17,7 @@ import totalcross.ui.chart.Series;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.gfx.Color;
+import totalcross.util.IntHashtable;
 
 public class ChartSample extends ScrollContainer {
 	private Container options;
@@ -37,7 +38,7 @@ public class ChartSample extends ScrollContainer {
 		super.initUI();
 
 		options = new Container();
-		options.setBackForeColors(Colors.GRAY, Colors.P_DARK);
+		options.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 		options.setFont(font.asBold());
 
 		add(options, LEFT + gap, TOP + gap, FILL - gap, 125 + DP);
@@ -80,11 +81,11 @@ public class ChartSample extends ScrollContainer {
 
 		options.add(showTitle, LEFT + gap, TOP + gap);
 
-		options.add(hasLegend, AFTER + gap * 2, SAME);
+		options.add(hasLegend, AFTER, SAME);
 		options.add(legendPosition, AFTER + gap, SAME);
 
 		options.add(hasShade, SAME, AFTER + gap, showTitle);
-		options.add(shadeDirection, AFTER + gap * 2, SAME, hasLegend.getWidth(), PREFERRED);
+		options.add(shadeDirection, AFTER, SAME, hasLegend.getWidth(), PREFERRED);
 		options.add(shadeType, AFTER + gap, SAME, legendPosition.getWidth(), PREFERRED);
 		showTitle.setText("Title");
 
@@ -95,10 +96,10 @@ public class ChartSample extends ScrollContainer {
 		options.add(hor, AFTER + gap, SAME - gap * 2, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
 		options.add(ver, SAME, AFTER, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
 
-		options.add(h3DSlider = new Slider(), AFTER + gap, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
+		options.add(h3DSlider = new Slider(), AFTER, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
 				FONTSIZE, hor);
 
-		options.add(v3DSlider = new Slider(), AFTER + gap, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
+		options.add(v3DSlider = new Slider(), AFTER, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
 				FONTSIZE, ver);
 
 		options.add(showCategories, AFTER + gap, SAME, legendPosition);
@@ -115,7 +116,7 @@ public class ChartSample extends ScrollContainer {
 		h3DSlider.setValue(column.perspectiveH);
 		h3DSlider.setLiveScrolling(true);
 		v3DSlider.setLiveScrolling(true);
-
+		
 		int bg = Color.darker(backColor, 16);
 		tp = new TabbedContainer(new String[] { " Column ", " Line ", " Pie ", " Arc " });
 		tp.extraTabHeight = fmH / 2;

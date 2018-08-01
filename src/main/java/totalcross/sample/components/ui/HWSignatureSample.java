@@ -30,11 +30,11 @@ public class HWSignatureSample extends Container {
 		fileName = Settings.platform.equals(Settings.ANDROID) ? "/sdcard/handwrite.png" : "device/handwrite.png";
 
 		save = new Button("Save");
-		save.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		save.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		clear = new Button("Clear");
-		clear.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		clear.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		load = new Button("Load");
-		load.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		load.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		paint = new Whiteboard();
 
 		// center the save/load/clear buttons on screen

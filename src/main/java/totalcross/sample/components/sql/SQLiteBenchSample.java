@@ -25,6 +25,7 @@ import totalcross.sys.Convert;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.Container;
+import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ProgressBar;
 import totalcross.ui.ScrollContainer;
@@ -375,7 +376,7 @@ public class SQLiteBenchSample extends Container {
 		addLabel("Finished: " + time + "ms");
 		return time;
 	}
-
+	
 	/**
 	 * Initializes the user interface.
 	 */
@@ -408,7 +409,7 @@ public class SQLiteBenchSample extends Container {
 			pbTotal.setValue(3);
 			int timeInsertsUsingBatch = insertWithBatch();
 			driver.commit();
-
+			
 			// inserts with synchronous mode OFF (removing the support to concurrent access)
 			{
 				// pragma commands cannot be made inside a transaction

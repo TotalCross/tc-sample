@@ -22,27 +22,33 @@ public class ControlAnimationSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
+		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		animHasEnded = true;
 		c = new Container();
+		c.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
+		
 		Button.commonGap = fmH / 2;
 		add(btnSwp = new Button("SWAP"), LEFT + gap, TOP + fmH / 4);
-		btnSwp.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		btnSwp.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		btnSwp.appId = 5;
 		add(btnSH = new Button("SHOW/HIDE"), CENTER, TOP + fmH / 4);
-		btnSH.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		btnSH.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		btnSH.appId = 6;
 		add(btnRot = new Button("ROTATE"), RIGHT - gap, TOP + fmH / 4);
-		btnRot.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		btnRot.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		btnRot.appId = 7;
-		c.setBackColor(0xEEEEEE);
 		add(c, LEFT + gap, AFTER + gap, FILL - gap, FILL - gap);
 		c.add(btnB = new Button("Bottom"), CENTER, BOTTOM);
+		btnB.setBackForeColors(Colors.S_400, Colors.ON_S_400);
 		btnB.appId = 4;
 		c.add(btnR = new Button("Right"), RIGHT, CENTER, SAME, SAME);
+		btnR.setBackForeColors(Colors.S_400, Colors.ON_S_400);
 		btnR.appId = 2;
 		c.add(btnL = new Button("Left"), LEFT, CENTER, SAME, SAME);
+		btnL.setBackForeColors(Colors.S_400, Colors.ON_S_400);
 		btnL.appId = 1;
 		c.add(btnT = new Button("Top"), CENTER, TOP, SAME, SAME);
+		btnT.setBackForeColors(Colors.S_400, Colors.ON_S_400);
 		btnT.appId = 3;
 		Button.commonGap = 0;
 
@@ -127,8 +133,7 @@ public class ControlAnimationSample extends Container {
 					(FadeAnimation.create(btnT, false, null, -1).then(FadeAnimation.create(c, true, null, -1))).start();
 					(FadeAnimation.create(btnR, false, null, -1).then(FadeAnimation.create(c, true, null, -1))).start();
 					(FadeAnimation.create(btnB, false, null, -1).then(FadeAnimation.create(c, true, null, -1))).start();
-					(FadeAnimation.create(btnL, false, null, -1).then(FadeAnimation.create(c, true, animFinished, -1)))
-							.start();
+					(FadeAnimation.create(btnL, false, null, -1).then(FadeAnimation.create(c, true, animFinished, -1))).start();
 				}
 				break;
 			case 7: {

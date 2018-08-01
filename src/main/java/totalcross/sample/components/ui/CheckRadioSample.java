@@ -22,7 +22,7 @@ public class CheckRadioSample extends ScrollContainer {
 	private Radio area1, area2, area3;
 
 	private final int H = 25;
-	private final int GAP = 50;
+	private int gap = 50;
 
 	@Override
 	public void initUI() {
@@ -32,97 +32,81 @@ public class CheckRadioSample extends ScrollContainer {
 			setScrollBars(false, true);
 
 			c1 = new Container();
-			c1.setBackColor(Colors.GRAY);
+			c1.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 			c1.setFont(font.asBold());
 
 			Label lbCheck = new Label("SELECT YOUR SUBJECTS", CENTER);
-			lbCheck.setBackColor(Colors.RED);
+			lbCheck.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 
 			subject1 = new Check("Biology");
-			subject1.checkColor = Colors.RED;
 			subject1.setChecked(true);
 
 			subject2 = new Check("Physics");
-			subject2.textColor = Colors.BLUE;
-			subject2.checkColor = uiMaterial ? Color.BLUE : Color.YELLOW;
 
 			subject3 = new Check("Chemistry");
-			subject3.setForeColor(Color.darker(Colors.GREEN));
-			subject3.checkColor = Colors.GREEN;
 
 			subject4 = new Check("Math");
-			subject4.textColor = Color.darker(Colors.YELLOW, 5);
-			subject4.checkColor = Colors.YELLOW;
 			subject4.setChecked(true);
 
 			subject5 = new Check("History");
-			subject5.textColor = Color.DARK;
-			subject5.checkColor = uiMaterial ? Color.DARK : Color.ORANGE;
 
 			subject6 = new Check("Geography");
-			subject6.textColor = Colors.PURPLE;
-			subject6.checkColor = Colors.PURPLE;
 
 			cancelButtonC1 = new Button("CANCEL", (byte) 0);
 			cancelButtonC1.transparentBackground = true;
-			cancelButtonC1.setBackForeColors(Color.WHITE, Colors.P_DARK);
+			cancelButtonC1.setBackForeColors(Colors.BACKGROUND, Colors.S_600);
 
 			confirmButtonC1 = new Button("CONFIRM");
-			confirmButtonC1.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			confirmButtonC1.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 
-			add(c1, LEFT + GAP, TOP + GAP, FILL - GAP, WILL_RESIZE);
-			int w = c1.getWidth() / 2 - GAP;
+			add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
+			int w = c1.getWidth() / 2 - gap;
 			c1.add(lbCheck, LEFT, TOP, FILL, PREFERRED + fmH * 8);
-			c1.add(subject1, LEFT + GAP, AFTER + GAP, w, PREFERRED + H);
-			c1.add(subject2, LEFT + GAP, AFTER + GAP * 2, w, PREFERRED + H);
-			c1.add(subject3, LEFT + GAP, AFTER + GAP * 2, w, PREFERRED + H);
-			c1.add(subject4, RIGHT - GAP, SAME, w, PREFERRED + H, subject1);
-			c1.add(subject5, RIGHT - GAP, SAME, w, PREFERRED + H, subject2);
-			c1.add(subject6, RIGHT - GAP, SAME, w, PREFERRED + H, subject3);
-			c1.add(confirmButtonC1, RIGHT - GAP, AFTER + GAP * 2, w, PREFERRED + fmH * 6);
-			c1.add(cancelButtonC1, LEFT + GAP, AFTER + GAP * 2 + (confirmButtonC1.getHeight() / 2), PREFERRED + fmH * 7,
+			c1.add(subject1, LEFT + gap, AFTER + gap, w, PREFERRED + H);
+			c1.add(subject2, LEFT + gap, AFTER + gap * 2, w, PREFERRED + H);
+			c1.add(subject3, LEFT + gap, AFTER + gap * 2, w, PREFERRED + H);
+			c1.add(subject4, RIGHT - gap, SAME, w, PREFERRED + H, subject1);
+			c1.add(subject5, RIGHT - gap, SAME, w, PREFERRED + H, subject2);
+			c1.add(subject6, RIGHT - gap, SAME, w, PREFERRED + H, subject3);
+			c1.add(confirmButtonC1, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
+			c1.add(cancelButtonC1, LEFT + gap, AFTER + gap * 2 + (confirmButtonC1.getHeight() / 2), PREFERRED + fmH * 7,
 					PREFERRED + fmH * 5, subject6);
-			c1.add(new Spacer(), CENTER, AFTER, 10, GAP / 2, confirmButtonC1);
+			c1.add(new Spacer(), CENTER, AFTER, 10, gap / 2, confirmButtonC1);
 			c1.resizeHeight();
 
 			c2 = new Container();
-			c2.setBackColor(Colors.GRAY);
+			c2.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 			c2.setFont(font.asBold());
 
 			RadioGroupController radioGroup = new RadioGroupController();
 			Label lbRadio = new Label("CHOOSE YOUR AREA OF SCIENCE", CENTER);
-			lbRadio.setBackColor(Colors.RED);
+			lbRadio.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 
 			area1 = new Radio("STEM", radioGroup);
-			area1.checkColor = Color.DARK;
 
 			area2 = new Radio("Human Sciences", radioGroup);
-			area2.textColor = Colors.RED;
-			area2.checkColor = uiMaterial ? Color.RED : Color.YELLOW;
 
 			area3 = new Radio("Health Care", radioGroup);
-			area3.setForeColor(Color.darker(Colors.ORANGE));
-			area3.checkColor = Colors.ORANGE;
 
 			cancelButtonC2 = new Button("CANCEL", (byte) 0);
 			cancelButtonC2.transparentBackground = true;
-			cancelButtonC2.setBackForeColors(Color.WHITE, Colors.P_DARK);
+			cancelButtonC2.setBackForeColors(Colors.BACKGROUND, Colors.S_600);
 
 			confirmButtonC2 = new Button("CONFIRM");
-			confirmButtonC2.setBackForeColors(Colors.P_DARK, Color.WHITE);
+			confirmButtonC2.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 
-			add(c2, LEFT + GAP, AFTER + GAP, FILL - GAP, WILL_RESIZE);
+			add(c2, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			c2.add(lbRadio, LEFT, TOP, FILL, PREFERRED + fmH * 8);
-			c2.add(area1, LEFT + GAP * 3, AFTER + GAP, PREFERRED + GAP, PREFERRED + H);
-			c2.add(area2, LEFT + GAP * 3, AFTER + GAP, PREFERRED + GAP, PREFERRED + H);
-			c2.add(area3, LEFT + GAP * 3, AFTER + GAP, PREFERRED + GAP, PREFERRED + H);
-			c2.add(confirmButtonC2, RIGHT - GAP, AFTER + GAP * 2, w, PREFERRED + fmH * 6);
-			c2.add(cancelButtonC2, LEFT + GAP, AFTER + GAP * 2 + (confirmButtonC2.getHeight() / 2), PREFERRED + fmH * 7,
+			c2.add(area1, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
+			c2.add(area2, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
+			c2.add(area3, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
+			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
+			c2.add(cancelButtonC2, LEFT + gap, AFTER + gap * 2 + (confirmButtonC2.getHeight() / 2), PREFERRED + fmH * 7,
 					PREFERRED + fmH * 5, area3);
-			c2.add(new Spacer(), CENTER, AFTER, 10, GAP / 2, confirmButtonC2);
+			c2.add(new Spacer(), CENTER, AFTER, 10, gap / 2, confirmButtonC2);
 			c2.resizeHeight();
 
-			add(new Spacer(), CENTER, AFTER, 10, GAP / 2, c2);
+			add(new Spacer(), CENTER, AFTER, 10, gap / 2, c2);
 
 			cancelButtonC1.addPressListener(new PressListener() {
 				@Override

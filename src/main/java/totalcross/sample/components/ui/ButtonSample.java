@@ -28,31 +28,28 @@ public class ButtonSample extends ScrollContainer{
 		try {
 			setBackColor(Color.WHITE);
 			setScrollBars(false, true);
-
-		    add(new Label("All the following buttons are\nonly for demonstration purposes.", CENTER), CENTER, TOP + gap);
+			Label adv = new Label("All the following buttons are only for demonstration purposes.", CENTER);
+			adv.autoSplit = true;
+		    add(adv, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
 			
 			simpleButton = new Button("Simple button");
-			simpleButton.setBackColor(Colors.P_DARK);
-			simpleButton.setForeColor(Color.WHITE);
-			
+			simpleButton.setBackForeColors(Colors.S_700, Colors.ON_S_700);
+			//Colors.S_700, Colors.ON_S_700
+			//Colors.P_800, Colors.ON_P_800
 			multiLineButton = new Button("This is a multi-line button, you\ncan add as much lines as ou want,\nas long as it's within the screen\nrange.");
-			multiLineButton.setBackColor(Colors.GREEN);
-			multiLineButton.setForeColor(Color.WHITE);
+			multiLineButton.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 			
 			Image img = new Image("images/logoV.png").hwScaledFixedAspectRatio(fmH*2, true);			
 		    
 		    imageButton = new Button("Text button with an image", img, RIGHT, 10);
-		    imageButton.setBackColor(Colors.RED);
-		    imageButton.setForeColor(Color.WHITE);
+		    imageButton.setBackForeColors(Colors.S_700, Colors.ON_S_700);
 		    
 		    simpleMultiButton = new MultiButton(new String[]{"Option One","Option Two"});
-		    simpleMultiButton.setBackColor(Colors.ORANGE);
-		    simpleMultiButton.setForeColor(Color.WHITE);
-		    
+		    simpleMultiButton.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 
 		    multiButton = new MultiButton(new String[]{"Left","Center","Right"});
-		    multiButton.setBackColor(Colors.PURPLE);
-		    multiButton.setForeColor(Color.WHITE);
+		    multiButton.setBackForeColors(Colors.S_700, Colors.ON_S_700);
+
 		    multiButton.isSticky = multiButton.is3dText = true;
 		    
 		    Image image = new Image("images/find.png").smoothScaledBy((double)480/2048, (double)480/2048); // Searching and scaling the image.

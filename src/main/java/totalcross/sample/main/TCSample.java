@@ -90,7 +90,7 @@ public class TCSample extends MainWindow {
     setUIStyle(Settings.Material);
     Settings.uiAdjustmentsBasedOnFontHeight = true;
 
-    setBackForeColors(Colors.BACKGROUND, Colors.FOREGROUND);
+    setBackForeColors(Colors.BACKGROUND, Colors.SURFACE);
   }
 
   @Override
@@ -134,7 +134,7 @@ public class TCSample extends MainWindow {
           public void initUI() {
 
             try {
-              setBackColor(Colors.REDDESIGN);
+              setBackColor(Colors.SECONDARY);
 
               Label title = new Label("Showcase", LEFT, Color.WHITE, false);
               title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
@@ -147,7 +147,6 @@ public class TCSample extends MainWindow {
               add(profile, LEFT + 45, TOP + 150, PREFERRED, FIT);
 
             } catch (IOException | ImageException e) {
-              // TODO Auto-generated catch block
               e.printStackTrace();
             }
           }
@@ -225,7 +224,8 @@ public class TCSample extends MainWindow {
 	}
 	
 	private Sub createJSONSubGroup() {
-		return new SideMenuContainer.Sub("JSON", new SideMenuContainer.Item("JSON", MaterialIcons._HTTP, Color.BLACK, false, () -> { return new JSONSample();}));
+		return new SideMenuContainer.Sub("JSON", 
+				new SideMenuContainer.Item("JSON", MaterialIcons._HTTP, Color.BLACK, () -> { return new JSONSample();}));
 	}
 
 	private Sub createLangSubGroup() {

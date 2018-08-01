@@ -35,7 +35,7 @@ public class ProgressBoxSample extends Container {
       count = 2;
       
       for (int i = 0; i < items.length; i++)
-    	  menu.getButton(i).setBackForeColors(Colors.P_DARK, Color.WHITE);
+    	  menu.getButton(i).setBackForeColors(Colors.P_600, Colors.ON_P_600);
       
       
       menu.addPressListener((e) -> {
@@ -43,7 +43,7 @@ public class ProgressBoxSample extends Container {
           Spinner.spinnerType = sel == 0 ? Spinner.ANDROID : Spinner.IPHONE;
           
           pb = new ProgressBox("Alert!", "Please wait\n" + count + "seconds", null);
-          pb.setBackColor(Color.getRGB(12, 98, 200));
+          pb.setBackForeColors(Colors.P_700, Colors.ON_P_700);
           menu.addTimer(1000);
           pb.popup();
       });

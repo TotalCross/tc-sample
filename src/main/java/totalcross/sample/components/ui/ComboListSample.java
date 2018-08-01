@@ -91,7 +91,7 @@ public class ComboListSample extends Container {
 		    multiColorListBox.setOrderIsImportant(true);
 		    IntHashtable colorsTable = new IntHashtable(1);
 		    colorsTable.put(0,Colors.RED);
-		    colorsTable.put(1,Colors.GREEN);
+		    colorsTable.put(1,Colors.SUCESS_GREEN);
 		    colorsTable.put(2,Colors.BLUE);
 		    colorsTable.put(3,Colors.ORANGE);
 		    colorsTable.put(4,Colors.PURPLE);

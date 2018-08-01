@@ -48,13 +48,13 @@ public class DigestSample extends ScrollContainer {
 	public void initUI() {
 		super.initUI();
 		menu = new Container();
-		menu.setBackColor(Colors.GRAY);
+		menu.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 		edtInput = new Edit();
 		edtInput.setText("0123456789ABCDEF");
 		cboDigests = new ComboBox(comboItems);
 		cboDigests.setSelectedIndex(0);
 		btnGo = new Button(" Go! ");
-		btnGo.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 		
 		add(menu, LEFT + gap, TOP + gap, FILL - gap, (int)(Settings.screenHeight * 0.15));
 		menu.add(new Label("Message:"), LEFT + gap, TOP + gap/2);
@@ -71,7 +71,7 @@ public class DigestSample extends ScrollContainer {
 			byte[] digest = alg.getDigest();
 			
 			ScrollContainer sc = new ScrollContainer();
-			sc.setBackColor(Color.darker(Colors.GRAY, 10));
+			sc.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 			add(sc, LEFT + gap*3, AFTER + gap, FILL - gap*3, (int)(Settings.screenHeight * 0.18));
 			Label title = new Label(alg.toString(), CENTER);
 			

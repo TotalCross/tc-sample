@@ -19,14 +19,12 @@ package totalcross.sample.components.ui;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
-import totalcross.ui.Check;
 import totalcross.ui.Container;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.TabbedContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
-import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
@@ -38,8 +36,8 @@ public class TabbedContainerSample extends ScrollContainer {
       int gap = 50;
       
       Button btnEnable = new Button("Enable all tabs");
-      btnEnable.setForeColor(Color.WHITE);
-      btnEnable.setBackColor(Colors.P_DARK);
+      btnEnable.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+
       add(btnEnable, CENTER, TOP + gap, SCREENSIZE+95, PREFERRED + gap*2);
 
       String[] caps = { "Facebook", "Google+", "Instagram" };
@@ -62,10 +60,8 @@ public class TabbedContainerSample extends ScrollContainer {
       tc.extraTabHeight = fmH * 2;
       c1.add(tc, LEFT, TOP, FILL, (int)(Settings.screenHeight * 0.3));
       Button btnDisable1 = new Button("Disable selected tab");
-      btnDisable1.setForeColor(Color.WHITE);
-      btnDisable1.setBackColor(Colors.RED);
+      btnDisable1.setBackForeColors(Colors.S_600, Colors.ON_S_600);
       c1.add(btnDisable1, CENTER, AFTER + gap, PREFERRED + gap, (int)(Settings.screenHeight * 0.08), tc);
-      
       
       Container c2 = new Container();
       c2.setInsets(15, 15, 0, 0);
@@ -82,8 +78,7 @@ public class TabbedContainerSample extends ScrollContainer {
       tc2.extraTabHeight = fmH / 2;
       c2.add(tc2, LEFT, TOP, FILL, (int)(Settings.screenHeight * 0.3));
       Button btnDisable2 = new Button("Disable selected tab");
-      btnDisable2.setForeColor(Color.WHITE);
-      btnDisable2.setBackColor(Colors.RED);
+      btnDisable2.setBackForeColors(Colors.S_600, Colors.ON_S_600);
       c2.add(btnDisable2, CENTER, AFTER, PREFERRED + gap, (int)(Settings.screenHeight * 0.08), tc2);
       
       
@@ -113,8 +108,7 @@ public class TabbedContainerSample extends ScrollContainer {
       tc3.transparentBackground = true;
       c3.add(tc3, LEFT, TOP, FILL, (int)(Settings.screenHeight * 0.3));
       Button btnDisable3 = new Button("Disable selected tab");
-      btnDisable3.setForeColor(Color.WHITE);
-      btnDisable3.setBackColor(Colors.RED);
+      btnDisable3.setBackForeColors(Colors.S_600, Colors.ON_S_600);
       c3.add(btnDisable3, CENTER, AFTER, PREFERRED + gap, (int)(Settings.screenHeight * 0.08), tc3);
       
       btnEnable.addPressListener(new PressListener() {
