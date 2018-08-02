@@ -18,18 +18,14 @@ import totalcross.util.Properties;
 import totalcross.util.Properties.Value;
  
 public class ConfigurationContainer extends Window {
-  Edit edLogin;
-  Edit edPassword;
-  Edit edPopHost;
-  Edit edPopPort;
-  Edit edSmtpHost;
-  Edit edSmtpPort;
+  private Edit edLogin;
+  private Edit edPassword, edPopHost, edPopPort, edSmtpHost, edSmtpPort;
  
-  Button btOk;
+  private Button btOk;
  
-  MailSession mp = MailSession.getDefaultInstance();
-  String filePath = Settings.appPath + "/" + "MailTestConfig.dat";
-  boolean loaded;
+  private MailSession mp = MailSession.getDefaultInstance();
+  private String filePath = Settings.appPath + "/" + "MailTestConfig.dat";
+  private boolean loaded;
  
   public ConfigurationContainer() {
     super("Configuration", ROUND_BORDER);

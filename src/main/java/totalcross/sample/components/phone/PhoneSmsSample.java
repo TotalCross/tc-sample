@@ -13,6 +13,7 @@ package totalcross.sample.components.phone;
 
 import totalcross.io.IOException;
 import totalcross.phone.SMS;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
@@ -26,14 +27,14 @@ import totalcross.ui.event.Event;
 /** Sample program that shows how to send and receive SMS messages. */
 
 public class PhoneSmsSample extends Container {
-  Edit edNumber;
-  MultiEdit edMsg;
-  Button btSend;
-  Button btReceive;
+  private Edit edNumber;
+  private MultiEdit edMsg;
+  private Button btSend, btReceive;
 
   @Override
   public void initUI() {
     super.initUI();
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     if (!Settings.platform.equals(Settings.WINDOWSPHONE) && !Settings.onJavaSE) {
       add(new Label("This sample works only on Windows Phone"), CENTER, CENTER);
       return;

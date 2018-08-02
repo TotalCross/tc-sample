@@ -82,6 +82,7 @@ public class TestHandler
 
 package totalcross.sample.components.xml;
 
+import totalcross.sample.util.Colors;
 import totalcross.ui.Button;
 import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
@@ -109,6 +110,7 @@ public class SoapSample extends Container {
   @Override
   public void initUI() {
     super.initUI();
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     add(new Label("URI:"), LEFT + 2, TOP + 4);
     add(edRemote = new Edit(""), AFTER + 2, SAME - 2);
     edRemote.setText("http://www.superwaba.net/SoapSampleWS/services/TestHandler");

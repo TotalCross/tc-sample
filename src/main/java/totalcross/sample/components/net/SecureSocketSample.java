@@ -25,6 +25,7 @@ import totalcross.net.ssl.SSL;
 import totalcross.net.ssl.SSLClient;
 import totalcross.net.ssl.SSLReadHolder;
 import totalcross.net.ssl.SSLUtil;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.InvalidNumberException;
 import totalcross.sys.Vm;
@@ -57,9 +58,11 @@ public class SecureSocketSample extends Container {
   @Override
   public void initUI() {
     super.initUI();
-    new MessageBox("Attention",
-        "The SSL cerfiticate used by this sample is no longer valid, but you can see the sources and use with a valid certificate you may have.")
-            .popup();
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+    MessageBox mb = new MessageBox("Attention",
+        "The SSL cerfiticate used by this sample is no longer valid, but you can see the sources and use with a valid certificate you may have.");
+    mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+    mb.popup();
     add(new Label("Address: "), LEFT + 2, TOP + 1);
     add(edA = new Edit(""), AFTER + 3, SAME);
     edA.setText("https://webmail.grad.inf.puc-rio.br");

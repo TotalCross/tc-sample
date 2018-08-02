@@ -19,6 +19,7 @@ package totalcross.sample.components.net;
 import totalcross.net.ConnectionManager;
 import totalcross.net.ServerSocket;
 import totalcross.net.Socket;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.InvalidNumberException;
 import totalcross.ui.Button;
@@ -41,6 +42,7 @@ public class ServerSocketSample extends Container implements Runnable {
   @Override
   public void initUI() {
     super.initUI();
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     String ip;
     try {
       ip = ConnectionManager.getLocalHost();

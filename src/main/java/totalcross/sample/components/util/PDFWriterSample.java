@@ -3,6 +3,7 @@ package totalcross.sample.components.util;
 import totalcross.io.File;
 import totalcross.io.IOException;
 import totalcross.res.Resources;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
@@ -21,6 +22,7 @@ public class PDFWriterSample extends Container {
   @Override
   public void initUI() {
     super.initUI();
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     try {
       PDFWriter mPDFWriter = new PDFWriter(PaperSize.FOLIO_WIDTH, PaperSize.FOLIO_HEIGHT);
 

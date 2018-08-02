@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.io.File;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
@@ -17,7 +18,6 @@ import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.event.PenEvent;
-import totalcross.ui.gfx.Color;
 import totalcross.ui.image.BulkImageLoader;
 import totalcross.ui.image.Image;
 
@@ -71,7 +71,7 @@ public class ImageBookSample extends Container {
 		public ImgCell(int idx, boolean highQuality) {
 			this.idx = idx;
 			this.highQuality = highQuality;
-			setBackColor(Color.WHITE);
+			setBackForeColors(Colors.P_100, Colors.ON_P_100);
 			setBorderStyle(BORDER_SIMPLE); // uncomment to remove border
 		}
 
@@ -164,9 +164,14 @@ public class ImageBookSample extends Container {
 			options = new Container();
 			add(options, LEFT, TOP, FILL, fmH*2);
 			rg = new RadioGroupController();
-			options.add(new Label("Orientation: "), LEFT + gap, CENTER);
-			options.add(new Radio("Horizontal", rg), AFTER + gap, SAME);
-			options.add(new Radio("Vertical", rg), AFTER + gap, SAME);
+			options.add(new Label("Orientation: ", LEFT, Colors.ON_BACKGROUND, false), LEFT + gap, CENTER);
+			Radio hor, ver;
+			options.add(hor = new Radio("Horizontal", rg), AFTER + gap, SAME);
+			options.add(ver = new Radio("Vertical", rg), AFTER + gap, SAME);
+			hor.setForeColor(Colors.P_600);
+			ver.setForeColor(Colors.P_600);
+			options.transparentBackground = true;
+			options.setForeColor(Colors.ON_BACKGROUND);
 			rg.setSelectedIndex(isVert ? 1 : 0);
 
 			// folder that contains the images. can be "/sdcard", for example
@@ -188,7 +193,7 @@ public class ImageBookSample extends Container {
 			imgload = new BulkImageLoader(CACHE_PAGES, GRID_LINES * GRID_COLS, imageFolder, imageNames);
 			imgload.start();
 
-			setBackColor(Color.WHITE);
+			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 
 			addBook();
 		} catch (Exception ee) {
@@ -203,7 +208,7 @@ public class ImageBookSample extends Container {
 		// defines the orientation: VERTICAL_ORIENTATION ou HORIZONTAL_ORIENTATION
 		int dir = isVert ? GridContainer.VERTICAL_ORIENTATION : GridContainer.HORIZONTAL_ORIENTATION;
 		add(gc = new GridContainer(dir), LEFT, AFTER, FILL, FILL, options);
-		gc.setBackColor(Color.WHITE);
+		gc.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		Flick f = gc.getFlick();
 		f.shortestFlick = 1000; // increases because the image's load time affects the flick
 		f.longestFlick = TOTAL_ITEMS > 500 ? 6000 : 2500;

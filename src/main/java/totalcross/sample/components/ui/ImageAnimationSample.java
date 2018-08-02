@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.game.Animation;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.ComboBox;
@@ -18,20 +19,22 @@ public class ImageAnimationSample extends Container {
 	private Animation anim;
 	private ComboBox cbEffect;
 	private int effect;
-	private Label effectLabel;
+
 	@Override
 	public void initUI() {
 		super.initUI();
 		add(btnStartStop = new Button(" Start/Stop "), CENTER, TOP + Settings.screenHeight/10, SCREENSIZE+50, SCREENSIZE+10);
-		btnStartStop.setBackColor(Color.getRGB(69, 131, 212));
-		btnStartStop.setForeColor(Color.WHITE);
-		add(effectLabel = new Label("Effect: "), LEFT + Settings.screenWidth/7, BOTTOM - Settings.screenHeight/10);
+		btnStartStop.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+		
+		add(new Label("Effect: ", LEFT, Colors.ON_BACKGROUND, false), LEFT + Settings.screenWidth/7, BOTTOM - Settings.screenHeight/10);
 		
 		String[] items = { "normal", "scaledBy", "smoothScaledBy", "getRotatedScaledInstance", "getTouchedUpInstance",
 				"changeColors", "fadedInstance", "applyColor2/dither" };
 		ComboBox.usePopupMenu = false;
 		add(cbEffect = new ComboBox(items), AFTER, BOTTOM - Settings.screenHeight/10, FILL - Settings.screenHeight/10, PREFERRED);
 		cbEffect.setSelectedIndex(0);
+		cbEffect.setBackForeColors(Colors.P_800, Colors.ON_P_800);
+		cbEffect.fillColor = Colors.P_600;
 		next(false);
 	}
 

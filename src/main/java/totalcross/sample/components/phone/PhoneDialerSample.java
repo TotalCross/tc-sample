@@ -18,6 +18,7 @@ package totalcross.sample.components.phone;
 
 import totalcross.io.IOException;
 import totalcross.phone.Dial;
+import totalcross.sample.util.Colors;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.Edit;
@@ -29,13 +30,14 @@ import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 
 public class PhoneDialerSample extends Container {
-  PushButtonGroup pbg;
-  Edit ed;
-  Button dial;
+  private PushButtonGroup pbg;
+  private  Edit ed;
+  private Button dial;
 
   @Override
   public void initUI() {
     super.initUI();
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     Font big = Font.getFont(true, Font.NORMAL_SIZE + 2);
     ed = new Edit("");
     ed.setFont(Font.getFont(true, Font.NORMAL_SIZE * 2));

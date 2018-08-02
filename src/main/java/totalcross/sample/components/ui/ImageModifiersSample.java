@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.Vm;
 import totalcross.ui.Container;
@@ -15,65 +16,57 @@ import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 
 public class ImageModifiersSample extends Container {
-  Slider slRotate;
-  Slider slScale;
-  Slider slContrast;
-  Slider slBrightness;
-  Label lbRotate;
-  Label lbScale;
-  Label lbContrast;
-  Label lbBrightness;
-  ImageControl imgFrm;
-  Image img;
-  Image imgRotated;
-  Image imgContrasted;
-  Rect rectImg;
-  int rotateLevel; // -180 .. +180
-  int scaleLevel; // 1 .. infinity
-  byte contrastLevel; // -128 .. 127
-  byte brightnessLevel; // -128 .. 127
+  private Slider slRotate, slScale, slContrast, slBrightness;
+  private Label lbRotate, lbScale, lbContrast, lbBrightness;
+  private ImageControl imgFrm;
+  private Image img, imgRotated, imgContrasted;
+  private Rect rectImg;
+  private int rotateLevel; // -180 .. +180
+  private int scaleLevel; // 1 .. infinity
+  private int gap = 50;
+  private byte contrastLevel; // -128 .. 127
+  private byte brightnessLevel; // -128 .. 127
 
   @Override
   public void initUI() {
     super.initUI();
-    //setTitle("Image Modifiers");
-
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     Label l;
 
-    add(l = new Label("Rotate "), LEFT, TOP);
+    add(l = new Label("Rotate "), LEFT + gap, TOP);
     add(slRotate = new Slider(ScrollBar.HORIZONTAL));
     slRotate.setValues(180, 1, 0, 361);
     slRotate.setUnitIncrement(5);
     slRotate.setBlockIncrement(30);
     slRotate.setLiveScrolling(true);
-    slRotate.setRect(RIGHT, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbRotate);
+    slRotate.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbRotate);
     add(lbRotate = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
-    add(l = new Label("Scale "), LEFT, AFTER);
+    add(l = new Label("Scale "), LEFT + gap, AFTER);
     add(slScale = new Slider(ScrollBar.HORIZONTAL));
     slScale.setValues(100, 1, 0, 400); // palm os has very limited memory
     slScale.setUnitIncrement(5);
     slScale.setBlockIncrement(20);
     slScale.setLiveScrolling(true);
-    slScale.setRect(RIGHT, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbScale);
+    slScale.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbScale);
     add(lbScale = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
-    add(l = new Label("Contrast "), LEFT, AFTER);
+    add(l = new Label("Contrast "), LEFT + gap, AFTER);
     add(slContrast = new Slider(ScrollBar.HORIZONTAL));
     slContrast.setValues(128, 0, 0, 256);
     slContrast.setUnitIncrement(8);
     slContrast.setBlockIncrement(32);
     slContrast.setLiveScrolling(true);
-    slContrast.setRect(RIGHT, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbContrast);
+    slContrast.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbContrast);
     add(lbContrast = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
-    add(l = new Label("Brightness "), LEFT, AFTER);
+    add(l = new Label("Brightness "), LEFT + gap, AFTER);
     add(slBrightness = new Slider(ScrollBar.HORIZONTAL));
     slBrightness.setValues(128, 0, 0, 256);
     slBrightness.setUnitIncrement(8);
     slBrightness.setBlockIncrement(32);
     slBrightness.setLiveScrolling(true);
-    slBrightness.setRect(RIGHT, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbBrightness);
+    slBrightness.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbBrightness);
     add(lbBrightness = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
     lbRotate.setText("0");
@@ -81,7 +74,7 @@ public class ImageModifiersSample extends Container {
     lbBrightness.setText("0");
     lbScale.setText("100");
 
-    slRotate.sliderColor = slScale.sliderColor = slContrast.sliderColor = slBrightness.sliderColor = 0xa75ed;
+    slRotate.sliderColor = slScale.sliderColor = slContrast.sliderColor = slBrightness.sliderColor = Colors.P_600;
 
     add(imgFrm = new ImageControl());
     imgFrm.setRect(LEFT + 1, AFTER, FILL - 2, FILL - 2, lbBrightness);
@@ -180,7 +173,7 @@ public class ImageModifiersSample extends Container {
   private void tellUser(String topic, String what) {
     MessageBox mb = new MessageBox(topic, what);
     mb.setTextAlignment(LEFT);
-    mb.setBackForeColors(0x806600, 0xE6FF99);
+    mb.setBackForeColors(Colors.ERROR, Colors.ON_ERROR);
     mb.popupNonBlocking();
   }
 }

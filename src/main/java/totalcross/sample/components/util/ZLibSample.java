@@ -18,6 +18,7 @@ package totalcross.sample.components.util;
 
 import totalcross.io.ByteArrayStream;
 import totalcross.io.IOException;
+import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.Vm;
 import totalcross.ui.Button;
@@ -32,6 +33,7 @@ public class ZLibSample extends Container {
   @Override
   public void initUI() {
     super.initUI();
+    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     add(btn = new Button("    Start    "), CENTER, TOP + 3);
     //addLog(LEFT, AFTER + 3, FILL, FILL, null);
   }
