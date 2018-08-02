@@ -49,7 +49,7 @@ import totalcross.sample.components.ui.OtherControlsSample;
 import totalcross.sample.components.ui.ProgressBoxSample;
 import totalcross.sample.components.ui.SliderSample;
 import totalcross.sample.components.ui.SpinnerSample;
-import totalcross.sample.components.ui.SwitchSample;
+import totalcross.sample.components.ui.SliderSwitchSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
 import totalcross.sample.components.ui.VelocimeterSample;
@@ -204,15 +204,14 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
 			   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
 			   new SideMenuContainer.Item("Notifications", MaterialIcons._NOTIFICATIONS_ACTIVE, Color.BLACK,  () -> { return new NotificationsSample(); }),
-			   new SideMenuContainer.Item("Other Controls", MaterialIcons._BLUR_ON, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
-			   new SideMenuContainer.Item("Plataform Animations", MaterialIcons._SWAP_CALLS, Color.BLACK,  () -> { return new ControlAnimationSample(); }),
-			   new SideMenuContainer.Item("ProgressBox", MaterialIcons._SHOW_CHART, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
-			   new SideMenuContainer.Item("Slider", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSample(); }),	
+			   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
+			   new SideMenuContainer.Item("Plataform Animations", MaterialIcons._MOOD, Color.BLACK,  () -> { return new ControlAnimationSample(); }),
+			   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
 			   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
-			   new SideMenuContainer.Item("Switch", MaterialIcons._DONE, Color.BLACK,  () -> { return new SwitchSample(); }),	
-			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),	
-			   new SideMenuContainer.Item("TopMenu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
-			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
+			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
+			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TabbedContainerSample(); }),	
+			   new SideMenuContainer.Item("TopMenu", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TopMenuSample(); }),
+			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new VelocimeterSample(); }));
 	}
 
 	private Sub createCryptoSubGroup() {
