@@ -26,7 +26,7 @@ public class ProgressBoxSample extends Container {
       String[] items = {"ProgressBox (Android style)", "ProgressBox (iOS style)"};
 
       menu = new ButtonMenu(items, ButtonMenu.SINGLE_COLUMN);
-      menu.borderGap = 30;
+      menu.borderGap = 80;
       menu.textGap = 40;
       
       menu.pressedColor = Color.GREEN;
