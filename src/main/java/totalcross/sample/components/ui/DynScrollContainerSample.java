@@ -108,16 +108,17 @@ public class DynScrollContainerSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
+		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		c1 = new Container();
 		add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
 		
 		c1.add(new Spacer(0, 0), LEFT, TOP, 1, gap/2); 
-		numberRangeEdit = add("Select your number range: ", c1, Color.getRGB(93,151,244), Color.WHITE);
-		numberRangeEdit.setBackForeColors(Color.WHITE, Color.WHITE);
+		numberRangeEdit = add("Select your number range: ", c1, Color.WHITE, Color.BLACK);
+		numberRangeEdit.setBackForeColors(Color.WHITE, Color.BLACK);
 		
 		c1.add(new Spacer(0, 0), LEFT, AFTER + gap/2);
 		onlyPrimeChk = new Check("Show only prime numbers");
-		onlyPrimeChk.setBackForeColors(Color.getRGB(93,151,244), Color.WHITE);
+		onlyPrimeChk.setBackForeColors(Color.WHITE, Color.BLACK);
 		c1.add(onlyPrimeChk, LEFT+gap, AFTER + gap + gap/2);
 
 		goButton = new Button("Show");
@@ -125,7 +126,7 @@ public class DynScrollContainerSample extends Container {
 		c1.add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, onlyPrimeChk);
 		c1.add(new Spacer(0, 0), LEFT, AFTER, 1, gap/2); 
 		c1.resizeHeight();
-		c1.setBackColor(Color.getRGB(93,151,244));
+		c1.setBackColor(Color.WHITE);
 		vsc = new DynamicScrollContainer();
 		vsc.setBackColor(Color.WHITE);
 		vsc.setBorderStyle(BORDER_SIMPLE);
