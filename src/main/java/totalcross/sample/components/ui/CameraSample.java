@@ -41,6 +41,8 @@ public class CameraSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
+		
+		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		Settings.showMemoryMessagesAtExit = false;
 		
 		btnFilm = new Button("Film");
