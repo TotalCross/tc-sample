@@ -140,13 +140,13 @@ public class Colors {
 	public static final int ON_SECONDARY = ON_S_800;
 	
 	/**This color is used on the background of the content*/
-	public static final int BACKGROUND = 0xFFFFFF;
+	public static final int BACKGROUND = 0xF7F7F7;
 	/**This color is used as foreground when you're using the BACKGROUND color as background*/
 	public static final int ON_BACKGROUND = 0x000000;
 	
 	/**This is the surface color, the one that is used in cards,
 	 * sheets and menus.*/
-	public static final int SURFACE = 0xFAFAFA;
+	public static final int SURFACE = 0xFFFFFF;
 	/**This color is used as foreground when you're using the SURFACE color as background*/
 	public static final int ON_SURFACE = 0x000000;
 
