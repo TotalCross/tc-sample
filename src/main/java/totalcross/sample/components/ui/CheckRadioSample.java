@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
+import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Check;
 import totalcross.ui.Container;
@@ -19,6 +20,7 @@ public class CheckRadioSample extends ScrollContainer {
 	private Button confirmButtonC1, confirmButtonC2;
 	private Button cancelButtonC1, cancelButtonC2;
 	private Check subject1, subject2, subject3, subject4, subject5, subject6;
+	private Label ls1, ls2, ls3, ls4, ls5, ls6, la1, la2, la3;
 	private Radio area1, area2, area3;
 
 	private final int H = 25;
@@ -29,45 +31,69 @@ public class CheckRadioSample extends ScrollContainer {
 
 		try {
 			super.initUI();
+			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 			setScrollBars(false, true);
 
 			c1 = new Container();
-			c1.setBackForeColors(Colors.P_200, Colors.ON_P_200);
-			c1.setFont(font.asBold());
+			c1.setBackForeColors(Color.WHITE, Colors.ON_P_200);
+			//c1.setFont(font.asBold());
 
 			Label lbCheck = new Label("SELECT YOUR SUBJECTS", CENTER);
-			lbCheck.setBackForeColors(Colors.P_700, Colors.ON_P_700);
+			lbCheck.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 
-			subject1 = new Check("Biology");
+			subject1 = new Check("");
 			subject1.setChecked(true);
+			
+			
 
-			subject2 = new Check("Physics");
+			subject2 = new Check("");
 
-			subject3 = new Check("Chemistry");
+			subject3 = new Check("");
 
-			subject4 = new Check("Math");
+			subject4 = new Check("");
 			subject4.setChecked(true);
 
-			subject5 = new Check("History");
+			subject5 = new Check("");
 
-			subject6 = new Check("Geography");
+			subject6 = new Check("");
 
+			subject1.setForeColor( Colors.P_700);
+			subject2.setForeColor( Colors.P_700);
+			subject3.setForeColor( Colors.P_700);
+			subject4.setForeColor( Colors.P_700);
+			subject5.setForeColor( Colors.P_700);
+			subject6.setForeColor( Colors.P_700);
+			
+			ls1 = new Label("Biology");
+			ls2 = new Label("Physics");
+			ls3 = new Label("Chemistry");
+			ls4 = new Label("Math");
+			ls5 = new Label("History");
+			ls6 = new Label("Geography");
+			
 			cancelButtonC1 = new Button("CANCEL", (byte) 0);
 			cancelButtonC1.transparentBackground = true;
-			cancelButtonC1.setBackForeColors(Colors.BACKGROUND, Colors.S_600);
+			cancelButtonC1.setBackForeColors(Colors.BACKGROUND, Colors.P_700);
 
 			confirmButtonC1 = new Button("CONFIRM");
-			confirmButtonC1.setBackForeColors(Colors.S_600, Colors.ON_S_600);
+			confirmButtonC1.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 
 			add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
 			int w = c1.getWidth() / 2 - gap;
+			int c1m = Settings.screenWidth/2;
 			c1.add(lbCheck, LEFT, TOP, FILL, PREFERRED + fmH * 8);
-			c1.add(subject1, LEFT + gap, AFTER + gap, w, PREFERRED + H);
-			c1.add(subject2, LEFT + gap, AFTER + gap * 2, w, PREFERRED + H);
-			c1.add(subject3, LEFT + gap, AFTER + gap * 2, w, PREFERRED + H);
-			c1.add(subject4, RIGHT - gap, SAME, w, PREFERRED + H, subject1);
-			c1.add(subject5, RIGHT - gap, SAME, w, PREFERRED + H, subject2);
-			c1.add(subject6, RIGHT - gap, SAME, w, PREFERRED + H, subject3);
+			c1.add(subject1, LEFT + gap, AFTER + gap, PREFERRED , PREFERRED + H);
+			c1.add(ls1, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(subject2, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
+			c1.add(ls2, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(subject3, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
+			c1.add(ls3, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(subject4, c1m, SAME, PREFERRED, PREFERRED + H, subject1);
+			c1.add(ls4, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(subject5, c1m, SAME, PREFERRED, PREFERRED + H, subject2);
+			c1.add(ls5, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(subject6, c1m, SAME, PREFERRED, PREFERRED + H, subject3);
+			c1.add(ls6, AFTER + gap, SAME, PREFERRED, PREFERRED);
 			c1.add(confirmButtonC1, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
 			c1.add(cancelButtonC1, LEFT + gap, AFTER + gap * 2 + (confirmButtonC1.getHeight() / 2), PREFERRED + fmH * 7,
 					PREFERRED + fmH * 5, subject6);
@@ -75,31 +101,41 @@ public class CheckRadioSample extends ScrollContainer {
 			c1.resizeHeight();
 
 			c2 = new Container();
-			c2.setBackForeColors(Colors.P_200, Colors.ON_P_200);
-			c2.setFont(font.asBold());
+			c2.setBackForeColors(Color.WHITE, Colors.ON_P_200);
 
 			RadioGroupController radioGroup = new RadioGroupController();
 			Label lbRadio = new Label("CHOOSE YOUR AREA OF SCIENCE", CENTER);
-			lbRadio.setBackForeColors(Colors.P_700, Colors.ON_P_700);
+			lbRadio.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 
-			area1 = new Radio("STEM", radioGroup);
+			area1 = new Radio("", radioGroup);
 
-			area2 = new Radio("Human Sciences", radioGroup);
+			area2 = new Radio("", radioGroup);
 
-			area3 = new Radio("Health Care", radioGroup);
-
+			area3 = new Radio("", radioGroup);
+			
+			la1 = new Label("STEM");
+			la2 = new Label("Human Sciencs");
+			la3 = new Label("Health Care");
+			
+			area1.setForeColor(Colors.P_700);
+			area2.setForeColor(Colors.P_700);
+			area3.setForeColor(Colors.P_700);
+			
 			cancelButtonC2 = new Button("CANCEL", (byte) 0);
 			cancelButtonC2.transparentBackground = true;
-			cancelButtonC2.setBackForeColors(Colors.BACKGROUND, Colors.S_600);
+			cancelButtonC2.setBackForeColors(Colors.BACKGROUND, Colors.P_700);
 
 			confirmButtonC2 = new Button("CONFIRM");
-			confirmButtonC2.setBackForeColors(Colors.S_600, Colors.ON_S_600);
+			confirmButtonC2.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 
 			add(c2, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			c2.add(lbRadio, LEFT, TOP, FILL, PREFERRED + fmH * 8);
 			c2.add(area1, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
+			c2.add(la1, AFTER + gap, SAME, PREFERRED, PREFERRED);
 			c2.add(area2, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
+			c2.add(la2, AFTER + gap, SAME, PREFERRED, PREFERRED);
 			c2.add(area3, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
+			c2.add(la3, AFTER + gap, SAME, PREFERRED, PREFERRED);
 			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
 			c2.add(cancelButtonC2, LEFT + gap, AFTER + gap * 2 + (confirmButtonC2.getHeight() / 2), PREFERRED + fmH * 7,
 					PREFERRED + fmH * 5, area3);
