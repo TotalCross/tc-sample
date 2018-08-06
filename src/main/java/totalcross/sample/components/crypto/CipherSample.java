@@ -119,12 +119,13 @@ public class CipherSample extends ScrollContainer {
 		btnGo = new Button("Go");
 		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 
-		add(options, LEFT + gap, TOP + gap, SCREENSIZE + 80, (int) (Settings.screenHeight * 0.15));
+		add(options, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
 		options.add(new Label("Message:"), LEFT + gap / 2, TOP + gap / 2);
 		options.add(edtInput, AFTER + gap, SAME, FILL, PREFERRED);
 		options.add(cboCiphers, LEFT + gap / 2, AFTER + gap, SCREENSIZE + 22, PREFERRED);
 		options.add(cboChaining, AFTER + gap, SAME, SCREENSIZE + 22, PREFERRED);
 		options.add(cboPadding, AFTER + gap, SAME, SCREENSIZE + 29, PREFERRED);
+		options.resizeHeight();
 		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME, options);
 
 		adv = new Container();

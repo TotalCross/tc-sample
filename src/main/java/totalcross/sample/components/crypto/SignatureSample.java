@@ -98,11 +98,13 @@ public class SignatureSample extends ScrollContainer {
 		btnGo = new Button(" Go! ");
 		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 
-		add(menu, LEFT + gap, TOP + gap, FILL - gap, (int) (Settings.screenHeight * 0.15));
-		menu.add(new Label("Message:"), LEFT + gap, TOP + gap / 2);
+		add(menu, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
+		Label lbl = new Label("Message:");
+		menu.add(lbl, LEFT + gap, TOP + gap / 2);
 		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
-		menu.add(cboSignatures, LEFT + gap, BOTTOM - gap, menu);
-		menu.add(btnGo, RIGHT - gap, BOTTOM - gap, SCREENSIZE + 30, PREFERRED + 30);
+		menu.add(cboSignatures, SAME, AFTER + gap, lbl);
+		menu.resizeHeight();
+		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME);
 	}
 
 	@Override

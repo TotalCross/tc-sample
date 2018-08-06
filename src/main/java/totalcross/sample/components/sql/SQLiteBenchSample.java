@@ -16,6 +16,7 @@
 
 package totalcross.sample.components.sql;
 
+import totalcross.sample.util.Colors;
 import totalcross.sql.Connection;
 import totalcross.sql.DriverManager;
 import totalcross.sql.PreparedStatement;
@@ -24,8 +25,6 @@ import totalcross.sql.Statement;
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
-import totalcross.ui.Container;
-import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ProgressBar;
 import totalcross.ui.ScrollContainer;
@@ -34,7 +33,7 @@ import totalcross.ui.Spacer;
 /**
  * Performs a benchmark in the SQLite.
  */
-public class SQLiteBenchSample extends Container {
+public class SQLiteBenchSample extends ScrollContainer {
 	private int gap = 50;
 	/**
 	 * The connection with SQLite.
@@ -45,11 +44,6 @@ public class SQLiteBenchSample extends Container {
 	 * The used statement.
 	 */
 	private Statement statement;
-	
-	/**
-	 * 
-	 */
-	private ScrollContainer sc; 
 
 	/**
 	 * The progress bar for the inserts.
@@ -383,19 +377,25 @@ public class SQLiteBenchSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
-		sc = new ScrollContainer(false, true);
-		add(sc,LEFT,TOP,FILL,FILL);
+		setScrollBars(false, true);
+		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+		
 		// User interface.
 		pbTotal = new ProgressBar(0, TOTAL_OF_OPERATIONS);
-		sc.add(pbInserts = new ProgressBar(0, 500), LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
-		sc.add(pbTotal, LEFT + gap, AFTER + 2, FILL - gap, PREFERRED);
+		add(pbInserts = new ProgressBar(0, 500), LEFT + gap, TOP + gap, FILL - gap, PREFERRED + fmH*2);
+		pbInserts.setForeColor(Colors.P_500);
+		pbInserts.textColor = Colors.ON_P_500;
+		add(pbTotal, LEFT + gap, AFTER + fmH*2, FILL - gap, PREFERRED + fmH*2);
+		pbTotal.setForeColor(Colors.P_500);
+		pbTotal.textColor = Colors.ON_P_500;
+		
 		pbInserts.suffix = " of " + NRECS;
 		pbTotal.suffix = " of " + TOTAL_OF_OPERATIONS;
 		
 		// Executes the bench operations.
 		repaintNow();
 		try {
-			sc.add(new Spacer(), LEFT, AFTER, FILL, gap/2);
+			add(new Spacer(), LEFT, AFTER, FILL, gap/2);
 			createTable();
 
 			driver.setAutoCommit(false);
@@ -483,8 +483,8 @@ public class SQLiteBenchSample extends Container {
 	
 	private void addLabel(String s)
 	{
-		Label logLabel = new Label();
-		logLabel.setText(s);
-		sc.add(logLabel, LEFT + gap, AFTER + 2, SCREENSIZE, PREFERRED);
+		Label logLabel = new Label(s);
+		logLabel.autoSplit = true;
+		add(logLabel, LEFT + gap, AFTER + 2, FILL - gap, PREFERRED);
 	}
 }

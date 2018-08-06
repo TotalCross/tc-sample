@@ -85,8 +85,9 @@ public class FileSample extends ScrollContainer implements Runnable {
 			title.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 			title.setFont(font.asBold());
 			box.add(title, LEFT, TOP, FILL, 50 + DP);
-			
-			box.add(new ComboBox(files), LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
+			ComboBox cbFiles = new ComboBox(files);
+			cbFiles.fillColor = Colors.SURFACE;
+			box.add(cbFiles, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
 			box.add(new Spacer(), LEFT, AFTER, 1, gap/3);
 			box.resizeHeight();
 		}

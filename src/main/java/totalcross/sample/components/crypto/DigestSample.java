@@ -56,11 +56,14 @@ public class DigestSample extends ScrollContainer {
 		btnGo = new Button(" Go! ");
 		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 		
-		add(menu, LEFT + gap, TOP + gap, FILL - gap, (int)(Settings.screenHeight * 0.15));
-		menu.add(new Label("Message:"), LEFT + gap, TOP + gap/2);
+		add(menu, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
+		menu.setInsets(gap/4, gap/4, gap/4, gap/4);
+		Label lbl = new Label("Message:");
+		menu.add(lbl, LEFT + gap, TOP + gap/2);
 		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
-		menu.add(cboDigests, LEFT + gap, BOTTOM - gap, menu);
-		menu.add(btnGo, RIGHT - gap, BOTTOM - gap, SCREENSIZE + 30, PREFERRED + 30);
+		menu.add(cboDigests, SAME, AFTER + fmH*6, lbl);
+		menu.resizeHeight();
+		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME, menu);
 		
 		btnGo.addPressListener((e) -> {
 			Digest alg = (Digest) cboDigests.getSelectedItem();

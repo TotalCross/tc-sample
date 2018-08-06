@@ -26,7 +26,7 @@ public class ButtonSample extends ScrollContainer{
 		super.initUI();
 
 		try {
-			setBackColor(Color.WHITE);
+			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 			setScrollBars(false, true);
 			Label adv = new Label("All the following buttons are only for demonstration purposes.", CENTER);
 			adv.autoSplit = true;
@@ -56,17 +56,16 @@ public class ButtonSample extends ScrollContainer{
 		    onlyImageButton = new Button(image); // This creates a button with an image only, no text.
 		    onlyImageButton.setBorder(Button.BORDER_NONE); //This sets the button's border to null
 		    
-			
-			add(simpleButton, LEFT+gap, AFTER+gap, FILL-gap, PREFERRED+H);		
-			add(multiLineButton, LEFT+gap, AFTER+gap, FILL-gap, PREFERRED+H);
-			add(imageButton, LEFT+gap, AFTER+gap, FILL-gap, PREFERRED+H);
-			add(simpleMultiButton, LEFT+gap , AFTER+gap , FILL-gap , PREFERRED+H);
-			add(multiButton, LEFT+gap , AFTER+gap, FILL-gap, PREFERRED+H);
-			Label label = new Label("The magnifier\nis an Image\nButton", CENTER);
+			add(simpleButton, LEFT+gap, AFTER+gap, FILL-gap, 90 + DP);	
+			add(multiLineButton, LEFT+gap, AFTER+gap, FILL-gap, 90 + DP);
+			add(imageButton, LEFT+gap, AFTER+gap, FILL-gap, 90 + DP);
+			add(simpleMultiButton, LEFT+gap , AFTER+gap , FILL-gap , 90 + DP);
+			add(multiButton, LEFT+gap , AFTER+gap, FILL-gap, 90 + DP);
+			Label label = new Label("The magnifier is an Image Button", CENTER);
 			label.setFont(Font.getFont("Lato Medium", false, label.getFont().size ));
-			add(label, LEFT+gap, AFTER+gap);
+			add(label, LEFT + gap, AFTER+gap, FILL - gap, PREFERRED);
 			//add(new Label("The magnifier\nis an Image\nButton", CENTER), LEFT + gap, AFTER + gap);
-			add(onlyImageButton,CENTER, SAME);
+			add(onlyImageButton,CENTER_OF, AFTER + gap);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
+import totalcross.sys.Settings;
 import totalcross.ui.Check;
 import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
@@ -16,17 +17,18 @@ import totalcross.ui.chart.PieChart;
 import totalcross.ui.chart.Series;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
+import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
-import totalcross.util.IntHashtable;
+import totalcross.ui.gfx.Rect;
 
 public class ChartSample extends ScrollContainer {
-	private Container options;
+	private Container menu, options;
 	private final int gap = 25;
-	ColumnChart column;
-	LineChart line;
-	PieChart pie;
-	ArcChart arc;
-	Slider h3DSlider, v3DSlider;
+	private ColumnChart column;
+	private LineChart line;
+	private PieChart pie;
+	private ArcChart arc;
+	private Slider h3DSlider, v3DSlider;
 
 	Label hor, ver;
 	Check is3D, hasLegend, hasShade, showTitle, showCategories, showHGrids, showVGrids, showYValues;
@@ -36,12 +38,16 @@ public class ChartSample extends ScrollContainer {
 	@Override
 	public void initUI() {
 		super.initUI();
-
+		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+		setFont(Font.getFont(fmH));
+		
+		menu = new Container();
+		menu.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
+		menu.setFont(font.asBold());
+		
 		options = new Container();
-		options.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
-		options.setFont(font.asBold());
-
-		add(options, LEFT + gap, TOP + gap, FILL - gap, 125 + DP);
+		add(menu, LEFT + gap, TOP + gap, FILL - gap, 125 + DP);
+		menu.add(options, CENTER, TOP + gap, Settings.screenWidth, WILL_RESIZE);
 		int color1 = Chart.COLOR2;
 		int color2 = Chart.COLOR3;
 		int color3 = Chart.COLOR4;
@@ -79,14 +85,11 @@ public class ChartSample extends ScrollContainer {
 		showVGrids = new Check("VGrids");
 		showYValues = new Check("YValues");
 
-		options.add(showTitle, LEFT + gap, TOP + gap);
+		options.add(showTitle, LEFT + gap, TOP);
 
-		options.add(hasLegend, AFTER, SAME);
-		options.add(legendPosition, AFTER + gap, SAME);
+		options.add(hasLegend, AFTER + gap, SAME);
 
 		options.add(hasShade, SAME, AFTER + gap, showTitle);
-		options.add(shadeDirection, AFTER, SAME, hasLegend.getWidth(), PREFERRED);
-		options.add(shadeType, AFTER + gap, SAME, legendPosition.getWidth(), PREFERRED);
 		showTitle.setText("Title");
 
 		options.add(is3D, SAME, AFTER + gap * 2, hasShade);
@@ -96,20 +99,24 @@ public class ChartSample extends ScrollContainer {
 		options.add(hor, AFTER + gap, SAME - gap * 2, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
 		options.add(ver, SAME, AFTER, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
 
-		options.add(h3DSlider = new Slider(), AFTER, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
-				FONTSIZE, hor);
 
-		options.add(v3DSlider = new Slider(), AFTER, SAME, shadeDirection.getWidth() + shadeType.getWidth(),
-				FONTSIZE, ver);
-
-		options.add(showCategories, AFTER + gap, SAME, legendPosition);
+		options.add(showCategories, RIGHT - gap, TOP, options);
 		options.add(showYValues, SAME, AFTER + gap, SAME, SAME);
 		options.add(showHGrids, SAME, AFTER + gap, SAME, SAME);
 		options.add(showVGrids, SAME, AFTER, SAME, SAME);
+		
+		options.add(legendPosition, AFTER + gap, SAME, FIT - gap, PREFERRED, hasLegend);
+		options.add(shadeDirection, AFTER + gap, SAME, legendPosition.getWidth(), PREFERRED, hasShade);
+		options.add(shadeType, AFTER + gap, SAME, hasLegend.getWidth(), PREFERRED, shadeDirection);
+		options.add(h3DSlider = new Slider(), AFTER, CENTER_OF, shadeDirection.getWidth() + shadeType.getWidth(), PREFERRED, hor);
+		options.add(v3DSlider = new Slider(), AFTER, CENTER_OF, shadeDirection.getWidth() + shadeType.getWidth(), PREFERRED, ver);
+		options.setInsets(gap/4, gap/4, gap/4, gap/4);
+		options.resizeHeight();
+		menu.resizeHeight();
 
-		h3DSlider.setMinimum(-6);
-		h3DSlider.setMaximum(6);
-		v3DSlider.setMaximum(6);
+		h3DSlider.setMinimum(-Settings.screenWidth/45);
+		h3DSlider.setMaximum(Settings.screenWidth/45);
+		v3DSlider.setMaximum(Settings.screenHeight/80);
 		h3DSlider.drawTicks = v3DSlider.drawTicks = true;
 		h3DSlider.drawFilledArea = v3DSlider.drawFilledArea = false;
 		v3DSlider.setValue(column.perspectiveV);
@@ -120,7 +127,7 @@ public class ChartSample extends ScrollContainer {
 		int bg = Color.darker(backColor, 16);
 		tp = new TabbedContainer(new String[] { " Column ", " Line ", " Pie ", " Arc " });
 		tp.extraTabHeight = fmH / 2;
-		add(tp, LEFT + gap, AFTER + gap, FILL - gap, PARENTSIZE + 90, options);
+		add(tp, LEFT + gap, AFTER + gap, FILL - gap, FILL - gap, options);
 
 		tp.getContainer(0).add(column, LEFT, TOP, FILL, FILL);
 		column.setBackColor(bg);
@@ -170,8 +177,15 @@ public class ChartSample extends ScrollContainer {
 
 	@Override
 	public void reposition() {
-		showTitle.setText("Shape");
+		Rect r = shadeType.getRect();
+		showTitle.setText("Shade");
+		h3DSlider.setMinimum(-Settings.screenWidth/45);
+		h3DSlider.setMaximum(Settings.screenWidth/45);
+		v3DSlider.setMaximum(Settings.screenHeight/80);
+		h3DSlider.setValue(h3DSlider.getValue()/2);
+		v3DSlider.setValue(v3DSlider.getValue()/2);
 		super.reposition();
+		shadeType.setRect(r);
 		showTitle.setText("Title");
 	}
 

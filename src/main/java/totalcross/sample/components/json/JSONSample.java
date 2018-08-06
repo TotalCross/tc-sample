@@ -41,7 +41,8 @@ public class JSONSample extends ScrollContainer {
 			arrayBox.setBackForeColors(Colors.S_300, Colors.ON_S_300);
 			add(arrayBox, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			
-			Label title2 = new Label("As array (The return function\n is an array)", CENTER);
+			Label title2 = new Label("As array (The return function is an array)", CENTER);
+			title2.autoSplit = true;
 			title2.setFont(font.asBold());
 			title2.setBackForeColors(Colors.S_700, Colors.ON_S_700);
 			arrayBox.add(title2, LEFT, TOP, FILL, 50 + DP);
