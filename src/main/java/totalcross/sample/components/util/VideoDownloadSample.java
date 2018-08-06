@@ -25,11 +25,11 @@ public class VideoDownloadSample extends ScrollContainer {
 		Spacer spcr = new Spacer();
 		add(spcr, CENTER, CENTER, SCREENSIZE, 30 + DP);
 		Button downloadBtn = new Button("DOWNLOAD");
-		downloadBtn.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		downloadBtn.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		add(downloadBtn, CENTER, BEFORE, PREFERRED + 100, PREFERRED + 70, spcr);
 
 		Button executeBtn = new Button("EXECUTE");
-		executeBtn.setBackForeColors(Colors.P_DARK, Color.WHITE);
+		executeBtn.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		executeBtn.setEnabled(false);
 		add(executeBtn, CENTER, AFTER, downloadBtn.getWidth(), downloadBtn.getHeight(), spcr);
 		
