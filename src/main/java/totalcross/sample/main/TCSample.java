@@ -73,6 +73,8 @@ import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 
+import totalcross.sample.util.Palette;
+
 public class TCSample extends MainWindow {
 
   SideMenuContainer sideMenu;
@@ -113,7 +115,7 @@ public class TCSample extends MainWindow {
     sideMenu =
         new SideMenuContainer(
             null,
-            home,
+            home,            		
             uiGroup,
             sqlGroup,
             cryptoGroup,
@@ -121,11 +123,11 @@ public class TCSample extends MainWindow {
             jsonGroup,
             langGroup,
             mapGroup,
-//            netGroup,
+            netGroup,
             phoneGroup,
             sysGroup,
-            utilGroup
-//            xmlGroup
+            utilGroup,
+            xmlGroup
             );
 
     sideMenu.topMenu.header =
@@ -195,24 +197,23 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Font sizes", MaterialIcons._SORT_BY_ALPHA, Color.BLACK,  () -> { return new FontSample(); }),
 			   new SideMenuContainer.Item("Grid", MaterialIcons._GRID_ON, Color.BLACK,  () -> { return new GridSample(); }),
 			   new SideMenuContainer.Item("HandWrite Signature", MaterialIcons._GESTURE, Color.BLACK,  () -> { return new HWSignatureSample(); }),	
-			   new SideMenuContainer.Item("HTMLContainer", MaterialIcons._WEB, Color.BLACK,  () -> { return new HTMLContainerSample(); }),
+//			   new SideMenuContainer.Item("HTMLContainer", MaterialIcons._WEB, Color.BLACK,  () -> { return new HTMLContainerSample(); }),
 			   new SideMenuContainer.Item("Image Animation", MaterialIcons._GIF, Color.BLACK,  () -> { return new ImageAnimationSample(); }),
-			   new SideMenuContainer.Item("Image Book", MaterialIcons._BOOK, Color.BLACK,  () -> { return new ImageBookSample(); }),
+//			   new SideMenuContainer.Item("Image Book", MaterialIcons._BOOK, Color.BLACK,  () -> { return new ImageBookSample(); }),
 			   new SideMenuContainer.Item("Image Modifiers", MaterialIcons._IMAGE, Color.BLACK,  () -> { return new ImageModifiersSample(); }),
 			   new SideMenuContainer.Item("List Container", MaterialIcons._VIEW_LIST, Color.BLACK,  () -> { return new ListContainerSample(); }),
 			   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),
 			   new SideMenuContainer.Item("Material Icons", MaterialIcons._FONT_DOWNLOAD, Color.BLACK,  () -> { return new MaterialIconsSample(); }),
 			   new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
 //			   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
-			   new SideMenuContainer.Item("Notifications", MaterialIcons._NOTIFICATIONS_ACTIVE, Color.BLACK,  () -> { return new NotificationsSample(); }),
 			   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
 			   new SideMenuContainer.Item("Plataform Animations", MaterialIcons._MOOD, Color.BLACK,  () -> { return new ControlAnimationSample(); }),
 			   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
 			   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
-			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
-			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TabbedContainerSample(); }),	
-			   new SideMenuContainer.Item("TopMenu", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new TopMenuSample(); }),
-			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new VelocimeterSample(); }));
+			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
+			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),	
+			   new SideMenuContainer.Item("TopMenu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
+			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
 	}
 
 	private Sub createCryptoSubGroup() {
@@ -240,8 +241,6 @@ public class TCSample extends MainWindow {
 
 	private Sub createNetSubGroup() {
 		return new SideMenuContainer.Sub("Net",
-				new SideMenuContainer.Item("Mail ", MaterialIcons._MAIL, Color.BLACK, () -> { return new MailSample(); }),
-				new SideMenuContainer.Item("FTP", MaterialIcons._SWAP_HORIZ, Color.BLACK, () -> { return new FTPSample(); }),
 				new SideMenuContainer.Item("Secure Socket", MaterialIcons._VPN_LOCK, Color.BLACK, () -> { return new SecureSocketSample(); }),
 				new SideMenuContainer.Item("Server Socket", MaterialIcons._ROUTER, Color.BLACK, () -> { return new ServerSocketSample(); }),
 				new SideMenuContainer.Item("Socket", MaterialIcons._HTTP, Color.BLACK, () -> { return new SocketSample(); }));
@@ -249,8 +248,7 @@ public class TCSample extends MainWindow {
 
 	private Sub createPhoneSubGroup() {
 		return new SideMenuContainer.Sub("Phone",
-				new SideMenuContainer.Item("Dialer", MaterialIcons._CALL, Color.BLACK, () -> { return new PhoneDialerSample(); }),
-				new SideMenuContainer.Item("SMS", MaterialIcons._CHAT_BUBBLE_OUTLINE, Color.BLACK, () -> { return new PhoneSmsSample(); }));
+				new SideMenuContainer.Item("Dialer", MaterialIcons._CALL, Color.BLACK, () -> { return new PhoneDialerSample(); }));
 	}
 
 	private Sub createSystemSubGroup() {
@@ -261,9 +259,7 @@ public class TCSample extends MainWindow {
 
 	private Sub createUtilSubGroup() {
 		return new SideMenuContainer.Sub("Util",
-				new SideMenuContainer.Item("PDF Writer", MaterialIcons._EDIT, Color.BLACK, () -> { return new PDFWriterSample(); }),
 				new SideMenuContainer.Item("Zip", MaterialIcons._SORT, Color.BLACK, () -> { return new ZipSample(); }),
 				new SideMenuContainer.Item("ZLib", MaterialIcons._SORT, Color.BLACK, () -> { return new ZLibSample(); }));
 				}
 }
-
