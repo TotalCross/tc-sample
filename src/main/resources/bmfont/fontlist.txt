@@ -1,20 +1,26 @@
+FontAwesome-18.zip
+Lato Bold-18.zip
+Lato Bold-20.zip
+Lato Bold-23.zip
+Lato Light-38.zip
+Lato Light-48.zip
+Lato Medium-18.zip
+Lato Medium-23.zip
+Lato Medium-26.zip
+Lato Medium-28.zip
+Lato Medium-38.zip
+Lato Medium-48.zip
 Material Icons-24.zip
-Material Icons-31.zip
-Roboto-Regular-10.zip
-Roboto-Regular-11.zip
-Roboto-Regular-12.zip
-Roboto-Regular-14.zip
-Roboto-Regular-16.zip
-Roboto-Regular-18.zip
-Roboto-Regular-20.zip
-Roboto-Regular-22.zip
-Roboto-Regular-24.zip
-Roboto-Regular-26.zip
-Roboto-Regular-28.zip
-Roboto-Regular-36.zip
-Roboto-Regular-48.zip
-Roboto-Regular-7.zip
-Roboto-Regular-72.zip
-Roboto-Regular-8.zip
-Roboto-Regular-80.zip
-Roboto-Regular-9.zip
+Material Icons-34.zip
+Roboto Bold-14.zip
+Roboto Bold-18.zip
+Roboto Medium-14.zip
+Roboto Medium-20.zip
+Roboto Regular-13.zip
+Roboto Regular-14.zip
+Roboto Regular-15.zip
+Roboto Regular-16.zip
+Roboto Regular-17.zip
+Roboto Regular-18.zip
+Roboto Regular-23.zip
+Roboto Regular-3.zip
