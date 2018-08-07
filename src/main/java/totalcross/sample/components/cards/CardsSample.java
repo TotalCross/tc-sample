@@ -4,7 +4,7 @@ import totalcross.sys.Settings;
 import totalcross.ui.ScrollContainer;
 
 public class CardsSample extends ScrollContainer {
-
+	private int gap = (int) (Settings.screenDensity * 20);
   public CardsSample() {
     super(false, true);
   }
@@ -14,9 +14,8 @@ public class CardsSample extends ScrollContainer {
     final int DP_10 = (int) (Settings.screenDensity * 10);
     setInsets(0, 0, DP_10, DP_10);
 
-    add(new CardSearch(), LEFT + 30, TOP, FILL - 30, DP + 60);
-    add(new CardProfile(), LEFT + 30, AFTER + 50, FILL - 30, DP + 240);
-    add(new CardWeather(), LEFT + 30, AFTER + 50, FILL - 30, DP + 120);
-    add(new CardSocial(), LEFT + 30, AFTER + 50, FILL - 30, DP + 60);
+    add(new CardSearch(), LEFT + gap, TOP, FILL - gap, 60 + DP);
+    add(new CardProfile(), LEFT + gap, AFTER + 50, FILL - gap, DP + 240);
+    add(new CardWeather(), LEFT + gap, AFTER + 50, FILL - gap, 170 + DP);
   }
 }

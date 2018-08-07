@@ -56,14 +56,16 @@ public class JSONSample extends ScrollContainer {
 				Container c2 = createLabelContainer(Convert.toString(f.getDate()));
 				Container c3 = createLabelContainer(f.getText());
 				Container c4 = createLabelContainer(Convert.toString(f.getLikes()));
-
-				results.add(c1, LEFT + gap, AFTER + gap, PREFERRED, PREFERRED + fmH*8);	
+				
+				Label size = new Label("Dado");
+				size.setRect(LEFT, TOP, PREFERRED, PREFERRED);
+				results.add(c1, LEFT + gap, AFTER + gap, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c1.resizeWidth();
-				results.add(c2, AFTER + gap, SAME, PREFERRED, PREFERRED + fmH*8);	
+				results.add(c2, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c2.resizeWidth();
-				results.add(c3, AFTER + gap, SAME, PREFERRED, PREFERRED + fmH*8);	
+				results.add(c3, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c3.resizeWidth();
-				results.add(c4, AFTER + gap, SAME, PREFERRED, PREFERRED + fmH*8);	
+				results.add(c4, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c4.resizeWidth();
 			}
 			arrayBox.setInsets(0, 0, 0, gap/3);
@@ -88,14 +90,15 @@ public class JSONSample extends ScrollContainer {
 				Container c2 = createLabelContainer(Convert.toString(f.getDate()));
 				Container c3 = createLabelContainer(f.getText());
 				Container c4 = createLabelContainer(Convert.toString(f.getLikes()));
-
-				results2.add(c1, LEFT + gap, AFTER + gap, PREFERRED, PREFERRED + fmH*8);	
+				Label size = new Label("Dado");
+				size.setRect(LEFT, TOP, PREFERRED, PREFERRED);
+				results2.add(c1, LEFT + gap, AFTER + gap, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c1.resizeWidth();
-				results2.add(c2, AFTER + gap, SAME, PREFERRED, PREFERRED + fmH*8);	
+				results2.add(c2, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c2.resizeWidth();
-				results2.add(c3, AFTER + gap, SAME, PREFERRED, PREFERRED + fmH*8);	
+				results2.add(c3, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c3.resizeWidth();
-				results2.add(c4, AFTER + gap, SAME, PREFERRED, PREFERRED + fmH*8);	
+				results2.add(c4, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
 				c4.resizeWidth();
 			}
 			listBox.setInsets(0, 0, 0, gap/3);

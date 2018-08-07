@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import totalcross.db.sqlite.SQLiteUtil;
 import totalcross.io.IOException;
+import totalcross.sample.util.Colors;
 import totalcross.sql.PreparedStatement;
 import totalcross.sql.Statement;
 import totalcross.sys.Settings;
@@ -30,7 +31,7 @@ public class Login extends Container{
 	
 	public void initUI(){
 		try {
-			
+			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 			ic = new ImageControl(new Image("images/logo.png"));
 			ic.scaleToFit = true;
 			ic.centerImage = true;

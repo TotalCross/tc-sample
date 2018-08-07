@@ -22,7 +22,6 @@ import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Check;
 import totalcross.ui.Container;
-import totalcross.ui.Control;
 import totalcross.ui.Label;
 import totalcross.ui.MultiListBox;
 import totalcross.ui.Ruler;
@@ -46,9 +45,9 @@ import totalcross.unit.UIRobotEvent;
 
 public class OtherControlsSample extends ScrollContainer {
 	private SpinList sl;
-	private Label lStatus, lTimeBox, lInputBox, lColorChooserBox, lSpinList, lHorizontalScrollBar, lRuler, lFileChooser;
-	private Container timeBoxC, inputBoxC, colorChooserC, spinListC, scrollbarC, rulerC, fileChooserC;
-	private int gap = 50;
+	private Label lStatus, lTimeBox, lInputBox, lColorChooserBox, lSpinList, lRuler, lFileChooser;
+	private Container timeBoxC, inputBoxC, colorChooserC, spinListC, rulerC, fileChooserC;
+	private int gap = (int) (Settings.screenDensity * 20);
 
 	@Override
 	public void initUI() {
@@ -56,11 +55,7 @@ public class OtherControlsSample extends ScrollContainer {
 			super.initUI();
 			
 			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
-			// setTitle("Other controls");
 			int mar = Settings.screenWidth / 10;
-
-			add(lStatus = new Label("", CENTER), LEFT + mar, AFTER);
-			lStatus.setHighlighted(true);
 
 			add(timeBoxC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			timeBoxC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
@@ -147,6 +142,9 @@ public class OtherControlsSample extends ScrollContainer {
 			lFileChooser = new Label("FileChooser");
 			lFileChooser.transparentBackground = true;
 			fileChooserC.add(lFileChooser, CENTER, AFTER + gap);
+			fileChooserC.add(lStatus = new Label("No file", CENTER, Colors.S_600, false), LEFT + gap, AFTER, FILL - gap, PREFERRED);
+			lStatus.autoSplit = true;
+			lStatus.setHighlighted(true);
 			addFileChooser();
 			fileChooserC.resizeHeight();
 		} catch (Exception ee) {
@@ -194,13 +192,8 @@ public class OtherControlsSample extends ScrollContainer {
 					fcb.mountTree("device/");
 					fcb.popup();
 					String s = fcb.getAnswer();
-					if (s == null) {
-						// setInfo("Cancelled");
-					} else if (fm.stringWidth(s) > getWidth()) {
-						lStatus.setMarqueeText(s, 100, 1, -8);
-						// setInfo("Scroll up to see returned value");
-					} else {
-						// setInfo(s);
+					if (s != null) {
+						lStatus.setText(s);
 					}
 					btn2.setEnabled(s != null);
 				} catch (Exception ee) {
@@ -214,7 +207,13 @@ public class OtherControlsSample extends ScrollContainer {
 			public void controlPressed(ControlEvent e) {
 				try {
 					String s = lStatus.getText();
-					new File(s, File.DONT_OPEN).delete();
+					File selectedFile = new File(s, File.DONT_OPEN);
+					if(selectedFile.exists()) {
+						selectedFile.delete();
+						lStatus.setText("File deleted");
+					} else
+						lStatus.setText("Couldn't delete the file");
+					btn2.setEnabled(false);
 				} catch (Exception ee) {
 					MessageBox.showException(ee, false);
 				}

@@ -109,8 +109,8 @@ public class EditSample extends Container {
 	      me.caption = "MultiEdit";
 
 	      sc.add(simpleEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
-	      sc.add(me, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
-	      sc.add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+//	      sc.add(me, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
+//	      sc.add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
 	      sc.add(numericEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
 	      sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);;
 	      sc.add(calendarEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);

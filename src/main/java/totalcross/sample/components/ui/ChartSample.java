@@ -17,7 +17,6 @@ import totalcross.ui.chart.PieChart;
 import totalcross.ui.chart.Series;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
-import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.gfx.Rect;
 
@@ -39,7 +38,6 @@ public class ChartSample extends ScrollContainer {
 	public void initUI() {
 		super.initUI();
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
-		setFont(Font.getFont(fmH));
 		
 		menu = new Container();
 		menu.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);

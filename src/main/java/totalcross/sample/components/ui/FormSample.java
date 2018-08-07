@@ -60,23 +60,23 @@ public class FormSample extends ScrollContainer {
 		  nameEdit = new Edit();
 		  nameEdit.caption = "Name";
 		  nameEdit.focusColor = focusColor;
-		  nameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+		  nameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 		  
 	      phoneEdit = new Edit("(99)99999-9999");
 	      phoneEdit.setValidChars(Edit.numbersSet);
 	      phoneEdit.caption = "Phone";
 	      phoneEdit.setMode(Edit.NORMAL,true);
-	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
 	      emailEdit = new Edit();
 		  emailEdit.caption = "Email";
 		  emailEdit.focusColor = focusColor;
-		  emailEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+		  emailEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
 	      passwordEdit = new Edit("");
 	      passwordEdit.caption = "Password";
 	      passwordEdit.setMode(Edit.PASSWORD); 
-	      passwordEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+	      passwordEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
 	      status.setFont(Font.getFont(true, 18));
 	      

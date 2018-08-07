@@ -8,22 +8,20 @@ import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.MultiTouchEvent;
 import totalcross.ui.event.MultiTouchListener;
 import totalcross.ui.image.Image;
+import totalcross.ui.image.ImageException;
 
 public class MultiTouchSample extends Container {
-	final int gap = fmH / 2;
+	final int gap = (int) (Settings.screenDensity * 20);
 	ImageControl ic;
 	public static Image screenShot;
 	private static Image img;
 
 	@Override
 	public void initUI() {
-		super.initUI();
-		
 		if (!Settings.isOpenGL && !Settings.onJavaSE) {
 			add(new Label("This sample works only on iOS, Android and Windows Phone."), CENTER, CENTER);
 		} else {
 			try {
-				super.initUI();
 				if (img == null) {
 					img = new Image("images/lenna.png");
 				}
@@ -31,8 +29,8 @@ public class MultiTouchSample extends Container {
 				screenShot = null;
 				ic.allowBeyondLimits = false;
 				ic.setEventsEnabled(true);
-				updateStatus();
-				add(ic, LEFT + gap, TOP + gap, FILL - gap, FILL - gap);
+				
+				add(ic, LEFT + gap, TOP + gap, this);
 				ic.addMultiTouchListener(new MultiTouchListener() {
 					@Override
 					public void scale(MultiTouchEvent e) {
@@ -48,6 +46,12 @@ public class MultiTouchSample extends Container {
 	}
 
 	private void updateStatus() {
-
+		try {
+			ic.setImage(img.scaledBy(1.2, 1.2));
+		} catch (ImageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		add(ic, LEFT + gap, TOP + gap, this);
 	}
 }

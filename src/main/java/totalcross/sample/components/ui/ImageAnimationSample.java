@@ -32,7 +32,7 @@ public class ImageAnimationSample extends Container {
 				"changeColors", "fadedInstance", "applyColor2/dither" };
 		ComboBox.usePopupMenu = false;
 		add(cbEffect = new ComboBox(items), AFTER, BOTTOM - Settings.screenHeight/10, FILL - Settings.screenHeight/10, PREFERRED);
-		cbEffect.setSelectedIndex(0);
+		cbEffect.setSelectedIndex(1);
 		cbEffect.setBackForeColors(Colors.P_800, Colors.ON_P_800);
 		cbEffect.fillColor = Colors.P_600;
 		next(false);

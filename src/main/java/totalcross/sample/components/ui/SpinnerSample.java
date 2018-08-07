@@ -94,7 +94,7 @@ public class SpinnerSample extends ScrollContainer {
 					bt.setVisible(false);
 					status.setVisible(true);
 
-					int end = Vm.getTimeStamp() + 5000;
+					int end = Vm.getTimeStamp() + 3000;
 					while (Vm.getTimeStamp() < end) {
 						// Ygor: I deprecated the update() method because it is synchronous and
 						// blocking.

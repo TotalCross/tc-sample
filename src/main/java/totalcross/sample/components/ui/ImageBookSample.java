@@ -35,6 +35,7 @@ public class ImageBookSample extends Container {
 	// saves the files that contains the images
 	// always store the reference to the file, NEVER the image bytes! can also be
 	// the rowid or primary key if the image is inside a database
+	String resourcesPath = Settings.appPath + "src\\main\\resources\\";
 	String[] imageNames;
 	private String imageFolder;
 
@@ -138,11 +139,14 @@ public class ImageBookSample extends Container {
 	public void initUI() {
 		try {
 			super.initUI();
+			// folder that contains the images. can be "/sdcard", for example
+			//TODO maybe it will be needed changing the mobile path
+			imageFolder = "images\\books\\";
 
 			// if (Settings.isIOS() || Settings.isWindowsCE()) // hack for ios: extract the
 			// files and write into the folder
 			{
-				File dir = new File("device/books");
+				File dir = new File(imageFolder);
 				if (!dir.exists()) {
 					try {
 						dir.createDir();
@@ -152,7 +156,7 @@ public class ImageBookSample extends Container {
 						byte[] b = Vm.getFile(images[i]);
 						if (b != null) {
 							try {
-								new File("device/books/" + Convert.getFileName(images[i]), File.CREATE_EMPTY)
+								new File(imageFolder + Convert.getFileName(images[i]), File.CREATE_EMPTY)
 										.writeAndClose(b);
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -174,20 +178,15 @@ public class ImageBookSample extends Container {
 			options.setForeColor(Colors.ON_BACKGROUND);
 			rg.setSelectedIndex(isVert ? 1 : 0);
 
-			// folder that contains the images. can be "/sdcard", for example
-			//TODO maybe it will be needed changing the mobile path
-			imageFolder = Settings.appPath;
-			if (Settings.onJavaSE)
-				imageFolder += "src\\main\\resources\\images\\books\\";
-			else
-				imageFolder += "images\\books\\";
+			System.out.println(imageFolder);
 			// list images in the folder
 			String[] arqs0 = new File(imageFolder).listFiles();
 			// IMPORTANT: creates a single array with all image NAMES
 			imageNames = new String[TOTAL_ITEMS];
-			for (int i = 0; i < imageNames.length; i++) {
-				imageNames[i] = arqs0[i % arqs0.length];
-			}
+			if(arqs0.length != 0)
+				for (int i = 0; i < imageNames.length; i++) {
+					imageNames[i] = arqs0[i % arqs0.length];
+				}
 			// defines orientation
 			// starts the ImageLoader
 			imgload = new BulkImageLoader(CACHE_PAGES, GRID_LINES * GRID_COLS, imageFolder, imageNames);
