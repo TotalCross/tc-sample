@@ -54,7 +54,6 @@ import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
 import totalcross.sample.components.ui.VelocimeterSample;
 import totalcross.sample.components.util.PDFWriterSample;
-import totalcross.sample.components.util.VideoDownloadSample;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.util.ZipSample;
 import totalcross.sample.components.xml.SoapSample;
@@ -98,6 +97,7 @@ public class TCSample extends MainWindow {
 
   @Override
   public void initUI() {
+	MainWindow.getMainWindow().addTimer(100);
 	//General
 	SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home();});
 	SideMenuContainer.Sub uiGroup = createUISubGroup();
