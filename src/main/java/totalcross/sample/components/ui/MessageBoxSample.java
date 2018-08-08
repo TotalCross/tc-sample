@@ -1,139 +1,140 @@
 package totalcross.sample.components.ui;
 
-import totalcross.res.Resources;
+import java.util.Random;
+
 import totalcross.sample.util.Colors;
-import totalcross.sample.util.Images;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.Toast;
+import totalcross.ui.chart.ColumnChart;
+import totalcross.ui.chart.Series;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
 
 public class MessageBoxSample extends Container {
-	
+
 	private ScrollContainer sc;
-	private Button btnTitleOnly;
-	private Button btnYesNoTitle;
-	private Button btnNoTitle;
-	private Button btnTitleIconTopSeparatorOnly;
-	private Button btnTitleIconTopBottonSeparatorOnly;
-	private Button btnToast;
-	
+	private Button btnQuestion;
+	private Button btnFact;
+	private Button btnClear;
+	private ColumnChart chart;
 	private int H = 225;
 	private int GAP = 50;
-	
+	private MessageBox mb;
+	private int wrongAnswers, correctAnswers;
+
 	@Override
 	public void initUI() {
-		
-		super.initUI();
-		
-	    try {
-	    	
-	    	sc = new ScrollContainer(false, true);
-			add(sc,LEFT,TOP,FILL,FILL);
+		wrongAnswers = 0;
+		correctAnswers = 0;
+		String[] facts = new String[10];
+		String[] questions = new String[10];
+		int[] questionAnswers = new int[10];
+		questions[1] = "Test (yes=correct)";
+		for (int i = 1; i <= 10; i++) {
+			questions[i - 1] = "Question " + i;
+			facts[i - 1] = "fact                     " + i;
+			if (i % 2 == 0) {
+				questionAnswers[i - 1] = 0;
+			} else {
+				questionAnswers[i - 1] = 1;
+			}
+		}
+		Random r = new Random();
 
-	    	btnTitleOnly = new Button("Title only");
-	    	btnTitleOnly.setBackForeColors(Colors.P_800, Colors.ON_P_800);
-	      
-	    	btnTitleOnly.addPressListener(new PressListener() {
-	    		@Override
-		        public void controlPressed(ControlEvent e)
-		        {
-		        	MessageBox mb = new MessageBox("Message" , "This is a MessageBox with title.", new String[]{"Close"});
-		        	mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
-		        	mb.popup();
-		        }
-	    	});
+		sc = new ScrollContainer(false, true);
+		add(sc, LEFT, TOP, FILL, FILL);
 
-	    	btnYesNoTitle = new Button("Yes/No Title only");
-	    	btnYesNoTitle.setBackForeColors(Colors.P_800, Colors.ON_P_800);
-	      
-	    	btnYesNoTitle.addPressListener(new PressListener() {
-		        @Override
-		        public void controlPressed(ControlEvent e)
-		        {
-		        	MessageBox mb = new MessageBox("Message", "Do you prefer this one?", new String[]{"Yes","No"});
-		        	mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
-		        	mb.popup();
-		        }
-		    });
-	    	
-	    	btnNoTitle = new Button("No title");
-	    	btnNoTitle.setBackForeColors(Colors.P_800, Colors.ON_P_800);
-	      
-	    	btnNoTitle.addPressListener(new PressListener() {
-	    		@Override
-	    		public void controlPressed(ControlEvent e)
-	    		{
-	    			MessageBox mb = new MessageBox("", "This is a MessageBox without title.", new String[]{"Close"});
-	    			mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
-	    			mb.popup();
-	    		}
-	    	});
-	    	
-	    	btnTitleIconTopSeparatorOnly = new Button("Title and Icon");
-	    	btnTitleIconTopSeparatorOnly.setBackForeColors(Colors.P_800, Colors.ON_P_800);
-	      
-	    	btnTitleIconTopSeparatorOnly.addPressListener(new PressListener() {
-	    		@Override
-	    		public void controlPressed(ControlEvent e)
-	    		{
-	    			MessageBox mb = new MessageBox("Message","This is a MessageBox with title and icon with top separator.",new String[]{"Close"});
-	    			mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
-	    			mb.headerColor = Colors.KHAKI;
-	    			mb.footerColor = Colors.BACKGROUND;
-	    			try {
-	    				mb.setIcon(Images.getImageBlack(Resources.warning.getFrameInstance(0)));
-	    			} catch (Exception e1) {
-	    				e1.printStackTrace();
-	    			}
-	    			mb.popup();
-	    		}
-	    	});
-	    	
-	    	btnTitleIconTopBottonSeparatorOnly = new Button("Title and Icon\nTop/bottom separators");
-	    	btnTitleIconTopBottonSeparatorOnly.setBackForeColors(Colors.P_800, Colors.ON_P_800);
-	      
-	    	btnTitleIconTopBottonSeparatorOnly.addPressListener(new PressListener() {
-		    	@Override
-		    	public void controlPressed(ControlEvent e){
-		    		MessageBox mb = new MessageBox("Message","This is a MessageBox with title and icon with top and bottom separators.",new String[]{"Close"});
-		    		mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
-		    		mb.headerColor = Colors.KHAKI;
-		    		mb.footerColor = Colors.KHAKI;
-		    		try {
-		    			mb.setIcon(Images.getImageBlack(Resources.warning.getFrameInstance(0)));
-		    		} catch (Exception e1) {
-		    			e1.printStackTrace();
-		    		}
-		    		mb.popup();
-		    	}
-	    	});
-	      
-	    	btnToast = new Button("Toast");
-	    	btnToast.setBackForeColors(Colors.P_800, Colors.ON_P_800);
-	    	
-	    	btnToast.addPressListener(new PressListener() {
-		    	@Override
-		    	public void controlPressed(ControlEvent e){
-		            Toast.show("I'm a Toast", 2000);
-		    	}
-	    	});
-	    	
-	      sc.add(btnTitleOnly, LEFT + GAP, TOP + GAP, FILL - GAP, PREFERRED + H);
-	      sc.add(btnYesNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-	      sc.add(btnNoTitle, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-	      sc.add(btnTitleIconTopSeparatorOnly, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-	      sc.add(btnToast, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+		btnFact = new Button("Random fact");
+		btnFact.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 
-	    }
-	    catch (Exception ee)
-	    {
-	      MessageBox.showException(ee,true);
-	    }
-	  }
+		btnFact.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+
+				mb = new MessageBox("Did you know?", facts[r.nextInt(10)], new String[] { "Nice!" });
+				mb.setRect(CENTER, CENTER, SCREENSIZE + 50, SCREENSIZE + 30);
+				mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+				mb.popup();
+
+			}
+
+		});
+
+		btnQuestion = new Button("Random question");
+		btnQuestion.setBackForeColors(Colors.P_700, Colors.ON_P_700);
+
+		btnQuestion.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				int QuestionIndex = r.nextInt(10);
+				MessageBox mb = new MessageBox("Question", questions[QuestionIndex], new String[] { "Yes", "No" });
+				mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+				mb.popup();
+				if (mb.getPressedButtonIndex() == questionAnswers[QuestionIndex]) {
+					System.out.println("Correct");
+					correctAnswers++;
+					System.out.println("Correct answers: " + correctAnswers);
+
+				} else {
+					System.out.println("Wrong");
+					wrongAnswers++;
+					System.out.println("Wrong answers: " + wrongAnswers);
+
+				}
+				chart.series.removeAllElements();
+				chart.series.addElement(
+						new Series("Correct answers", new double[] { correctAnswers, 0 }, Color.getRGB(32, 204, 104)));
+				chart.series.addElement(
+						new Series("Wrong answers", new double[] { 0, wrongAnswers }, Color.getRGB(211, 68, 21)));
+				repaintNow();
+			}
+
+		});
+
+		btnClear = new Button("Clear");
+		btnClear.setBackForeColors(Colors.P_400, Colors.ON_P_400);
+
+		btnClear.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				correctAnswers = 0;
+				wrongAnswers = 0;
+				Toast.show("Data cleared", 2000);
+				System.out.println("Correct answers: " + correctAnswers);
+				System.out.println("Wrong answers: " + wrongAnswers);
+				chart.series.removeAllElements();
+				chart.series.addElement(
+						new Series("Correct answers", new double[] { correctAnswers, 0 }, Color.getRGB(32, 204, 104)));
+				chart.series.addElement(
+						new Series("Wrong answers", new double[] { 0, wrongAnswers }, Color.getRGB(211, 68, 21)));
+				repaintNow();
+			}
+		});
+		String[] chartParam = new String[2];
+		chartParam[0] = "Correct Answers";
+		chartParam[1] = "Wrong Answers";
+
+		chart = new ColumnChart(chartParam);
+		chart.series.addElement(
+				new Series("Correct answers", new double[] { correctAnswers, 0 }, Color.getRGB(32, 204, 104)));
+		chart.series
+				.addElement(new Series("Wrong answers", new double[] { 0, wrongAnswers }, Color.getRGB(211, 68, 21)));
+
+		chart.setYAxis(0, 15, 5);
+		chart.showCategories = true;
+
+		sc.setFont(font.asBold());
+		sc.add(btnFact, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+		sc.add(btnQuestion, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+		sc.add(chart, LEFT, AFTER, FILL, SCREENSIZE + 40);
+		sc.add(btnClear, CENTER, AFTER + GAP, SCREENSIZE + 90, PREFERRED + H);
+
+		chart.setBackColor(Color.WHITE);
+
+	}
 
 }
