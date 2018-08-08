@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
+import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Label;
 import totalcross.ui.MultiButton;
@@ -52,7 +53,7 @@ public class ButtonSample extends ScrollContainer{
 
 		    multiButton.isSticky = multiButton.is3dText = true;
 		    
-		    Image image = new Image("images/find.png").smoothScaledBy((double)480/2048, (double)480/2048); // Searching and scaling the image.
+		    Image image = new Image("images/find.png").smoothScaledFixedAspectRatio((int) Settings.screenDensity*90, true); // Searching and scaling the image.
 		    onlyImageButton = new Button(image); // This creates a button with an image only, no text.
 		    onlyImageButton.setBorder(Button.BORDER_NONE); //This sets the button's border to null
 		    
