@@ -14,26 +14,7 @@ import totalcross.sample.components.phone.PhoneDialerSample;
 import totalcross.sample.components.sql.SQLiteBenchSample;
 import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
 import totalcross.sample.components.sys.SettingsSample;
-import totalcross.sample.components.ui.AccordionSample;
-import totalcross.sample.components.ui.AlignedLabelsSample;
-import totalcross.sample.components.ui.ButtonSample;
-import totalcross.sample.components.ui.CameraSample;
-import totalcross.sample.components.ui.ChartSample;
-import totalcross.sample.components.ui.CheckRadioSample;
-import totalcross.sample.components.ui.ComboListSample;
-import totalcross.sample.components.ui.EditSample;
-import totalcross.sample.components.ui.FontSample;
-import totalcross.sample.components.ui.GridSample;
-import totalcross.sample.components.ui.ImageAnimationSample;
-import totalcross.sample.components.ui.ImageModifiersSample;
-import totalcross.sample.components.ui.Login;
-import totalcross.sample.components.ui.MaterialIconsSample;
-import totalcross.sample.components.ui.MessageBoxSample;
-import totalcross.sample.components.ui.OtherControlsSample;
-import totalcross.sample.components.ui.ProgressBoxSample;
-import totalcross.sample.components.ui.SpinnerSample;
-import totalcross.sample.components.ui.SliderSwitchSample;
-import totalcross.sample.components.ui.TabbedContainerSample;
+import totalcross.sample.components.ui.*;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.xml.SoapSample;
 import totalcross.sample.components.xml.XMLParseSample;
@@ -178,7 +159,8 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
 			   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
 			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
-			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }));
+			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),
+			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
 	}
 
 	private Sub createCryptoSubGroup() {
