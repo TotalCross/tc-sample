@@ -11,6 +11,7 @@ import totalcross.ui.Radio;
 import totalcross.ui.RadioGroupController;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.Slider;
+import totalcross.ui.Spacer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
@@ -38,36 +39,21 @@ public class FontSample extends Container {
 			int mar = Settings.screenWidth > Settings.screenHeight ? Settings.screenWidth/10 : Settings.screenHeight/10;
 			setBackColor(Color.darker(getBackColor(), 10)); // darker background
 			Edit edname, edadress, edquarter;
+			Check ch;
 			RadioGroupController rgSexo = new RadioGroupController();
-			
-			Label name = new Label("Name: "), address = new Label("Address: "), 
-					quarter = new Label("Quarter: "), gender = new Label("Gender: ");
-			Radio male = new Radio("Male", rgSexo), female = new Radio("Female", rgSexo);
-			Check ch = new Check("Married?");
-			
-			name.transparentBackground = true;
-			address.transparentBackground = true;
-			quarter.transparentBackground = true;
-			gender.transparentBackground = true;
-			male.transparentBackground = true;
-			female.transparentBackground = true;
-			ch.transparentBackground = true;
-			
-			add(name, LEFT + mar, TOP + (Settings.screenHeight/10));
+
+			add(new Label("Name: "), LEFT + mar, TOP + (Settings.screenHeight/10));
 			add(edname = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(address, LEFT + mar, AFTER + (Settings.screenHeight/10));
+			add(new Label("Adress: "), LEFT + mar, AFTER + (Settings.screenHeight/10));
 			add(edadress = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(quarter, LEFT+ mar, AFTER + (Settings.screenHeight/10));
+			add(new Label("Quarter: "), LEFT+ mar, AFTER + (Settings.screenHeight/10));
 			add(edquarter = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(gender, LEFT + mar, AFTER + (Settings.screenHeight/10));
-			add(male, AFTER, SAME, PREFERRED, SAME);
-			add(female, AFTER + 3, SAME, PREFERRED, SAME);
-			add(ch, LEFT + mar, AFTER + 5);
+			add(new Label("Gender: "), LEFT + mar, AFTER + (Settings.screenHeight/10));
+			add(new Radio("Male", rgSexo), AFTER, SAME, PREFERRED, SAME);
+			add(new Radio("Female", rgSexo), AFTER + 3, SAME, PREFERRED, SAME);
+			add(ch = new Check("Married?"), LEFT + mar, AFTER + 5);
 			ch.setChecked(true);
-			if (uiAndroid) {
-				ch.checkColor = Color.CYAN;
-			}
-			add(new FontBox(), AFTER + fmH * 3, CENTER_OF, FONTSIZE, FONTSIZE);
+			ch.checkColor = Color.BLACK;
 			rgSexo.getRadio(0).leftJustify = true;
 
 			edname.setText("João da Silva");
@@ -101,23 +87,26 @@ public class FontSample extends Container {
 		public void initUI() {
 			int mar = Settings.screenWidth > Settings.screenHeight ? Settings.screenWidth/10 : Settings.screenHeight/10;
 			
-			setBackForeColors(Colors.PRIMARY, Color.WHITE);
+			setBackColor(Colors.SURFACE);
+			setForeColor(Colors.ON_SURFACE);
 			Label l;
 			int max = Font.MAX_FONT_SIZE * (Settings.isWindowsCE() ? 2 : 3);
-			add(new Label("Typeface: "), LEFT+mar, TOP);
+			add(new Label("Typeface: "), LEFT+(mar*3), TOP+mar);
 			add(new Radio("Normal", rg), AFTER + fmH, SAME);
 			add(new Radio("Monospace", rg), AFTER + fmH, SAME);
 			rg.setSelectedIndex(0);
-			add(l = new Label("Size:  " + Font.MIN_FONT_SIZE), LEFT + mar, AFTER);
+			add(l = new Label("Size:  " + Font.MIN_FONT_SIZE), LEFT + (mar*3), AFTER);
 			add(new Label("" + max), RIGHT, SAME);
-			add(slSize = new Slider(), AFTER + 2, SAME, FIT - 2, SAME + fmH / 2, l);
+			add(slSize = new Slider(), AFTER + 2, SAME, SCREENSIZE+60, SAME + fmH / 2, l);
 			slSize.setLiveScrolling(!Settings.isWindowsCE());
 			slSize.setMinimum(Font.MIN_FONT_SIZE);
 			slSize.setMaximum(max + 1); // +1: visible items
 			slSize.drawFilledArea = slSize.drawTicks = false;
+			slSize.sliderColor = Color.BLACK;
 			slSize.setValue(Font.NORMAL_SIZE);
 			
-			add(ckBold = new Check("Bold"), LEFT + mar, AFTER);
+			
+			add(ckBold = new Check("Bold"), LEFT + (mar*3), AFTER);
 			add(lSize = new Label(" 999 "), CENTER_OF, AFTER, slSize);
 			selFont = font;
 			updateSize();
@@ -150,7 +139,7 @@ public class FontSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
-		add(selector = new Selector(), LEFT, TOP, FILL, PREFERRED);
+		add(selector = new Selector(), LEFT, TOP + 2, FILL, PREFERRED);
 		add(samples = new Samples(), LEFT, AFTER, PARENTSIZE + 100, FILL);
 		samples.setBackColor(Color.darker(getBackColor(), 10)); // darker background
 	}
