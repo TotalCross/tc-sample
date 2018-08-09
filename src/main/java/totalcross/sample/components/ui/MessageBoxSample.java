@@ -75,15 +75,34 @@ public class MessageBoxSample extends Container {
 				mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
 				mb.popup();
 				if (mb.getPressedButtonIndex() == questionAnswers[QuestionIndex]) {
-					System.out.println("Correct");
-					correctAnswers++;
-					System.out.println("Correct answers: " + correctAnswers);
+					if(correctAnswers<10) {
+						System.out.println("Correct");
+						correctAnswers++;
+						System.out.println("Correct answers: " + correctAnswers);
+					}
+					else {
+						System.out.println("Congratulations, reset");
+						
+						MessageBox congratulations = new MessageBox("Congratulations!", "You answered 10 questions correctly! You won!", new String[] { "Nice!" });
+						congratulations.setBackForeColors(Colors.P_400, Colors.ON_P_400);
+						congratulations.popup();
+						correctAnswers= 0;
+						wrongAnswers=0;
+					}
 
 				} else {
-					System.out.println("Wrong");
-					wrongAnswers++;
-					System.out.println("Wrong answers: " + wrongAnswers);
-
+					if(wrongAnswers<10) {
+						System.out.println("Wrong");
+						wrongAnswers++;
+						System.out.println("Wrong answers: " + wrongAnswers);
+					}else {
+						System.out.println("Too bad, you lose");
+						MessageBox lose = new MessageBox("You lose :(", "You lost the game, but don´t be afraid to try again! :)", new String[] { "Okay!" });
+						lose.setBackForeColors(Colors.S_400, Colors.ON_S_400);
+						lose.popup();
+						correctAnswers= 0;
+						wrongAnswers=0;
+					}
 				}
 				chart.series.removeAllElements();
 				chart.series.addElement(
