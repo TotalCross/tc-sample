@@ -37,7 +37,7 @@ public class FontSample extends Container {
 		@Override
 		public void initUI() {
 			int mar = Settings.screenWidth > Settings.screenHeight ? Settings.screenWidth/10 : Settings.screenHeight/10;
-			setBackColor(Color.darker(getBackColor(), 10)); // darker background
+			setBackColor(Colors.BACKGROUND); // darker background
 			Edit edname, edadress, edquarter;
 			Check ch;
 			RadioGroupController rgSexo = new RadioGroupController();
