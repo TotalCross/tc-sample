@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
+import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
@@ -17,7 +18,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
 public class SpinnerSample extends ScrollContainer {
-	private int gap = 50;
+	private int gap = (int) (Settings.screenDensity * 20);
 	private Container menu;
 	private Spinner sp;
 	private Button bt;
@@ -41,15 +42,14 @@ public class SpinnerSample extends ScrollContainer {
 			status.setVisible(false);
 
 			Radio r;
-			menu.add(new Spacer(), CENTER, TOP, 10, gap / 3);
-			menu.add(r = new Radio(" iPhone", rg), LEFT + gap, AFTER, PARENTSIZE + 32, PREFERRED);
+			menu.setInsets(0, 0, gap/3, gap/3);
+			menu.add(r = new Radio(" Android", rg), CENTER, TOP);
+			menu.add(r = new Radio(" iPhone", rg), LEFT + gap, SAME);
 			r.leftJustify = true;
-			menu.add(r = new Radio(" Android", rg), AFTER, SAME, SAME, PREFERRED);
 			r.leftJustify = true;
-			menu.add(r = new Radio(" Sync", rg), AFTER, SAME, SAME, PREFERRED);
+			menu.add(r = new Radio(" Sync", rg), RIGHT - gap, SAME);
 			r.leftJustify = true;
-			menu.add(r = new Radio(" Custom (triplex.gif)", rg), CENTER, AFTER, PREFERRED, PREFERRED);
-			menu.add(new Spacer(), CENTER, AFTER, 10, gap / 3);
+			menu.add(r = new Radio(" Custom (triplex.gif)", rg), LEFT + gap, AFTER + gap);
 			r.leftJustify = true;
 			rg.setSelectedIndex(0);
 
@@ -65,7 +65,7 @@ public class SpinnerSample extends ScrollContainer {
 				sp.removeTimer(e);
 			});
 
-			add(bt = new Button("Start"), CENTER, BOTTOM - gap, SCREENSIZE + 50, PREFERRED + fmH * 6);
+			add(bt = new Button("Start"), CENTER, BOTTOM - gap, SCREENSIZE + 50, PREFERRED + (int)(Settings.screenDensity * 80));
 			bt.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 
 		} catch (Exception ee) {
@@ -94,7 +94,7 @@ public class SpinnerSample extends ScrollContainer {
 					bt.setVisible(false);
 					status.setVisible(true);
 
-					int end = Vm.getTimeStamp() + 3000;
+					int end = Vm.getTimeStamp() + 5000;
 					while (Vm.getTimeStamp() < end) {
 						// Ygor: I deprecated the update() method because it is synchronous and
 						// blocking.
