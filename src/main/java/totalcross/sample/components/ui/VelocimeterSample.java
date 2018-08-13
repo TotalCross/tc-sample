@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
 import totalcross.ui.Label;
@@ -10,16 +11,24 @@ import totalcross.ui.event.TimerEvent;
 import totalcross.ui.gfx.Color;
 
 public class VelocimeterSample extends Container {
-	Velocimeter vel;
-	TimerEvent tt;
-	Label lb;
-
+	private Velocimeter vel;
+	private TimerEvent tt;
+	private int gap = (int) (Settings.screenDensity * 20);
+	
 	@Override
 	public void initUI() {
 		try {
-			super.initUI();
-			add(lb = new Label("This is a sample of a velocimeter"), CENTER, TOP + Settings.screenHeight/10, PREFERRED, PREFERRED);
-			lb.setForeColor(Color.BLACK);
+			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+			Container adv = new Container();
+			add(adv, LEFT + gap*2, TOP + gap*3, FILL - gap*2, WILL_RESIZE);
+			adv.setInsets(gap/3, gap/3, gap/3, gap/3);
+			adv.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
+			Label header = new Label("This is a velocimeter sample, it just shows how the Velocimeter class works on TotalCross.", CENTER);
+			header.autoSplit = true;
+			header.setForeColor(Colors.ON_SURFACE);
+
+			adv.add(header, LEFT, TOP, FILL, PREFERRED);
+			adv.resizeHeight();
 			tt = addTimer(50);
 			vel = new Velocimeter();
 			vel.value = -20;
