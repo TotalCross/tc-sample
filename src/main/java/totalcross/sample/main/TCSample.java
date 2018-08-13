@@ -161,6 +161,7 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
 			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
 			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),
+			   new SideMenuContainer.Item("Top Menu", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TopMenuSample(); }),
 			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
 	}
 
