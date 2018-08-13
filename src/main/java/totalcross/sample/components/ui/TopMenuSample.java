@@ -20,7 +20,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
 public class TopMenuSample extends ScrollContainer {
-	final int gap = 50;
+	final int gap = (int) (Settings.screenDensity * 20);
 	private ComboBox cbSide;
 	private Container menu;
 	private TopMenu topMenu;
@@ -57,8 +57,7 @@ public class TopMenuSample extends ScrollContainer {
 
 	@Override
 	public void initUI() {
-		super.initUI();
-		add(menu = new Container(), LEFT + gap, TOP + Settings.screenHeight/2, SCREENSIZE + 78, WILL_RESIZE);
+		add(menu = new Container(), LEFT + gap*2, TOP + gap*2, SCREENSIZE + 76, WILL_RESIZE);
 		menu.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 		menu.add(new Label("Direction: "), LEFT + gap, TOP + gap, PREFERRED, PREFERRED);
 
@@ -73,7 +72,7 @@ public class TopMenuSample extends ScrollContainer {
 		
 		Button confirm = new Button("GO");
 		confirm.setBackForeColors(Colors.S_600, Colors.ON_S_600);
-		add(confirm, AFTER + gap, SAME, FILL - gap, SAME, menu);
+		add(confirm, AFTER + gap, SAME, FILL - gap*2, SAME, menu);
 		
 
 		Control[] items = { new TopMenu.Item("Videocalls", Resources.warning),
