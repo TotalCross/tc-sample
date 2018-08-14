@@ -41,19 +41,28 @@ public class FontSample extends Container {
 			Edit edname, edadress, edquarter;
 			Check ch;
 			RadioGroupController rgSexo = new RadioGroupController();
+			Label name, adress, quarter, gender;
+			Radio male, female;
 
-			add(new Label("Name: "), LEFT + mar, TOP + (Settings.screenHeight/10));
+			add(name = new Label("Name: "), LEFT + mar, TOP + (Settings.screenHeight/10));
+			name.setBackColor(Color.getRGB(237,237,237));
 			add(edname = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(new Label("Adress: "), LEFT + mar, AFTER + (Settings.screenHeight/10));
+			add(adress = new Label("Adress: "), LEFT + mar, AFTER + (Settings.screenHeight/10));
+			adress.setBackColor(Color.getRGB(237,237,237));
 			add(edadress = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(new Label("Quarter: "), LEFT+ mar, AFTER + (Settings.screenHeight/10));
+			add(quarter = new Label("Quarter: "), LEFT+ mar, AFTER + (Settings.screenHeight/10));
+			quarter.setBackColor(Color.getRGB(237,237,237));
 			add(edquarter = new Edit(""), AFTER, SAME, SCREENSIZE + 200, PREFERRED);
-			add(new Label("Gender: "), LEFT + mar, AFTER + (Settings.screenHeight/10));
-			add(new Radio("Male", rgSexo), AFTER, SAME, PREFERRED, SAME);
-			add(new Radio("Female", rgSexo), AFTER + 3, SAME, PREFERRED, SAME);
+			add(gender = new Label("Gender: "), LEFT + mar, AFTER + (Settings.screenHeight/10));
+			gender.setBackColor(Color.getRGB(237,237,237));
+			add(male = new Radio("Male", rgSexo), AFTER, SAME, PREFERRED, SAME);
+			male.setBackColor(Color.getRGB(237,237,237));
+			add(female = new Radio("Female", rgSexo), AFTER + 3, SAME, PREFERRED, SAME);
+			female.setBackColor(Color.getRGB(237,237,237));
 			add(ch = new Check("Married?"), LEFT + mar, AFTER + 5);
 			ch.setChecked(true);
 			ch.checkColor = Color.BLACK;
+			ch.setBackColor(Color.getRGB(237,237,237));
 			rgSexo.getRadio(0).leftJustify = true;
 
 			edname.setText("João da Silva");
@@ -96,7 +105,7 @@ public class FontSample extends Container {
 			add(new Radio("Monospace", rg), AFTER + fmH, SAME);
 			rg.setSelectedIndex(0);
 			add(l = new Label("Size:  " + Font.MIN_FONT_SIZE), LEFT + (mar*3), AFTER);
-			add(new Label("" + max), RIGHT, SAME);
+			add(new Label("" + max), RIGHT - mar*3, SAME);
 			add(slSize = new Slider(), AFTER + 2, SAME, SCREENSIZE+60, SAME + fmH / 2, l);
 			slSize.setLiveScrolling(!Settings.isWindowsCE());
 			slSize.setMinimum(Font.MIN_FONT_SIZE);
