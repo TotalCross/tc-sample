@@ -17,6 +17,7 @@ public class AccordionSample extends ScrollContainer {
 	public void initUI() {
 		setScrollBars(false, true);
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+		setInsets(0, 0, 0, (int) Settings.screenDensity * 100 * 8 / 100);
 		
 		Label order = new Label("This is a quiz about Brazil! Good luck!", CENTER);
 		order.autoSplit = true;
@@ -66,17 +67,15 @@ public class AccordionSample extends ScrollContainer {
 			me[i].setFont(Font.getFont(false, ac[i].getFont().size));
 		}
 		
+		Label warning = new Label("Please, answer all the questions to enable the button!", CENTER);
+		warning.autoSplit = true;
+		warning.setForeColor(Colors.S_600);
+		add(warning, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
 		
 		Button confirm = new Button("SUBMIT");
 		confirm.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		confirm.setEnabled(false);
-		add(confirm, CENTER, BOTTOM - gap*3, PREFERRED + 120, PREFERRED + 60);
-		
-		Label warning = new Label("Please, answer all the questions to enable the button!", CENTER);
-		warning.autoSplit = true;
-		warning.setForeColor(Colors.S_600);
-		add(warning, LEFT + gap, BEFORE - gap*2, FILL - gap, PREFERRED, confirm);
-		warning.reposition();
+		add(confirm, CENTER, AFTER + gap, confirm.getPreferredWidth() <= 32 ? DP + 64 : confirm.getPreferredWidth() + (int) Settings.screenDensity*100*32/100, DP + 36);
 
 		confirm.addPressListener((e) -> {
 			Toast.show("The form was sent!\nAnswers erased.", 2000);
