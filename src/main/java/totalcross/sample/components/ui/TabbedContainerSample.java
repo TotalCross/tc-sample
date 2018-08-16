@@ -20,6 +20,7 @@ import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
+import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.TabbedContainer;
 import totalcross.ui.dialog.MessageBox;
@@ -29,121 +30,114 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
 public class TabbedContainerSample extends ScrollContainer {
-  @Override
-  public void initUI() {
-    try {
-      super.initUI();
-      int gap = 50;
-      
-      Button btnEnable = new Button("Enable all tabs");
-      btnEnable.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 
-      add(btnEnable, CENTER, TOP + gap, SCREENSIZE+95, PREFERRED + gap*2);
+	private int gap = (int) (Settings.screenDensity * 30);
 
-      String[] caps = { "Facebook", "Google+", "Instagram" };
-      Image[] icons = { new Image("images/fb_icon_40.png"), new Image("images/gmail_icon_40.png"),
-          new Image("images/insta_icon_40.png") };
-    
-      Container c1 = new Container();
-      c1.setInsets(15, 15, 0, 0);
-      add(c1, LEFT, AFTER + gap*3, FILL, (int)(Settings.screenHeight * 0.4), btnEnable);
-      
-      final TabbedContainer tc = new TabbedContainer(caps);
-      tc.setBackColor(Color.DARK);
-      tc.getContainer(0).setBackColor(0x4267b2);
-      tc.getContainer(1).setBackColor(0xdd4b3e);
-      tc.getContainer(2).setBackColor(0xb62e8e);
-      tc.setIcons(icons);
-      tc.pressedColor = Color.RED;
-      tc.activeTabBackColor = 0xDDDDDD;
-      tc.allSameWidth = true;
-      tc.extraTabHeight = fmH * 2;
-      c1.add(tc, LEFT, TOP, FILL, (int)(Settings.screenHeight * 0.3));
-      Button btnDisable1 = new Button("Disable selected tab");
-      btnDisable1.setBackForeColors(Colors.S_600, Colors.ON_S_600);
-      c1.add(btnDisable1, CENTER, AFTER + gap, PREFERRED + gap, (int)(Settings.screenHeight * 0.08), tc);
-      
-      Container c2 = new Container();
-      c2.setInsets(15, 15, 0, 0);
-      add(c2, LEFT, AFTER + gap*4, FILL, (int)(Settings.screenHeight * 0.4), c1);
-      
-      final TabbedContainer tc2 = new TabbedContainer(caps);
-      tc2.setType(TabbedContainer.TABS_BOTTOM);
-      tc2.setBackColor(Color.DARK);
-      tc2.getContainer(0).setBackColor(0x4267b2);
-      tc2.getContainer(1).setBackColor(0xdd4b3e);
-      tc2.getContainer(2).setBackColor(0xb62e8e);
-      tc2.useOnTabTheContainerColor = true;
-      tc2.allSameWidth = true;
-      tc2.extraTabHeight = fmH / 2;
-      c2.add(tc2, LEFT, TOP, FILL, (int)(Settings.screenHeight * 0.3));
-      Button btnDisable2 = new Button("Disable selected tab");
-      btnDisable2.setBackForeColors(Colors.S_600, Colors.ON_S_600);
-      c2.add(btnDisable2, CENTER, AFTER, PREFERRED + gap, (int)(Settings.screenHeight * 0.08), tc2);
-      
-      
-      Image[] images = new Image[3];
-      Image empty = new Image("images/bullet_empty.png").getSmoothScaledInstance(fmH, fmH);
-      Image filled = new Image("images/bullet_full.png").getSmoothScaledInstance(fmH, fmH);
-      filled.applyColor2(Color.ORANGE);
+	@Override
+	public void initUI() {
+		try {
+			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+			Button btnEnable = new Button("Enable all tabs");
+			btnEnable.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 
-      for (int i = images.length; --i >= 0;) {
-        images[i] = empty;
-      }
-      
-      Container c3 = new Container();
-      c3.setInsets(15, 15, 0, 0);
-      add(c3, LEFT, AFTER + gap*4, FILL, (int)(Settings.screenHeight * 0.4), c2);
-      
-      final TabbedContainer tc3 = new TabbedContainer(images);
-      tc3.setActiveIcon(filled);
-      tc3.setType(TabbedContainer.TABS_BOTTOM);
-      tc3.setBackColor(Color.DARK);
-      tc3.getContainer(0).setBackColor(0x4267b2);
-      tc3.getContainer(1).setBackColor(0xdd4b3e);
-      tc3.getContainer(2).setBackColor(0xb62e8e);
-      tc3.allSameWidth = true;
-      tc3.extraTabHeight = fmH / 2;
-      tc3.setBorderStyle(Container.BORDER_NONE);
-      tc3.transparentBackground = true;
-      c3.add(tc3, LEFT, TOP, FILL, (int)(Settings.screenHeight * 0.3));
-      Button btnDisable3 = new Button("Disable selected tab");
-      btnDisable3.setBackForeColors(Colors.S_600, Colors.ON_S_600);
-      c3.add(btnDisable3, CENTER, AFTER, PREFERRED + gap, (int)(Settings.screenHeight * 0.08), tc3);
-      
-      btnEnable.addPressListener(new PressListener() {
-        @Override
-        public void controlPressed(ControlEvent e) {
-        	for(int i = 0; i < 3; i++)
-        		tc.setEnabled(i, true);
-        	for(int i = 0; i < 3; i++)
-        		tc2.setEnabled(i, true);
-        	for(int i = 0; i < 3; i++)
-        		tc3.setEnabled(i, true);
-        }
-      });
-      
-      btnDisable1.addPressListener(new PressListener() {
-          @Override
-          public void controlPressed(ControlEvent e) {
-          	tc.setEnabled(tc.getActiveTab(), false);
-          }
-        });
-      btnDisable2.addPressListener(new PressListener() {
-          @Override
-          public void controlPressed(ControlEvent e) {
-          	tc2.setEnabled(tc2.getActiveTab(), false);
-          }
-        });
-      btnDisable3.addPressListener(new PressListener() {
-          @Override
-          public void controlPressed(ControlEvent e) {
-          	tc3.setEnabled(tc3.getActiveTab(), false);
-          }
-        });
-      
-    } catch (Exception ee) {
-      MessageBox.showException(ee, true);
-    }
-  }
+			add(btnEnable, CENTER, TOP + gap, SCREENSIZE + 95, PREFERRED + gap*2);
+
+			String[] caps = { "Social 1", "Social 2", "Social 3" };
+			Image[] icons = { new Image("images/fb_icon_40.png"), new Image("images/gmail_icon_40.png"),
+					new Image("images/insta_icon_40.png") };
+
+			Label explain1 = new Label("This is a Tabbed Container with icon and text", CENTER);
+			explain1.autoSplit = true;
+			add(explain1, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
+			
+			Container c1 = new Container();
+			
+			add(c1, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
+			
+			final TabbedContainer tc = new TabbedContainer(caps);
+			tc.setBackColor(Color.DARK);
+			tc.getContainer(0).setBackColor(Colors.P_300);
+			tc.getContainer(1).setBackColor(Colors.P_400);
+			tc.getContainer(2).setBackColor(Colors.P_500);
+			tc.setIcons(icons);
+			tc.pressedColor = Colors.P_800;
+			tc.activeTabBackColor = Colors.P_800;
+			tc.allSameWidth = true;
+			tc.extraTabHeight = fmH * 2;
+			c1.add(tc, LEFT, TOP, FILL, PARENTSIZE);
+			for(int i = 0; i < 3; i++)
+				tc.getContainer(i).add(new Label("Container " + (i+1)), CENTER, CENTER);
+
+			Label explain2 = new Label("This is a Tabbed Container with just text", CENTER);
+			explain2.autoSplit = true;
+			add(explain2, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
+			
+			Container c2 = new Container();
+
+			add(c2, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
+			
+			caps[0] = "Home";
+			caps[1] = "Photos";
+			caps[2] = "Profile";
+			
+			final TabbedContainer tc2 = new TabbedContainer(caps);
+			tc2.setType(TabbedContainer.TABS_BOTTOM);
+			tc2.setBackColor(Color.DARK);
+			tc2.getContainer(0).setBackColor(Colors.P_300);
+			tc2.getContainer(1).setBackColor(Colors.P_400);
+			tc2.getContainer(2).setBackColor(Colors.P_500);
+			tc2.useOnTabTheContainerColor = true;
+			tc2.allSameWidth = true;
+			tc2.extraTabHeight = fmH / 2;
+			c2.add(tc2, LEFT, TOP, FILL, PARENTSIZE);
+			for(int i = 0; i < 3; i++)
+				tc2.getContainer(i).add(new Label("Container " + (i+1)), CENTER, CENTER);
+			
+			Image[] images = new Image[3];
+			Image empty = new Image("images/bullet_empty.png").getSmoothScaledInstance(fmH, fmH);
+			Image filled = new Image("images/bullet_full.png").getSmoothScaledInstance(fmH, fmH);
+			filled.applyColor2(Color.ORANGE);
+
+			for (int i = images.length; --i >= 0;) {
+				images[i] = empty;
+			}
+			
+			Label explain3 = new Label("This is a Tabbed Container with just images on the tab space", CENTER);
+			explain3.autoSplit = true;
+			add(explain3, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
+			
+			Container c3 = new Container();
+			add(c3, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
+
+			final TabbedContainer tc3 = new TabbedContainer(images);
+			tc3.setActiveIcon(filled);
+			tc3.setType(TabbedContainer.TABS_BOTTOM);
+			tc3.setBackColor(Color.DARK);
+			tc3.getContainer(0).setBackColor(Colors.P_300);
+			tc3.getContainer(1).setBackColor(Colors.P_400);
+			tc3.getContainer(2).setBackColor(Colors.P_500);
+			tc3.allSameWidth = true;
+			tc3.extraTabHeight = fmH / 2;
+			tc3.setBorderStyle(Container.BORDER_NONE);
+			tc3.transparentBackground = true;
+			c3.add(tc3, LEFT, TOP, FILL, PARENTSIZE);
+			for(int i = 0; i < 3; i++)
+				tc3.getContainer(i).add(new Label("Container " + (i+1)), CENTER, CENTER);
+			
+			btnEnable.addPressListener(new PressListener() {
+				@Override
+				public void controlPressed(ControlEvent e) {
+					for (int i = 0; i < 3; i++)
+						tc.setEnabled(i, true);
+					for (int i = 0; i < 3; i++)
+						tc2.setEnabled(i, true);
+					for (int i = 0; i < 3; i++)
+						tc3.setEnabled(i, true);
+				}
+			});
+
+		} catch (Exception ee) {
+			MessageBox.showException(ee, true);
+		}
+	}
 }
