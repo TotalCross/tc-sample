@@ -81,7 +81,7 @@ public class ImageModifiersSample extends Container {
     rectImg = imgFrm.getAbsoluteRect();
     imgFrm.allowBeyondLimits = false;
     imgFrm.centerImage = true;
-    imgFrm.setEventsEnabled(true);
+    imgFrm.setEventsEnabled(false);
 
     loadImage("images/lenna.png");
   }
@@ -93,7 +93,6 @@ public class ImageModifiersSample extends Container {
 
     try {
       img = new Image(dsc);
-
       int scaleW = (100 * rectImg.width) / img.getWidth();
       int scaleH = (100 * rectImg.height) / img.getHeight();
       if ((scaleH < 100) || (scaleW < 100)) {
