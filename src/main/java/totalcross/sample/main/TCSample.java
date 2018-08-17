@@ -149,6 +149,7 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Color.BLACK,  () -> { return new ComboListSample(); }),
 			   new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Color.BLACK,  () -> { return new ComboListSample(); }),
 			   new SideMenuContainer.Item("Dynamic Scroll Container", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new DynScrollContainerSample(); }),
+			   new SideMenuContainer.Item("Edit", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new EditSample(); }), 
 			   new SideMenuContainer.Item("Font sizes", MaterialIcons._SORT_BY_ALPHA, Color.BLACK,  () -> { return new FontSample(); }),
 			   new SideMenuContainer.Item("Grid", MaterialIcons._GRID_ON, Color.BLACK,  () -> { return new GridSample(); }),
 			   new SideMenuContainer.Item("HandWrite Signature", MaterialIcons._GESTURE, Color.BLACK,  () -> { return new HWSignatureSample(); }),
