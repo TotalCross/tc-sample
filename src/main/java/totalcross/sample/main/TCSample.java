@@ -121,7 +121,7 @@ public class TCSample extends MainWindow {
 
   	private Sub createIOSubGroup() {
   		return new SideMenuContainer.Sub("IO", 
-			new SideMenuContainer.Item("File", MaterialIcons._FOLDER, Color.BLACK, () -> { return new FileSample(); }));
+			new SideMenuContainer.Item("File System Check", MaterialIcons._FOLDER, Color.BLACK, () -> { return new FileSample(); }));
   	}
 
   	private Sub createSQLSubGroup() {
