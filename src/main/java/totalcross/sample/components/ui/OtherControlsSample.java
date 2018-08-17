@@ -45,8 +45,8 @@ import totalcross.unit.UIRobotEvent;
 
 public class OtherControlsSample extends ScrollContainer {
 	private SpinList sl;
-	private Label lStatus, lTimeBox, lInputBox, lColorChooserBox, lSpinList, lRuler, lFileChooser;
-	private Container timeBoxC, inputBoxC, colorChooserC, spinListC, rulerC, fileChooserC;
+	private Label lName, lStatus, lTimeBox, lInputBox, lColorChooserBox, lSpinList, lRuler, lFileChooser;
+	private Container timeBoxC, inputBoxC, colorChooserC, spinListC, fileChooserC;
 	private int gap = (int) (Settings.screenDensity * 20);
 
 	@Override
@@ -72,20 +72,22 @@ public class OtherControlsSample extends ScrollContainer {
 			lInputBox = new Label("InputBox");
 			lInputBox.transparentBackground = true;
 			inputBoxC.add(lInputBox, CENTER, AFTER + gap);
+			inputBoxC.add(lName = new Label("Your name", CENTER), LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
 			inputBoxC.add(btnInput = new Button("Click to input your name"), CENTER, AFTER, PREFERRED + fmH * 6,
 					PREFERRED + fmH * 4);
+			lName.setForeColor(Colors.S_400);
 			btnInput.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 			inputBoxC.add(new Spacer(), CENTER, AFTER + gap);
 			inputBoxC.resizeHeight();
+			
 			btnInput.addPressListener(new PressListener() {
 				@Override
 				public void controlPressed(ControlEvent e) {
 					InputBox ib = new InputBox("InputBox", "Please enter your name:", "");
 					ib.popup();
 					String s = ib.getValue();
-					if (s != null) {
-						lStatus.setText(s);
-					}
+					if (s != null)
+						lName.setText(s);
 				}
 			});
 
@@ -124,17 +126,6 @@ public class OtherControlsSample extends ScrollContainer {
 			sl.hAlign = CENTER;
 			spinListC.add(new Spacer(), CENTER, AFTER + gap);
 			spinListC.resizeHeight();
-
-			
-			add(rulerC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-			rulerC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
-
-			lRuler = new Label("Ruler");
-			lRuler.transparentBackground = true;
-			rulerC.add(lRuler, CENTER, AFTER + gap);
-			rulerC.add(new Ruler(), LEFT, AFTER + gap);
-			rulerC.add(new Spacer(), CENTER, AFTER + gap);
-			rulerC.resizeHeight();
 
 			add(fileChooserC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			fileChooserC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
