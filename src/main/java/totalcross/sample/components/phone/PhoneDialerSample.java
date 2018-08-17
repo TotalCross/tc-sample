@@ -52,7 +52,7 @@ public class PhoneDialerSample extends Container {
     dial = new Button("Dial");
     dial.setFont(big);
     add(dial, SAME, AFTER + 5, SAME, PREFERRED);
-    dial.setBackColor(Color.GREEN);
+    dial.setBackForeColors(Colors.P_600, Colors.ON_P_600);
     dial.setEnabled(false);
   }
 
