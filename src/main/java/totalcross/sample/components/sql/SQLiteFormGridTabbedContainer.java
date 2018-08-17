@@ -35,7 +35,7 @@ public class SQLiteFormGridTabbedContainer extends TabbedContainer{
 		addBottomContainer2List(createButton(GRID), gridSample, () -> {});
 		
 		this.bottomBar = new Container() {
-			
+			 
 			@Override
 			public void initUI() {
 				super.initUI();
