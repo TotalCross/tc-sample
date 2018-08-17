@@ -64,9 +64,9 @@ public class FormSample extends ScrollContainer {
 		  nameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 		  
 	      phoneEdit = new Edit("(99)99999-9999");
-	      phoneEdit.setValidChars(Edit.numbersSet);
 	      phoneEdit.caption = "Phone";
 	      phoneEdit.setMode(Edit.NORMAL,true);
+	      phoneEdit.setValidChars(Edit.numbersSet);
 	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
 	      
