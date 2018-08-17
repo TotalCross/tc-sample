@@ -36,7 +36,6 @@ public class CheckRadioSample extends ScrollContainer {
 
 			c1 = new Container();
 			c1.setBackForeColors(Color.WHITE, Colors.ON_P_200);
-			//c1.setFont(font.asBold());
 
 			Label lbCheck = new Label("SELECT YOUR SUBJECTS", CENTER);
 			lbCheck.setBackForeColors(Colors.P_200, Colors.ON_P_200);

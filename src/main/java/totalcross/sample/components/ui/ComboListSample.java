@@ -1,11 +1,8 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
-import totalcross.sample.util.Util;
 import totalcross.sys.Settings;
-import totalcross.ui.CaptionPress;
 import totalcross.ui.ComboBox;
-import totalcross.ui.Container;
 import totalcross.ui.Label;
 import totalcross.ui.ListBox;
 import totalcross.ui.MultiListBox;
@@ -13,13 +10,10 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.Spacer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.gfx.Color;
-import totalcross.ui.image.Image;
-import totalcross.util.IntHashtable;
 
 public class ComboListSample extends ScrollContainer {
 	
 	private ComboBox simpleComboBox;
-	private ComboBox imageComboBox;
 	private ComboBox popupComboBox;
 	private ListBox simpleListBox;
 	private MultiListBox multiSelListBox;
@@ -42,9 +36,7 @@ public class ComboListSample extends ScrollContainer {
 			ComboBox.usePopupMenu = false;
 			simpleComboBox = new ComboBox(items);
 			simpleComboBox.caption = "Numbers with Dropdown";
-			simpleComboBox.fillColor = Colors.S_600;
-			simpleComboBox.setBackForeColors(Colors.S_600, Colors.ON_S_600);
-			simpleComboBox.checkColor = Colors.ON_S_600;
+			simpleComboBox.setForeColor(Colors.ON_BACKGROUND);
 			
 			add(simpleComboBox, LEFT + gap, AFTER + gap/2, FILL - gap, PREFERRED);
 			ComboBox.usePopupMenu = true;
@@ -52,8 +44,10 @@ public class ComboListSample extends ScrollContainer {
 			popupComboBox = new ComboBox(items);
 			popupComboBox.caption = "Numbers with Popup";
 			popupComboBox.popupTitle = "Select the item";
+			
 			popupComboBox.setBackColor(Color.BRIGHT);
-			popupComboBox.checkColor = Colors.ORANGE;
+			popupComboBox.setForeColor(Colors.ON_BACKGROUND);
+			
 			add(popupComboBox, LEFT + gap, AFTER + gap/2 , FILL - gap, PREFERRED);
 			
 			Label lbListBox = new Label("List Boxes", CENTER);
