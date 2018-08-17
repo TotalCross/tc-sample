@@ -118,6 +118,7 @@ public class DynScrollContainerSample extends Container {
 		c1.add(new Spacer(0, 0), LEFT, TOP, 1, gap/2); 
 		numberRangeEdit = add("Select your number range: ", c1, Color.WHITE, Color.BLACK);
 		numberRangeEdit.setBackForeColors(Color.WHITE, Color.BLACK);
+		numberRangeEdit.useNativeNumericPad = true;
 		
 		c1.add(new Spacer(0, 0), LEFT, AFTER + gap/2);
 		onlyPrimeChk = new Check("Show only prime numbers");
