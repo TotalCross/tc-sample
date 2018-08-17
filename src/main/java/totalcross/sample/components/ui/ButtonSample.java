@@ -49,17 +49,17 @@ public class ButtonSample extends ScrollContainer{
 			lColors.setFont(bold);
 			btnDefaultColor = new Button("Default");
 			btnRed = new Button("Red");
-			btnRed.setBackForeColors(Color.getRGB("bb0000"), Color.BLACK);
+			btnRed.setBackForeColors(Color.getRGB("d34419"), Color.WHITE);
 			btnGreen = new Button("Green");
-			btnGreen.setBackForeColors(Color.getRGB("00bb00"), Color.BLACK);
+			btnGreen.setBackForeColors(Color.getRGB("18d25a"), Color.WHITE);
 			btnBlue = new Button("Blue");
-			btnBlue.setBackForeColors(Color.getRGB("0000bb"), Color.WHITE);
+			btnBlue.setBackForeColors(Color.getRGB("1878d1"), Color.WHITE);
 			//Shapes
 			Label lShapes = new Label("Shapes", CENTER);
 			lShapes.setFont(bold);
 			btnFull = new Button("Full Button");
 			btnFull.setBackForeColors(Colors.P_700, Color.WHITE);
-			btnBlock = new Button("Block Button", Button.BORDER_ROUND);
+			btnBlock = new Button("Rounded Corners Button", Button.BORDER_ROUND);
 			btnBlock.roundBorderFactor = 7;
 			btnBlock.setBackForeColors(Colors.P_700, Color.WHITE);
 			btnRound = new Button("Round Button", Button.BORDER_ROUND);
