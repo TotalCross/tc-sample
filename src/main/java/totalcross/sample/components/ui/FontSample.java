@@ -108,7 +108,7 @@ public class FontSample extends Container {
 			add(slSize = new Slider(), AFTER + 2, SAME, SCREENSIZE+60, SAME + fmH / 2, l);
 			slSize.setLiveScrolling(!Settings.isWindowsCE());
 			slSize.setMinimum(Font.MIN_FONT_SIZE);
-			slSize.setMaximum(max + 1); // +1: visible items
+			slSize.setMaximum(81); // +1: visible items
 			slSize.drawFilledArea = slSize.drawTicks = false;
 			slSize.sliderColor = Color.BLACK;
 			slSize.setValue(Font.NORMAL_SIZE);
