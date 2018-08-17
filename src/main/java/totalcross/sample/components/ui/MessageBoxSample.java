@@ -30,19 +30,31 @@ public class MessageBoxSample extends Container {
 	public void initUI() {
 		wrongAnswers = 0;
 		correctAnswers = 0;
-		String[] facts = new String[10];
-		String[] questions = new String[10];
-		int[] questionAnswers = new int[10];
-		questions[1] = "Test (yes=correct)";
-		for (int i = 1; i <= 10; i++) {
-			questions[i - 1] = "Question " + i;
-			facts[i - 1] = "fact                     " + i;
-			if (i % 2 == 0) {
-				questionAnswers[i - 1] = 0;
-			} else {
-				questionAnswers[i - 1] = 1;
-			}
-		}
+		 String[] facts = { 
+            "Scotland has 421 words for “snow”", 
+            "The “Windy City” name has nothing to do with Chicago weather", 
+            "The longest English word is 189,819 letters long", 
+            "Cats have fewer toes on their back paws", 
+            "Kleenex tissues were originally intended for gas masks", 
+            "Thanks to 3D printing, NASA can basically “email” tools to astronauts", 
+            "There were active volcanoes on the moon when dinosaurs were alive", 
+            "No number before 1,000 contains the letter A", 
+            "Movie trailers originally played after the movie", 
+            "Humans aren’t the only animals that dream", 
+            "The inventor of the microwave appliance only received $2 for his discovery", 
+            "Totalcross was founded in 2014" 
+            }; 
+        String[] questions = { 
+            "Slug is a measurement unit?", 
+            "There are more grains of sand than stars in the sky?", 
+            "Totalcross > Ionic 3 ?", 
+            "Is 243 x 213 > 50.000 ?", 
+            "Ps4<Xbox One?", 
+            "PC>Console", 
+            "Mario > Sonic?" 
+        }; 
+        int[] questionAnswers = {0, 0, 0, 0, 1, 0,1}; 
+        int difficulty = 5; 
 		Random r = new Random();
 
 		sc = new ScrollContainer(false, true);
@@ -55,9 +67,9 @@ public class MessageBoxSample extends Container {
 			@Override
 			public void controlPressed(ControlEvent e) {
 
-				mb = new MessageBox("Did you know?", facts[r.nextInt(10)], new String[] { "Nice!" });
+				mb = new MessageBox("Did you know?", facts[r.nextInt(facts.length)], new String[]{"Nice!"});
 				mb.setRect(CENTER, CENTER, SCREENSIZE + 50, SCREENSIZE + 30);
-				mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+				mb.setBackForeColors(Colors.P_300, Colors.ON_P_300); 
 				mb.popup();
 
 			}
@@ -70,39 +82,43 @@ public class MessageBoxSample extends Container {
 		btnQuestion.addPressListener(new PressListener() {
 			@Override
 			public void controlPressed(ControlEvent e) {
-				int QuestionIndex = r.nextInt(10);
+				int QuestionIndex = r.nextInt(questions.length); 
 				MessageBox mb = new MessageBox("Question", questions[QuestionIndex], new String[] { "Yes", "No" });
-				mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+				mb.setBackForeColors(Colors.P_300, Colors.ON_P_300); 
 				mb.popup();
 				if (mb.getPressedButtonIndex() == questionAnswers[QuestionIndex]) {
-					if(correctAnswers<10) {
-						System.out.println("Correct");
-						correctAnswers++;
-						System.out.println("Correct answers: " + correctAnswers);
-					}
-					else {
-						System.out.println("Congratulations, reset");
-						
-						MessageBox congratulations = new MessageBox("Congratulations!", "You answered 10 questions correctly! You won!", new String[] { "Nice!" });
-						congratulations.setBackForeColors(Colors.P_400, Colors.ON_P_400);
-						congratulations.popup();
-						correctAnswers= 0;
-						wrongAnswers=0;
-					}
+					if(correctAnswers+1==difficulty) { 
+		                MessageBox win = new MessageBox("Congratulations!","You won!            ", new String[] {"Nice"}); 
+		                win.setBackForeColors(Colors.P_300, Colors.ON_P_300); 
+		                win.popup(); 
+		                correctAnswers=0; 
+                        wrongAnswers=0; 
+                        chart.series.removeAllElements(); 
+	                    chart.series.addElement(new Series("Correct answers", new double[] { correctAnswers, 0}, Color.getRGB(32,204,104))); 
+	                    chart.series.addElement(new Series("Wrong answers", new double[] { 0, wrongAnswers}, Color.getRGB(211,68,21))); 
+	                    repaintNow(); 
+		                }else { 
+		                  System.out.println("Correct"); 
+		                  correctAnswers++; 
+		                  System.out.println("Correct answers: "+correctAnswers); 
+		                } 
 
 				} else {
-					if(wrongAnswers<10) {
-						System.out.println("Wrong");
-						wrongAnswers++;
-						System.out.println("Wrong answers: " + wrongAnswers);
-					}else {
-						System.out.println("Too bad, you lose");
-						MessageBox lose = new MessageBox("You lose :(", "You lost the game, but don´t be afraid to try again! :)", new String[] { "Okay!" });
-						lose.setBackForeColors(Colors.S_400, Colors.ON_S_400);
-						lose.popup();
-						correctAnswers= 0;
-						wrongAnswers=0;
-					}
+					if(wrongAnswers+1==difficulty) { 
+		                  MessageBox lose = new MessageBox("Too bad!","You lost!", new String[] {"Okay"}); 
+		                  lose.setBackForeColors(Colors.P_300, Colors.ON_P_300); 
+		                  lose.popup(); 
+		                  correctAnswers=0; 
+		                      wrongAnswers=0; 
+		                      chart.series.removeAllElements(); 
+		                    chart.series.addElement(new Series("Correct answers", new double[] { correctAnswers, 0}, Color.getRGB(32,204,104))); 
+		                    chart.series.addElement(new Series("Wrong answers", new double[] { 0, wrongAnswers}, Color.getRGB(211,68,21))); 
+		                    repaintNow(); 
+		                }else { 
+		                  System.out.println("Wrong"); 
+		                  wrongAnswers++; 
+		                  System.out.println("Wrong answers: "+wrongAnswers); 
+		                } 
 				}
 				chart.series.removeAllElements();
 				chart.series.addElement(
