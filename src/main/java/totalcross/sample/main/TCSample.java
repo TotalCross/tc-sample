@@ -16,7 +16,6 @@ import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
 import totalcross.sample.components.sys.SettingsSample;
 import totalcross.sample.components.ui.*;
 import totalcross.sample.components.util.ZLibSample;
-import totalcross.sample.components.xml.SoapSample;
 import totalcross.sample.components.xml.XMLParseSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
@@ -133,8 +132,7 @@ public class TCSample extends MainWindow {
 
   	private Sub createXMLSubGroup() {
   		return new SideMenuContainer.Sub("XML",
-  			new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); }),
-  			new SideMenuContainer.Item("Soap", MaterialIcons._FILTER_LIST, Color.BLACK, () -> { return new SoapSample(); }));
+  			new SideMenuContainer.Item("XML", MaterialIcons._CODE, Color.BLACK, () -> { return new XMLParseSample(); }));
 	}
 
 	private Sub createUISubGroup() {
