@@ -56,7 +56,8 @@ public class FormSample extends ScrollContainer {
 		try
 	    {
 	      Settings.is24Hour = true;
-		  
+	      Edit.useNativeNumericPad = true;
+	      
 		  nameEdit = new Edit();
 		  nameEdit.caption = "Name";
 		  nameEdit.focusColor = focusColor;
@@ -67,7 +68,7 @@ public class FormSample extends ScrollContainer {
 	      phoneEdit.caption = "Phone";
 	      phoneEdit.setMode(Edit.NORMAL,true);
 	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
-	      phoneEdit.useNativeNumericPad = true;
+	      
 	      
 	      nickNameEdit = new Edit();
 		  nickNameEdit.caption = "NickName";
