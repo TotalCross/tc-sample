@@ -1,15 +1,11 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
-import totalcross.sys.Vm;
 import totalcross.ui.ButtonMenu;
 import totalcross.ui.Container;
 import totalcross.ui.Spinner;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.ProgressBox;
-import totalcross.ui.event.ControlEvent;
-import totalcross.ui.event.Event;
-import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
 
 public class ProgressBoxSample extends Container {
@@ -23,7 +19,7 @@ public class ProgressBoxSample extends Container {
       super.initUI();
       pb = new ProgressBox("Alert!", "null", null);
       
-      String[] items = {"ProgressBox (Android style)", "ProgressBox (iOS style)"};
+      String[] items = {"ProgressBox (Android Spinner)", "ProgressBox (iOS Spinner)"};
 
       menu = new ButtonMenu(items, ButtonMenu.SINGLE_COLUMN);
       menu.borderGap = 130;
