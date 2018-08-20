@@ -51,7 +51,7 @@ public class PhoneDialerSample extends Container {
     pbg.setFont(big);
     add(pbg, CENTER, AFTER, SCREENSIZE + 80, SCREENSIZE+65);
     pbg.setFocusLess(true);
-
+    add(new Spacer(),LEFT, AFTER, 1, SCREENSIZE+2);
     dial = new Button("Dial");
     dial.setFont(big);
     add(dial, CENTER, AFTER, SCREENSIZE+30, SCREENSIZE+10);
