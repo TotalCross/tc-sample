@@ -48,12 +48,10 @@ public class MessageBoxSample extends Container {
             "Slug is a measurement unit?", 
             "There are more grains of sand than stars in the sky?", 
             "Totalcross > Ionic 3 ?", 
-            "Is 243 x 213 > 50.000 ?", 
-            "Ps4<Xbox One?", 
-            "PC>Console", 
-            "Mario > Sonic?" 
+            "Are penguins birds ?", 
+            "Are there just oranges oranges ?",  
         }; 
-        int[] questionAnswers = {0, 0, 0, 0, 1, 0,1}; 
+        int[] questionAnswers = {0, 0, 0, 0, 1}; 
         int difficulty = 5; 
 		Random r = new Random();
 
@@ -94,7 +92,8 @@ public class MessageBoxSample extends Container {
 		                correctAnswers=0; 
                         wrongAnswers=0; 
                         chart.series.removeAllElements(); 
-	                    chart.series.addElement(new Series("Correct answers", new double[] { correctAnswers, 0}, Color.getRGB(32,204,104))); 
+                        String columnLabel ="Correct answers " + correctAnswers+"/"+difficulty;
+        				chart.series.addElement(new Series(columnLabel, new double[] { correctAnswers, 0}, Color.getRGB(32,204,104))); 
 	                    chart.series.addElement(new Series("Wrong answers", new double[] { 0, wrongAnswers}, Color.getRGB(211,68,21))); 
 	                    repaintNow(); 
 		                }else { 
@@ -111,7 +110,8 @@ public class MessageBoxSample extends Container {
 		                  correctAnswers=0; 
 		                      wrongAnswers=0; 
 		                      chart.series.removeAllElements(); 
-		                    chart.series.addElement(new Series("Correct answers", new double[] { correctAnswers, 0}, Color.getRGB(32,204,104))); 
+		                      String columnLabel ="Correct answers " + correctAnswers+"/"+difficulty;
+		      				chart.series.addElement(new Series(columnLabel, new double[] { correctAnswers, 0}, Color.getRGB(32,204,104))); 
 		                    chart.series.addElement(new Series("Wrong answers", new double[] { 0, wrongAnswers}, Color.getRGB(211,68,21))); 
 		                    repaintNow(); 
 		                }else { 
@@ -121,8 +121,8 @@ public class MessageBoxSample extends Container {
 		                } 
 				}
 				chart.series.removeAllElements();
-				chart.series.addElement(
-						new Series("Correct answers", new double[] { correctAnswers, 0 }, Color.getRGB(32, 204, 104)));
+				String columnLabel ="Correct answers " + correctAnswers+"/"+difficulty;
+				chart.series.addElement(new Series(columnLabel, new double[] { correctAnswers, 0}, Color.getRGB(32,204,104))); 
 				chart.series.addElement(
 						new Series("Wrong answers", new double[] { 0, wrongAnswers }, Color.getRGB(211, 68, 21)));
 				repaintNow();
