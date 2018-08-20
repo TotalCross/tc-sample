@@ -43,11 +43,11 @@ public class PhoneDialerSample extends Container {
     ed = new Edit("");
     ed.setFont(Font.getFont(true, Font.NORMAL_SIZE * 2));
     ed.setEnabled(false);
-    add(ed, LEFT, TOP, FILL, PREFERRED);
+    add(ed, LEFT, TOP, FILL, SCREENSIZE+10);
 
     pbg = new PushButtonGroup(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "P", "0", " << " }, 5, 4);
     pbg.setFont(big);
-    add(pbg, CENTER, AFTER, SCREENSIZE + 80, SCREENSIZE+65);
+    add(pbg, CENTER, AFTER+Settings.screenHeight/10, SCREENSIZE + 80, SCREENSIZE+65);
     pbg.setFocusLess(true);
 
     dial = new Button("Dial");
