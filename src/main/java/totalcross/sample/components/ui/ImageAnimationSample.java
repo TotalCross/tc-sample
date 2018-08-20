@@ -70,6 +70,11 @@ public class ImageAnimationSample extends Container {
 			Image img = new Image("images/alligator.gif");
 			effect = cbEffect.getSelectedIndex();
 			double scale = Settings.isIOS() ? 1.5 : 2; // ios has less opengl memory
+			int scaledcount = Settings.screenWidth/500;
+			System.out.println(scaledcount+" ,"+ Settings.screenWidth);
+			for(int i=0; i<scaledcount; i++) {
+				img = img.scaledBy(scale, scale);
+			}
 			switch (effect) {
 			case 1:
 				img = img.scaledBy(scale, scale);
