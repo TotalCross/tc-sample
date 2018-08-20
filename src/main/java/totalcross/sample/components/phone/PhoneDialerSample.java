@@ -19,16 +19,15 @@ package totalcross.sample.components.phone;
 import totalcross.io.IOException;
 import totalcross.phone.Dial;
 import totalcross.sample.util.Colors;
-import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.PushButtonGroup;
+import totalcross.ui.Spacer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
-import totalcross.ui.gfx.Color;
 
 public class PhoneDialerSample extends Container {
   private PushButtonGroup pbg;
@@ -40,19 +39,22 @@ public class PhoneDialerSample extends Container {
     super.initUI();
     setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     Font big = Font.getFont(true, Font.NORMAL_SIZE + 2);
-    ed = new Edit("");
+    ed = new Edit();
     ed.setFont(Font.getFont(true, Font.NORMAL_SIZE * 2));
     ed.setEnabled(false);
-    add(ed, LEFT, TOP, FILL, SCREENSIZE+10);
+    ed.alignment = CENTER;
+    add(ed, LEFT, TOP, FILL, SCREENSIZE+8);
+    
+    add(new Spacer(),LEFT, AFTER, 1, SCREENSIZE+5);
 
     pbg = new PushButtonGroup(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "P", "0", " << " }, 5, 4);
     pbg.setFont(big);
-    add(pbg, CENTER, AFTER+Settings.screenHeight/10, SCREENSIZE + 80, SCREENSIZE+65);
+    add(pbg, CENTER, AFTER, SCREENSIZE + 80, SCREENSIZE+65);
     pbg.setFocusLess(true);
 
     dial = new Button("Dial");
     dial.setFont(big);
-    add(dial, CENTER, AFTER + Settings.screenHeight/10, SCREENSIZE+30, SCREENSIZE+10);
+    add(dial, CENTER, AFTER, SCREENSIZE+30, SCREENSIZE+10);
     dial.setBackForeColors(Colors.P_600, Colors.ON_P_600);
   }
 
