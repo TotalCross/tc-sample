@@ -14,7 +14,32 @@ import totalcross.sample.components.phone.PhoneDialerSample;
 import totalcross.sample.components.sql.SQLiteBenchSample;
 import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
 import totalcross.sample.components.sys.SettingsSample;
-import totalcross.sample.components.ui.*;
+import totalcross.sample.components.ui.AccordionSample;
+import totalcross.sample.components.ui.AlignedLabelsSample;
+import totalcross.sample.components.ui.ButtonSample;
+import totalcross.sample.components.ui.CameraSample;
+import totalcross.sample.components.ui.charts.ArcChartSample;
+import totalcross.sample.components.ui.charts.ColumnChartSample;
+import totalcross.sample.components.ui.charts.LineChartSample;
+import totalcross.sample.components.ui.charts.PieChartSample;
+import totalcross.sample.components.ui.CheckRadioSample;
+import totalcross.sample.components.ui.ComboListSample;
+import totalcross.sample.components.ui.DynScrollContainerSample;
+import totalcross.sample.components.ui.EditSample;
+import totalcross.sample.components.ui.FontSample;
+import totalcross.sample.components.ui.ImageAnimationSample;
+import totalcross.sample.components.ui.ImageModifiersSample;
+import totalcross.sample.components.ui.Login;
+import totalcross.sample.components.ui.MaterialIconsSample;
+import totalcross.sample.components.ui.MessageBoxSample;
+import totalcross.sample.components.ui.MultiTouchSample;
+import totalcross.sample.components.ui.OtherControlsSample;
+import totalcross.sample.components.ui.ProgressBoxSample;
+import totalcross.sample.components.ui.SliderSwitchSample;
+import totalcross.sample.components.ui.SpinnerSample;
+import totalcross.sample.components.ui.TabbedContainerSample;
+import totalcross.sample.components.ui.TopMenuSample;
+import totalcross.sample.components.ui.VelocimeterSample;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.xml.XMLParseSample;
 import totalcross.sample.util.Colors;
@@ -58,6 +83,7 @@ public class TCSample extends MainWindow {
 	SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home();});
 	SideMenuContainer.Sub uiGroup = createUISubGroup();
     SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
+    SideMenuContainer.Sub chartGroup = createChartSubGroup();
     SideMenuContainer.Sub cryptoGroup = createCryptoSubGroup();
     SideMenuContainer.Sub ioGroup = createIOSubGroup();
     SideMenuContainer.Sub jsonGroup = createJSONSubGroup();
@@ -73,6 +99,7 @@ public class TCSample extends MainWindow {
             null,
             home,            		
             uiGroup,
+            chartGroup,
             sqlGroup,
             cryptoGroup,
             ioGroup,
@@ -142,7 +169,6 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Button", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new ButtonSample(); }),
 			   new SideMenuContainer.Item("Camera", MaterialIcons._PHOTO_CAMERA, Color.BLACK,  () -> { return new CameraSample(); }),
 			   new SideMenuContainer.Item("Cards", MaterialIcons._VIEW_AGENDA, Color.BLACK,  () -> { return new CardsSample(); }),
-			   new SideMenuContainer.Item("Charts", MaterialIcons. _EDIT, Color.BLACK,  () -> { return new ChartSample(); }),
 			   new SideMenuContainer.Item("Check and Radio", MaterialIcons._CHECK_BOX, Color.BLACK,  () -> { return new CheckRadioSample(); }),
 			   new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Color.BLACK,  () -> { return new ComboListSample(); }),
 			   new SideMenuContainer.Item("Dynamic Scroll Container", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new DynScrollContainerSample(); }),
@@ -162,7 +188,15 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Top Menu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
 			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
 	}
-
+	
+	private Sub createChartSubGroup() {
+		return new SideMenuContainer.Sub("Chart", 
+				new SideMenuContainer.Item("Arc Chart", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new ArcChartSample(); }),
+				new SideMenuContainer.Item("Column Chart", MaterialIcons._INSERT_CHART, Color.BLACK,  () -> { return new ColumnChartSample(); }),
+				new SideMenuContainer.Item("Line Chart", MaterialIcons._SHOW_CHART, Color.BLACK,  () -> { return new LineChartSample(); }),
+				new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }));
+	}
+	
 	private Sub createCryptoSubGroup() {
 		return new SideMenuContainer.Sub("Crypto", 
 				new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); }),
