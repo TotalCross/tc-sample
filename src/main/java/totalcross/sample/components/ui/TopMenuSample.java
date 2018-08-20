@@ -1,28 +1,26 @@
 package totalcross.sample.components.ui;
 
+import totalcross.io.IOException;
 import totalcross.res.Resources;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
-import totalcross.ui.Check;
 import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
 import totalcross.ui.Control;
 import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
-import totalcross.ui.Toast;
 import totalcross.ui.TopMenu;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
+import totalcross.ui.image.ImageException;
 
 public class TopMenuSample extends ScrollContainer {
 	final int gap = (int) (Settings.screenDensity * 20);
-	private ComboBox cbSide;
-	private Container menu;
 	private TopMenu topMenu;
 
 	private class FilterContainer extends Container implements PressListener {
@@ -57,24 +55,6 @@ public class TopMenuSample extends ScrollContainer {
 
 	@Override
 	public void initUI() {
-		add(menu = new Container(), LEFT + gap*2, TOP + gap*2, SCREENSIZE + 76, WILL_RESIZE);
-		menu.setBackForeColors(Colors.P_300, Colors.ON_P_300);
-		menu.add(new Label("Direction: "), LEFT + gap, TOP + gap, PREFERRED, PREFERRED);
-
-		cbSide = new ComboBox(new String[] { "LEFT", "RIGHT", "TOP", "BOTTOM" });
-		cbSide.setBackColor(Color.getRGB("fcfcfc"));
-		menu.add(cbSide, AFTER + gap, SAME, PREFERRED + gap, PREFERRED);
-
-		Check filter = new Check("FilterContainer");
-		menu.add(filter, LEFT + gap, AFTER + gap, PREFERRED + gap, PREFERRED + gap);
-		
-		menu.resizeHeight();
-		
-		Button confirm = new Button("GO");
-		confirm.setBackForeColors(Colors.S_600, Colors.ON_S_600);
-		add(confirm, AFTER + gap, SAME, FILL - gap*2, SAME, menu);
-		
-
 		Control[] items = { new TopMenu.Item("Videocalls", Resources.warning),
 				new TopMenu.Item("Insert emoticon", Resources.exit),
 				new ComboBox(new String[] { "Smile", "Sad", "Laugh" }), new TopMenu.Item("Add text", Resources.back),
@@ -83,53 +63,73 @@ public class TopMenuSample extends ScrollContainer {
 				new TopMenu.Item("Programmed messages", Resources.menu),
 				new TopMenu.Item("Add to the phone book", Resources.warning), };
 		
-		confirm.addPressListener((e) -> {
-			try {
-				boolean canShow = true;
-				switch (cbSide.getSelectedIndex()) {
-				case -1:
-					Toast.show("You must select a direction first", 500);
-					break;
-				case 0:
-					if (filter.isChecked())
-						topMenu = new TopMenu(new Control[] { new FilterContainer() }, LEFT);
-					else
-						topMenu = new TopMenu(items, LEFT);
-					break;
-				case 1:
-					if (filter.isChecked())
-						topMenu = new TopMenu(new Control[] { new FilterContainer() }, RIGHT);
-					else
-						topMenu = new TopMenu(items, RIGHT);
-					break;
-				case 2:
-					if (filter.isChecked()) {
-						Toast.show("You shouldn't use FilterContainer with TOP", 500);
-						canShow = false;
-					} else
-						topMenu = new TopMenu(items, TOP);
-					break;
-				case 3:
-					if (filter.isChecked()) {
-						Toast.show("You shouldn't use FilterContainer with BOTTOM", 500);
-						canShow = false;
-					} else
-						topMenu = new TopMenu(items, BOTTOM);
-					break;
-				}
-				if(topMenu != null) {
-					if (filter.isChecked() && canShow) {
-						topMenu.totalTime = 500;
-						topMenu.autoClose = false;
-						topMenu.backImage = new Image("images/back1.jpg");
-						topMenu.backImageAlpha = 96;
-					}
-					if(canShow)
-						topMenu.popup();
-				}
-			} catch (Exception ee) {
-				MessageBox.showException(ee, true);
-			}
+		Label message = new Label("Click on the buttons to show the TopMenu", CENTER);
+		message.autoSplit = true;
+		add(message, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
+		
+		Button[] tmBtn = new Button[4];
+		Button[] filterBtn = new Button[2];
+		tmBtn[0] = new Button("TopMenu TOP");
+		add(tmBtn[0], CENTER, AFTER + gap, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[0].addPressListener(e -> {
+			topMenu = new TopMenu(items, TOP);
+			topMenu.popup();
 		});
+
+		tmBtn[1] = new Button("TopMenu RIGHT");
+		add(tmBtn[1], RIGHT - gap, CENTER, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[1].addPressListener(e -> {
+			topMenu = new TopMenu(items, RIGHT);
+			topMenu.popup();
+		});
+		filterBtn[0] = new Button("Filter RIGHT");
+		add(filterBtn[0], RIGHT - gap, AFTER + gap, SAME, SAME);
+		filterBtn[0].addPressListener(e -> {
+			topMenu = new TopMenu(new Control[] { new FilterContainer() }, RIGHT);
+			topMenu.totalTime = 500;
+			topMenu.autoClose = false;
+			try {
+				topMenu.backImage = new Image("images/back1.jpg");
+			} catch (IOException | ImageException e1) {
+				e1.printStackTrace();
+			}
+			topMenu.backImageAlpha = 96;
+			topMenu.setFadeOnPopAndUnpop(false);
+			topMenu.popup();
+		});
+		
+		tmBtn[2] = new Button("TopMenu BOTTOM");
+		add(tmBtn[2], CENTER, BOTTOM - gap, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[2].addPressListener(e -> {
+			topMenu = new TopMenu(items, BOTTOM);
+			topMenu.popup();		
+		});
+		
+		tmBtn[3] = new Button("TopMenu LEFT");
+		add(tmBtn[3], LEFT + gap, CENTER, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[3].addPressListener(e -> {
+			topMenu = new TopMenu(items, LEFT);
+			topMenu.popup();
+		});
+		filterBtn[1] = new Button("Filter LEFT");
+		add(filterBtn[1], LEFT + gap, AFTER + gap, SAME, SAME);
+		filterBtn[1].addPressListener(e -> {
+			topMenu = new TopMenu(new Control[] { new FilterContainer() }, LEFT);
+			topMenu.totalTime = 500;
+			topMenu.autoClose = false;
+			try {
+				topMenu.backImage = new Image("images/back1.jpg");
+			} catch (IOException | ImageException e1) {
+				e1.printStackTrace();
+			}
+			topMenu.backImageAlpha = 96;
+			topMenu.setFadeOnPopAndUnpop(false);
+			topMenu.popup();
+		});
+		
+		for (Button btn : tmBtn)
+			btn.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+		for (Button btn : filterBtn)
+			btn.setBackForeColors(Colors.P_800, Colors.ON_P_800);
 	}
 }
