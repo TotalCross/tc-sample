@@ -144,40 +144,49 @@ public class DynScrollContainerSample extends Container {
 
 	@Override
 	public void onEvent(Event event) {
-		if (event.type == ControlEvent.PRESSED && event.target == goButton) {
+		if (event.type == ControlEvent.PRESSED && (event.target == goButton || event.target == onlyPrimeChk) ) {
 			int rowCount = rowCount0;
 			try {
 				rowCount = Convert.toInt(numberRangeEdit.getText());
 			} catch (Exception e) {
-				//numberRangeEdit.setText(rowCount + "");
-				}
+				e.printStackTrace();
+			}
 			ProgressBox pb = new ProgressBox("Calculating", "Please wait...", null);
 			pb.setBackColor(Color.getRGB(12, 98, 200));
 			pb.popupNonBlocking();
 			DynamicScrollContainer.DataSource datasource = new DynamicScrollContainer.DataSource(rowCount);
-			for (int i = 0; i < rowCount; i++) {
-				if(onlyPrimeChk.isChecked()) {
-					if(isPrime(i)) {
+			
+			if (onlyPrimeChk.isChecked()) {
+				for (int i = 0; i < rowCount; i++) {
+					System.out.print("i : " + i);
+					if (isPrime(i)) {
 						DynSCTestView view = new DynSCTestView(i, font);
-						view.height = Settings.screenHeight/20;
+						view.height = Settings.screenHeight / 20;
 						datasource.addView(view);
+						System.out.print(" should be printed");
+					} else {
+						System.out.print(" nada acontece feijoada");
 					}
-				}else {
-					if(isPrime(i)) {
+					System.out.print("\n");
+				}
+			} else {
+				for (int i = 0; i < rowCount; i++) {
+					if (isPrime(i)) {
 						DynSCTestView view = new DynSCTestView(i, font);
-						view.height = Settings.screenHeight/20;
+						view.height = Settings.screenHeight / 20;
 						datasource.addView(view);
-					}else {
-					DynSCTestView view = new DynSCTestView(i, font);
-					view.height = Settings.screenHeight/20;
-					datasource.addView(view);
+					} else {
+						DynSCTestView view = new DynSCTestView(i, font);
+						view.height = Settings.screenHeight / 20;
+						datasource.addView(view);
 					}
 				}
 			}
 
 			pb.unpop();
 			vsc.setDataSource(datasource);
-			vsc.scrollToView(datasource.getView(0));
+			if(!onlyPrimeChk.isChecked())
+				vsc.scrollToView(datasource.getView(0));
 		}
 	}
 	private static boolean isPrime(int n) {
