@@ -18,14 +18,11 @@ package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
-import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.TabbedContainer;
 import totalcross.ui.dialog.MessageBox;
-import totalcross.ui.event.ControlEvent;
-import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
@@ -37,18 +34,14 @@ public class TabbedContainerSample extends ScrollContainer {
 	public void initUI() {
 		try {
 			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
-			Button btnEnable = new Button("Enable all tabs");
-			btnEnable.setBackForeColors(Colors.P_600, Colors.ON_P_600);
-
-			add(btnEnable, CENTER, TOP + gap, SCREENSIZE + 95, PREFERRED + gap*2);
 
 			String[] caps = { "Social 1", "Social 2", "Social 3" };
 			Image[] icons = { new Image("images/fb_icon_40.png"), new Image("images/gmail_icon_40.png"),
 					new Image("images/insta_icon_40.png") };
 
-			Label explain1 = new Label("This is a Tabbed Container with icon and text", CENTER);
+			Label explain1 = new Label("This is a icon and text Tabbed Container", CENTER);
 			explain1.autoSplit = true;
-			add(explain1, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
+			add(explain1, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
 			
 			Container c1 = new Container();
 			
@@ -68,7 +61,7 @@ public class TabbedContainerSample extends ScrollContainer {
 			for(int i = 0; i < 3; i++)
 				tc.getContainer(i).add(new Label("Container " + (i+1)), CENTER, CENTER);
 
-			Label explain2 = new Label("This is a Tabbed Container with just text", CENTER);
+			Label explain2 = new Label("This is a text only Tabbed Container", CENTER);
 			explain2.autoSplit = true;
 			add(explain2, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
 			
@@ -102,7 +95,7 @@ public class TabbedContainerSample extends ScrollContainer {
 				images[i] = empty;
 			}
 			
-			Label explain3 = new Label("This is a Tabbed Container with just images on the tab space", CENTER);
+			Label explain3 = new Label("This is a only image Tabbed Container", CENTER);
 			explain3.autoSplit = true;
 			add(explain3, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
 			
@@ -123,18 +116,6 @@ public class TabbedContainerSample extends ScrollContainer {
 			c3.add(tc3, LEFT, TOP, FILL, PARENTSIZE);
 			for(int i = 0; i < 3; i++)
 				tc3.getContainer(i).add(new Label("Container " + (i+1)), CENTER, CENTER);
-			
-			btnEnable.addPressListener(new PressListener() {
-				@Override
-				public void controlPressed(ControlEvent e) {
-					for (int i = 0; i < 3; i++)
-						tc.setEnabled(i, true);
-					for (int i = 0; i < 3; i++)
-						tc2.setEnabled(i, true);
-					for (int i = 0; i < 3; i++)
-						tc3.setEnabled(i, true);
-				}
-			});
 
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);
