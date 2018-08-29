@@ -136,7 +136,7 @@ public class TCSample extends MainWindow {
               setBackColor(Colors.SECONDARY);
 
               Label title = new Label("Showcase", LEFT, Color.WHITE, false);
-              title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
+              title.setFont(Font.getFont("Lato Bold", false, this.getFont().getSize() + 5));
               title.setForeColor(Color.WHITE);
               add(title, LEFT + 45, BOTTOM - 30, FILL, DP + 56);
 

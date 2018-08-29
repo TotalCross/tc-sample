@@ -1,8 +1,6 @@
 package totalcross.sample.components.ui;
 
 import totalcross.io.IOException;
-import totalcross.notification.Notification;
-import totalcross.notification.NotificationManager;
 import totalcross.sample.util.Colors;
 import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
@@ -57,16 +55,7 @@ public class NotificationsSample extends Container{
 				}
 
 				@Override
-				public void penUp(PenEvent arg0) {
-					// TODO Auto-generated method stub
-					Notification.Builder builder = new Notification.Builder();
-					Notification notification = builder
-							.title("Click Me!")
-							.text("Tanks for Click Me!! \n Twice")
-							.build();
-					NotificationManager.getInstance().notify(notification);
-				}
-				  
+				public void penUp(PenEvent arg0) {}
 			  });
 			
 			add(ic, LEFT, CENTER-300, FILL, PARENTSIZE+20);
