@@ -103,8 +103,8 @@ public class ButtonSample extends ScrollContainer{
 			add(btnLeftImage, BEFORE - (int) (4 * dp), SAME);
 			add(btnImage, CENTER, AFTER + (int) (8 * dp));
 			add(lSizes, LEFT, AFTER + (int) (8 * dp), FILL, DP + 36);
-			add(btnDefaultSize, CENTER, AFTER + (int) (8 * dp));
-			add(btnLarge, BEFORE - (int) (8 * dp), CENTER_OF, btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + (int) (48 * dp), DP + 54);
+			add(btnLarge, LEFT + (int) (8 * dp), AFTER + (int) (8 * dp), btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + (int) (48 * dp), DP + 54);
+			add(btnDefaultSize, AFTER +(int) (8 * dp) , CENTER_OF);
 			add(btnSmall, AFTER + (int) (8 * dp), CENTER_OF, btnSmall.getPreferredWidth() <= 24 ? DP + 48 : btnSmall.getPreferredWidth() + (int) (24 * dp), DP + 27, btnDefaultSize);
 		} catch (Exception e) {
 			e.printStackTrace();
