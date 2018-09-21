@@ -8,11 +8,12 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
+import totalcross.util.UnitsConverter;
 
 public class ButtonSample extends ScrollContainer{
 
 	
-	private final static int dp = (int) Settings.screenDensity;
+	private final static double dp = Settings.screenDensity;
 	private Button btnDefaultColor;
 	private Button btnRed;
 	private Button btnGreen;
@@ -40,7 +41,7 @@ public class ButtonSample extends ScrollContainer{
 		super.initUI();
 
 		try {
-			setInsets(0, 0, 0, 8 * dp);
+			setInsets(0, 0, 0, (int) (8 * dp));
 			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 			setScrollBars(false, true);
 			//Colors
@@ -62,18 +63,18 @@ public class ButtonSample extends ScrollContainer{
 			btnBlock = new Button("Rounded Corners Button", Button.BORDER_ROUND);
 			btnBlock.roundBorderFactor = 7;
 			btnBlock.setBackForeColors(Colors.P_700, Color.WHITE);
-			btnRound = new Button("Round Button", Button.BORDER_ROUND);
-			btnRound.setBackForeColors(Colors.P_700, Color.WHITE);
-			btnBorderless = new Button("Borderless Button", Button.BORDER_NONE);
+			btnRound = new Button("Borderless Button", Button.BORDER_NONE);
+			btnRound.setForeColor(Colors.P_700);
+			btnBorderless = new Button("Outlined Button", Button.BORDER_OUTLINED);
 			btnBorderless.setBackForeColors(Colors.P_700, Color.WHITE);
 			//Images
 			lImages.setFont(bold);
-			Image img = new Image("images/bt_info.png").smoothScaledFixedAspectRatio(18 * dp, true);
-			btnLeftImage = new Button("Left Image", img, RIGHT, 8 * dp);
+			Image img = new Image("images/bt_info.png").getHwScaledInstance(UnitsConverter.toPixels(DP + 18), UnitsConverter.toPixels(DP + 18));
+			btnLeftImage = new Button("Left Image", img, RIGHT, (int) (8 * dp));
 			btnLeftImage.setBackForeColors(Colors.P_700, Color.WHITE);
-			btnRightImage = new Button("Right Image", img, LEFT, 8 * dp);
+			btnRightImage = new Button("Right Image", img, LEFT, (int) (8 * dp));
 			btnRightImage.setBackForeColors(Colors.P_700, Color.WHITE);
-			btnImage = new Button(img);
+			btnImage = new Button(img.getHwScaledInstance(UnitsConverter.toPixels(DP + 24), UnitsConverter.toPixels(DP + 24)));
 			btnImage.setBackForeColors(Colors.P_700, Color.WHITE);
 			//Sizes
 			Label lSizes = new Label("Sizes", CENTER);
@@ -87,24 +88,24 @@ public class ButtonSample extends ScrollContainer{
 			btnSmall.setFont(Font.getFont(btnLarge.getFont().size*3/4));
 			btnSmall.setBackForeColors(Colors.P_700, Color.WHITE);
 			
-			add(lColors, LEFT, TOP + 8 * dp, FILL, DP + 36);
-			add(btnDefaultColor, CENTER, AFTER + 8 * dp, btnDefaultColor.getPreferredWidth() <= 32 ? DP + 64 : btnDefaultColor.getPreferredWidth() + 32 * dp, DP + 36);
-			add(btnGreen, CENTER, AFTER + 8 * dp, btnGreen.getPreferredWidth() <= 32 ? DP + 64 : btnGreen.getPreferredWidth() + 32 * dp, DP + 36);
-			add(btnRed, BEFORE - 8 * dp, SAME, btnRed.getPreferredWidth() <= 32 ? DP + 64 : btnRed.getPreferredWidth() + 32 * dp, DP + 36);
-			add(btnBlue, AFTER + 8 * dp, SAME, btnBlue.getPreferredWidth() <= 32 ? DP + 64 : btnBlue.getPreferredWidth() + 32 * dp, DP + 36, btnGreen);
-			add(lShapes, LEFT, AFTER + 8 * dp, FILL, DP + 36);
-			add(btnFull, CENTER, AFTER + 8 * dp, PARENTSIZE + 95, DP + 36);
-			add(btnBlock, CENTER, AFTER + 8 * dp, PARENTSIZE + 95, DP + 36);
-			add(btnBorderless, CENTER, AFTER + 8 * dp, btnBorderless.getPreferredWidth() <  32 ? DP + 64 : btnBorderless.getPreferredWidth() + 32 * dp, DP + 36);
-			add(btnRound, CENTER, AFTER + 8 * dp, btnRound.getPreferredWidth() <= 32 ? DP + 64 : btnRound.getPreferredWidth() + 32 * dp, DP + 36);
-			add(lImages, LEFT, AFTER + 8 * dp, FILL, DP + 36);
-			add(btnRightImage, center + 4 * dp, AFTER + 8 * dp, btnRightImage.getPreferredWidth() <= 32 ? DP + 64 : btnRightImage.getPreferredWidth() + 32 * dp, DP + 36);
-			add(btnLeftImage, BEFORE - 4 * dp, SAME, btnLeftImage.getPreferredWidth() <= 32 ? DP + 64 : btnLeftImage.getPreferredWidth() + 32 * dp, DP + 36);
-			add(btnImage, CENTER, AFTER + 8 * dp, DP + 36, DP + 36);
-			add(lSizes, LEFT, AFTER + 8 * dp, FILL, DP + 36);
-			add(btnDefaultSize, CENTER, AFTER + 8 * dp, btnDefaultSize.getPreferredWidth() <= 32 ? DP + 64 : btnDefaultSize.getPreferredWidth() + 32 * dp, DP + 36);
-			add(btnLarge, BEFORE - 8 * dp, CENTER_OF, btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + 48 * dp, DP + 54);
-			add(btnSmall, AFTER + 8 * dp, CENTER_OF, btnSmall.getPreferredWidth() <= 24 ? DP + 48 : btnSmall.getPreferredWidth() + 24 * dp, DP + 27, btnDefaultSize);
+			add(lColors, LEFT, TOP + (int) (8 * dp), FILL, DP + 36);
+			add(btnDefaultColor, CENTER, AFTER + (int) (8 * dp));
+			add(btnGreen, CENTER, AFTER + (int) (8 * dp));
+			add(btnRed, BEFORE - (int) (8 * dp), SAME);
+			add(btnBlue, AFTER + (int) (8 * dp), SAME, btnGreen);
+			add(lShapes, LEFT, AFTER + (int) (8 * dp), FILL, DP + 36);
+			add(btnFull, CENTER, AFTER + (int) (8 * dp), PARENTSIZE + 95, PREFERRED);
+			add(btnBlock, CENTER, AFTER + (int) (8 * dp), PARENTSIZE + 95, PREFERRED);
+			add(btnBorderless, CENTER, AFTER + (int) (8 * dp));
+			add(btnRound, CENTER, AFTER + (int) (8 * dp));
+			add(lImages, LEFT, AFTER + (int) (8 * dp), FILL, DP + 36);
+			add(btnRightImage, center + (int) (4 * dp), AFTER + (int) (8 * dp));
+			add(btnLeftImage, BEFORE - (int) (4 * dp), SAME);
+			add(btnImage, CENTER, AFTER + (int) (8 * dp));
+			add(lSizes, LEFT, AFTER + (int) (8 * dp), FILL, DP + 36);
+			add(btnDefaultSize, CENTER, AFTER + (int) (8 * dp));
+			add(btnLarge, BEFORE - (int) (8 * dp), CENTER_OF, btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + (int) (48 * dp), DP + 54);
+			add(btnSmall, AFTER + (int) (8 * dp), CENTER_OF, btnSmall.getPreferredWidth() <= 24 ? DP + 48 : btnSmall.getPreferredWidth() + (int) (24 * dp), DP + 27, btnDefaultSize);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,7 +114,7 @@ public class ButtonSample extends ScrollContainer{
 	@Override
 	public void reposition() {
 		center = Settings.screenWidth/2;
-		btnRightImage.setRect(center + 4 * dp, AFTER + 8 * dp, btnRightImage.getPreferredWidth() <= 32 ? DP + 64 : btnRightImage.getPreferredWidth() + 32 * dp, DP + 36, lImages);
-		btnLeftImage.setRect(BEFORE - 4 * dp, SAME, btnLeftImage.getPreferredWidth() <= 32 ? DP + 64 : btnLeftImage.getPreferredWidth() + 32 * dp, DP + 36, btnRightImage);
+		btnRightImage.setRect(center + (int) (4 * dp), AFTER + (int) (8 * dp), btnRightImage.getPreferredWidth() <= 32 ? DP + 64 : btnRightImage.getPreferredWidth() + (int) (32 * dp), DP + 36, lImages);
+		btnLeftImage.setRect(BEFORE - (int) (4 * dp), SAME, btnLeftImage.getPreferredWidth() <= 32 ? DP + 64 : btnLeftImage.getPreferredWidth() + (int) (32 * dp), DP + 36, btnRightImage);
 	}
 }
