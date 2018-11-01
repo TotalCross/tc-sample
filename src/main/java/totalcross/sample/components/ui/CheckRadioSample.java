@@ -76,6 +76,7 @@ public class CheckRadioSample extends ScrollContainer {
 
 			confirmButtonC1 = new Button("CONFIRM");
 			confirmButtonC1.setBackForeColors(Colors.P_700, Colors.ON_P_700);
+			confirmButtonC1.borderColor = Colors.P_700;
 
 			add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
 			int w = c1.getWidth() / 2 - gap;
@@ -93,8 +94,8 @@ public class CheckRadioSample extends ScrollContainer {
 			c1.add(ls5, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject6, c1m, SAME, PREFERRED, PREFERRED + H, subject3);
 			c1.add(ls6, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
-			c1.add(confirmButtonC1, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6, subject6);
-			c1.add(cancelButtonC1, LEFT + gap, CENTER_OF, PREFERRED, PREFERRED, confirmButtonC1);
+			c1.add(confirmButtonC1, RIGHT - gap, AFTER + gap * 2, w, PREFERRED, subject6);
+			c1.add(cancelButtonC1, LEFT + gap, CENTER_OF, confirmButtonC1);
 			c1.add(new Spacer(), CENTER, AFTER, 10, gap / 2, confirmButtonC1);
 			c1.resizeHeight();
 
@@ -125,7 +126,7 @@ public class CheckRadioSample extends ScrollContainer {
 
 			confirmButtonC2 = new Button("CONFIRM");
 			confirmButtonC2.setBackForeColors(Colors.P_700, Colors.ON_P_700);
-
+			confirmButtonC2.borderColor = Colors.P_700;
 			add(c2, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			c2.add(lbRadio, LEFT, TOP, FILL, PREFERRED + fmH * 8);
 			c2.add(area1, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
@@ -135,8 +136,8 @@ public class CheckRadioSample extends ScrollContainer {
 			c2.add(area3, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
 			c2.add(la3, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			
-			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6, area3);
-			c2.add(cancelButtonC2, LEFT + gap, CENTER_OF, PREFERRED, PREFERRED, confirmButtonC2);
+			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED, area3);
+			c2.add(cancelButtonC2, LEFT + gap, CENTER_OF, confirmButtonC2);
 			
 //			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
 //			c2.add(cancelButtonC2, LEFT + gap, AFTER + gap * 2 + (confirmButtonC2.getHeight() / 2), PREFERRED + fmH * 7,

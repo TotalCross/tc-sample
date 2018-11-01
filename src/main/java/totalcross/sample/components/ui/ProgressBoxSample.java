@@ -17,9 +17,9 @@ public class ProgressBoxSample extends Container {
   public void initUI() {
     try {
       super.initUI();
-      pb = new ProgressBox("Alert!", "null", null);
-      
       String[] items = {"ProgressBox (Android Spinner)", "ProgressBox (iOS Spinner)"};
+      pb = new ProgressBox("Alert!", "null", items, true);
+      
 
       menu = new ButtonMenu(items, ButtonMenu.SINGLE_COLUMN);
       menu.borderGap = 130;

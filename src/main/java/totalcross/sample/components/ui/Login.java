@@ -45,6 +45,7 @@ public class Login extends Container{
 			edPass = new Edit();
 			edPass.caption = "Password";
 			edPass.setBackColor(Color.RED);
+			edPass.setMode(Edit.PASSWORD_ALL);
 			add(edPass, SAME, AFTER+70, PARENTSIZE+90, PREFERRED+30);
 			
 			ch = new Check("Remember Me");

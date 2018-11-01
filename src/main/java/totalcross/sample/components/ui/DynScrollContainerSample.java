@@ -29,6 +29,10 @@ public class DynScrollContainerSample extends Container {
 	
 	private int rowCount0;
 
+	public DynScrollContainerSample() {
+		setFont(Font.getFont("Roboto", false, 16));
+	}
+	
 	public static class DynSCTestView extends DynamicScrollContainer.AbstractView {
 		public static boolean dynamicHeight;
 
@@ -125,7 +129,9 @@ public class DynScrollContainerSample extends Container {
 		onlyPrimeChk.setBackForeColors(Color.WHITE, Color.BLACK);
 		c1.add(onlyPrimeChk, LEFT+gap, AFTER + gap + gap/2);
 		goButton = new Button("Show");
-		goButton.setBackForeColors(Color.getRGB(93,151,244), Color.WHITE);
+		int backColor = Color.getRGB(93,151,244);
+		goButton.setBackForeColors(backColor, Color.WHITE);
+		goButton.borderColor = backColor;
 		c1.add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, onlyPrimeChk);
 		c1.add(warning = new Label("Prime numbers will have grey background"),CENTER, AFTER + gap/2, PREFERRED, PREFERRED);
 		warning.transparentBackground = true;
