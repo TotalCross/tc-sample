@@ -10,10 +10,11 @@ import totalcross.ui.chart.Chart;
 import totalcross.ui.chart.LineChart;
 import totalcross.ui.chart.Series;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class LineChartSample extends ScrollContainer {
 	private Container menu, options;
-	private final int gap = 25;
+	private final int gap = UnitsConverter.toPixels(5 + DP);
 	private LineChart line;
 
 	Check hasLegend, showTitle, showCategories, showHGrids, showVGrids, showYValues;
@@ -30,7 +31,7 @@ public class LineChartSample extends ScrollContainer {
 
 		options = new Container();
 		add(menu, LEFT + gap, TOP + gap, FILL - gap, 125 + DP);
-		menu.add(options, CENTER, TOP + gap, Settings.screenWidth, WILL_RESIZE);
+		menu.add(options, CENTER, TOP + gap, PARENTSIZE, WILL_RESIZE);
 		int color1 = Chart.COLOR2;
 		int color2 = Chart.COLOR3;
 		int color3 = Chart.COLOR4;

@@ -12,12 +12,13 @@ import totalcross.ui.chart.Chart;
 import totalcross.ui.chart.PieChart;
 import totalcross.ui.chart.Series;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class PieChartSample extends ScrollContainer {
 
 	private PieChart pie;
 	private Container menu, options;
-	private final int gap = 25;
+	private final int gap = UnitsConverter.toPixels(5 + DP);
 
 	private Slider h3DSlider, v3DSlider;
 	private Label hor, ver;
@@ -74,7 +75,7 @@ public class PieChartSample extends ScrollContainer {
 		options.add(hor, AFTER + gap, SAME - gap * 2);
 		options.add(ver, SAME, AFTER);
 
-		options.add(legendPosition, AFTER + gap, SAME, FILL - gap, PREFERRED, hasLegend);
+		options.add(legendPosition, AFTER + gap, SAME, FILL - gap, SAME + 10, hasLegend);
 		options.add(h3DSlider = new Slider(), AFTER, CENTER_OF, FILL - gap, PREFERRED, hor);
 		options.add(v3DSlider = new Slider(), AFTER, CENTER_OF, FILL - gap, PREFERRED, ver);
 		options.setInsets(gap / 4, gap / 4, gap / 4, gap / 4);

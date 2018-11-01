@@ -12,12 +12,13 @@ import totalcross.ui.chart.Chart;
 import totalcross.ui.chart.ColumnChart;
 import totalcross.ui.chart.Series;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class ColumnChartSample extends ScrollContainer {
 
 	private ColumnChart column;
 	private Container menu, options;
-	private final int gap = 25;
+	private final int gap = UnitsConverter.toPixels(5 + DP);
 
 	private Slider h3DSlider, v3DSlider;
 	private Label hor, ver;
@@ -95,9 +96,9 @@ public class ColumnChartSample extends ScrollContainer {
 		options.add(showHGrids, SAME, AFTER + gap, SAME, SAME);
 		options.add(showVGrids, SAME, AFTER, SAME, SAME);
 
-		options.add(legendPosition, AFTER + gap, SAME, FIT - gap, PREFERRED, hasLegend);
-		options.add(shadeDirection, AFTER + gap, SAME, legendPosition.getWidth(), PREFERRED, hasShade);
-		options.add(shadeType, AFTER + gap, SAME, hasLegend.getWidth(), PREFERRED, shadeDirection);
+		options.add(legendPosition, AFTER + gap, SAME, FIT - gap, SAME + 10, hasLegend);
+		options.add(shadeDirection, AFTER + gap, SAME, legendPosition.getWidth(), SAME + 10, hasShade);
+		options.add(shadeType, AFTER + gap, SAME, hasLegend.getWidth(), SAME, shadeDirection);
 		options.add(h3DSlider = new Slider(), AFTER, CENTER_OF, shadeDirection.getWidth() + shadeType.getWidth(),
 				PREFERRED, hor);
 		options.add(v3DSlider = new Slider(), AFTER, CENTER_OF, shadeDirection.getWidth() + shadeType.getWidth(),
@@ -147,16 +148,12 @@ public class ColumnChartSample extends ScrollContainer {
 		});
 
 		hasShade.addPressListener(e -> {
-			if (hasShade.isChecked()) {
-				shadeDirection.setForeColor(Colors.ON_SURFACE);
-				shadeType.setForeColor(Colors.ON_SURFACE);
-				column.type = (is3D.isChecked() ? Chart.IS_3D : 0)
-						| ((getShapeDirection() != -1 && hasShade.isChecked()) ? getShapeDirection() : 0)
-						| ((getShapeType() != -1 && hasShade.isChecked()) ? getShapeType() : 0);
-			} else {
-				shadeDirection.setForeColor(Colors.P_700);
-				shadeType.setForeColor(Colors.P_700);
-			}
+			int color = hasShade.isChecked() ? Colors.ON_SURFACE : Colors.P_700;
+			shadeDirection.setForeColor(color);
+			shadeType.setForeColor(color);
+			column.type = (is3D.isChecked() ? Chart.IS_3D : 0)
+					| ((getShapeDirection() != -1 && hasShade.isChecked()) ? getShapeDirection() : 0)
+					| ((getShapeType() != -1 && hasShade.isChecked()) ? getShapeType() : 0);
 			shadeDirection.setEnabled(hasShade.isChecked());
 			shadeType.setEnabled(hasShade.isChecked());
 			repaint();
