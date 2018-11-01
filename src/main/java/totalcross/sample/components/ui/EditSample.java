@@ -8,6 +8,7 @@ import totalcross.ui.*;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.TimeBox;
 import totalcross.ui.gfx.Color;
+import totalcross.ui.image.Image;
 
 public class EditSample extends Container {
 
@@ -22,10 +23,11 @@ public class EditSample extends Container {
 	private Edit passwordHidenEdit;
 	private Edit maskedEdit;
 	private MultiEdit me;
+	private OutlinedEdit outlinedEdit;
 
 	private final int H = 25;
 	private int GAP = 100;
-	private int focusColor = 0xF0F8FF;
+	private int focusColor = Color.GREEN;
 
 	@Override
 	public void initUI() {
@@ -41,8 +43,12 @@ public class EditSample extends Container {
 
 			simpleEdit = new Edit();
 			simpleEdit.caption = "Simple Edit";
-			simpleEdit.focusColor = focusColor;
-			simpleEdit.setBackColor(Color.darker(Color.ORANGE));
+			simpleEdit.setBackColor(Color.BRIGHT);
+			simpleEdit.transparentBackground = true;
+			
+			outlinedEdit = new OutlinedEdit();
+			outlinedEdit.caption = "OutlinedEdit";
+			outlinedEdit.captionColor = Color.getRGB(176, 24, 247);
 
 			imageEdit = new Edit();
 			imageEdit.caption = "Icon Edit (Click the Icon)";
@@ -96,23 +102,27 @@ public class EditSample extends Container {
 
 			maskedEdit = new Edit("999.999.999-99");
 			maskedEdit.caption = "Masked Edit (999.999.999-99)";
+			maskedEdit.setBackColor(Color.BLACK);
 			maskedEdit.setMode(Edit.NORMAL, true);
 			maskedEdit.setValidChars(Edit.numbersSet);
 
 			me = new MultiEdit();
+			me.setBackColor(Color.BLACK);
 			me.caption = "MultiEdit";
 
-			sc.add(simpleEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-			sc.add(me, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+			
+			sc.add(simpleEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(outlinedEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(me, LEFT + GAP, AFTER + GAP, FILL - GAP, DP + 48);
 //	      sc.add(imageEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H);
-			sc.add(numericEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-			sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-			;
-			sc.add(calendarEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-			sc.add(timerEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-			sc.add(passwordShowEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-			sc.add(passwordHidenEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-			sc.add(maskedEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+			sc.add(numericEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(calendarEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(timerEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(passwordShowEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(passwordHidenEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(maskedEdit, LEFT + GAP, AFTER + GAP);
+			
 
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);

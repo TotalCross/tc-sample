@@ -39,7 +39,7 @@ public class ProgressBoxSample extends Container {
     	  int sel = menu.getSelectedIndex();
           Spinner.spinnerType = sel == 0 ? Spinner.ANDROID : Spinner.IPHONE;
           
-          pb = new ProgressBox("Alert!", "Please wait\n" + count + " seconds.", null);
+          pb = new ProgressBox("Alert!", "Please wait " + count + " seconds.");
           pb.setBackForeColors(Colors.P_700, Colors.ON_P_700);
           menu.addTimer(1000);
           pb.popup();
@@ -47,7 +47,7 @@ public class ProgressBoxSample extends Container {
       
       menu.addTimerListener((e) -> {
     	  if(count >= 0) {
-    		  pb.setText("Please wait\n" + count + " seconds.");
+    		  pb.setText("Please wait " + count + " seconds.");
     		  count--;
     	  } else {
     		  pb.unpop();

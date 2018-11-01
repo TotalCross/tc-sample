@@ -102,7 +102,7 @@ public class SignatureSample extends ScrollContainer {
 		Label lbl = new Label("Message:");
 		menu.add(lbl, LEFT + gap, TOP + gap / 2);
 		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
-		menu.add(cboSignatures, SAME, AFTER + gap, lbl);
+		menu.add(cboSignatures, LEFT + gap, AFTER + gap, edtInput);
 		menu.resizeHeight();
 		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME);
 	}
