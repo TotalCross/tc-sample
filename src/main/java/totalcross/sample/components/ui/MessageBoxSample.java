@@ -31,12 +31,12 @@ public class MessageBoxSample extends Container {
 		wrongAnswers = 0;
 		correctAnswers = 0;
 		 String[] facts = { 
-            "Scotland has 421 words for “snow”", 
-            "The “Windy City” name has nothing to do with Chicago weather", 
+            "Scotland has 421 words for /“snow/”", 
+            "The /“Windy City/” name has nothing to do with Chicago weather", 
             "The longest English word is 189,819 letters long", 
             "Cats have fewer toes on their back paws", 
             "Kleenex tissues were originally intended for gas masks", 
-            "Thanks to 3D printing, NASA can basically “email” tools to astronauts", 
+            "Thanks to 3D printing, NASA can basically /“email/” tools to astronauts", 
             "There were active volcanoes on the moon when dinosaurs were alive", 
             "No number before 1,000 contains the letter A", 
             "Movie trailers originally played after the movie", 
@@ -169,7 +169,6 @@ public class MessageBoxSample extends Container {
 		sc.add(btnClear, CENTER, AFTER + GAP, SCREENSIZE + 90, PREFERRED + H);
 
 		chart.setBackColor(Color.WHITE);
-
 	}
 
 }

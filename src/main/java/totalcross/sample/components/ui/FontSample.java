@@ -89,7 +89,7 @@ public class FontSample extends Container {
 		Slider slSize;
 		Label lSize;
 		Font selFont;
-		String[] fonts = { Font.DEFAULT, "monospace" };
+		String[] fonts = { Font.DEFAULT, "Roboto" };
 		RadioGroupController rg = new RadioGroupController();
 
 		@Override
@@ -102,7 +102,6 @@ public class FontSample extends Container {
 			int max = Font.MAX_FONT_SIZE * (Settings.isWindowsCE() ? 2 : 3);
 			add(new Label("Typeface: "), LEFT+(mar/2), TOP+mar/2);
 			add(new Radio("Normal", rg), AFTER + fmH, SAME);
-			add(new Radio("Monospace", rg), AFTER + fmH, SAME);
 			rg.setSelectedIndex(0);
 			add(l = new Label("Size: "), LEFT + (mar/2), AFTER);
 			add(slSize = new Slider(), AFTER + 2, SAME, SCREENSIZE+60, SAME + fmH / 2, l);

@@ -43,10 +43,10 @@ public class SocketSample extends ScrollContainer implements Runnable{
 	public void initUI() {
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		add(new Label("Address: "), LEFT + gap, TOP + gap/2);
-		add(edA = new Edit(""), AFTER + gap/3, SAME, FILL - gap, PREFERRED);
+		add(edA = new Edit(""), AFTER + gap/3, SAME);
 		edA.setText("www.google.com");
 		add(new Label("Port: "), LEFT + gap, AFTER + gap/2);
-		add(edP = new Edit("8080"), AFTER + 3, SAME);
+		add(edP = new Edit("8080"), SAME , AFTER + gap/2, edA);
 		edP.setText("80");
 
 		add(btnOpen = new Button(" Open connection "), CENTER, AFTER + gap, PREFERRED + (int)(Settings.screenDensity * 32), (int)(Settings.screenDensity * 36));

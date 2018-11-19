@@ -39,13 +39,10 @@ public class ComboListSample extends ScrollContainer {
 			simpleComboBox.setForeColor(Colors.ON_BACKGROUND);
 			
 			add(simpleComboBox, LEFT + gap, AFTER + gap/2, FILL - gap, PREFERRED);
-			ComboBox.usePopupMenu = true;
 			
+			ComboBox.usePopupMenu = true;
 			popupComboBox = new ComboBox(items);
 			popupComboBox.caption = "Numbers with Popup";
-			popupComboBox.popupTitle = "Select the item";
-			
-			popupComboBox.setBackColor(Color.BRIGHT);
 			popupComboBox.setForeColor(Colors.ON_BACKGROUND);
 			
 			add(popupComboBox, LEFT + gap, AFTER + gap/2 , FILL - gap, PREFERRED);
@@ -61,7 +58,7 @@ public class ComboListSample extends ScrollContainer {
 			
 			simpleListBox = new ListBox(items);
 			simpleListBox.setBackColor(Colors.BACKGROUND);
-		    add(simpleListBox, CENTER, AFTER + gap/2, SCREENSIZE + 75, simpleListBox.getPreferredHeight()/2 - 20);
+		    add(simpleListBox, CENTER, AFTER + gap/2, SCREENSIZE + 75, 200 + DP);
 
 		    multiSelListBox = new MultiListBox(items2); 
 		    multiSelListBox.setOrderIsImportant(true);
@@ -71,7 +68,7 @@ public class ComboListSample extends ScrollContainer {
 		    multiBox.setFont(lbListBox.getFont().asBold());
 			add(multiBox, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
 		    
-		    add(multiSelListBox, CENTER, AFTER + gap/2, SCREENSIZE + 75, PREFERRED);
+		    add(multiSelListBox, CENTER, AFTER + gap/2, SCREENSIZE + 75, 200 + DP);
 			
 		    add(new Spacer(), CENTER, AFTER + gap/2, gap/2, gap/2);
 	    } catch (Exception e) {

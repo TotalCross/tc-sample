@@ -9,19 +9,22 @@ import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ListBox;
 import totalcross.ui.ScrollContainer;
+import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class AlignedLabelsSample extends ScrollContainer {
-	private int gap = (int) (Settings.screenDensity * 20);
+	private int gap = UnitsConverter.toPixels(10 + DP);
 	private boolean canInsert = true;
 	private ListBox lb;
 	private Label output;
-
+	
 	@Override
 	public void initUI() {
+		uiAdjustmentsBasedOnFontHeightIsSupported = false;
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		setScrollBars(false, true);
 
-		String[] labels = { "Name", "Born date", "Telephone", "Address", "City", "Country", "" };
+		String[] labels = { "Name", "Born date", "Telephone", "Address", "City", "Country"};
 		Edit edits[] = new Edit[5];
 		Edit.useNativeNumericPad = true;
 		for (int i = 0; i < edits.length; i++) {
@@ -43,33 +46,34 @@ public class AlignedLabelsSample extends ScrollContainer {
 			}
 		}
 
-		AlignedLabelsContainer c = new AlignedLabelsContainer(labels, gap * 2);
-
+		
 		Label title = new Label("This is an AlignedLabelsContainer.\nAll the content will be automatically aligned.",
 				CENTER, 0, true);
 		title.autoSplit = true;
-
 		add(title, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
 
-		c.labelAlign = RIGHT;
+		AlignedLabelsContainer alc = new AlignedLabelsContainer();
+		alc.uiAdjustmentsBasedOnFontHeightIsSupported = false;
+		alc.labelAlign = RIGHT;
 
-		c.setInsets(gap / 3, gap / 3, gap / 3, gap / 3);
-		add(c, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
+		alc.setInsets(gap, gap, 0, 0);
+		alc.setLabels(labels, edits[0].getPreferredHeight());
+		add(alc, LEFT, AFTER, FILL, PREFERRED);
 		int i;
 		for (i = 0; i < edits.length - 1; i++) {
-			c.add(edits[i], LEFT + gap, c.getLineY(i), FILL, PREFERRED);
+			alc.add(edits[i], LEFT + gap, alc.getLineY(i), FILL - gap, PREFERRED);
 		}
 
 		Button btnInsert = new Button("Insert data", (byte) 0);
 		btnInsert.setBackForeColors(Colors.P_600, Colors.ON_P_600);
-		c.add(btnInsert, RIGHT, AFTER + gap, PREFERRED + gap * 6, PREFERRED + gap * 2, edits[3]);
-		c.add(edits[edits.length - 1], LEFT + gap, c.getLineY(i), FIT - gap, PREFERRED);
-
-		Button btnClear = new Button("CLEAR DATA", (byte) 0);
-		c.add(btnClear, SAME, c.getLineY(++i), SAME, SAME, btnInsert);
+		alc.add(edits[edits.length - 1], LEFT + gap, alc.getLineY(i), edits[3].getWidth()/2 - gap/2, PREFERRED);
+		alc.add(btnInsert, RIGHT - gap, CENTER_OF, SAME, PREFERRED, edits[edits.length - 1]);
 
 		ComboBox cbCountry = new ComboBox(new String[] { "Brazil", "USA" });
-		c.add(cbCountry, LEFT + gap, c.getLineY(i), FIT - gap, PREFERRED);
+		alc.add(cbCountry, LEFT + gap, alc.getLineY(++i), SAME, PREFERRED, edits[edits.length - 1]);
+
+		Button btnClear = new Button("CLEAR DATA", (byte) 0);
+		alc.add(btnClear, RIGHT - gap, CENTER_OF, SAME, PREFERRED);
 
 		btnInsert.addPressListener(e -> {
 			if (canInsert) {
@@ -97,7 +101,7 @@ public class AlignedLabelsSample extends ScrollContainer {
 				else
 					lb.add("Country: ");
 			}
-			reposition();
+//			reposition(); reposition bugando o edit
 		});
 
 		btnClear.addPressListener(e -> {

@@ -18,13 +18,13 @@ public class ButtonSample extends ScrollContainer{
 	private Button btnGreen;
 	private Button btnBlue;
 	private Button btnFull;
-	private Button btnBlock;
-	private Button btnRound;
+	private Button btnRounded;
+	private Button btnBorderless;
 	private Button btnLeftImage;
 	private Button btnRightImage;
 	private Button btnImage;
 	private Button btnLarge;
-	private Button btnBorderless;
+	private Button btnOutlined;
 	private Button btnDefaultSize;
 	private Button btnSmall;
 	private int center;
@@ -59,13 +59,14 @@ public class ButtonSample extends ScrollContainer{
 			lShapes.setFont(bold);
 			btnFull = new Button("Full Button");
 			btnFull.setBackForeColors(Colors.P_700, Color.WHITE);
-			btnBlock = new Button("Rounded Corners Button", Button.BORDER_ROUND);
-			btnBlock.roundBorderFactor = 7;
-			btnBlock.setBackForeColors(Colors.P_700, Color.WHITE);
-			btnRound = new Button("Borderless Button", Button.BORDER_NONE);
-			btnRound.setForeColor(Colors.P_700);
-			btnBorderless = new Button("Outlined Button", Button.BORDER_OUTLINED);
-			btnBorderless.setBackForeColors(Colors.P_700, Color.WHITE);
+			btnRounded = new Button("Rounded Corners Button", Button.BORDER_ROUND);
+			btnRounded.roundBorderFactor = 7;
+			btnRounded.setBackForeColors(Colors.P_700, Color.WHITE);
+			btnBorderless = new Button("Borderless Button", Button.BORDER_NONE);
+			btnBorderless.setForeColor(Colors.P_700);
+			btnOutlined = new Button("Outlined Button", Button.BORDER_OUTLINED);
+			
+			btnOutlined.setBackForeColors(Colors.P_700, Color.WHITE);
 			//Images
 			lImages.setFont(bold);
 			Image img = new Image("images/bt_info.png").getHwScaledInstance(UnitsConverter.toPixels(DP + 18), UnitsConverter.toPixels(DP + 18));
@@ -94,9 +95,9 @@ public class ButtonSample extends ScrollContainer{
 			add(btnBlue, AFTER + UnitsConverter.toPixels(DP + 8), SAME, btnGreen);
 			add(lShapes, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
 			add(btnFull, CENTER, AFTER + UnitsConverter.toPixels(DP + 8), PARENTSIZE + 95, PREFERRED);
-			add(btnBlock, CENTER, AFTER + UnitsConverter.toPixels(DP + 8), PARENTSIZE + 95, PREFERRED);
+			add(btnRounded, CENTER, AFTER + UnitsConverter.toPixels(DP + 8), PARENTSIZE + 95, PREFERRED);
+			add(btnOutlined, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
 			add(btnBorderless, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
-			add(btnRound, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
 			add(lImages, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
 			add(btnRightImage, center + UnitsConverter.toPixels(DP + 4), AFTER + UnitsConverter.toPixels(DP + 8));
 			add(btnLeftImage, BEFORE - UnitsConverter.toPixels(DP + 4), SAME);
