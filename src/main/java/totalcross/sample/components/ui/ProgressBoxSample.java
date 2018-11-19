@@ -1,15 +1,11 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
-import totalcross.sys.Vm;
 import totalcross.ui.ButtonMenu;
 import totalcross.ui.Container;
 import totalcross.ui.Spinner;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.ProgressBox;
-import totalcross.ui.event.ControlEvent;
-import totalcross.ui.event.Event;
-import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
 
 public class ProgressBoxSample extends Container {
@@ -23,11 +19,12 @@ public class ProgressBoxSample extends Container {
       super.initUI();
       pb = new ProgressBox("Alert!", "null", null);
       
-      String[] items = {"ProgressBox (Android style)", "ProgressBox (iOS style)"};
+      String[] items = {"ProgressBox (Android Spinner)", "ProgressBox (iOS Spinner)"};
 
       menu = new ButtonMenu(items, ButtonMenu.SINGLE_COLUMN);
-      menu.borderGap = 80;
+      menu.borderGap = 130;
       menu.textGap = 40;
+      menu.buttonVertGap = 880;
       
       menu.pressedColor = Color.GREEN;
       add(menu, LEFT, TOP, FILL, FILL);
@@ -42,14 +39,13 @@ public class ProgressBoxSample extends Container {
     	  int sel = menu.getSelectedIndex();
           Spinner.spinnerType = sel == 0 ? Spinner.ANDROID : Spinner.IPHONE;
           
-          pb = new ProgressBox("Alert!", "Please wait\n" + count + "seconds", null);
+          pb = new ProgressBox("Alert!", "Please wait\n" + count + " seconds.", null);
           pb.setBackForeColors(Colors.P_700, Colors.ON_P_700);
           menu.addTimer(1000);
           pb.popup();
       });
       
       menu.addTimerListener((e) -> {
-    	  System.out.println("TESTE");
     	  if(count >= 0) {
     		  pb.setText("Please wait\n" + count + " seconds.");
     		  count--;

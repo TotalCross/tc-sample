@@ -20,7 +20,7 @@ public class FormSample extends ScrollContainer {
 
 	private Edit nameEdit;
 	private Edit phoneEdit;
-	private Edit emailEdit;
+	private Edit nickNameEdit;
 	private Edit passwordEdit;
 	private Label status = new Label();
 	private Button saveButton;
@@ -56,27 +56,29 @@ public class FormSample extends ScrollContainer {
 		try
 	    {
 	      Settings.is24Hour = true;
-		  
+	      Edit.useNativeNumericPad = true;
+	      
 		  nameEdit = new Edit();
 		  nameEdit.caption = "Name";
 		  nameEdit.focusColor = focusColor;
-		  nameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+		  nameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 		  
 	      phoneEdit = new Edit("(99)99999-9999");
-	      phoneEdit.setValidChars(Edit.numbersSet);
 	      phoneEdit.caption = "Phone";
 	      phoneEdit.setMode(Edit.NORMAL,true);
-	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+	      phoneEdit.setValidChars(Edit.numbersSet);
+	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
-	      emailEdit = new Edit();
-		  emailEdit.caption = "Email";
-		  emailEdit.focusColor = focusColor;
-		  emailEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+	      
+	      nickNameEdit = new Edit();
+		  nickNameEdit.caption = "NickName";
+		  nickNameEdit.focusColor = focusColor;
+		  nickNameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
 	      passwordEdit = new Edit("");
 	      passwordEdit.caption = "Password";
 	      passwordEdit.setMode(Edit.PASSWORD); 
-	      passwordEdit.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+	      passwordEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
 	      status.setFont(Font.getFont(true, 18));
 	      
@@ -86,7 +88,7 @@ public class FormSample extends ScrollContainer {
 
 	      add(nameEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
 	      add(phoneEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(emailEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
+	      add(nickNameEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
 	      add(passwordEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
 	      add(saveButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED+120);
 	      add(status, LEFT + GAP, BEFORE, FILL - GAP, PREFERRED, saveButton);
@@ -95,28 +97,28 @@ public class FormSample extends ScrollContainer {
 		        @Override
 		        public void controlPressed(ControlEvent e)
 		        {
-		        	if(!"".equals(nameEdit.getText()) && !"".equals(phoneEdit.getText()) && !"".equals(emailEdit.getText()) && !"".equals(passwordEdit.getText())) {
-		        		User user = new User(nameEdit.getText(), phoneEdit.getText(), emailEdit.getText(), passwordEdit.getText());
+		        	if(!"".equals(nameEdit.getText()) && !"".equals(phoneEdit.getText()) && !"".equals(nickNameEdit.getText()) && !"".equals(passwordEdit.getText())) {
+		        		User user = new User(nameEdit.getText(), phoneEdit.getText(), nickNameEdit.getText(), passwordEdit.getText());
 		        		Boolean success = SQLiteManager.getInstance().insertUsers(user);
 		        		
 		        		if (success) {
 		        			++numUsers;
 		        			updateStatus();
 		        			MessageBox mb = new MessageBox("Message" , "User successfully saved.", new String[]{"Close"});
-				        	mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+				        	mb.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 				        	mb.popup();
 		        			
 		        		} else {
 		        			
 		        			MessageBox mb = new MessageBox("Message" , "Error saving user.", new String[]{"Close"});
-		        			mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+		        			mb.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 				        	mb.popup();
 		        			
 		        		}
 		        		
 		        	}else {
 		        		MessageBox mb = new MessageBox("Message" , "Complete all fields.", new String[]{"Close"});
-		        		mb.setBackForeColors(Colors.WARNING, Colors.ON_WARNING);
+		        		mb.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 			        	mb.popup();
 		        	}
 		        }

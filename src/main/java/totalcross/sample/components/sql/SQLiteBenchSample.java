@@ -29,6 +29,7 @@ import totalcross.ui.Label;
 import totalcross.ui.ProgressBar;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.Spacer;
+import totalcross.ui.dialog.MessageBox;
 
 /**
  * Performs a benchmark in the SQLite.
@@ -379,6 +380,9 @@ public class SQLiteBenchSample extends ScrollContainer {
 		super.initUI();
 		setScrollBars(false, true);
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+		MessageBox x = new MessageBox("Waiting", "Wait for the data to load.", null);
+		x.setBackForeColors(Colors.P_300, Colors.ON_P_300);
+		x.popupNonBlocking();
 		
 		// User interface.
 		pbTotal = new ProgressBar(0, TOTAL_OF_OPERATIONS);
@@ -473,6 +477,7 @@ public class SQLiteBenchSample extends ScrollContainer {
 			int totalInserts = (time1 + time2 + timeInsertsUsingBatch + time1b + time2b + timeInsertsUsingBatchb);
 			addLabel("total: " + (totalInserts + time3 + time4 + time5 + time6
 					+ time7 + time8 + time9 + time10 + time11 + time12));
+			x.unpop();
 		} catch (Exception exception) {
 			exception.printStackTrace();
 			addLabel(exception.getMessage());

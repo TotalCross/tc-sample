@@ -20,49 +20,45 @@ import totalcross.io.IOException;
 import totalcross.io.LineReader;
 import totalcross.net.Socket;
 import totalcross.net.SocketTimeoutException;
+import totalcross.net.UnknownHostException;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.InvalidNumberException;
+import totalcross.sys.Settings;
 import totalcross.ui.Button;
-import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
-import totalcross.util.Vector;
 
-public class SocketSample extends ScrollContainer {
+public class SocketSample extends ScrollContainer implements Runnable{
 	private Button btnOpen;
 	private Edit edA, edP;
 	private Socket socket;
-	private int gap = 50;
+	private int gap = (int) (Settings.screenDensity * 20);
+	private Thread loadData;
 
 	@Override
 	public void initUI() {
-		super.initUI();
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
-		add(new Label("Address: "), LEFT, TOP + 1);
-		add(edA = new Edit(""), AFTER + 3, SAME);
-		edA.setText("www.superwaba.com.br");
-		add(new Label("Port: "), LEFT, AFTER + 3);
+		add(new Label("Address: "), LEFT + gap, TOP + gap/2);
+		add(edA = new Edit(""), AFTER + gap/3, SAME, FILL - gap, PREFERRED);
+		edA.setText("www.google.com");
+		add(new Label("Port: "), LEFT + gap, AFTER + gap/2);
 		add(edP = new Edit("8080"), AFTER + 3, SAME);
 		edP.setText("80");
 
-		add(btnOpen = new Button(" Open connection "), CENTER, AFTER + 3, PREFERRED, PREFERRED + fmH / 4);
+		add(btnOpen = new Button(" Open connection "), CENTER, AFTER + gap, PREFERRED + (int)(Settings.screenDensity * 32), (int)(Settings.screenDensity * 36));
+		btnOpen.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 	}
 
 	@Override
 	public void onEvent(Event e) {
 		if (e.type == ControlEvent.PRESSED) {
 			if (e.target == btnOpen) {
-				try {
-					openSocket();
-				} catch (IOException e1) {
-					 log("openSocket failed!");
-					 log(e1.getMessage());
-					e1.printStackTrace();
-				}
+				loadData = new Thread(this);
+				loadData.start();
 			}
 		}
 	}
@@ -107,6 +103,21 @@ public class SocketSample extends ScrollContainer {
 	private void log(String message)  {
 		Label l = new Label(message);
 		l.autoSplit = true;
-		add(l, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
+		add(l, LEFT + gap*2, AFTER + gap, FILL - gap*2, PREFERRED);
+		repaintNow();
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			openSocket();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

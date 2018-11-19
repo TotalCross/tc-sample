@@ -23,15 +23,15 @@ public class ImageAnimationSample extends Container {
 	@Override
 	public void initUI() {
 		super.initUI();
-		add(btnStartStop = new Button(" Start/Stop "), CENTER, TOP + Settings.screenHeight/10, SCREENSIZE+50, SCREENSIZE+10);
+		add(btnStartStop = new Button(" Start/Stop "), CENTER, TOP + Settings.screenHeight/7, SCREENSIZE+50, SCREENSIZE+10);
 		btnStartStop.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		
-		add(new Label("Effect: ", LEFT, Colors.ON_BACKGROUND, false), LEFT + Settings.screenWidth/7, BOTTOM - Settings.screenHeight/10);
+		add(new Label("Effect: ", LEFT, Colors.ON_BACKGROUND, false), LEFT + Settings.screenWidth/5, BOTTOM - Settings.screenHeight/4);
 		
 		String[] items = { "normal", "scaledBy", "smoothScaledBy", "getRotatedScaledInstance", "getTouchedUpInstance",
 				"changeColors", "fadedInstance", "applyColor2/dither" };
 		ComboBox.usePopupMenu = false;
-		add(cbEffect = new ComboBox(items), AFTER, BOTTOM - Settings.screenHeight/10, FILL - Settings.screenHeight/10, PREFERRED);
+		add(cbEffect = new ComboBox(items), AFTER, BOTTOM - Settings.screenHeight/4, FILL - Settings.screenHeight/10, PREFERRED);
 		cbEffect.setSelectedIndex(0);
 		cbEffect.setBackForeColors(Colors.P_800, Colors.ON_P_800);
 		cbEffect.fillColor = Colors.P_600;
@@ -70,6 +70,11 @@ public class ImageAnimationSample extends Container {
 			Image img = new Image("images/alligator.gif");
 			effect = cbEffect.getSelectedIndex();
 			double scale = Settings.isIOS() ? 1.5 : 2; // ios has less opengl memory
+			int scaledcount = Settings.screenWidth/500;
+			System.out.println(scaledcount+" ,"+ Settings.screenWidth);
+			for(int i=0; i<scaledcount; i++) {
+				img = img.scaledBy(scale, scale);
+			}
 			switch (effect) {
 			case 1:
 				img = img.scaledBy(scale, scale);

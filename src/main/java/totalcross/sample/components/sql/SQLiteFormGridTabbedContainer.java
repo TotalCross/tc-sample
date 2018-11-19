@@ -7,7 +7,6 @@ import totalcross.sample.components.ui.GridSample;
 import totalcross.sample.util.Colors;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
-import totalcross.ui.Label;
 import totalcross.ui.TabbedContainer;
 import totalcross.ui.font.Font;
 
@@ -36,7 +35,7 @@ public class SQLiteFormGridTabbedContainer extends TabbedContainer{
 		addBottomContainer2List(createButton(GRID), gridSample, () -> {});
 		
 		this.bottomBar = new Container() {
-			
+			 
 			@Override
 			public void initUI() {
 				super.initUI();

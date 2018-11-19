@@ -1,103 +1,79 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sample.util.Colors;
-import totalcross.sample.util.Util;
-import totalcross.ui.CaptionPress;
+import totalcross.sys.Settings;
 import totalcross.ui.ComboBox;
-import totalcross.ui.Container;
 import totalcross.ui.Label;
 import totalcross.ui.ListBox;
 import totalcross.ui.MultiListBox;
 import totalcross.ui.ScrollContainer;
+import totalcross.ui.Spacer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.gfx.Color;
-import totalcross.util.IntHashtable;
 
-public class ComboListSample extends Container {
+public class ComboListSample extends ScrollContainer {
 	
-	private ScrollContainer sc;
 	private ComboBox simpleComboBox;
-	private ComboBox imageComboBox;
 	private ComboBox popupComboBox;
 	private ListBox simpleListBox;
-	private MultiListBox multiColorListBox;
+	private MultiListBox multiSelListBox;
 	
-	private final int H = 0;
-	private final int B = 100;
+	private int gap = (int) (Settings.screenDensity * 20);
 	
 	@Override
 	public void initUI() {
 		try {
-			
-			sc = new ScrollContainer(false, true);
-		    add(sc,LEFT,TOP,FILL,FILL);
+			setScrollBars(false, true);
+			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 			
 			String[] items = {"One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten"};
 			String[] items2 = {"One","Two","Three","Four","Five"};
 			
-			Label lbCombos = new Label("Combos");
+			Label lbCombos = new Label("Combos", CENTER);
 			lbCombos.setFont(lbCombos.getFont().asBold());
-			sc.add(lbCombos, LEFT + B, AFTER + B, FILL - B, PREFERRED+H);
+			add(lbCombos, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
 			
 			ComboBox.usePopupMenu = false;
 			simpleComboBox = new ComboBox(items);
 			simpleComboBox.caption = "Numbers with Dropdown";
-			simpleComboBox.fillColor = Colors.RED;
-			simpleComboBox.setBackColor(Colors.RED);
-			simpleComboBox.setForeColor(Color.WHITE);
-			simpleComboBox.checkColor = Color.WHITE;
+			simpleComboBox.setForeColor(Colors.ON_BACKGROUND);
 			
-			
-			sc.add(simpleComboBox, LEFT + B, AFTER + B, FILL - B, PREFERRED+H);
+			add(simpleComboBox, LEFT + gap, AFTER + gap/2, FILL - gap, PREFERRED);
 			ComboBox.usePopupMenu = true;
-			
-			imageComboBox = new ComboBox(items);
-			imageComboBox.caption = "Numbers with Popup";
-			imageComboBox.captionIcon = Util.getAwesomeImage('\uF12D',fmH,Color.BLACK);
-			imageComboBox.popupTitle = "Select the item";
-			imageComboBox.enableSearch = false;
-			imageComboBox.setBackColor(Color.BRIGHT);
-			imageComboBox.checkColor = Colors.BLUE;
-			sc.add(imageComboBox, LEFT + B, AFTER + B , FILL - B, PREFERRED+H);
-			imageComboBox.captionPress = new CaptionPress() {
-		        @Override
-		        public void onIconPress()
-		        {
-		        	imageComboBox.setSelectedIndex(-1);
-		        }
-
-		        @Override
-		        public void onCaptionPress()
-		        {
-		        }
-		    };
 			
 			popupComboBox = new ComboBox(items);
 			popupComboBox.caption = "Numbers with Popup";
 			popupComboBox.popupTitle = "Select the item";
-			popupComboBox.setBackColor(Color.BRIGHT);
-			popupComboBox.checkColor = Colors.ORANGE;
-			sc.add(popupComboBox, LEFT + B, AFTER + B , FILL - B, PREFERRED+H);
 			
-			Label lbListBox = new Label("List Box");
+			popupComboBox.setBackColor(Color.BRIGHT);
+			popupComboBox.setForeColor(Colors.ON_BACKGROUND);
+			
+			add(popupComboBox, LEFT + gap, AFTER + gap/2 , FILL - gap, PREFERRED);
+			
+			Label lbListBox = new Label("List Boxes", CENTER);
 			lbListBox.setFont(lbListBox.getFont().asBold());
-			sc.add(lbListBox, LEFT + B, AFTER+ B, FILL - B, PREFERRED+H);
+			add(lbListBox, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
+			
+			Label singleBox = new Label("This is a single selection list box!");
+			singleBox.autoSplit = true;
+			singleBox.setFont(lbListBox.getFont().asBold());
+			add(singleBox, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
 			
 			simpleListBox = new ListBox(items);
 			simpleListBox.setBackColor(Colors.BACKGROUND);
-		    sc.add(simpleListBox, LEFT + B, AFTER + B, FILL - B, FONTSIZE+725);
+		    add(simpleListBox, CENTER, AFTER + gap/2, SCREENSIZE + 75, simpleListBox.getPreferredHeight()/2 - 20);
 
-		    multiColorListBox = new MultiListBox(items2); 
-		    multiColorListBox.setOrderIsImportant(true);
-		    IntHashtable colorsTable = new IntHashtable(1);
-		    colorsTable.put(0,Colors.RED);
-		    colorsTable.put(1,Colors.SUCESS_GREEN);
-		    colorsTable.put(2,Colors.BLUE);
-		    colorsTable.put(3,Colors.ORANGE);
-		    colorsTable.put(4,Colors.PURPLE);
-		    multiColorListBox.ihtForeColors = colorsTable;
-		    sc.add(multiColorListBox,LEFT + B,AFTER + B, FILL - B, PREFERRED+H);
+		    multiSelListBox = new MultiListBox(items2); 
+		    multiSelListBox.setOrderIsImportant(true);
+		    
+		    Label multiBox = new Label("This is a multiple selection list box!");
+		    multiBox.autoSplit = true;
+		    multiBox.setFont(lbListBox.getFont().asBold());
+			add(multiBox, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
+		    
+		    add(multiSelListBox, CENTER, AFTER + gap/2, SCREENSIZE + 75, PREFERRED);
 			
+		    add(new Spacer(), CENTER, AFTER + gap/2, gap/2, gap/2);
 	    } catch (Exception e) {
 	    	MessageBox.showException(e,true);
 	    }

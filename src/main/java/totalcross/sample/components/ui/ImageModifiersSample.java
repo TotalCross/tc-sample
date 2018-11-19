@@ -33,7 +33,7 @@ public class ImageModifiersSample extends Container {
     setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     Label l;
 
-    add(l = new Label("Rotate "), LEFT + gap, TOP);
+    add(l = new Label("Rotate "), LEFT + gap*2, TOP+gap);
     add(slRotate = new Slider(ScrollBar.HORIZONTAL));
     slRotate.setValues(180, 1, 0, 361);
     slRotate.setUnitIncrement(5);
@@ -42,7 +42,7 @@ public class ImageModifiersSample extends Container {
     slRotate.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbRotate);
     add(lbRotate = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
-    add(l = new Label("Scale "), LEFT + gap, AFTER);
+    add(l = new Label("Scale "), LEFT + gap*2, AFTER);
     add(slScale = new Slider(ScrollBar.HORIZONTAL));
     slScale.setValues(100, 1, 0, 400); // palm os has very limited memory
     slScale.setUnitIncrement(5);
@@ -51,7 +51,7 @@ public class ImageModifiersSample extends Container {
     slScale.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbScale);
     add(lbScale = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
-    add(l = new Label("Contrast "), LEFT + gap, AFTER);
+    add(l = new Label("Contrast "), LEFT + gap*2, AFTER);
     add(slContrast = new Slider(ScrollBar.HORIZONTAL));
     slContrast.setValues(128, 0, 0, 256);
     slContrast.setUnitIncrement(8);
@@ -60,7 +60,7 @@ public class ImageModifiersSample extends Container {
     slContrast.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbContrast);
     add(lbContrast = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
-    add(l = new Label("Brightness "), LEFT + gap, AFTER);
+    add(l = new Label("Brightness "), LEFT + gap*2, AFTER);
     add(slBrightness = new Slider(ScrollBar.HORIZONTAL));
     slBrightness.setValues(128, 0, 0, 256);
     slBrightness.setUnitIncrement(8);
@@ -81,7 +81,7 @@ public class ImageModifiersSample extends Container {
     rectImg = imgFrm.getAbsoluteRect();
     imgFrm.allowBeyondLimits = false;
     imgFrm.centerImage = true;
-    imgFrm.setEventsEnabled(true);
+    imgFrm.setEventsEnabled(false);
 
     loadImage("images/lenna.png");
   }
@@ -93,7 +93,6 @@ public class ImageModifiersSample extends Container {
 
     try {
       img = new Image(dsc);
-
       int scaleW = (100 * rectImg.width) / img.getWidth();
       int scaleH = (100 * rectImg.height) / img.getHeight();
       if ((scaleH < 100) || (scaleW < 100)) {

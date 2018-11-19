@@ -26,10 +26,9 @@ import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.font.Font;
-import totalcross.ui.gfx.Color;
 
 public class DigestSample extends ScrollContainer {
-	private int gap = 50;
+	private int gap = (int) (Settings.screenDensity * 20);
 	private Container menu;
 	private Edit edtInput;
 	private ComboBox cboDigests;

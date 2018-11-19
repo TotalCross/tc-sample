@@ -36,7 +36,6 @@ public class CheckRadioSample extends ScrollContainer {
 
 			c1 = new Container();
 			c1.setBackForeColors(Color.WHITE, Colors.ON_P_200);
-			//c1.setFont(font.asBold());
 
 			Label lbCheck = new Label("SELECT YOUR SUBJECTS", CENTER);
 			lbCheck.setBackForeColors(Colors.P_200, Colors.ON_P_200);
@@ -83,20 +82,19 @@ public class CheckRadioSample extends ScrollContainer {
 			int c1m = Settings.screenWidth/2;
 			c1.add(lbCheck, LEFT, TOP, FILL, PREFERRED + fmH * 8);
 			c1.add(subject1, LEFT + gap, AFTER + gap, PREFERRED , PREFERRED + H);
-			c1.add(ls1, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(ls1, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject2, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
-			c1.add(ls2, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(ls2, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject3, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
-			c1.add(ls3, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(ls3, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject4, c1m, SAME, PREFERRED, PREFERRED + H, subject1);
-			c1.add(ls4, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(ls4, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject5, c1m, SAME, PREFERRED, PREFERRED + H, subject2);
-			c1.add(ls5, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c1.add(ls5, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject6, c1m, SAME, PREFERRED, PREFERRED + H, subject3);
-			c1.add(ls6, AFTER + gap, SAME, PREFERRED, PREFERRED);
-			c1.add(confirmButtonC1, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
-			c1.add(cancelButtonC1, LEFT + gap, AFTER + gap * 2 + (confirmButtonC1.getHeight() / 2), PREFERRED + fmH * 7,
-					PREFERRED + fmH * 5, subject6);
+			c1.add(ls6, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
+			c1.add(confirmButtonC1, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6, subject6);
+			c1.add(cancelButtonC1, LEFT + gap, CENTER_OF, PREFERRED, PREFERRED, confirmButtonC1);
 			c1.add(new Spacer(), CENTER, AFTER, 10, gap / 2, confirmButtonC1);
 			c1.resizeHeight();
 
@@ -131,14 +129,18 @@ public class CheckRadioSample extends ScrollContainer {
 			add(c2, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			c2.add(lbRadio, LEFT, TOP, FILL, PREFERRED + fmH * 8);
 			c2.add(area1, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
-			c2.add(la1, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c2.add(la1, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c2.add(area2, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
-			c2.add(la2, AFTER + gap, SAME, PREFERRED, PREFERRED);
+			c2.add(la2, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c2.add(area3, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
-			c2.add(la3, AFTER + gap, SAME, PREFERRED, PREFERRED);
-			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
-			c2.add(cancelButtonC2, LEFT + gap, AFTER + gap * 2 + (confirmButtonC2.getHeight() / 2), PREFERRED + fmH * 7,
-					PREFERRED + fmH * 5, area3);
+			c2.add(la3, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
+			
+			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6, area3);
+			c2.add(cancelButtonC2, LEFT + gap, CENTER_OF, PREFERRED, PREFERRED, confirmButtonC2);
+			
+//			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED + fmH * 6);
+//			c2.add(cancelButtonC2, LEFT + gap, AFTER + gap * 2 + (confirmButtonC2.getHeight() / 2), PREFERRED + fmH * 7,
+//					PREFERRED + fmH * 5, area3);
 			c2.add(new Spacer(), CENTER, AFTER, 10, gap / 2, confirmButtonC2);
 			c2.resizeHeight();
 

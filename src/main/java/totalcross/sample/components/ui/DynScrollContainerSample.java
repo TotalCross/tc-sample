@@ -25,6 +25,7 @@ public class DynScrollContainerSample extends Container {
 	private DynamicScrollContainer vsc;
 	private Check onlyPrimeChk;
 	private Container c1;
+	private Label warning;
 	
 	private int rowCount0;
 
@@ -36,6 +37,8 @@ public class DynScrollContainerSample extends Container {
 		public String text;
 
 		private Font f;
+		
+		
 
 		public DynSCTestView(int id, Font f) {
 			super();
@@ -115,18 +118,22 @@ public class DynScrollContainerSample extends Container {
 		c1.add(new Spacer(0, 0), LEFT, TOP, 1, gap/2); 
 		numberRangeEdit = add("Select your number range: ", c1, Color.WHITE, Color.BLACK);
 		numberRangeEdit.setBackForeColors(Color.WHITE, Color.BLACK);
+		numberRangeEdit.useNativeNumericPad = true;
 		
 		c1.add(new Spacer(0, 0), LEFT, AFTER + gap/2);
 		onlyPrimeChk = new Check("Show only prime numbers");
 		onlyPrimeChk.setBackForeColors(Color.WHITE, Color.BLACK);
 		c1.add(onlyPrimeChk, LEFT+gap, AFTER + gap + gap/2);
-
 		goButton = new Button("Show");
 		goButton.setBackForeColors(Color.getRGB(93,151,244), Color.WHITE);
 		c1.add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, onlyPrimeChk);
+		c1.add(warning = new Label("Prime numbers will have grey background"),CENTER, AFTER + gap/2, PREFERRED, PREFERRED);
+		warning.transparentBackground = true;
+		warning.setForeColor(Color.RED);
 		c1.add(new Spacer(0, 0), LEFT, AFTER, 1, gap/2); 
 		c1.resizeHeight();
 		c1.setBackColor(Color.WHITE);
+		
 		vsc = new DynamicScrollContainer();
 		vsc.setBackColor(Color.WHITE);
 		vsc.setBorderStyle(BORDER_SIMPLE);
@@ -137,40 +144,49 @@ public class DynScrollContainerSample extends Container {
 
 	@Override
 	public void onEvent(Event event) {
-		if (event.type == ControlEvent.PRESSED && event.target == goButton) {
+		if (event.type == ControlEvent.PRESSED && (event.target == goButton || event.target == onlyPrimeChk) ) {
 			int rowCount = rowCount0;
 			try {
 				rowCount = Convert.toInt(numberRangeEdit.getText());
 			} catch (Exception e) {
-				//numberRangeEdit.setText(rowCount + "");
-				}
+				e.printStackTrace();
+			}
 			ProgressBox pb = new ProgressBox("Calculating", "Please wait...", null);
 			pb.setBackColor(Color.getRGB(12, 98, 200));
 			pb.popupNonBlocking();
 			DynamicScrollContainer.DataSource datasource = new DynamicScrollContainer.DataSource(rowCount);
-			for (int i = 0; i < rowCount; i++) {
-				if(onlyPrimeChk.isChecked()) {
-					if(isPrime(i)) {
+			
+			if (onlyPrimeChk.isChecked()) {
+				for (int i = 0; i < rowCount; i++) {
+					System.out.print("i : " + i);
+					if (isPrime(i)) {
 						DynSCTestView view = new DynSCTestView(i, font);
-						view.height = 25;
+						view.height = Settings.screenHeight / 20;
 						datasource.addView(view);
+						System.out.print(" should be printed");
+					} else {
+						System.out.print(" nada acontece feijoada");
 					}
-				}else {
-					if(isPrime(i)) {
+					System.out.print("\n");
+				}
+			} else {
+				for (int i = 0; i < rowCount; i++) {
+					if (isPrime(i)) {
 						DynSCTestView view = new DynSCTestView(i, font);
-						view.height = 25;
+						view.height = Settings.screenHeight / 20;
 						datasource.addView(view);
-					}else {
-					DynSCTestView view = new DynSCTestView(i, font);
-					view.height = 25;
-					datasource.addView(view);
+					} else {
+						DynSCTestView view = new DynSCTestView(i, font);
+						view.height = Settings.screenHeight / 20;
+						datasource.addView(view);
 					}
 				}
 			}
 
 			pb.unpop();
 			vsc.setDataSource(datasource);
-			vsc.scrollToView(datasource.getView(0));
+			if(!onlyPrimeChk.isChecked())
+				vsc.scrollToView(datasource.getView(0));
 		}
 	}
 	private static boolean isPrime(int n) {
