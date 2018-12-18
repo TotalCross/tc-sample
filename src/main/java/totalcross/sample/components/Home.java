@@ -2,8 +2,9 @@ package totalcross.sample.components;
 
 import totalcross.io.IOException;
 import totalcross.sample.util.Colors;
-import totalcross.sys.Settings;
-import totalcross.ui.*;
+import totalcross.ui.Container;
+import totalcross.ui.ImageControl;
+import totalcross.ui.Label;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
@@ -30,6 +31,98 @@ public class Home extends Container {
       lbWelcome3.setFont(Font.getFont("Lato Bold", false, lbWelcome3.getFont().size));
       lbWelcome3.setForeColor(Color.WHITE);
       add(lbWelcome3, CENTER, AFTER + 40);
+      
+      final int w = 80;
+      final int h = 50;
+      
+      Button b1 = new Button("Camera\nOpen");
+      b1.setBackColor(Colors.P_DARK);
+      b1.setForeColor(Color.WHITE);
+      b1.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				try {
+					Camera.open();
+				} catch (CameraException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+      add(b1, LEFT + 120, AFTER + 10, PREFERRED + w, PREFERRED + h);
+      
+      Button b2 = new Button("Camera\nClose");
+      b2.setBackColor(Colors.P_DARK);
+      b2.setForeColor(Color.WHITE);
+      b2.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				Camera.close();
+			}
+		});
+      add(b2, AFTER + 40, SAME, PREFERRED + w, PREFERRED + h);
+      
+      Button b3 = new Button("Set 'n\nCapture");
+      b3.setBackColor(Colors.P_DARK);
+      b3.setForeColor(Color.WHITE);
+      b3.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				Camera.setProperties(new CameraProperties());
+				String s = Camera.captureImage();
+				
+				Vm.sleep(2000);
+				
+				System.out.println("Received: " + s);
+				File f = null;
+				Image img = null;
+				try {
+					f = new File(s, File.READ_ONLY);
+					img = new Image(f);
+					
+					ImageControl imc = new ImageControl(img);
+					Home.this.add(imc, RIGHT, TOP);
+					
+					System.out.println("Return: " + s);
+				} catch (IOException | ImageException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+      add(b3, AFTER + 40, SAME, PREFERRED + w, PREFERRED + h);
+      
+      Button b4 = new Button("Start\nRec");
+      b4.setBackColor(Colors.P_DARK);
+      b4.setForeColor(Color.WHITE);
+      b4.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				Camera.startMovieRecording();
+			}
+		});
+      add(b4, AFTER + 40, SAME, PREFERRED + w, PREFERRED + h);
+      
+      Button b5 = new Button("Stop\nRec");
+      b5.setBackColor(Colors.P_DARK);
+      b5.setForeColor(Color.WHITE);
+      b5.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				String s = Camera.endMovieRecording();
+				System.out.println("Return: " + s);
+			}
+		});
+      add(b5, AFTER + 40, SAME, PREFERRED + w, PREFERRED + h);
+		
+      Button b6 = new Button("Abort\nRec");
+      b6.setBackColor(Colors.P_DARK);
+      b6.setForeColor(Color.WHITE);
+      b6.addPressListener(new PressListener() {
+			@Override
+			public void controlPressed(ControlEvent e) {
+				Camera.abortMovieRecording();
+			}
+		});
+      add(b6, AFTER + 40, SAME, PREFERRED + w, PREFERRED + h);
 
       Button btSystemInfo = new Button("System information");
       btSystemInfo.setFont(Font.getFont("Lato Bold", false, lbWelcome3.getFont().size));
