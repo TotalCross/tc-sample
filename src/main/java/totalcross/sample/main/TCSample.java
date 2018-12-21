@@ -27,6 +27,7 @@ import totalcross.sample.components.ui.ComboListSample;
 import totalcross.sample.components.ui.DynScrollContainerSample;
 import totalcross.sample.components.ui.EditSample;
 import totalcross.sample.components.ui.FontSample;
+import totalcross.sample.components.ui.GraphicsSample;
 import totalcross.sample.components.ui.ImageAnimationSample;
 import totalcross.sample.components.ui.ImageModifiersSample;
 import totalcross.sample.components.ui.Login;
@@ -67,7 +68,6 @@ public class TCSample extends MainWindow {
   }
 	
   public TCSample() {
-
     super("TotalCross Showcase", NO_BORDER);
 
     setUIStyle(Settings.Material);
@@ -97,7 +97,7 @@ public class TCSample extends MainWindow {
     sideMenu =
         new SideMenuContainer(
             null,
-            home,            		
+            home,
             uiGroup,
             chartGroup,
             sqlGroup,
@@ -174,6 +174,7 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Dynamic Scroll Container", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new DynScrollContainerSample(); }),
 			   new SideMenuContainer.Item("Edit", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new EditSample(); }), 
 			   new SideMenuContainer.Item("Font sizes", MaterialIcons._SORT_BY_ALPHA, Color.BLACK,  () -> { return new FontSample(); }),
+			   new SideMenuContainer.Item("Graphics", MaterialIcons._GRADIENT, Color.BLACK, () -> { return new GraphicsSample(); }),
 			   new SideMenuContainer.Item("Image Animation", MaterialIcons._GIF, Color.BLACK,  () -> { return new ImageAnimationSample(); }),
 			   new SideMenuContainer.Item("Image Modifiers", MaterialIcons._IMAGE, Color.BLACK,  () -> { return new ImageModifiersSample(); }),
 			   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),

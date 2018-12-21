@@ -25,7 +25,7 @@ public class MaterialIconsSample extends ScrollContainer {
 		          public void initUI() {
 		            for (int i = 0, j = 0; i < MaterialIcons.values().length; i++, j++) {
 		              Icon icon = new Icon(MaterialIcons.values()[i]);
-		              icon.setFont(icon.getFont().adjustedBy(10));
+		              icon.setFont(icon.getFont());
 		              add(
 		                  icon,
 		                  (j % cols) == 0 ? LEFT : AFTER,
