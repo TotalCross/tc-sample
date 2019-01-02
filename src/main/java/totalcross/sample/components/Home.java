@@ -38,7 +38,7 @@ public class Home extends Container {
       btSystemInfo.addPressListener(
     	         (e) -> {
     	           MaterialWindow info =
-    	               new MaterialWindow("Information", false, new Presenter<Container>() {
+    	               new MaterialWindow("Information", false, new Presenter() {
     	                @Override
     	                public Container getView() {
     	                    return new Container() {
@@ -52,7 +52,9 @@ public class Home extends Container {
     	                                 "OS",
     	                                 "OS version",
     	                                 "Screen density",
-    	                                 "Default font size"
+    	                                 "Device font size",
+    	                                 "Actual font size",
+    	                                 "Width x Height"
     	                               });
     	                       add(alc, LEFT, TOP, FILL, FILL);
     	                       int padding = (int) (Settings.screenDensity * 8);
@@ -74,6 +76,14 @@ public class Home extends Container {
     	                           new Label(String.valueOf(Settings.deviceFontHeight)),
     	                           LEFT + 100,
     	                           alc.getLineY(lineY++));
+    	                       alc.add(
+        	                           new Label(String.valueOf(Font.getDefaultFontSize())),
+        	                           LEFT + 100,
+        	                           alc.getLineY(lineY++));
+    	                       alc.add(
+        	                           new Label(String.valueOf(Settings.screenWidth)+"x"+String.valueOf(Settings.screenHeight)),
+        	                           LEFT + 100,
+        	                           alc.getLineY(lineY++));
     	                     }
     	                   };
     	                }    
