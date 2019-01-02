@@ -9,6 +9,7 @@ import totalcross.sample.components.crypto.SignatureSample;
 import totalcross.sample.components.io.FileSample;
 import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
+import totalcross.sample.components.layout.HBoxVBoxSample;
 import totalcross.sample.components.net.SocketSample;
 import totalcross.sample.components.phone.PhoneDialerSample;
 import totalcross.sample.components.sql.SQLiteBenchSample;
@@ -28,12 +29,10 @@ import totalcross.sample.components.ui.DynScrollContainerSample;
 import totalcross.sample.components.ui.EditSample;
 import totalcross.sample.components.ui.FontSample;
 import totalcross.sample.components.ui.GraphicsSample;
-import totalcross.sample.components.ui.HBoxVBoxSample;
 import totalcross.sample.components.ui.ImageAnimationSample;
 import totalcross.sample.components.ui.ImageModifiersSample;
 import totalcross.sample.components.ui.Login;
 import totalcross.sample.components.ui.MaterialIconsSample;
-import totalcross.sample.components.ui.MaterialWIndowSample;
 import totalcross.sample.components.ui.MessageBoxSample;
 import totalcross.sample.components.ui.MultiTouchSample;
 import totalcross.sample.components.ui.OtherControlsSample;
@@ -51,12 +50,10 @@ import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
 import totalcross.ui.Label;
 import totalcross.ui.MainWindow;
-import totalcross.ui.Presenter;
 import totalcross.ui.SideMenuContainer;
 import totalcross.ui.SideMenuContainer.Sub;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
-import totalcross.ui.icon.IconType;
 import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
@@ -85,6 +82,7 @@ public class TCSample extends MainWindow {
 
 		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home(); });
 		SideMenuContainer.Sub uiGroup = createUISubGroup();
+		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
 		SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
 //  	SideMenuContainer.Sub chartGroup = createChartSubGroup();
 		SideMenuContainer.Sub cryptoGroup = createCryptoSubGroup();
@@ -98,9 +96,10 @@ public class TCSample extends MainWindow {
 		SideMenuContainer.Sub xmlGroup = createXMLSubGroup();
 
 		sideMenu = new SideMenuContainer(null,
-				new SideMenuContainer.Item("HBoxVBox", MaterialIcons._LAPTOP, Color.BLUE, true, () -> { return new HBoxVBoxSample(); }), 
+				new SideMenuContainer.Item("HBoxVBox", MaterialIcons._LAPTOP, Color.BLUE, true, () -> { return new HBoxVBoxSample(true); }), 
 				home, 
 				uiGroup,
+				layoutGroup,
 //          	chartGroup,
 				sqlGroup, 
 				cryptoGroup, 
@@ -187,6 +186,12 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),
 			   new SideMenuContainer.Item("Top Menu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
 			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
+	}
+	
+	private Sub createLayoutSubGroup() {
+  		return new SideMenuContainer.Sub("Layout",
+  			new SideMenuContainer.Item("HBox", MaterialIcons._LANDSCAPE, Color.BLACK, () -> { return new HBoxVBoxSample(true); }),
+			new SideMenuContainer.Item("VBox", MaterialIcons._PORTRAIT, Color.BLACK, () -> { return new HBoxVBoxSample(false); }));
 	}
 	
 //	private Sub createChartSubGroup() {
