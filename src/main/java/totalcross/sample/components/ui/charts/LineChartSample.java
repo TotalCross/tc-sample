@@ -52,17 +52,16 @@ public class LineChartSample extends ScrollContainer {
 		showYValues = new Check("YValues");
 
 		options.add(showTitle, LEFT + gap, TOP);
-
-		options.add(hasLegend, AFTER + gap, SAME);
+		options.add(hasLegend, SAME, AFTER);
 
 		showTitle.setText("Title");
 
-		options.add(showCategories, RIGHT - gap, TOP, options);
-		options.add(showYValues, SAME, AFTER + gap, SAME, SAME);
-		options.add(showHGrids, SAME, AFTER + gap, SAME, SAME);
-		options.add(showVGrids, SAME, AFTER, SAME, SAME);
+		options.add(showCategories, SAME, AFTER);
+		options.add(showYValues, AFTER, TOP, showCategories);
+		options.add(showHGrids, SAME, AFTER);
+		options.add(showVGrids, SAME, AFTER);
 
-		options.add(legendPosition, AFTER + gap, SAME, FIT - gap, PREFERRED, hasLegend);
+		options.add(legendPosition, RIGHT, SAME, showYValues);
 
 		options.setInsets(gap / 4, gap / 4, gap / 4, gap / 4);
 		options.resizeHeight();

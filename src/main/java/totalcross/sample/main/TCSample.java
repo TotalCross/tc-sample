@@ -83,9 +83,10 @@ public class TCSample extends MainWindow {
 	public void initUI() {
 		MainWindow.getMainWindow().addTimer(100);
 
-		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new NestedLayouts(); });
+		
+		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home(); });
 		SideMenuContainer.Sub uiGroup = createUISubGroup();
-		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
+//		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
 		SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
 		SideMenuContainer.Sub chartGroup = createChartSubGroup();
 		SideMenuContainer.Sub cryptoGroup = createCryptoSubGroup();
@@ -99,10 +100,11 @@ public class TCSample extends MainWindow {
 		SideMenuContainer.Sub xmlGroup = createXMLSubGroup();
 
 		sideMenu = new SideMenuContainer(null,
+//				new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }),
 				home, 
 				uiGroup,
-				layoutGroup,
-				//chartGroup,
+//				layoutGroup,
+				chartGroup,
 				sqlGroup, 
 				cryptoGroup, 
 				ioGroup, 

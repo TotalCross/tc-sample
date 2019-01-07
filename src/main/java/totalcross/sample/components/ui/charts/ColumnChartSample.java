@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui.charts;
 
+
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Check;
@@ -27,7 +28,6 @@ public class ColumnChartSample extends ScrollContainer {
 
 	@Override
 	public void initUI() {
-		// TODO Auto-generated method stub
 		super.initUI();
 
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
@@ -77,32 +77,42 @@ public class ColumnChartSample extends ScrollContainer {
 		showHGrids = new Check("HGrids");
 		showVGrids = new Check("VGrids");
 		showYValues = new Check("YValues");
-		options.add(showTitle, LEFT + gap, TOP);
 
-		options.add(hasLegend, AFTER + gap, SAME);
+		options.add(showTitle, LEFT, TOP);
+		options.add(hasLegend, SAME, AFTER);		
+		options.add(hasShade, SAME, AFTER, hasLegend);
 
-		options.add(hasShade, SAME, AFTER + gap, showTitle);
+		
 		showTitle.setText("Title");
 
 		options.add(is3D, SAME, AFTER + gap * 2, hasShade);
 
 		hor = new Label("H:");
 		ver = new Label("V:");
-		options.add(hor, AFTER + gap, SAME - gap * 2, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
-		options.add(ver, SAME, AFTER, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
 
-		options.add(showCategories, RIGHT - gap, TOP, options);
-		options.add(showYValues, SAME, AFTER + gap, SAME, SAME);
+
+		options.add(showCategories, AFTER + gap, TOP, hasLegend);
+		
+		options.add(showYValues, SAME, AFTER + gap, SAME, SAME,showCategories);
+		
+		
+		
 		options.add(showHGrids, SAME, AFTER + gap, SAME, SAME);
 		options.add(showVGrids, SAME, AFTER, SAME, SAME);
 
-		options.add(legendPosition, AFTER + gap, SAME, FIT - gap, SAME + 10, hasLegend);
-		options.add(shadeDirection, AFTER + gap, SAME, legendPosition.getWidth(), SAME + 10, hasShade);
-		options.add(shadeType, AFTER + gap, SAME, hasLegend.getWidth(), SAME, shadeDirection);
-		options.add(h3DSlider = new Slider(), AFTER, CENTER_OF, shadeDirection.getWidth() + shadeType.getWidth(),
-				PREFERRED, hor);
-		options.add(v3DSlider = new Slider(), AFTER, CENTER_OF, shadeDirection.getWidth() + shadeType.getWidth(),
-				PREFERRED, ver);
+		options.add(shadeDirection, RIGHT, SAME, PREFERRED, PREFERRED, showCategories);
+		
+		options.add(legendPosition, SAME, AFTER, FILL, SAME, shadeDirection);
+		
+		options.add(shadeType, SAME, AFTER, FILL, SAME, legendPosition);
+
+		
+		options.add(hor, LEFT + gap*4, AFTER, hasShade.getWidth() - is3D.getWidth(), PREFERRED, shadeType);
+		options.add(ver, SAME, AFTER, hasShade.getWidth() - is3D.getWidth(), PREFERRED);
+
+		
+		options.add(h3DSlider = new Slider(), AFTER, CENTER_OF, FILL, PREFERRED, hor);
+		options.add(v3DSlider = new Slider(), AFTER, CENTER_OF, FILL, PREFERRED, ver);
 		options.setInsets(gap / 4, gap / 4, gap / 4, gap / 4);
 		options.resizeHeight();
 		menu.resizeHeight();
