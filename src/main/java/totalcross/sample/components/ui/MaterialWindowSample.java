@@ -1,9 +1,7 @@
 package totalcross.sample.components.ui;
 
-import totalcross.db.sqlite.SQLiteUtil;
 import totalcross.io.IOException;
 import totalcross.sample.util.Colors;
-import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.Button;
 import totalcross.ui.Check;
@@ -13,30 +11,30 @@ import totalcross.ui.ImageControl;
 import totalcross.ui.MaterialWindow;
 import totalcross.ui.OutlinedEdit;
 import totalcross.ui.Presenter;
-import totalcross.ui.VBox;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
+import totalcross.ui.layout.HBox;
+import totalcross.ui.layout.VBox;
 
-public class MaterialWIndowSample extends Container {
+public class MaterialWindowSample extends Container {
 	@Override
 	public void initUI() {
-		VBox vbox = new VBox();
-
-		add(vbox, CENTER, CENTER, DP + 200, DP + 300);
-		vbox.setSpacing(200);
-
 		Button btn1 = new Button("Sign Up");
 		btn1.setBackForeColors(Colors.P_500, Colors.ON_P_500);
 
-		vbox.add(btn1);
+		this.add(btn1, CENTER, TOP);
 		btn1.addPressListener((e) -> {
-			MaterialWindow mw = new MaterialWindow("Sign Up", true, new Presenter<Container>() {
+			final MaterialWindow mw = new MaterialWindow("Sign Up", false, new Presenter() {
 				@Override
 				public Container getView() {
-					return new Container() {
+					return new ScrollContainer() {
 						@Override
 						public void initUI() {
+							VBox layout = new VBox();
+							layout.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+							
 							setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 							ImageControl ic = null;
 							try {
@@ -50,42 +48,37 @@ public class MaterialWIndowSample extends Container {
 							ic.centerImage = true;
 							add(ic, LEFT, TOP + 100, FILL, PARENTSIZE + 30);
 
-							VBox vboxTotal = new VBox();
-							vboxTotal.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
-
-							Button singUP = new Button("Sing Up");
-							Button cancel = new Button("Cancel");
-
 							OutlinedEdit outUsu = new OutlinedEdit();
-							OutlinedEdit outPass = new OutlinedEdit();
-							OutlinedEdit outPassConf = new OutlinedEdit();
-							OutlinedEdit outEmail = new OutlinedEdit();
-
-							add(vboxTotal, CENTER, AFTER, (Settings.screenWidth / 10) * 7, Settings.screenHeight / 2);
-							vboxTotal.setSpacing(25);
-
 							outUsu.caption = "User";
 							outUsu.captionColor = Color.BRIGHT;
-
+							layout.add(outUsu);
+							
+							OutlinedEdit outPass = new OutlinedEdit();
 							outPass.caption = "Password";
 							outPass.captionColor = Color.BRIGHT;
 							outPass.setMode(Edit.PASSWORD_ALL);
-
+							layout.add(outPass);
+							
+							OutlinedEdit outPassConf = new OutlinedEdit();
 							outPassConf.caption = "Confirm Password";
 							outPassConf.captionColor = Color.BRIGHT;
 							outPassConf.setMode(Edit.PASSWORD_ALL);
-
+							layout.add(outPassConf);
+							
+							OutlinedEdit outEmail = new OutlinedEdit();
 							outEmail.caption = "Email";
 							outEmail.captionColor = Color.BRIGHT;
+							layout.add(outEmail);
 
-							vboxTotal.add(outUsu);
-							vboxTotal.add(outPass);
-							vboxTotal.add(outPassConf);
-							vboxTotal.add(outEmail);
-
-							vboxTotal.add(singUP);
-							vboxTotal.add(cancel);
-
+							HBox hbox = new HBox();
+							hbox.add(new Button("Sign Up"));
+							hbox.add(new Button("Cancel"));
+							hbox.setLayout(HBox.LAYOUT_STACK_CENTER, HBox.ALIGNMENT_CENTER);
+							layout.add(hbox);
+							
+							layout.setSpacing(10);
+							add(layout, CENTER, AFTER, PARENTSIZE, PARENTSIZE);
+							layout.setLayout(VBox.LAYOUT_STACK_TOP, VBox.ALIGNMENT_CENTER);
 						}
 					};
 				}
@@ -96,19 +89,18 @@ public class MaterialWIndowSample extends Container {
 		Button btn2 = new Button("Sign in");
 		btn2.setBackForeColors(Colors.P_500, Colors.ON_P_500);
 
-		vbox.add(btn2);
+		this.add(btn2, CENTER, AFTER);
 		btn2.addPressListener((e) -> {
-			MaterialWindow mw = new MaterialWindow("Sign in", true, new Presenter<Container>() {
+			MaterialWindow mw = new MaterialWindow("Sign in", false, new Presenter() {
 				@Override
 				public Container getView() {
-					return new Container() {
+					return new ScrollContainer() {
 						@Override
 						public void initUI() {
 							Edit edPass, edLogin;
 							Check ch;
 							Button btLogin, btRegister;
 							ImageControl ic = null;
-							SQLiteUtil util;
 
 							setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 							try {
@@ -151,8 +143,6 @@ public class MaterialWIndowSample extends Container {
 				}
 			});
 			mw.popup();
-
 		});
-
 	}
 }

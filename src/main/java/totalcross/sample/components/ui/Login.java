@@ -14,6 +14,7 @@ import totalcross.ui.Check;
 import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.ImageControl;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
@@ -22,7 +23,7 @@ import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 import totalcross.util.InvalidDateException;
 
-public class Login extends Container{
+public class Login extends ScrollContainer {
 	private Edit edPass, edLogin;
 	private Check ch;
 	private Button btLogin, btRegister;

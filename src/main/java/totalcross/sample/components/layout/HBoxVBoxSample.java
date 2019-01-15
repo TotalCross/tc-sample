@@ -2,12 +2,11 @@ package totalcross.sample.components.layout;
 
 import totalcross.ui.Button;
 import totalcross.ui.Control;
-import totalcross.ui.HBox;
-import totalcross.ui.LinearBox;
-import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
-import totalcross.ui.VBox;
 import totalcross.ui.gfx.Color;
+import totalcross.ui.layout.LinearBox;
+import totalcross.ui.layout.HBox;
+import totalcross.ui.layout.VBox;
 import totalcross.util.UnitsConverter;
 
 public class HBoxVBoxSample extends ScrollContainer {
@@ -26,18 +25,19 @@ public class HBoxVBoxSample extends ScrollContainer {
 		
 		int xpos;
 		int ypos;
-		int width = hbox ? DP + 180 : DP + 68;
+		int width = hbox ? DP + 240 : DP + 68;
 		int height = hbox ? DP + 68 : DP + 180;
 		for (int l : layouts) {
-			ypos = l == layouts[0] ? TOP : AFTER + 10;
+			ypos = l == layouts[0] ? TOP : AFTER + 20;
 			for (int a : alignments) {
 				xpos = a == alignments[0] ? LEFT : AFTER;
 				ypos = a == alignments[0] ? ypos : SAME;
 				
 				LinearBox v = hbox ? new HBox() : new VBox();
-				v.setLayout(l, a, false);
+				v.setInsets(2, 2, 2, 2);
+				v.setLayout(l, a);
 				v.setBackColor(0xCCCCCC);				
-				v.addControls(generateButtons());
+				v.add(generateButtons());
 				scroll.add(v, xpos + 10, ypos, width, height);
 			}
 		}
@@ -68,9 +68,9 @@ public class HBoxVBoxSample extends ScrollContainer {
 	}
 	
 	private final int[] layouts = new int[] { 
-		LinearBox.LAYOUT_STACK_LEFT, 
+		HBox.LAYOUT_STACK_LEFT, // same as VBox.LAYOUT_STACK_TOP
 		LinearBox.LAYOUT_STACK_CENTER, 
-		LinearBox.LAYOUT_STACK_RIGHT,
+		HBox.LAYOUT_STACK_RIGHT, // same as VBox.LAYOUT_STACK_BOTTOM
 		LinearBox.LAYOUT_DISTRIBUTE,
 		LinearBox.LAYOUT_FILL,
 	};

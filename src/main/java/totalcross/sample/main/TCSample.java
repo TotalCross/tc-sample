@@ -19,10 +19,10 @@ import totalcross.sample.components.ui.AccordionSample;
 import totalcross.sample.components.ui.AlignedLabelsSample;
 import totalcross.sample.components.ui.ButtonSample;
 import totalcross.sample.components.ui.CameraSample;
-//import totalcross.sample.components.ui.charts.ArcChartSample;
-//import totalcross.sample.components.ui.charts.ColumnChartSample;
-//import totalcross.sample.components.ui.charts.LineChartSample;
-//import totalcross.sample.components.ui.charts.PieChartSample;
+import totalcross.sample.components.ui.charts.ArcChartSample;
+import totalcross.sample.components.ui.charts.ColumnChartSample;
+import totalcross.sample.components.ui.charts.LineChartSample;
+import totalcross.sample.components.ui.charts.PieChartSample;
 import totalcross.sample.components.ui.CheckRadioSample;
 import totalcross.sample.components.ui.ComboListSample;
 import totalcross.sample.components.ui.DynScrollContainerSample;
@@ -33,11 +33,12 @@ import totalcross.sample.components.ui.ImageAnimationSample;
 import totalcross.sample.components.ui.ImageModifiersSample;
 import totalcross.sample.components.ui.Login;
 import totalcross.sample.components.ui.MaterialIconsSample;
+import totalcross.sample.components.ui.MaterialWindowSample;
 import totalcross.sample.components.ui.MessageBoxSample;
 import totalcross.sample.components.ui.MultiTouchSample;
 import totalcross.sample.components.ui.OtherControlsSample;
 import totalcross.sample.components.ui.ProgressBoxSample;
-//import totalcross.sample.components.ui.SliderSwitchSample;
+import totalcross.sample.components.ui.SliderSwitchSample;
 import totalcross.sample.components.ui.SpinnerSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
@@ -84,7 +85,7 @@ public class TCSample extends MainWindow {
 		SideMenuContainer.Sub uiGroup = createUISubGroup();
 		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
 		SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
-//  	SideMenuContainer.Sub chartGroup = createChartSubGroup();
+		SideMenuContainer.Sub chartGroup = createChartSubGroup();
 		SideMenuContainer.Sub cryptoGroup = createCryptoSubGroup();
 		SideMenuContainer.Sub ioGroup = createIOSubGroup();
 		SideMenuContainer.Sub jsonGroup = createJSONSubGroup();
@@ -96,11 +97,10 @@ public class TCSample extends MainWindow {
 		SideMenuContainer.Sub xmlGroup = createXMLSubGroup();
 
 		sideMenu = new SideMenuContainer(null,
-				new SideMenuContainer.Item("HBoxVBox", MaterialIcons._LAPTOP, Color.BLUE, true, () -> { return new HBoxVBoxSample(true); }), 
 				home, 
 				uiGroup,
 				layoutGroup,
-//          	chartGroup,
+				//chartGroup,
 				sqlGroup, 
 				cryptoGroup, 
 				ioGroup, 
@@ -162,30 +162,31 @@ public class TCSample extends MainWindow {
 
 	private Sub createUISubGroup() {
 	   return new SideMenuContainer.Sub("UI",
-			   new SideMenuContainer.Item("Accordion Container", MaterialIcons._FORMAT_ALIGN_LEFT, Color.BLACK,  () -> { return new AccordionSample(); }),
-			   new SideMenuContainer.Item("Aligned Labels", MaterialIcons._MENU, Color.BLACK,  () -> { return new AlignedLabelsSample(); }),
-			   new SideMenuContainer.Item("Button", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new ButtonSample(); }),
-			   new SideMenuContainer.Item("Camera", MaterialIcons._PHOTO_CAMERA, Color.BLACK,  () -> { return new CameraSample(); }),
-			   new SideMenuContainer.Item("Cards", MaterialIcons._VIEW_AGENDA, Color.BLACK,  () -> { return new CardsSample(); }),
-			   new SideMenuContainer.Item("Check and Radio", MaterialIcons._CHECK_BOX, Color.BLACK,  () -> { return new CheckRadioSample(); }),
-			   new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Color.BLACK,  () -> { return new ComboListSample(); }),
-			   new SideMenuContainer.Item("Dynamic Scroll Container", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new DynScrollContainerSample(); }),
-			   new SideMenuContainer.Item("Edit", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new EditSample(); }), 
-			   new SideMenuContainer.Item("Font sizes", MaterialIcons._SORT_BY_ALPHA, Color.BLACK,  () -> { return new FontSample(); }),
-			   new SideMenuContainer.Item("Graphics", MaterialIcons._GRADIENT, Color.BLACK, () -> { return new GraphicsSample(); }),
-			   new SideMenuContainer.Item("Image Animation", MaterialIcons._GIF, Color.BLACK,  () -> { return new ImageAnimationSample(); }),
-			   new SideMenuContainer.Item("Image Modifiers", MaterialIcons._IMAGE, Color.BLACK,  () -> { return new ImageModifiersSample(); }),
-			   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),
-			   new SideMenuContainer.Item("Material Icons", MaterialIcons._FONT_DOWNLOAD, Color.BLACK,  () -> { return new MaterialIconsSample(); }),
-			   new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
-			   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
-			   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
-			   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
-			   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
-//			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
-			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),
-			   new SideMenuContainer.Item("Top Menu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
-			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
+		   new SideMenuContainer.Item("Accordion Container", MaterialIcons._FORMAT_ALIGN_LEFT, Color.BLACK,  () -> { return new AccordionSample(); }),
+		   new SideMenuContainer.Item("Aligned Labels", MaterialIcons._MENU, Color.BLACK,  () -> { return new AlignedLabelsSample(); }),
+		   new SideMenuContainer.Item("Button", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new ButtonSample(); }),
+		   new SideMenuContainer.Item("Camera", MaterialIcons._PHOTO_CAMERA, Color.BLACK,  () -> { return new CameraSample(); }),
+		   new SideMenuContainer.Item("Cards", MaterialIcons._VIEW_AGENDA, Color.BLACK,  () -> { return new CardsSample(); }),
+		   new SideMenuContainer.Item("Check and Radio", MaterialIcons._CHECK_BOX, Color.BLACK,  () -> { return new CheckRadioSample(); }),
+		   new SideMenuContainer.Item("Combo and List", MaterialIcons._ARROW_DROP_DOWN_CIRCLE, Color.BLACK,  () -> { return new ComboListSample(); }),
+		   new SideMenuContainer.Item("Dynamic Scroll Container", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new DynScrollContainerSample(); }),
+		   new SideMenuContainer.Item("Edit", MaterialIcons._TEXT_FORMAT, Color.BLACK,  () -> { return new EditSample(); }), 
+		   new SideMenuContainer.Item("Font sizes", MaterialIcons._SORT_BY_ALPHA, Color.BLACK,  () -> { return new FontSample(); }),
+		   new SideMenuContainer.Item("Graphics", MaterialIcons._GRADIENT, Color.BLACK, () -> { return new GraphicsSample(); }),
+		   new SideMenuContainer.Item("Image Animation", MaterialIcons._GIF, Color.BLACK,  () -> { return new ImageAnimationSample(); }),
+		   new SideMenuContainer.Item("Image Modifiers", MaterialIcons._IMAGE, Color.BLACK,  () -> { return new ImageModifiersSample(); }),
+		   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),
+		   new SideMenuContainer.Item("Material Window", MaterialIcons._DESKTOP_WINDOWS, Color.BLACK,  () -> { return new MaterialWindowSample(); }),
+		   new SideMenuContainer.Item("Material Icons", MaterialIcons._FONT_DOWNLOAD, Color.BLACK,  () -> { return new MaterialIconsSample(); }),
+		   new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
+		   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
+		   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
+		   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
+		   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
+		   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
+		   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),
+		   new SideMenuContainer.Item("Top Menu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
+		   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
 	}
 	
 	private Sub createLayoutSubGroup() {
@@ -194,24 +195,24 @@ public class TCSample extends MainWindow {
 			new SideMenuContainer.Item("VBox", MaterialIcons._PORTRAIT, Color.BLACK, () -> { return new HBoxVBoxSample(false); }));
 	}
 	
-//	private Sub createChartSubGroup() {
-//		return new SideMenuContainer.Sub("Chart", 
-//				new SideMenuContainer.Item("Arc Chart", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new ArcChartSample(); }),
-//				new SideMenuContainer.Item("Column Chart", MaterialIcons._INSERT_CHART, Color.BLACK,  () -> { return new ColumnChartSample(); }),
-//				new SideMenuContainer.Item("Line Chart", MaterialIcons._SHOW_CHART, Color.BLACK,  () -> { return new LineChartSample(); }),
-//				new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }));
-//	}
+	private Sub createChartSubGroup() {
+		return new SideMenuContainer.Sub("Chart", 
+			new SideMenuContainer.Item("Arc Chart", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new ArcChartSample(); }),
+			new SideMenuContainer.Item("Column Chart", MaterialIcons._INSERT_CHART, Color.BLACK,  () -> { return new ColumnChartSample(); }),
+			new SideMenuContainer.Item("Line Chart", MaterialIcons._SHOW_CHART, Color.BLACK,  () -> { return new LineChartSample(); }),
+			new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }));
+	}
 	
 	private Sub createCryptoSubGroup() {
 		return new SideMenuContainer.Sub("Crypto", 
-				new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); }),
-				new SideMenuContainer.Item("Digest", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new DigestSample(); }),
-				new SideMenuContainer.Item("Signature", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK,  () -> { return new SignatureSample(); }));
+			new SideMenuContainer.Item("Cipher", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new CipherSample(); }),
+			new SideMenuContainer.Item("Digest", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new DigestSample(); }),
+			new SideMenuContainer.Item("Signature", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK,  () -> { return new SignatureSample(); }));
 	}
 	
 	private Sub createJSONSubGroup() {
 		return new SideMenuContainer.Sub("JSON", 
-				new SideMenuContainer.Item("JSON", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK, () -> { return new JSONSample();}));
+			new SideMenuContainer.Item("JSON", MaterialIcons._SETTINGS_ETHERNET, Color.BLACK, () -> { return new JSONSample();}));
 	}
 
 	private Sub createLangSubGroup() {
@@ -231,11 +232,11 @@ public class TCSample extends MainWindow {
 
 	private Sub createSystemSubGroup() {
 		return new SideMenuContainer.Sub("System",
-				new SideMenuContainer.Item("Settings", MaterialIcons._SETTINGS_APPLICATIONS, Color.BLACK, () -> { return new SettingsSample(); }));
+			new SideMenuContainer.Item("Settings", MaterialIcons._SETTINGS_APPLICATIONS, Color.BLACK, () -> { return new SettingsSample(); }));
 	}
 
 	private Sub createUtilSubGroup() {
 		return new SideMenuContainer.Sub("Util",
-				new SideMenuContainer.Item("ZLib", MaterialIcons._SORT, Color.BLACK, () -> { return new ZLibSample(); }));
-		}
+			new SideMenuContainer.Item("ZLib", MaterialIcons._SORT, Color.BLACK, () -> { return new ZLibSample(); }));
+	}
 }

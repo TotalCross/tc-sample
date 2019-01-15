@@ -22,7 +22,7 @@ import totalcross.ui.media.Camera;
 
 public class CameraSample extends Container {
 
-	private int GAP = 50;
+	private int GAP = 80;
 	private int BUTTON_HEIGHT = 50;
 	private int BUTTON_WIDTH = 160;
 
@@ -73,11 +73,11 @@ public class CameraSample extends Container {
 		add(btnFilm, LEFT + GAP, BEFORE, PREFERRED + BUTTON_WIDTH, PREFERRED + BUTTON_HEIGHT);
 		add(btnPhoto, AFTER + GAP, SAME, SAME, SAME);
 		add(btnRotate, AFTER + GAP, SAME, SAME, SAME);
-		add(cbRes, AFTER + GAP, SAME, FILL - GAP, SAME, btnRotate);
+		add(cbRes, AFTER + GAP, SAME, SAME, SAME);
 
 		add(customRadio, LEFT + GAP, BEFORE - GAP, PARENTSIZE + 30, PREFERRED);
 		add(nativeRadio, AFTER, SAME, PARENTSIZE + 30, PREFERRED);
-		add(galleryRadio, AFTER, SAME, FILL, PREFERRED);
+		add(galleryRadio, LEFT + GAP, AFTER, FILL, PREFERRED);
 		
 		add(ic = new ImageControl(), LEFT + GAP, TOP + GAP, FILL - GAP, FIT - GAP);
 		ic.setEventsEnabled(true);
