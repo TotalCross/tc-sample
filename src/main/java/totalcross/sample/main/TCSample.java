@@ -73,7 +73,7 @@ public class TCSample extends MainWindow {
 	public TCSample() {
 		super("TotalCross Showcase", NO_BORDER);
 
-		setUIStyle(Settings.Material);
+		setUIStyle(Settings.MATERIAL_UI);
 		Settings.uiAdjustmentsBasedOnFontHeight = true;
 
 		setBackForeColors(Colors.BACKGROUND, Colors.SURFACE);
@@ -82,11 +82,10 @@ public class TCSample extends MainWindow {
 	@Override
 	public void initUI() {
 		MainWindow.getMainWindow().addTimer(100);
-
 		
 		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home(); });
 		SideMenuContainer.Sub uiGroup = createUISubGroup();
-//		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
+		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
 		SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
 		SideMenuContainer.Sub chartGroup = createChartSubGroup();
 		SideMenuContainer.Sub cryptoGroup = createCryptoSubGroup();
@@ -98,12 +97,11 @@ public class TCSample extends MainWindow {
 		SideMenuContainer.Sub sysGroup = createSystemSubGroup();
 		SideMenuContainer.Sub utilGroup = createUtilSubGroup();
 		SideMenuContainer.Sub xmlGroup = createXMLSubGroup();
-
+		
 		sideMenu = new SideMenuContainer(null,
-//				new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }),
 				home, 
 				uiGroup,
-//				layoutGroup,
+				layoutGroup,
 				chartGroup,
 				sqlGroup, 
 				cryptoGroup, 

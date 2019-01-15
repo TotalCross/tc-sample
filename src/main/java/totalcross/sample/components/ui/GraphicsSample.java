@@ -11,50 +11,9 @@ import totalcross.ui.event.UpdateListener;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.gfx.Graphics;
 
-public class GraphicsSample extends ScrollContainer implements UpdateListener {
-	private final int N = 1;
-	private long totalTime;
-	private long redraws;
-	
-	@Override
-	public void initUI() {
-		super.initUI();
-		
-		//MainWindow.getMainWindow().addUpdateListener(this);
-	}
-	
-	@Override
-	public void updateListenerTriggered(int elapsedMilliseconds) {
-		if (Vm.getTimeStamp() < 5000) {
-			Control.repaint();
-		} else {
-			MainWindow.getMainWindow().removeUpdateListener(this);
-		}
-	}
-	
-	
+public class GraphicsSample extends ScrollContainer {
 	@Override
 	public void onPaint(Graphics g) {
-		super.onPaint(g);
-		
-		int start = Vm.getTimeStamp();
-		for (int i = 0; i < N; i++) {
-			Draw(g);
-		}
-		
-		int duration = Vm.getTimeStamp() - start;
-		
-		totalTime += duration;
-		redraws += 1;
-		
-		String average = ("" + (totalTime / (double)redraws));
-		average = average.substring(0, Math.min(average.length(), 6));
-		System.out.println(
-				"Done " + N + " redraws in " + duration + "ms. " +
-				"Average: " + average + "ms (Samples: " + redraws + ")");
-	}
-	
-	private void Draw(Graphics g) {
 		int solidWhite = 0xFFFFFFFF;
 		int solidBlack = 0xFF000000;
 		int solidRed = 0xFFFF0000;
