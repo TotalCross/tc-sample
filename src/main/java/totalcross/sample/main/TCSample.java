@@ -10,6 +10,7 @@ import totalcross.sample.components.io.FileSample;
 import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
 import totalcross.sample.components.layout.HBoxVBoxSample;
+import totalcross.sample.components.layout.NestedLayouts;
 import totalcross.sample.components.net.SocketSample;
 import totalcross.sample.components.phone.PhoneDialerSample;
 import totalcross.sample.components.sql.SQLiteBenchSample;
@@ -81,7 +82,7 @@ public class TCSample extends MainWindow {
 	public void initUI() {
 		MainWindow.getMainWindow().addTimer(100);
 
-		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home(); });
+		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new NestedLayouts(); });
 		SideMenuContainer.Sub uiGroup = createUISubGroup();
 		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
 		SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
@@ -192,7 +193,8 @@ public class TCSample extends MainWindow {
 	private Sub createLayoutSubGroup() {
   		return new SideMenuContainer.Sub("Layout",
   			new SideMenuContainer.Item("HBox", MaterialIcons._LANDSCAPE, Color.BLACK, () -> { return new HBoxVBoxSample(true); }),
-			new SideMenuContainer.Item("VBox", MaterialIcons._PORTRAIT, Color.BLACK, () -> { return new HBoxVBoxSample(false); }));
+			new SideMenuContainer.Item("VBox", MaterialIcons._PORTRAIT, Color.BLACK, () -> { return new HBoxVBoxSample(false); }),
+			new SideMenuContainer.Item("Nested Layouts", MaterialIcons._PORTRAIT, Color.BLACK, () -> { return new NestedLayouts(); }));
 	}
 	
 	private Sub createChartSubGroup() {

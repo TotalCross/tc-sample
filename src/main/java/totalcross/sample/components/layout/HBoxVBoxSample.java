@@ -51,11 +51,11 @@ public class HBoxVBoxSample extends ScrollContainer {
 		
 		@Override
 		public int getPreferredWidth() {
-			return UnitsConverter.toPixels(40);
+			return UnitsConverter.toPixels(DP + 40);
 		}
 		@Override
 		public int getPreferredHeight() {
-			return UnitsConverter.toPixels(30);
+			return UnitsConverter.toPixels(DP + 30);
 		}
 	}
 	public Control[] generateButtons() {
