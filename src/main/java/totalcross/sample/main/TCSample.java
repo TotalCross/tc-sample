@@ -9,6 +9,7 @@ import totalcross.sample.components.crypto.SignatureSample;
 import totalcross.sample.components.io.FileSample;
 import totalcross.sample.components.json.JSONSample;
 import totalcross.sample.components.lang.thread.ThreadSample;
+import totalcross.sample.components.layout.CalculatorHBoxVBoxSample;
 import totalcross.sample.components.layout.HBoxVBoxSample;
 import totalcross.sample.components.layout.NestedLayouts;
 import totalcross.sample.components.net.SocketSample;
@@ -20,10 +21,6 @@ import totalcross.sample.components.ui.AccordionSample;
 import totalcross.sample.components.ui.AlignedLabelsSample;
 import totalcross.sample.components.ui.ButtonSample;
 import totalcross.sample.components.ui.CameraSample;
-import totalcross.sample.components.ui.charts.ArcChartSample;
-import totalcross.sample.components.ui.charts.ColumnChartSample;
-import totalcross.sample.components.ui.charts.LineChartSample;
-import totalcross.sample.components.ui.charts.PieChartSample;
 import totalcross.sample.components.ui.CheckRadioSample;
 import totalcross.sample.components.ui.ComboListSample;
 import totalcross.sample.components.ui.DynScrollContainerSample;
@@ -44,6 +41,10 @@ import totalcross.sample.components.ui.SpinnerSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
 import totalcross.sample.components.ui.VelocimeterSample;
+import totalcross.sample.components.ui.charts.ArcChartSample;
+import totalcross.sample.components.ui.charts.ColumnChartSample;
+import totalcross.sample.components.ui.charts.LineChartSample;
+import totalcross.sample.components.ui.charts.PieChartSample;
 import totalcross.sample.components.util.ZLibSample;
 import totalcross.sample.components.xml.XMLParseSample;
 import totalcross.sample.util.Colors;
@@ -192,6 +193,7 @@ public class TCSample extends MainWindow {
 	
 	private Sub createLayoutSubGroup() {
   		return new SideMenuContainer.Sub("Layout",
+  			new SideMenuContainer.Item("Calculator", MaterialIcons._PLUS_ONE, Color.BLACK,  () -> { return new CalculatorHBoxVBoxSample(); }),
   			new SideMenuContainer.Item("HBox", MaterialIcons._LANDSCAPE, Color.BLACK, () -> { return new HBoxVBoxSample(true); }),
 			new SideMenuContainer.Item("VBox", MaterialIcons._PORTRAIT, Color.BLACK, () -> { return new HBoxVBoxSample(false); }),
 			new SideMenuContainer.Item("Nested Layouts", MaterialIcons._PORTRAIT, Color.BLACK, () -> { return new NestedLayouts(); }));
