@@ -18,25 +18,27 @@ import totalcross.sample.components.ui.AccordionSample;
 import totalcross.sample.components.ui.AlignedLabelsSample;
 import totalcross.sample.components.ui.ButtonSample;
 import totalcross.sample.components.ui.CameraSample;
-import totalcross.sample.components.ui.charts.ArcChartSample;
-import totalcross.sample.components.ui.charts.ColumnChartSample;
-import totalcross.sample.components.ui.charts.LineChartSample;
-import totalcross.sample.components.ui.charts.PieChartSample;
+//import totalcross.sample.components.ui.charts.ArcChartSample;
+//import totalcross.sample.components.ui.charts.ColumnChartSample;
+//import totalcross.sample.components.ui.charts.LineChartSample;
+//import totalcross.sample.components.ui.charts.PieChartSample;
 import totalcross.sample.components.ui.CheckRadioSample;
 import totalcross.sample.components.ui.ComboListSample;
 import totalcross.sample.components.ui.DynScrollContainerSample;
 import totalcross.sample.components.ui.EditSample;
 import totalcross.sample.components.ui.FontSample;
 import totalcross.sample.components.ui.GraphicsSample;
+import totalcross.sample.components.ui.HBoxVBoxSample;
 import totalcross.sample.components.ui.ImageAnimationSample;
 import totalcross.sample.components.ui.ImageModifiersSample;
 import totalcross.sample.components.ui.Login;
 import totalcross.sample.components.ui.MaterialIconsSample;
+import totalcross.sample.components.ui.MaterialWIndowSample;
 import totalcross.sample.components.ui.MessageBoxSample;
 import totalcross.sample.components.ui.MultiTouchSample;
 import totalcross.sample.components.ui.OtherControlsSample;
 import totalcross.sample.components.ui.ProgressBoxSample;
-import totalcross.sample.components.ui.SliderSwitchSample;
+//import totalcross.sample.components.ui.SliderSwitchSample;
 import totalcross.sample.components.ui.SpinnerSample;
 import totalcross.sample.components.ui.TabbedContainerSample;
 import totalcross.sample.components.ui.TopMenuSample;
@@ -49,102 +51,99 @@ import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
 import totalcross.ui.Label;
 import totalcross.ui.MainWindow;
+import totalcross.ui.Presenter;
 import totalcross.ui.SideMenuContainer;
 import totalcross.ui.SideMenuContainer.Sub;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
+import totalcross.ui.icon.IconType;
 import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 
 public class TCSample extends MainWindow {
+	SideMenuContainer sideMenu;
 
-  SideMenuContainer sideMenu;
+	static {
+		Settings.applicationId = "VKSS";
+		Settings.appVersion = "2.0.1";
+		Settings.iosCFBundleIdentifier = "com.totalcross.showcase";
+	}
 
-  static {
-    Settings.applicationId = "VKSS";
-    Settings.appVersion = "2.0.1";
-    Settings.iosCFBundleIdentifier = "com.totalcross.showcase";
-  }
-	
-  public TCSample() {
-    super("TotalCross Showcase", NO_BORDER);
+	public TCSample() {
+		super("TotalCross Showcase", NO_BORDER);
 
-    setUIStyle(Settings.Material);
-    Settings.uiAdjustmentsBasedOnFontHeight = true;
+		setUIStyle(Settings.Material);
+		Settings.uiAdjustmentsBasedOnFontHeight = true;
 
-    setBackForeColors(Colors.BACKGROUND, Colors.SURFACE);
-  }
+		setBackForeColors(Colors.BACKGROUND, Colors.SURFACE);
+	}
 
-  @Override
-  public void initUI() {
-	MainWindow.getMainWindow().addTimer(100);
-	//General
-	SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home();});
-	SideMenuContainer.Sub uiGroup = createUISubGroup();
-    SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
-    SideMenuContainer.Sub chartGroup = createChartSubGroup();
-    SideMenuContainer.Sub cryptoGroup = createCryptoSubGroup();
-    SideMenuContainer.Sub ioGroup = createIOSubGroup();
-    SideMenuContainer.Sub jsonGroup = createJSONSubGroup();
-    SideMenuContainer.Sub langGroup = createLangSubGroup();
-	SideMenuContainer.Sub netGroup = createNetSubGroup();
-	SideMenuContainer.Sub phoneGroup = createPhoneSubGroup();
-	SideMenuContainer.Sub sysGroup = createSystemSubGroup();
-	SideMenuContainer.Sub utilGroup = createUtilSubGroup();
-	SideMenuContainer.Sub xmlGroup = createXMLSubGroup();
-	
-    sideMenu =
-        new SideMenuContainer(
-            null,
-            home,
-            uiGroup,
-            chartGroup,
-            sqlGroup,
-            cryptoGroup,
-            ioGroup,
-            jsonGroup,
-            langGroup,
-            netGroup,
-            phoneGroup,
-            sysGroup,
-            utilGroup,
-            xmlGroup
-            );
+	@Override
+	public void initUI() {
+		MainWindow.getMainWindow().addTimer(100);
 
-    sideMenu.topMenu.header =
-        new Container() {
-          @Override
-          public void initUI() {
+		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home(); });
+		SideMenuContainer.Sub uiGroup = createUISubGroup();
+		SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
+//  	SideMenuContainer.Sub chartGroup = createChartSubGroup();
+		SideMenuContainer.Sub cryptoGroup = createCryptoSubGroup();
+		SideMenuContainer.Sub ioGroup = createIOSubGroup();
+		SideMenuContainer.Sub jsonGroup = createJSONSubGroup();
+		SideMenuContainer.Sub langGroup = createLangSubGroup();
+		SideMenuContainer.Sub netGroup = createNetSubGroup();
+		SideMenuContainer.Sub phoneGroup = createPhoneSubGroup();
+		SideMenuContainer.Sub sysGroup = createSystemSubGroup();
+		SideMenuContainer.Sub utilGroup = createUtilSubGroup();
+		SideMenuContainer.Sub xmlGroup = createXMLSubGroup();
 
-            try {
-              setBackColor(Colors.SECONDARY);
+		sideMenu = new SideMenuContainer(null,
+				new SideMenuContainer.Item("HBoxVBox", MaterialIcons._LAPTOP, Color.BLUE, true, () -> { return new HBoxVBoxSample(); }), 
+				home, 
+				uiGroup,
+//          	chartGroup,
+				sqlGroup, 
+				cryptoGroup, 
+				ioGroup, 
+				jsonGroup, 
+				langGroup, 
+				netGroup, 
+				phoneGroup, 
+				sysGroup, 
+				utilGroup,
+				xmlGroup);
 
-              Label title = new Label("Showcase", LEFT, Color.WHITE, false);
-              title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
-              title.setForeColor(Color.WHITE);
-              add(title, LEFT + 45, BOTTOM - 30, FILL, DP + 56);
+		sideMenu.topMenu.header = new Container() {
+			@Override
+			public void initUI() {
+				try {
+					setBackColor(Colors.SECONDARY);
 
-              ImageControl profile = new ImageControl(new Image("images/logoV.png"));
-              profile.scaleToFit = true;
-              profile.transparentBackground = true;
-              add(profile, LEFT + 45, TOP + 150, PREFERRED, FIT);
+					Label title = new Label("Showcase", LEFT, Color.WHITE, false);
+					title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
+					title.setForeColor(Color.WHITE);
+					add(title, LEFT + 45, BOTTOM - 30, FILL, DP + 56);
 
-            } catch (IOException | ImageException e) {
-              e.printStackTrace();
-            }
-          }
-        };
+					ImageControl profile = new ImageControl(new Image("images/logoV.png"));
+					profile.scaleToFit = true;
+					profile.transparentBackground = true;
+					add(profile, LEFT + 45, TOP + 150, PREFERRED, FIT);
 
-    sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
-    sideMenu.setBackColor(Colors.PRIMARY);
-    sideMenu.setForeColor(Color.WHITE);
-    sideMenu.setItemForeColor(Color.BLACK);
-    sideMenu.topMenu.drawSeparators = false;
-    sideMenu.topMenu.itemHeightFactor = 3;
+				} catch (IOException | ImageException e) {
+					e.printStackTrace();
+				}
+			}
+		};
 
-    add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
-  }
+		sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
+		sideMenu.setBackColor(Colors.PRIMARY);
+		sideMenu.setForeColor(Color.WHITE);
+		sideMenu.setItemForeColor(Color.BLACK);
+		sideMenu.topMenu.drawSeparators = false;
+		sideMenu.topMenu.itemHeightFactor = 3;
+
+		add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
+	}
 
   	private Sub createIOSubGroup() {
   		return new SideMenuContainer.Sub("IO", 
@@ -184,19 +183,19 @@ public class TCSample extends MainWindow {
 			   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
 			   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
 			   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
-			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
+//			   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
 			   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),
 			   new SideMenuContainer.Item("Top Menu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
 			   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));
 	}
 	
-	private Sub createChartSubGroup() {
-		return new SideMenuContainer.Sub("Chart", 
-				new SideMenuContainer.Item("Arc Chart", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new ArcChartSample(); }),
-				new SideMenuContainer.Item("Column Chart", MaterialIcons._INSERT_CHART, Color.BLACK,  () -> { return new ColumnChartSample(); }),
-				new SideMenuContainer.Item("Line Chart", MaterialIcons._SHOW_CHART, Color.BLACK,  () -> { return new LineChartSample(); }),
-				new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }));
-	}
+//	private Sub createChartSubGroup() {
+//		return new SideMenuContainer.Sub("Chart", 
+//				new SideMenuContainer.Item("Arc Chart", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new ArcChartSample(); }),
+//				new SideMenuContainer.Item("Column Chart", MaterialIcons._INSERT_CHART, Color.BLACK,  () -> { return new ColumnChartSample(); }),
+//				new SideMenuContainer.Item("Line Chart", MaterialIcons._SHOW_CHART, Color.BLACK,  () -> { return new LineChartSample(); }),
+//				new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }));
+//	}
 	
 	private Sub createCryptoSubGroup() {
 		return new SideMenuContainer.Sub("Crypto", 

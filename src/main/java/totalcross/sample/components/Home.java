@@ -38,7 +38,7 @@ public class Home extends Container {
       btSystemInfo.addPressListener(
     	         (e) -> {
     	           MaterialWindow info =
-    	               new MaterialWindow("Information", new Presenter() {
+    	               new MaterialWindow("Information", false, new Presenter<Container>() {
     	                @Override
     	                public Container getView() {
     	                    return new Container() {
