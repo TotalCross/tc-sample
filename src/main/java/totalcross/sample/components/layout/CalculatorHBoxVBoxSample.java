@@ -165,7 +165,7 @@ public class CalculatorHBoxVBoxSample extends Container {
         	if(acumulator == 0 && value.equals("0")) {
         		clearScreen(false);
         	}
-        	if (value.contentEquals("0")) {
+        	if (value.equals("0")) {
         		value = number + "";
         	} else {
         		value += number;
