@@ -14,6 +14,7 @@ import totalcross.ui.Check;
 import totalcross.ui.Container;
 import totalcross.ui.Edit;
 import totalcross.ui.ImageControl;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
@@ -22,7 +23,7 @@ import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 import totalcross.util.InvalidDateException;
 
-public class Login extends Container{
+public class Login extends ScrollContainer {
 	private Edit edPass, edLogin;
 	private Check ch;
 	private Button btLogin, btRegister;
@@ -39,12 +40,12 @@ public class Login extends Container{
 			
 			edLogin = new Edit();
 			edLogin.caption = "Login";
-			edLogin.setBackColor(Color.RED);
+			//edLogin.setBackColor(Color.RED);
 			add(edLogin, CENTER, AFTER+60, PARENTSIZE+90, PREFERRED+30);
 			
 			edPass = new Edit();
 			edPass.caption = "Password";
-			edPass.setBackColor(Color.RED);
+			//edPass.setBackColor(Color.RED);
 			edPass.setMode(Edit.PASSWORD_ALL);
 			add(edPass, SAME, AFTER+70, PARENTSIZE+90, PREFERRED+30);
 			

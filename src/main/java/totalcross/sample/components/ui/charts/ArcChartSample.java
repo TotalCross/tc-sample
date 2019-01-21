@@ -13,7 +13,7 @@ import totalcross.ui.gfx.Color;
 
 public class ArcChartSample extends ScrollContainer {
 	private Container menu, options;
-	private final int gap = 25;
+	private final int gap =  100;
 	private ArcChart arc;
 
 	Check hasLegend, showTitle;
@@ -29,8 +29,10 @@ public class ArcChartSample extends ScrollContainer {
 		menu.setFont(font.asBold());
 
 		options = new Container();
-		add(menu, LEFT + gap, TOP + gap, FILL - gap, 125 + DP);
-		menu.add(options, CENTER, TOP + gap, Settings.screenWidth, WILL_RESIZE);
+		add(menu, LEFT, TOP, FILL, 125 + DP);
+
+		menu.add(options, CENTER, TOP, Settings.screenWidth, WILL_RESIZE);
+		
 		int color1 = Chart.COLOR2;
 		int color2 = Chart.COLOR3;
 		int color3 = Chart.COLOR4;
@@ -45,11 +47,12 @@ public class ArcChartSample extends ScrollContainer {
 
 		options.add(showTitle, LEFT + gap, TOP);
 
-		options.add(hasLegend, AFTER + gap, SAME);
+		options.add(hasLegend, SAME, AFTER);
+
 
 		showTitle.setText("Title");
 
-		options.add(legendPosition, AFTER + gap, SAME, FILL - gap, PREFERRED, hasLegend);
+		options.add(legendPosition, RIGHT, TOP);
 
 		options.setInsets(gap / 4, gap / 4, gap / 4, gap / 4);
 		options.resizeHeight();
@@ -65,7 +68,7 @@ public class ArcChartSample extends ScrollContainer {
 		arc.yDecimalPlaces = 1; // 1 decimal place
 		arc.setTitle("Profit Share");
 		arc.legendValueSuffix = "%"; // show % instead of the value in the tooltip
-		add(arc, LEFT + gap * 3 / 2, AFTER, FILL - gap * 3 / 2, FILL - gap * 3 / 2);
+		add(arc, LEFT, AFTER, FILL, FILL);
 		arc.setBackColor(bg);
 
 		hasLegend.addPressListener(e -> {

@@ -27,7 +27,6 @@ public class PieChartSample extends ScrollContainer {
 
 	@Override
 	public void initUI() {
-		// TODO Auto-generated method stub
 		super.initUI();
 
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
@@ -66,16 +65,17 @@ public class PieChartSample extends ScrollContainer {
 
 		options.add(showTitle, LEFT + gap, TOP);
 
-		options.add(hasLegend, AFTER + gap, SAME);
+		options.add(hasLegend, SAME, AFTER);
 
-		options.add(is3D, LEFT + gap, AFTER + gap * 2);
+		options.add(is3D, SAME, AFTER);
 
 		hor = new Label("H:");
 		ver = new Label("V:");
-		options.add(hor, AFTER + gap, SAME - gap * 2);
+		options.add(hor, SAME + gap*3, AFTER);
 		options.add(ver, SAME, AFTER);
 
-		options.add(legendPosition, AFTER + gap, SAME, FILL - gap, SAME + 10, hasLegend);
+		options.add(legendPosition, RIGHT, TOP, hasLegend);
+		 
 		options.add(h3DSlider = new Slider(), AFTER, CENTER_OF, FILL - gap, PREFERRED, hor);
 		options.add(v3DSlider = new Slider(), AFTER, CENTER_OF, FILL - gap, PREFERRED, ver);
 		options.setInsets(gap / 4, gap / 4, gap / 4, gap / 4);

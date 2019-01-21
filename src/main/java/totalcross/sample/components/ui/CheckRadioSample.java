@@ -20,7 +20,6 @@ public class CheckRadioSample extends ScrollContainer {
 	private Button confirmButtonC1, confirmButtonC2;
 	private Button cancelButtonC1, cancelButtonC2;
 	private Check subject1, subject2, subject3, subject4, subject5, subject6;
-	private Label ls1, ls2, ls3, ls4, ls5, ls6, la1, la2, la3;
 	private Radio area1, area2, area3;
 
 	private final int H = 25;
@@ -28,7 +27,6 @@ public class CheckRadioSample extends ScrollContainer {
 
 	@Override
 	public void initUI() {
-
 		try {
 			super.initUI();
 			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
@@ -40,35 +38,21 @@ public class CheckRadioSample extends ScrollContainer {
 			Label lbCheck = new Label("SELECT YOUR SUBJECTS", CENTER);
 			lbCheck.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 
-			subject1 = new Check("");
+			subject1 = new Check("Biology");
 			subject1.setChecked(true);
-			
-			
-
-			subject2 = new Check("");
-
-			subject3 = new Check("");
-
-			subject4 = new Check("");
+			subject2 = new Check("Physics");
+			subject3 = new Check("Chemistry");
+			subject4 = new Check("Math");
 			subject4.setChecked(true);
+			subject5 = new Check("History");
+			subject6 = new Check("Geography");
 
-			subject5 = new Check("");
-
-			subject6 = new Check("");
-
-			subject1.setForeColor( Colors.P_700);
-			subject2.setForeColor( Colors.P_700);
-			subject3.setForeColor( Colors.P_700);
-			subject4.setForeColor( Colors.P_700);
-			subject5.setForeColor( Colors.P_700);
-			subject6.setForeColor( Colors.P_700);
-			
-			ls1 = new Label("Biology");
-			ls2 = new Label("Physics");
-			ls3 = new Label("Chemistry");
-			ls4 = new Label("Math");
-			ls5 = new Label("History");
-			ls6 = new Label("Geography");
+			subject1.setForeColor(Colors.P_700);
+			subject2.setForeColor(Colors.P_700);
+			subject3.setForeColor(Colors.P_700);
+			subject4.setForeColor(Colors.P_700);
+			subject5.setForeColor(Colors.P_700);
+			subject6.setForeColor(Colors.P_700);
 			
 			cancelButtonC1 = new Button("CANCEL", (byte) 0);
 			cancelButtonC1.transparentBackground = true;
@@ -83,17 +67,11 @@ public class CheckRadioSample extends ScrollContainer {
 			int c1m = Settings.screenWidth/2;
 			c1.add(lbCheck, LEFT, TOP, FILL, PREFERRED + fmH * 8);
 			c1.add(subject1, LEFT + gap, AFTER + gap, PREFERRED , PREFERRED + H);
-			c1.add(ls1, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject2, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
-			c1.add(ls2, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject3, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
-			c1.add(ls3, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject4, c1m, SAME, PREFERRED, PREFERRED + H, subject1);
-			c1.add(ls4, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject5, c1m, SAME, PREFERRED, PREFERRED + H, subject2);
-			c1.add(ls5, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(subject6, c1m, SAME, PREFERRED, PREFERRED + H, subject3);
-			c1.add(ls6, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c1.add(confirmButtonC1, RIGHT - gap, AFTER + gap * 2, w, PREFERRED, subject6);
 			c1.add(cancelButtonC1, LEFT + gap, CENTER_OF, confirmButtonC1);
 			c1.add(new Spacer(), CENTER, AFTER, 10, gap / 2, confirmButtonC1);
@@ -106,15 +84,9 @@ public class CheckRadioSample extends ScrollContainer {
 			Label lbRadio = new Label("CHOOSE YOUR AREA OF SCIENCE", CENTER);
 			lbRadio.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 
-			area1 = new Radio("", radioGroup);
-
-			area2 = new Radio("", radioGroup);
-
-			area3 = new Radio("", radioGroup);
-			
-			la1 = new Label("STEM");
-			la2 = new Label("Human Sciencs");
-			la3 = new Label("Health Care");
+			area1 = new Radio("STEM", radioGroup);
+			area2 = new Radio("Human Sciences", radioGroup);
+			area3 = new Radio("Health Care", radioGroup);
 			
 			area1.setForeColor(Colors.P_700);
 			area2.setForeColor(Colors.P_700);
@@ -123,18 +95,15 @@ public class CheckRadioSample extends ScrollContainer {
 			cancelButtonC2 = new Button("CANCEL", (byte) 0);
 			cancelButtonC2.transparentBackground = true;
 			cancelButtonC2.setBackForeColors(Colors.BACKGROUND, Colors.P_700);
-
+			
 			confirmButtonC2 = new Button("CONFIRM");
 			confirmButtonC2.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 			confirmButtonC2.borderColor = Colors.P_700;
 			add(c2, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			c2.add(lbRadio, LEFT, TOP, FILL, PREFERRED + fmH * 8);
 			c2.add(area1, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
-			c2.add(la1, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c2.add(area2, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
-			c2.add(la2, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			c2.add(area3, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
-			c2.add(la3, AFTER + gap, CENTER_OF, PREFERRED, PREFERRED);
 			
 			c2.add(confirmButtonC2, RIGHT - gap, AFTER + gap * 2, w, PREFERRED, area3);
 			c2.add(cancelButtonC2, LEFT + gap, CENTER_OF, confirmButtonC2);

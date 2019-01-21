@@ -39,16 +39,16 @@ public class ImageModifiersSample extends Container {
     slRotate.setUnitIncrement(5);
     slRotate.setBlockIncrement(30);
     slRotate.setLiveScrolling(true);
-    slRotate.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbRotate);
+    slRotate.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 45, PREFERRED + fmH / 4, lbRotate);
     add(lbRotate = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
     add(l = new Label("Scale "), LEFT + gap*2, AFTER);
     add(slScale = new Slider(ScrollBar.HORIZONTAL));
-    slScale.setValues(100, 1, 0, 400); // palm os has very limited memory
+    slScale.setValues(100, 1, 0, 400);
     slScale.setUnitIncrement(5);
     slScale.setBlockIncrement(20);
     slScale.setLiveScrolling(true);
-    slScale.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbScale);
+    slScale.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 45, PREFERRED + fmH / 4, lbScale);
     add(lbScale = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
     add(l = new Label("Contrast "), LEFT + gap*2, AFTER);
@@ -57,7 +57,7 @@ public class ImageModifiersSample extends Container {
     slContrast.setUnitIncrement(8);
     slContrast.setBlockIncrement(32);
     slContrast.setLiveScrolling(true);
-    slContrast.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbContrast);
+    slContrast.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 45, PREFERRED + fmH / 4, lbContrast);
     add(lbContrast = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
     add(l = new Label("Brightness "), LEFT + gap*2, AFTER);
@@ -66,7 +66,7 @@ public class ImageModifiersSample extends Container {
     slBrightness.setUnitIncrement(8);
     slBrightness.setBlockIncrement(32);
     slBrightness.setLiveScrolling(true);
-    slBrightness.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 60, PREFERRED + fmH / 4, lbBrightness);
+    slBrightness.setRect(RIGHT - gap, SAME + 2, PARENTSIZE + 45, PREFERRED + fmH / 4, lbBrightness);
     add(lbBrightness = new Label("0000"), AFTER, SAME, FIT, SAME, l);
 
     lbRotate.setText("0");
@@ -164,6 +164,8 @@ public class ImageModifiersSample extends Container {
           Vm.alert(e.getMessage());
         }
       }
+      
+      img.applyChanges();
       repaint();
       break;
     }

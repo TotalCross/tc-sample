@@ -133,7 +133,7 @@ public class DynScrollContainerSample extends Container {
 		goButton.setBackForeColors(backColor, Color.WHITE);
 		goButton.borderColor = backColor;
 		c1.add(goButton, RIGHT - gap, AFTER + gap, SCREENSIZE + 25, PREFERRED + gap, onlyPrimeChk);
-		c1.add(warning = new Label("Prime numbers will have grey background"),CENTER, AFTER + gap/2, PREFERRED, PREFERRED);
+		c1.add(warning = new Label("Prime in grey"),CENTER, AFTER + gap/2, PREFERRED, PREFERRED);
 		warning.transparentBackground = true;
 		warning.setForeColor(Color.RED);
 		c1.add(new Spacer(0, 0), LEFT, AFTER, 1, gap/2); 
