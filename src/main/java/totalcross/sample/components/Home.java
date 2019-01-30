@@ -33,7 +33,7 @@ public class Home extends Container {
 
       Button btSystemInfo = new Button("System information");
       btSystemInfo.setFont(Font.getFont("Lato Bold", false, lbWelcome3.getFont().size));
-      btSystemInfo.setForeColor(Color.WHITE);
+      btSystemInfo.setBackForeColors(Color.WHITE, Color.BLACK);
       add(btSystemInfo, CENTER, BOTTOM - 100, PREFERRED + 100, PREFERRED);
       btSystemInfo.addPressListener(
     	         (e) -> {
