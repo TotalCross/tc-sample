@@ -16,6 +16,7 @@ import totalcross.sample.components.net.SocketSample;
 import totalcross.sample.components.phone.PhoneDialerSample;
 import totalcross.sample.components.sql.SQLiteBenchSample;
 import totalcross.sample.components.sql.SQLiteFormGridTabbedContainer;
+import totalcross.sample.components.sys.CommandLine;
 import totalcross.sample.components.sys.SettingsSample;
 import totalcross.sample.components.ui.AccordionSample;
 import totalcross.sample.components.ui.AlignedLabelsSample;
@@ -236,7 +237,8 @@ public class TCSample extends MainWindow {
 
 	private Sub createSystemSubGroup() {
 		return new SideMenuContainer.Sub("System",
-			new SideMenuContainer.Item("Settings", MaterialIcons._SETTINGS_APPLICATIONS, Color.BLACK, () -> { return new SettingsSample(); }));
+			new SideMenuContainer.Item("Settings", MaterialIcons._SETTINGS_APPLICATIONS, Color.BLACK, () -> { return new SettingsSample(); }),
+			new SideMenuContainer.Item("Command Line", MaterialIcons._SETTINGS_APPLICATIONS, Color.BLACK, () -> { return new CommandLine(); }));
 	}
 
 	private Sub createUtilSubGroup() {
