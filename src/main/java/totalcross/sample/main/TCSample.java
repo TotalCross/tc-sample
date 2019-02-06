@@ -35,6 +35,7 @@ import totalcross.sample.components.ui.MaterialIconsSample;
 import totalcross.sample.components.ui.MaterialWindowSample;
 import totalcross.sample.components.ui.MessageBoxSample;
 import totalcross.sample.components.ui.MultiTouchSample;
+import totalcross.sample.components.ui.NinePatchSample;
 import totalcross.sample.components.ui.OtherControlsSample;
 import totalcross.sample.components.ui.ProgressBoxSample;
 import totalcross.sample.components.ui.SliderSwitchSample;
@@ -181,12 +182,13 @@ public class TCSample extends MainWindow {
 		   new SideMenuContainer.Item("Login", MaterialIcons._PERSON, Color.BLACK,  () -> { return new Login(); }),
 		   new SideMenuContainer.Item("Material Window", MaterialIcons._DESKTOP_WINDOWS, Color.BLACK,  () -> { return new MaterialWindowSample(); }),
 		   new SideMenuContainer.Item("Material Icons", MaterialIcons._FONT_DOWNLOAD, Color.BLACK,  () -> { return new MaterialIconsSample(); }),
-		   new SideMenuContainer.Item("MessageBox", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
+		   new SideMenuContainer.Item("Message Box", MaterialIcons._QUESTION_ANSWER, Color.BLACK,  () -> { return new MessageBoxSample(); }),
+		   new SideMenuContainer.Item("Nine Patch", MaterialIcons._CROP_PORTRAIT, Color.BLACK,  () -> { return new NinePatchSample(); }),
 		   new SideMenuContainer.Item("Multi touch", MaterialIcons._TOUCH_APP, Color.BLACK,  () -> { return new MultiTouchSample(); }),
 		   new SideMenuContainer.Item("Other Controls", MaterialIcons._SLIDESHOW, Color.BLACK,  () -> { return new OtherControlsSample(); }),	
 		   new SideMenuContainer.Item("ProgressBox", MaterialIcons._INDETERMINATE_CHECK_BOX, Color.BLACK,  () -> { return new ProgressBoxSample(); }),
 		   new SideMenuContainer.Item("Spinner Inside Loop", MaterialIcons._LOOP , Color.BLACK,  () -> { return new SpinnerSample(); }),	
-		   new SideMenuContainer.Item("Slider and switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
+		   new SideMenuContainer.Item("Slider and Switch", MaterialIcons._LINEAR_SCALE, Color.BLACK,  () -> { return new SliderSwitchSample(); }),	
 		   new SideMenuContainer.Item("Tabbed Container", MaterialIcons._VIEW_ARRAY, Color.BLACK,  () -> { return new TabbedContainerSample(); }),
 		   new SideMenuContainer.Item("Top Menu", MaterialIcons._BORDER_TOP, Color.BLACK,  () -> { return new TopMenuSample(); }),
 		   new SideMenuContainer.Item("Velocimeter", MaterialIcons._LOOKS, Color.BLACK,  () -> { return new VelocimeterSample(); }));

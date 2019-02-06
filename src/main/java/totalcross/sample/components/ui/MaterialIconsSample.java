@@ -46,10 +46,8 @@ public class MaterialIconsSample extends ScrollContainer {
             try {
                 ic = new Image("images/floatbtn.png");
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (ImageException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             FloatingButton floatbutton = new FloatingButton(ic);
