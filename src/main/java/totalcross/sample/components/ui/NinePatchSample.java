@@ -9,7 +9,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.util.UnitsConverter;
 
 public class NinePatchSample extends Container {
-	private static final int width = 400 + DP;
+	private static final int width = 320 + DP;
 	private static final int gap = AFTER + UnitsConverter.toPixels(DP + 12);
 	private static final int extraGap = UnitsConverter.toPixels(DP + 60);
 	
