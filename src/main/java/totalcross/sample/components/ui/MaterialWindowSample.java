@@ -26,7 +26,7 @@ public class MaterialWindowSample extends Container {
 
 		this.add(btn1, CENTER, TOP, 240 + DP, PREFERRED);
 		btn1.addPressListener((e) -> {
-			MaterialWindow mw = new MaterialWindow("Material Window (Instant)", false, getPresenter(0));
+			MaterialWindow mw = new MaterialWindow("Material Window (Instant)", false, getPresenter());
 			mw.popup();
 		});
 
@@ -35,16 +35,16 @@ public class MaterialWindowSample extends Container {
 
 		this.add(btn2, CENTER, AFTER, 240 + DP, PREFERRED);
 		btn2.addPressListener((e) -> {
-			MaterialWindow mw = new MaterialWindow("Material Window (Delayed)", true, getPresenter(2000));
+			MaterialWindow mw = new MaterialWindow("Material Window (Delayed)", true, getPresenter());
 			mw.popup();
 		});
 	}
 
-	private Presenter getPresenter(int delay) {
+	private Presenter getPresenter() {
 		return new Presenter() {
 			@Override
 			public Container getView() {
-				return new ScrollContainer() {
+				return new Container() {
 					@Override
 					public void initUI() {
 						Edit edPass, edLogin;
@@ -87,7 +87,6 @@ public class MaterialWindowSample extends Container {
 						btRegister.addPressListener(e -> {
 							Vm.exec("url", "http://www.totalcross.com", 0, true);
 						});
-						Vm.sleep(1000);
 					}
 				};
 			}
