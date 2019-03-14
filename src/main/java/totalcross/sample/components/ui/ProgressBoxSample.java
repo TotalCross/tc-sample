@@ -50,6 +50,20 @@ public class ProgressBoxSample extends Container {
           pb.popup();          
       });
       add(bIOS, CENTER, AFTER + 20, 200 + DP, 40 + DP);
+            
+      
+      ProgressBar bar1 = new ProgressBar(1, 100);
+      bar1.setEndlessAutomatic();
+      add(bar1, LEFT + 40, AFTER + 40, 100 + DP, PREFERRED);
+      
+      ProgressBar bar2 = new ProgressBar(1, 100);
+      bar2.setEndlessAutomatic();
+      add(bar2, LEFT + 40, AFTER + 40, 200 + DP, PREFERRED);
+      
+      ProgressBar bar3 = new ProgressBar(1, 100);
+      bar3.setEndlessAutomatic();
+      add(bar3, LEFT + 40, AFTER + 40, 300 + DP, PREFERRED);
+
       
       this.addTimerListener((e) -> {
     	  if(count >= 0) {
