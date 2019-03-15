@@ -6,8 +6,6 @@ import totalcross.sample.main.TCSample;
 public class TCSampleApplication {
 	public static void main(String[] args) {
 	    TotalCrossApplication.run(
-	        TCSample.class,
-	        "/r",
-	        "put your key here");
+	        TCSample.class);
 	  }
 }

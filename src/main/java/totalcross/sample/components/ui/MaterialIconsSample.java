@@ -2,10 +2,8 @@ package totalcross.sample.components.ui;
 
 import totalcross.io.IOException;
 import totalcross.sys.Settings;
-import totalcross.ui.Container;
-import totalcross.ui.FloatingButton;
+import totalcross.ui.FloatingActionButton;
 import totalcross.ui.ScrollContainer;
-import totalcross.ui.ScrollPosition;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.icon.Icon;
 import totalcross.ui.icon.MaterialIcons;
@@ -38,7 +36,7 @@ public class MaterialIconsSample extends ScrollContainer {
 		} catch (ImageException e) {
 			e.printStackTrace();
 		}
-		FloatingButton floatbutton = new FloatingButton(ic);
+		FloatingActionButton floatbutton = new FloatingActionButton(ic);
 		floatbutton.setBackColor(Color.getRGB(109, 156, 232));
 		floatbutton.setIconSize(30);
 		floatbutton.addPressListener(e -> {

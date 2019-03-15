@@ -1,13 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.sys.Settings;
-import totalcross.sys.Vm;
-import totalcross.ui.Control;
-import totalcross.ui.MainWindow;
 import totalcross.ui.ScrollContainer;
-import totalcross.ui.event.TimerEvent;
-import totalcross.ui.event.TimerListener;
-import totalcross.ui.event.UpdateListener;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.gfx.Graphics;
 
