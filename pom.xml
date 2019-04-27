@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>com.totalcross</groupId>
 			<artifactId>totalcross-sdk</artifactId>
-			<version>5.0.0-RC3</version>
+			<version>5.0.0</version>
 		</dependency>
 		
 		<dependency>
