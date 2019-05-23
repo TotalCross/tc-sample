@@ -31,25 +31,27 @@ import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
+import totalcross.util.UnitsConverter;
 
 public class SocketSample extends ScrollContainer implements Runnable{
 	private Button btnOpen;
 	private Edit edA, edP;
 	private Socket socket;
-	private int gap = (int) (Settings.screenDensity * 20);
+	private int gap = UnitsConverter.toPixels(DP + 8);
 	private Thread loadData;
 
 	@Override
 	public void initUI() {
+
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
-		add(new Label("Address: "), LEFT + gap, TOP + gap/2);
-		add(edA = new Edit(""), AFTER + gap/3, SAME);
+		add(new Label("Address: "), LEFT + gap, TOP + gap);
+		add(edA = new Edit(), SAME, AFTER + gap);
 		edA.setText("www.google.com");
-		add(new Label("Port: "), LEFT + gap, AFTER + gap/2);
-		add(edP = new Edit("8080"), SAME , AFTER + gap/2, edA);
+		add(new Label("Port: "), LEFT + gap, AFTER + gap);
+		add(edP = new Edit(), SAME, AFTER + gap);
 		edP.setText("80");
 
-		add(btnOpen = new Button(" Open connection "), CENTER, AFTER + gap, PREFERRED + (int)(Settings.screenDensity * 32), (int)(Settings.screenDensity * 36));
+		add(btnOpen = new Button(" Open connection "), CENTER, AFTER + gap);
 		btnOpen.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 	}
 
@@ -103,7 +105,7 @@ public class SocketSample extends ScrollContainer implements Runnable{
 	private void log(String message)  {
 		Label l = new Label(message);
 		l.autoSplit = true;
-		add(l, LEFT + gap*2, AFTER + gap, FILL - gap*2, PREFERRED);
+		add(l, LEFT + gap*2, AFTER + gap, FILL, PREFERRED);
 		repaintNow();
 	}
 

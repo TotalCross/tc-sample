@@ -18,9 +18,10 @@ import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
+import totalcross.util.UnitsConverter;
 
 public class TopMenuSample extends ScrollContainer {
-	final int gap = (int) (Settings.screenDensity * 20);
+	final int gap = UnitsConverter.toPixels(DP + 20);
 	private TopMenu topMenu;
 
 	private class FilterContainer extends Container implements PressListener {
@@ -69,21 +70,21 @@ public class TopMenuSample extends ScrollContainer {
 		
 		Button[] tmBtn = new Button[4];
 		Button[] filterBtn = new Button[2];
-		tmBtn[0] = new Button("TopMenu TOP");
-		add(tmBtn[0], CENTER, AFTER + gap, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[0] = new Button("TOP");
+		add(tmBtn[0], CENTER, AFTER + gap);
 		tmBtn[0].addPressListener(e -> {
 			topMenu = new TopMenu(items, TOP);
 			topMenu.popup();
 		});
 
-		tmBtn[1] = new Button("TopMenu RIGHT");
-		add(tmBtn[1], RIGHT - gap, CENTER, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[1] = new Button("RIGHT");
+		add(tmBtn[1], RIGHT - gap, CENTER);
 		tmBtn[1].addPressListener(e -> {
 			topMenu = new TopMenu(items, RIGHT);
 			topMenu.popup();
 		});
 		filterBtn[0] = new Button("Filter RIGHT");
-		add(filterBtn[0], RIGHT - gap, AFTER + gap, SAME, SAME);
+		add(filterBtn[0], RIGHT - gap, AFTER + gap);
 		filterBtn[0].addPressListener(e -> {
 			topMenu = new TopMenu(new Control[] { new FilterContainer() }, RIGHT);
 			topMenu.totalTime = 500;
@@ -98,21 +99,21 @@ public class TopMenuSample extends ScrollContainer {
 			topMenu.popup();
 		});
 		
-		tmBtn[2] = new Button("TopMenu BOTTOM");
-		add(tmBtn[2], CENTER, BOTTOM - gap, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[2] = new Button("BOTTOM");
+		add(tmBtn[2], CENTER, BOTTOM - gap);
 		tmBtn[2].addPressListener(e -> {
 			topMenu = new TopMenu(items, BOTTOM);
 			topMenu.popup();		
 		});
 		
-		tmBtn[3] = new Button("TopMenu LEFT");
-		add(tmBtn[3], LEFT + gap, CENTER, PREFERRED + (int)(Settings.screenDensity * 36), PREFERRED + (int)(Settings.screenDensity * 32));
+		tmBtn[3] = new Button("LEFT");
+		add(tmBtn[3], LEFT + gap, CENTER);
 		tmBtn[3].addPressListener(e -> {
 			topMenu = new TopMenu(items, LEFT);
 			topMenu.popup();
 		});
 		filterBtn[1] = new Button("Filter LEFT");
-		add(filterBtn[1], LEFT + gap, AFTER + gap, SAME, SAME);
+		add(filterBtn[1], LEFT + gap, AFTER + gap);
 		filterBtn[1].addPressListener(e -> {
 			topMenu = new TopMenu(new Control[] { new FilterContainer() }, LEFT);
 			topMenu.totalTime = 500;

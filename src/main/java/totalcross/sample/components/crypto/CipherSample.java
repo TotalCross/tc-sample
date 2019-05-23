@@ -32,6 +32,7 @@ import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 /*
  * Comment about PKCS#5 padding: 
@@ -54,7 +55,7 @@ public class CipherSample extends ScrollContainer {
 	private Key[] encKeys;
 	private Key[] decKeys;
 
-	private int gap = 50;
+	private int gap = UnitsConverter.toPixels(DP + 8);
 	private Container options, adv;
 	private Edit edtInput;
 	private ComboBox cboCiphers;
@@ -121,7 +122,7 @@ public class CipherSample extends ScrollContainer {
 
 		add(options, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
 		options.add(new Label("Message:"), LEFT + gap / 2, TOP + gap / 2);
-		options.add(edtInput, AFTER + gap, SAME, FILL, PREFERRED);
+		options.add(edtInput, AFTER, SAME, FILL, PREFERRED);
 		options.add(cboCiphers, LEFT + gap / 2, AFTER + gap, SCREENSIZE + 22, PREFERRED);
 		options.add(cboChaining, AFTER + gap, SAME, SCREENSIZE + 22, PREFERRED);
 		options.add(cboPadding, AFTER + gap, SAME, SCREENSIZE + 29, PREFERRED);

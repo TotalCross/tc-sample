@@ -11,6 +11,7 @@ import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
+import totalcross.util.UnitsConverter;
 
 public class CardProfile extends Container {
 
@@ -71,9 +72,9 @@ public class CardProfile extends Container {
               lbDay.setForeColor(Color.WHITE);
 
               add(imgProfile, LEFT + 50, CENTER, (int) (Settings.screenDensity * 64), DP + 64);
-              add(lbHour, AFTER + 50, CENTER, PREFERRED, PREFERRED);
-              add(lbDay, AFTER + 50, TOP + 10, PREFERRED, PREFERRED);
-              add(lbDate, AFTER + 50, BOTTOM - 10, PREFERRED, PREFERRED, lbHour);
+              add(lbHour, AFTER + UnitsConverter.toPixels(DP + 8), CENTER, PREFERRED, PREFERRED);
+              add(lbDay, AFTER + UnitsConverter.toPixels(DP + 8), TOP + UnitsConverter.toPixels(DP + 2), PREFERRED, PREFERRED);
+              add(lbDate, AFTER + UnitsConverter.toPixels(DP + 8), BOTTOM - UnitsConverter.toPixels(DP + 2), PREFERRED, PREFERRED, lbHour);
             }
           };
       add(cont, LEFT, TOP, PARENTSIZE, PARENTSIZE + 40);

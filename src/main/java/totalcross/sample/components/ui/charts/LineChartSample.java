@@ -30,7 +30,7 @@ public class LineChartSample extends ScrollContainer {
 		menu.setFont(font.asBold());
 
 		options = new Container();
-		add(menu, LEFT + gap, TOP + gap, FILL - gap, 125 + DP);
+		add(menu, LEFT, TOP + gap, FILL, 125 + DP);
 		menu.add(options, CENTER, TOP + gap, PARENTSIZE, WILL_RESIZE);
 		int color1 = Chart.COLOR2;
 		int color2 = Chart.COLOR3;
@@ -51,7 +51,7 @@ public class LineChartSample extends ScrollContainer {
 		showVGrids = new Check("VGrids");
 		showYValues = new Check("YValues");
 
-		options.add(showTitle, LEFT + gap, TOP);
+		options.add(showTitle, LEFT, TOP);
 		options.add(hasLegend, SAME, AFTER);
 
 		showTitle.setText("Title");
@@ -63,7 +63,7 @@ public class LineChartSample extends ScrollContainer {
 
 		options.add(legendPosition, RIGHT, SAME, showYValues);
 
-		options.setInsets(gap / 4, gap / 4, gap / 4, gap / 4);
+		options.setInsets(0, gap / 4, gap / 4, 0);
 		options.resizeHeight();
 		menu.resizeHeight();
 

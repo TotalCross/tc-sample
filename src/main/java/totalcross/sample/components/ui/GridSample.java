@@ -12,12 +12,13 @@ import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class GridSample extends Container {
 	private ArrayList<User> users;
 	private Grid grid;
 	private Button loadButton;
-	private int GAP = 50;
+	private int GAP = UnitsConverter.toPixels(DP + 8);
 	private final int H = 225;
 	
 	public GridSample() {
@@ -43,7 +44,7 @@ public class GridSample extends Container {
 		loadButton.setForeColor(Color.WHITE);
 
 		add(grid, LEFT + GAP, TOP + GAP, FILL - GAP, FILL - GAP * 9);
-		add(loadButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP, PREFERRED + H);
+		add(loadButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP, PREFERRED);
 
 		loadButton.addPressListener(new PressListener() {
 			@Override

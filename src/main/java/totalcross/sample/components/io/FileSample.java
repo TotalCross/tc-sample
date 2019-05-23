@@ -18,12 +18,13 @@ import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.font.Font;
 import totalcross.util.Date;
 import totalcross.util.InvalidDateException;
+import totalcross.util.UnitsConverter;
 import totalcross.util.Vector;
 
 public class FileSample extends ScrollContainer implements Runnable {
 
 	private String rootPath = Settings.appPath + "/";
-	private int gap = 50;
+	private int gap = UnitsConverter.toPixels(DP + 8);
 
 	private boolean recursiveList(String path, Vector v) {
 		if (path == null) {

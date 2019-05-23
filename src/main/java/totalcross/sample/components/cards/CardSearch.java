@@ -5,6 +5,7 @@ import totalcross.sys.Settings;
 import totalcross.ui.*;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
+import totalcross.util.UnitsConverter;
 
 public class CardSearch extends Container {
 
@@ -18,16 +19,18 @@ public class CardSearch extends Container {
       borderColor = 0xFFFFFF;
 
       edtSearch = new Edit();
+      edtSearch.drawLine = false;
+      edtSearch.transparentBackground = true;
       edtSearch.caption = "Search";
 
       btSearch =
           new Button(
               new Image("images/microphone.png")
-                  .hwScaledFixedAspectRatio((int) (Settings.screenDensity * 24), true));
+                  .hwScaledFixedAspectRatio(UnitsConverter.toPixels(DP + 24), true));
       btSearch.setBorder(Button.BORDER_NONE);
 
-      add(btSearch, RIGHT - 50, CENTER, (int) (Settings.screenDensity * 48), DP + 48);
-      add(edtSearch, LEFT + 50, CENTER, FIT - 50, PREFERRED);
+      add(btSearch, RIGHT - UnitsConverter.toPixels(DP + 8), CENTER, DP + 48, DP + 48);
+      add(edtSearch, LEFT + UnitsConverter.toPixels(DP + 8), CENTER, FIT - UnitsConverter.toPixels(DP + 8), PREFERRED);
 
     } catch (ImageException | IOException e) {
       e.printStackTrace();

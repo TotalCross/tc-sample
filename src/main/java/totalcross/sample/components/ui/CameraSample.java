@@ -9,6 +9,7 @@ import totalcross.sys.Vm;
 import totalcross.ui.Button;
 import totalcross.ui.ComboBox;
 import totalcross.ui.Container;
+import totalcross.ui.Control;
 import totalcross.ui.ImageControl;
 import totalcross.ui.Label;
 import totalcross.ui.Radio;
@@ -19,12 +20,11 @@ import totalcross.ui.event.Event;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.ui.media.Camera;
+import totalcross.util.UnitsConverter;
 
 public class CameraSample extends Container {
 
-	private int GAP = 80;
-	private int BUTTON_HEIGHT = 50;
-	private int BUTTON_WIDTH = 160;
+	private int GAP = UnitsConverter.toPixels(Control.DP + 12);
 
 	private Button btnFilm;
 	private Button btnPhoto;
@@ -70,16 +70,16 @@ public class CameraSample extends Container {
 		galleryRadio.leftJustify = true;
 
 		add(l = new Label(""), LEFT, BOTTOM);
-		add(btnFilm, LEFT + GAP, BEFORE, PREFERRED + BUTTON_WIDTH, PREFERRED + BUTTON_HEIGHT);
+		add(btnFilm, LEFT + GAP, BEFORE);
 		add(btnPhoto, AFTER + GAP, SAME, SAME, SAME);
 		add(btnRotate, AFTER + GAP, SAME, SAME, SAME);
 		add(cbRes, AFTER + GAP, SAME, SAME, SAME);
 
-		add(customRadio, LEFT + GAP, BEFORE - GAP, PARENTSIZE + 30, PREFERRED);
-		add(nativeRadio, AFTER, SAME, PARENTSIZE + 30, PREFERRED);
-		add(galleryRadio, LEFT + GAP, AFTER, FILL, PREFERRED);
+		add(galleryRadio, LEFT + GAP, BEFORE - GAP);
+		add(nativeRadio, LEFT + GAP, BEFORE - GAP);
+		add(customRadio, AFTER + GAP, SAME);
 		
-		add(ic = new ImageControl(), LEFT + GAP, TOP + GAP, FILL - GAP, FIT - GAP);
+		add(ic = new ImageControl(), LEFT + GAP, GAP, FILL - GAP, FIT);
 		ic.setEventsEnabled(true);
 		camera = new Camera();
 		camera.allowRotation = true;

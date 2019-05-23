@@ -8,9 +8,10 @@ import totalcross.ui.Container;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class ThreadSample extends Container implements Runnable {
-	private int gap = 50;
+	private int gap = UnitsConverter.toPixels(DP + 8);
 
 	static interface SetX {
 		public void incX(int x);
@@ -43,9 +44,9 @@ public class ThreadSample extends Container implements Runnable {
 		containers[0] = new TypingContainer(true);
 		containers[1] = new HTTPContainer();
 		containers[2] = new TypingContainer(false);
-		add(directionButton, LEFT + gap/2, TOP + gap/2, PREFERRED + fmH * 4, PREFERRED + fmH * 6);
-		add(unpauseButton, RIGHT - gap/2, SAME, PREFERRED + fmH * 4, PREFERRED + fmH * 6);
-		add(pauseButton, RIGHT - gap/2, SAME, unpauseButton.getWidth(), PREFERRED + fmH * 6);
+		add(directionButton, LEFT + gap/2, TOP + gap/2);
+		add(unpauseButton, RIGHT - gap/2, SAME);
+		add(pauseButton, RIGHT - gap/2, SAME, unpauseButton.getWidth(), PREFERRED);
 		unpauseButton.setVisible(false);
 		Button.commonGap = 0;
 

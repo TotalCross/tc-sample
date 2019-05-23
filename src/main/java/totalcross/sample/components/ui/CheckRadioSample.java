@@ -14,6 +14,7 @@ import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class CheckRadioSample extends ScrollContainer {
 	private Container c1, c2;
@@ -22,8 +23,8 @@ public class CheckRadioSample extends ScrollContainer {
 	private Check subject1, subject2, subject3, subject4, subject5, subject6;
 	private Radio area1, area2, area3;
 
-	private final int H = 25;
-	private int gap = 50;
+	private final int H = UnitsConverter.toPixels(DP + 4);
+	private int gap = UnitsConverter.toPixels(DP + 8);
 
 	@Override
 	public void initUI() {
@@ -65,7 +66,7 @@ public class CheckRadioSample extends ScrollContainer {
 			add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
 			int w = c1.getWidth() / 2 - gap;
 			int c1m = Settings.screenWidth/2;
-			c1.add(lbCheck, LEFT, TOP, FILL, PREFERRED + fmH * 8);
+			c1.add(lbCheck, LEFT, TOP, FILL, PREFERRED + 8);
 			c1.add(subject1, LEFT + gap, AFTER + gap, PREFERRED , PREFERRED + H);
 			c1.add(subject2, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
 			c1.add(subject3, LEFT + gap, AFTER + gap * 2, PREFERRED, PREFERRED + H);
@@ -100,7 +101,7 @@ public class CheckRadioSample extends ScrollContainer {
 			confirmButtonC2.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 			confirmButtonC2.borderColor = Colors.P_700;
 			add(c2, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
-			c2.add(lbRadio, LEFT, TOP, FILL, PREFERRED + fmH * 8);
+			c2.add(lbRadio, LEFT, TOP, FILL, PREFERRED + 8);
 			c2.add(area1, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
 			c2.add(area2, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);
 			c2.add(area3, LEFT + gap * 3, AFTER + gap, PREFERRED + gap, PREFERRED + H);

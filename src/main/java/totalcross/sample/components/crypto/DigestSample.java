@@ -26,9 +26,10 @@ import totalcross.ui.Edit;
 import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.font.Font;
+import totalcross.util.UnitsConverter;
 
 public class DigestSample extends ScrollContainer {
-	private int gap = (int) (Settings.screenDensity * 20);
+	private int gap = UnitsConverter.toPixels(DP + 8);
 	private Container menu;
 	private Edit edtInput;
 	private ComboBox cboDigests;
@@ -60,7 +61,7 @@ public class DigestSample extends ScrollContainer {
 		Label lbl = new Label("Message:");
 		menu.add(lbl, LEFT + gap, TOP + gap/2);
 		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
-		menu.add(cboDigests, SAME, AFTER + fmH*6, lbl);
+		menu.add(cboDigests, SAME, AFTER + gap);
 		menu.resizeHeight();
 		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME, menu);
 		

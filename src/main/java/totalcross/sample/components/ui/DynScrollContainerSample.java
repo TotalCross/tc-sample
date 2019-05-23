@@ -16,9 +16,10 @@ import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class DynScrollContainerSample extends Container {
-	final int gap = 50;
+	final int gap = UnitsConverter.toPixels(DP + 8);
 	private Button goButton;
 	private Edit numberRangeEdit;
 	String oldOdd, oldEven;

@@ -52,6 +52,7 @@ import totalcross.sample.components.xml.XMLParseSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
+import totalcross.ui.Control;
 import totalcross.ui.ImageControl;
 import totalcross.ui.Label;
 import totalcross.ui.MainWindow;
@@ -62,6 +63,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
+import totalcross.util.UnitsConverter;
 
 public class TCSample extends MainWindow {
 	SideMenuContainer sideMenu;
@@ -76,8 +78,7 @@ public class TCSample extends MainWindow {
 		super("TotalCross Showcase", NO_BORDER);
 
 		setUIStyle(Settings.MATERIAL_UI);
-		Settings.uiAdjustmentsBasedOnFontHeight = true;
-
+		uiAdjustmentsBasedOnFontHeightIsSupported = false;
 		setBackForeColors(Colors.BACKGROUND, Colors.SURFACE);
 	}
 
@@ -125,12 +126,12 @@ public class TCSample extends MainWindow {
 					Label title = new Label("Showcase", LEFT, Color.WHITE, false);
 					title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
 					title.setForeColor(Color.WHITE);
-					add(title, LEFT + 45, BOTTOM - 30, FILL, DP + 56);
+					add(title, LEFT + UnitsConverter.toPixels(Control.DP + 10), BOTTOM - UnitsConverter.toPixels(Control.DP + 10), FILL, DP + 56);
 
 					ImageControl profile = new ImageControl(new Image("images/logoV.png"));
 					profile.scaleToFit = true;
 					profile.transparentBackground = true;
-					add(profile, LEFT + 45, TOP + 150, PREFERRED, FIT);
+					add(profile, LEFT + UnitsConverter.toPixels(Control.DP + 10), UnitsConverter.toPixels(Control.DP + 25), PREFERRED, FIT);
 
 				} catch (IOException | ImageException e) {
 					e.printStackTrace();

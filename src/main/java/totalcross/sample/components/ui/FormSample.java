@@ -15,6 +15,7 @@ import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class FormSample extends ScrollContainer {
 
@@ -25,8 +26,8 @@ public class FormSample extends ScrollContainer {
 	private Label status = new Label();
 	private Button saveButton;
 
-	private final int H = 225;
-	private final int GAP = 50;
+	private final int H = UnitsConverter.toPixels(DP + 34);
+	private final int GAP = UnitsConverter.toPixels(DP + 8);
 	private int focusColor = 0xF0F8FF;
 	private int numUsers = 0;
 	
@@ -38,12 +39,12 @@ public class FormSample extends ScrollContainer {
 			remove(saveButton);
 			
 			add(status, LEFT + GAP, AFTER + GAP*2, FILL - GAP, PREFERRED, passwordEdit);
-			add(saveButton, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED+H, status);
+			add(saveButton, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED, status);
 		}else {
 			remove(status);
 			remove(saveButton);
 
-			add(saveButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED+H, this);
+			add(saveButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED, this);
 		    add(status, LEFT + GAP, BEFORE, FILL - GAP, PREFERRED, saveButton);
 		}
 	}
@@ -90,7 +91,7 @@ public class FormSample extends ScrollContainer {
 	      add(phoneEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
 	      add(nickNameEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
 	      add(passwordEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
-	      add(saveButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED+120);
+	      add(saveButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED);
 	      add(status, LEFT + GAP, BEFORE, FILL - GAP, PREFERRED, saveButton);
 	      
 	      saveButton.addPressListener(new PressListener() {

@@ -22,6 +22,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 import totalcross.util.InvalidDateException;
+import totalcross.util.UnitsConverter;
 
 public class Login extends ScrollContainer {
 	private Edit edPass, edLogin;
@@ -36,30 +37,30 @@ public class Login extends ScrollContainer {
 			ic = new ImageControl(new Image("images/logo.png"));
 			ic.scaleToFit = true;
 			ic.centerImage = true;
-			add(ic, LEFT, TOP+100, FILL, PARENTSIZE+30);
+			add(ic, LEFT, TOP + UnitsConverter.toPixels(DP + 15), FILL, PARENTSIZE + 30);
 			
 			edLogin = new Edit();
 			edLogin.caption = "Login";
 			//edLogin.setBackColor(Color.RED);
-			add(edLogin, CENTER, AFTER+60, PARENTSIZE+90, PREFERRED+30);
+			add(edLogin, CENTER, AFTER + UnitsConverter.toPixels(DP + 9), PARENTSIZE + 90, PREFERRED + UnitsConverter.toPixels(DP + 5));
 			
 			edPass = new Edit();
 			edPass.caption = "Password";
 			//edPass.setBackColor(Color.RED);
 			edPass.setMode(Edit.PASSWORD_ALL);
-			add(edPass, SAME, AFTER+70, PARENTSIZE+90, PREFERRED+30);
+			add(edPass, SAME, AFTER + UnitsConverter.toPixels(DP + 11), PARENTSIZE + 90, PREFERRED + UnitsConverter.toPixels(DP + 5));
 			
 			ch = new Check("Remember Me");
-			add(ch, LEFT+86, AFTER+100, PARENTSIZE, PREFERRED+30);
+			add(ch, LEFT + UnitsConverter.toPixels(DP + 13), AFTER + UnitsConverter.toPixels(DP + 15), PARENTSIZE, PREFERRED + UnitsConverter.toPixels(DP + 5));
 			
 			btLogin = new Button("Login");
 			btLogin.setBackColor(Color.WHITE);
-			add(btLogin, CENTER, AFTER+140, PARENTSIZE+80, PREFERRED+60);
+			add(btLogin, CENTER, AFTER + UnitsConverter.toPixels(DP + 21), PARENTSIZE + 80, PREFERRED + UnitsConverter.toPixels(DP + 9));
 			
 			btRegister = new Button("Register Now");
 			btRegister.transparentBackground = true;
 			btRegister.setBorder(BORDER_NONE);
-			add(btRegister, CENTER, AFTER, PARENTSIZE+30, PREFERRED+20);
+			add(btRegister, CENTER, AFTER, PARENTSIZE + 30, PREFERRED + UnitsConverter.toPixels(DP + 3));
 			btRegister.addPressListener(e -> {Vm.exec("url", "http://www.totalcross.com", 0, true);});
 			
 			//Creating Database

@@ -103,9 +103,9 @@ public class ButtonSample extends ScrollContainer{
 			add(btnLeftImage, BEFORE - UnitsConverter.toPixels(DP + 4), SAME);
 			add(btnImage, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
 			add(lSizes, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
-			add(btnLarge, LEFT + UnitsConverter.toPixels(DP + 8), AFTER + UnitsConverter.toPixels(DP + 8), btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + UnitsConverter.toPixels(DP + 48), DP + 54);
-			add(btnDefaultSize, AFTER +UnitsConverter.toPixels(DP + 8) , CENTER_OF);
-			add(btnSmall, AFTER + UnitsConverter.toPixels(DP + 8), CENTER_OF, btnSmall.getPreferredWidth() <= 24 ? DP + 48 : btnSmall.getPreferredWidth() + UnitsConverter.toPixels(DP + 24), DP + 27, btnDefaultSize);
+			add(btnLarge, LEFT + UnitsConverter.toPixels(DP + 2), AFTER + UnitsConverter.toPixels(DP + 8), btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + UnitsConverter.toPixels(DP + 48), DP + 54);
+			add(btnDefaultSize, AFTER +UnitsConverter.toPixels(DP + 2) , CENTER_OF);
+			add(btnSmall, AFTER + UnitsConverter.toPixels(DP + 2), CENTER_OF, btnSmall.getPreferredWidth() <= 24 ? DP + 48 : btnSmall.getPreferredWidth() + UnitsConverter.toPixels(DP + 24), DP + 27, btnDefaultSize);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

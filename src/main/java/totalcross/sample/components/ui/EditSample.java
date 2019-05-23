@@ -9,6 +9,7 @@ import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.TimeBox;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
+import totalcross.util.UnitsConverter;
 
 public class EditSample extends Container {
 
@@ -24,8 +25,8 @@ public class EditSample extends Container {
 	private MultiEdit multiEdit;
 	private OutlinedEdit outlinedEdit;
 
-	private final int H = 25;
-	private int GAP = 100;
+	private final int H = UnitsConverter.toPixels(DP + 4);
+	private int GAP = UnitsConverter.toPixels(DP + 15);
 	private int focusColor = Color.GREEN;
 
 	@Override

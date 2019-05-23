@@ -22,6 +22,7 @@ import totalcross.sys.Settings;
 import totalcross.ui.Button;
 import totalcross.ui.Check;
 import totalcross.ui.Container;
+import totalcross.ui.Control;
 import totalcross.ui.Label;
 import totalcross.ui.MultiListBox;
 import totalcross.ui.Ruler;
@@ -42,12 +43,13 @@ import totalcross.ui.gfx.Graphics;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 import totalcross.unit.UIRobotEvent;
+import totalcross.util.UnitsConverter;
 
 public class OtherControlsSample extends ScrollContainer {
 	private SpinList sl;
 	private Label lName, lStatus, lTimeBox, lInputBox, lColorChooserBox, lSpinList, lRuler, lFileChooser;
 	private Container timeBoxC, inputBoxC, colorChooserC, spinListC, fileChooserC;
-	private int gap = (int) (Settings.screenDensity * 20);
+	private int gap = UnitsConverter.toPixels(Control.DP + 20);
 
 	@Override
 	public void initUI() {
@@ -73,8 +75,7 @@ public class OtherControlsSample extends ScrollContainer {
 			lInputBox.transparentBackground = true;
 			inputBoxC.add(lInputBox, CENTER, AFTER + gap);
 			inputBoxC.add(lName = new Label("Your name", CENTER), LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
-			inputBoxC.add(btnInput = new Button("Click to input your name"), CENTER, AFTER, PREFERRED + fmH * 6,
-					PREFERRED + fmH * 4);
+			inputBoxC.add(btnInput = new Button("Click to input your name"), CENTER, AFTER, PREFERRED, PREFERRED);
 			lName.setForeColor(Colors.S_400);
 			btnInput.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 			inputBoxC.add(new Spacer(), CENTER, AFTER + gap);
@@ -98,8 +99,7 @@ public class OtherControlsSample extends ScrollContainer {
 			lColorChooserBox = new Label("ColorChooserBox");
 			lColorChooserBox.transparentBackground = true;
 			colorChooserC.add(lColorChooserBox, CENTER, AFTER + gap);
-			colorChooserC.add(btnChooseColor = new Button("Choose new background color"), CENTER, AFTER,
-					PREFERRED + fmH * 6, PREFERRED + fmH * 4);
+			colorChooserC.add(btnChooseColor = new Button("Choose new background color"), CENTER, AFTER, PREFERRED, PREFERRED);
 			btnChooseColor.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 			colorChooserC.add(new Spacer(), CENTER, AFTER + gap);
 			colorChooserC.resizeHeight();
@@ -121,7 +121,7 @@ public class OtherControlsSample extends ScrollContainer {
 			lSpinList = new Label("SpinList");
 			lSpinList.transparentBackground = true;
 			spinListC.add(lSpinList, CENTER, AFTER + gap);
-			spinListC.add(sl = new SpinList(new String[] { "Today", "Day [1,31]" }, !Settings.fingerTouch), LEFT + mar,
+			spinListC.add(sl = new SpinList(new String[] { "Today", "Day [1,31]" }, !Settings.fingerTouch), LEFT,
 					AFTER, Settings.fingerTouch ? FILL : PREFERRED, PREFERRED);
 			sl.hAlign = CENTER;
 			spinListC.add(new Spacer(), CENTER, AFTER + gap);
@@ -148,7 +148,7 @@ public class OtherControlsSample extends ScrollContainer {
 	ScrollBar sb2;
 
 	private void addClock() throws ImageException {
-		Image clock = new Image(fmH, fmH);
+		Image clock = new Image(UnitsConverter.toPixels(Control.DP + 15), UnitsConverter.toPixels(Control.DP + 15));
 		int xx = clock.getWidth() - 1;
 		int yy = clock.getHeight() - 1;
 		Graphics g = clock.getGraphics();
@@ -168,9 +168,9 @@ public class OtherControlsSample extends ScrollContainer {
 		fileChooserC.add(ch = new Check("Multiple selection"), CENTER, AFTER + gap);
 		Spacer spcr = new Spacer();
 		fileChooserC.add(spcr, CENTER, AFTER + gap, gap, gap);
-		fileChooserC.add(btn = new Button("Choose file"), BEFORE, SAME, PREFERRED + fmH * 6, PREFERRED + fmH * 4, spcr);
+		fileChooserC.add(btn = new Button("Choose file"), BEFORE, SAME, spcr);
 		btn.setBackForeColors(Colors.P_600, Colors.ON_P_600);
-		fileChooserC.add(btn2 = new Button("Delete file"), AFTER, SAME, PREFERRED + fmH * 6, PREFERRED + fmH * 4, spcr);
+		fileChooserC.add(btn2 = new Button("Delete file"), AFTER, SAME, spcr);
 		btn2.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		btn2.setEnabled(false);
 		btn.addPressListener(new PressListener() {

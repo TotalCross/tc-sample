@@ -11,9 +11,10 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.Spacer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
 
 public class JSONSample extends ScrollContainer {
-	private int gap = 50;
+	private int gap = UnitsConverter.toPixels(DP + 8);
 	@Override
 	public void initUI() {
 		super.initUI();
@@ -32,7 +33,7 @@ public class JSONSample extends ScrollContainer {
 			String line = "[{\n\t\"name\":\"Mary\",\n\t\"date\":61395803160000,\n\t\"text\":\"My first post\",\n\t\"likes\":1\n},\n{\n\t\"name\":\"John\",\n\t\"date\":61395803820000,\n\t\"text\":\"I like TotalCross\",\n\t\"likes\":200\n}]";
 			Label l = new Label(line);
 			l.autoSplit = true;
-			inputBox.add(l, LEFT + gap, AFTER, FILL - gap, PREFERRED);
+			inputBox.add(l, LEFT + gap, AFTER, FILL - gap, SCREENSIZE + 35);
 			
 			inputBox.setInsets(0, 0, 0, gap/3);
 			inputBox.resizeHeight();
@@ -52,21 +53,20 @@ public class JSONSample extends ScrollContainer {
 			arrayBox.add(results, LEFT, AFTER + gap, FILL, 120 + DP);
 			FacebookPost[] posts = (FacebookPost[]) JSONFactory.parse(line, FacebookPost[].class);
 			for (FacebookPost f : posts) {
-				Container c1 = createLabelContainer(f.getName());
-				Container c2 = createLabelContainer(Convert.toString(f.getDate()));
-				Container c3 = createLabelContainer(f.getText());
-				Container c4 = createLabelContainer(Convert.toString(f.getLikes()));
-				
+				Label c1 = new Label(f.getName());
+				Label c2 = new Label(Convert.toString(f.getDate()));
+				Label c3 = new Label(f.getText());
+				Label c4 = new Label(Convert.toString(f.getLikes()));
+				c1.setBackColor(Colors.SURFACE);
+				c2.setBackColor(Colors.SURFACE);
+				c3.setBackColor(Colors.SURFACE);
+				c4.setBackColor(Colors.SURFACE);
 				Label size = new Label("Dado");
 				size.setRect(LEFT, TOP, PREFERRED, PREFERRED);
-				results.add(c1, LEFT + gap, AFTER + gap, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c1.resizeWidth();
-				results.add(c2, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c2.resizeWidth();
-				results.add(c3, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c3.resizeWidth();
-				results.add(c4, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c4.resizeWidth();
+				results.add(c1, LEFT + gap, AFTER + gap);	
+				results.add(c2, AFTER + gap, SAME);	
+				results.add(c3, AFTER + gap, SAME);
+				results.add(c4, AFTER + gap, SAME);	
 			}
 			arrayBox.setInsets(0, 0, 0, gap/3);
 			arrayBox.resizeHeight();
@@ -86,20 +86,20 @@ public class JSONSample extends ScrollContainer {
 
 			List<FacebookPost> posts2 = JSONFactory.asList(line, FacebookPost.class);
 			for (FacebookPost f : posts2) {
-				Container c1 = createLabelContainer(f.getName());
-				Container c2 = createLabelContainer(Convert.toString(f.getDate()));
-				Container c3 = createLabelContainer(f.getText());
-				Container c4 = createLabelContainer(Convert.toString(f.getLikes()));
+				Label c1 = new Label(f.getName());
+				Label c2 = new Label(Convert.toString(f.getDate()));
+				Label c3 = new Label(f.getText());
+				Label c4 = new Label(Convert.toString(f.getLikes()));
+				c1.setBackColor(Colors.SURFACE);
+				c2.setBackColor(Colors.SURFACE);
+				c3.setBackColor(Colors.SURFACE);
+				c4.setBackColor(Colors.SURFACE);
 				Label size = new Label("Dado");
 				size.setRect(LEFT, TOP, PREFERRED, PREFERRED);
-				results2.add(c1, LEFT + gap, AFTER + gap, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c1.resizeWidth();
-				results2.add(c2, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c2.resizeWidth();
-				results2.add(c3, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c3.resizeWidth();
-				results2.add(c4, AFTER + gap, SAME, PREFERRED, PREFERRED + size.getHeight()*4);	
-				c4.resizeWidth();
+				results2.add(c1, LEFT + gap, AFTER + gap);	
+				results2.add(c2, AFTER + gap, SAME);	
+				results2.add(c3, AFTER + gap, SAME);	
+				results2.add(c4, AFTER + gap, SAME);	
 			}
 			listBox.setInsets(0, 0, 0, gap/3);
 			listBox.resizeHeight();
@@ -110,11 +110,4 @@ public class JSONSample extends ScrollContainer {
 		}
 	}
 	
-	private Container createLabelContainer(String data) {
-		Container c = new Container();
-		c.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
-		c.setBorderStyle(BORDER_SIMPLE);			
-		c.add(new Label(data), LEFT + gap, TOP + gap, PREFERRED + gap, PREFERRED);
-		return c;
-	}
 }

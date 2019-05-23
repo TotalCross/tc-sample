@@ -32,13 +32,14 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
+import totalcross.util.UnitsConverter;
 
 public class SignatureSample extends ScrollContainer {
 	private Object[] signatures;
 	private Key[] sigKeys;
 	private Key[] verKeys;
 
-	private final int gap = 50;
+	private final int gap = UnitsConverter.toPixels(DP + 8);
 	private Container menu;
 	private ScrollContainer result;
 	private Edit edtInput;

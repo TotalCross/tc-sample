@@ -17,27 +17,27 @@ public class CommandLine extends Container {
 		Label label = new Label("Send terminal commands \nto the underlying system");
 		label.autoSplit = true;
 		label.setForeColor(Color.BLACK);
-		add(label, CENTER, TOP + UnitsConverter.toPixels(DP + 60));
+		add(label, CENTER, TOP + UnitsConverter.toPixels(DP + 20));
 
 		Edit editCommand = new Edit();
 		editCommand.caption = "Command";
 		editCommand.fillColor = Color.BRIGHT;
-		add(editCommand, CENTER, AFTER + UnitsConverter.toPixels(DP + 60));
+		add(editCommand, CENTER, AFTER + UnitsConverter.toPixels(DP + 20));
 
 		Edit editArgs = new Edit();
 		editArgs.caption = "Args";
 		editArgs.fillColor = Color.BRIGHT;
-		add(editArgs, CENTER, AFTER + UnitsConverter.toPixels(DP + 60));
+		add(editArgs, CENTER, AFTER + UnitsConverter.toPixels(DP + 20));
 
 		Edit editLaunch = new Edit();
 		editLaunch.caption = "LaunchCode";
 		editLaunch.fillColor = Color.BRIGHT;
 		editLaunch.setMode(Edit.CURRENCY);
 		editLaunch.setKeyboard(Edit.KBD_NUMERIC);
-		add(editLaunch, CENTER, AFTER + UnitsConverter.toPixels(DP + 60));
+		add(editLaunch, CENTER, AFTER + UnitsConverter.toPixels(DP + 20));
 		
 		Container radioContainer = new Container();
-		add(radioContainer, CENTER, AFTER + UnitsConverter.toPixels(DP + 60), UnitsConverter.toPixels(DP + 200), UnitsConverter.toPixels(DP + 100));
+		add(radioContainer, CENTER, AFTER + UnitsConverter.toPixels(DP + 20), UnitsConverter.toPixels(DP + 200), UnitsConverter.toPixels(DP + 100));
 		
 		RadioGroupController radioGroup = new RadioGroupController();
 		
@@ -52,7 +52,7 @@ public class CommandLine extends Container {
 		Radio radioNo = new Radio("No", radioGroup);
 		radioNo.setChecked(true);
 		radioNo.setForeColor(Color.BLACK);
-		radioContainer.add(radioNo, AFTER + UnitsConverter.toPixels(DP + 200), SAME);
+		radioContainer.add(radioNo, AFTER + UnitsConverter.toPixels(DP + 12), SAME);
 			
 		Button btnExe = new Button("Run");
 		btnExe.setForeColor(Color.BLACK);
