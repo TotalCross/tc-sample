@@ -24,6 +24,8 @@ public class EditSample extends Container {
 	private Edit maskedEdit;
 	private MultiEdit multiEdit;
 	private OutlinedEdit outlinedEdit;
+	private Edit noPredictionEdit;
+	private MultiEdit noPredictionMultiEdit;
 
 	private final int H = UnitsConverter.toPixels(DP + 4);
 	private int GAP = UnitsConverter.toPixels(DP + 15);
@@ -84,7 +86,15 @@ public class EditSample extends Container {
 			maskedEdit.caption = "Masked Edit (999.999.999-99)";
 			maskedEdit.setMode(Edit.NORMAL, true);
 			maskedEdit.setValidChars(Edit.numbersSet);
-
+			
+			noPredictionEdit = new Edit();
+			noPredictionEdit.caption = "No Prediction Edit";
+			noPredictionEdit.setPrediction(false);
+			
+			noPredictionMultiEdit = new MultiEdit();
+			noPredictionMultiEdit.caption = "No Prediction MultiEdit";
+			noPredictionMultiEdit.setPrediction(false);
+			
 			sc.add(simpleEdit, LEFT + GAP, AFTER + GAP);
 			sc.add(outlinedEdit, LEFT + GAP, AFTER + GAP);
 			sc.add(multiEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, DP + 48);
@@ -95,6 +105,8 @@ public class EditSample extends Container {
 			sc.add(passwordShowEdit, LEFT + GAP, AFTER + GAP);
 			sc.add(passwordHidenEdit, LEFT + GAP, AFTER + GAP);
 			sc.add(maskedEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(noPredictionEdit, LEFT + GAP, AFTER + GAP);
+			sc.add(noPredictionMultiEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, DP + 48);
 
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);
