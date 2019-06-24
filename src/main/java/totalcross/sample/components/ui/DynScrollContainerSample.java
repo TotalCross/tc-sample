@@ -170,9 +170,6 @@ public class DynScrollContainerSample extends Container {
 						DynSCTestView view = new DynSCTestView(i, font);
 						view.height = Settings.screenHeight / 20;
 						datasource.addView(view);
-						System.out.print(" should be printed");
-					} else {
-						System.out.print(" nada acontece feijoada");
 					}
 					System.out.print("\n");
 				}
