@@ -34,15 +34,16 @@ public class EditSample extends Container {
 	@Override
 	public void initUI() {
 		try {
-			Edit.useNativeNumericPad = false;
+
 			Settings.is24Hour = true;
 			UIColors.calculatorFore = Colors.BACKGROUND;
 			UIColors.numericboxBack = Colors.BACKGROUND;
 			UIColors.calendarBack = Colors.BACKGROUND;
 			UIColors.timeboxVisorBack = Colors.BACKGROUND;
 			sc = new ScrollContainer(false, true);
+			sc.setInsets(GAP, GAP, GAP, GAP);
+			sc.sbV.ignoreInsets = true;
 			add(sc, LEFT, TOP, FILL, FILL);
-
 			simpleEdit = new Edit();
 			simpleEdit.caption = "Simple Edit";
 			simpleEdit.setBackColor(Color.BRIGHT);
@@ -59,10 +60,11 @@ public class EditSample extends Container {
 			numericEdit.caption = "NumericBox Edit";
 			numericEdit.setMode(Edit.CURRENCY);
 			numericEdit.setKeyboard(Edit.KBD_NUMERIC);
+			Edit.useNativeNumericPad = true;
 
 			calculatorEdit = new Edit();
 			calculatorEdit.caption = "Calculator Edit";
-			calculatorEdit.setMode(Edit.CURRENCY, true);
+			calculatorEdit.setMode(Edit.CURRENCY, false);
 
 			calendarEdit = new Edit("99/99/99");
 			calendarEdit.caption = "Calendar Edit";
@@ -95,18 +97,18 @@ public class EditSample extends Container {
 			noPredictionMultiEdit.caption = "No Prediction MultiEdit";
 			noPredictionMultiEdit.setPrediction(false);
 			
-			sc.add(simpleEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(outlinedEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(multiEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, DP + 48);
-			sc.add(numericEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(calculatorEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(calendarEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(timerEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(passwordShowEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(passwordHidenEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(maskedEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(noPredictionEdit, LEFT + GAP, AFTER + GAP);
-			sc.add(noPredictionMultiEdit, LEFT + GAP, AFTER + GAP, FILL - GAP, DP + 48);
+			sc.add(simpleEdit, LEFT, AFTER + GAP);
+			sc.add(outlinedEdit, LEFT , AFTER + GAP);
+			sc.add(multiEdit, LEFT, AFTER + GAP, FILL - GAP, DP + 120);
+			sc.add(numericEdit, LEFT, AFTER + GAP);
+			sc.add(calculatorEdit, LEFT, AFTER + GAP);
+			sc.add(calendarEdit, LEFT , AFTER + GAP);
+			sc.add(timerEdit, LEFT, AFTER + GAP);
+			sc.add(passwordShowEdit, LEFT, AFTER + GAP);
+			sc.add(passwordHidenEdit, LEFT, AFTER + GAP);
+			sc.add(maskedEdit, LEFT, AFTER + GAP);
+			sc.add(noPredictionEdit, LEFT, AFTER + GAP);
+			sc.add(noPredictionMultiEdit, LEFT, AFTER + GAP, FILL, DP + 120);
 
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);
