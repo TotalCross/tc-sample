@@ -2,6 +2,7 @@ package totalcross.sample.components.ui;
 
 import totalcross.io.IOException;
 import totalcross.sample.util.Colors;
+import totalcross.sample.util.MaterialConstants;
 import totalcross.sys.Vm;
 import totalcross.ui.Button;
 import totalcross.ui.Check;
@@ -17,6 +18,7 @@ import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 import totalcross.ui.layout.HBox;
 import totalcross.ui.layout.VBox;
+import totalcross.util.UnitsConverter;
 
 public class MaterialWindowSample extends Container {
 	@Override
@@ -24,7 +26,11 @@ public class MaterialWindowSample extends Container {
 		Button btn1 = new Button("Material Window (Instant)");
 		btn1.setBackForeColors(Colors.P_500, Colors.ON_P_500);
 
-		this.add(btn1, CENTER, TOP, 240 + DP, PREFERRED);
+		VBox vBox = new VBox();
+		vBox.setSpacing(MaterialConstants.EIGHT_DP_SPACING);
+		vBox.transparentBackground = true;
+
+		vBox.add(btn1);
 		btn1.addPressListener((e) -> {
 			MaterialWindow mw = new MaterialWindow("Material Window (Instant)", false, getPresenter());
 			mw.popup();
@@ -33,11 +39,12 @@ public class MaterialWindowSample extends Container {
 		Button btn2 = new Button("Material Window (Delayed)");
 		btn2.setBackForeColors(Colors.P_500, Colors.ON_P_500);
 
-		this.add(btn2, CENTER, AFTER, 240 + DP, PREFERRED);
+		vBox.add(btn2);
 		btn2.addPressListener((e) -> {
 			MaterialWindow mw = new MaterialWindow("Material Window (Delayed)", true, getPresenter());
 			mw.popup();
 		});
+		add(vBox, CENTER, CENTER, DP + 240, PREFERRED);
 	}
 
 	private Presenter getPresenter() {
@@ -62,23 +69,23 @@ public class MaterialWindowSample extends Container {
 						}
 						ic.scaleToFit = true;
 						ic.centerImage = true;
-						add(ic, LEFT, TOP + 100, FILL, PARENTSIZE + 30);
+						add(ic, LEFT, TOP + UnitsConverter.toPixels(DP + 40), FILL, PARENTSIZE + 30);
 
 						edLogin = new Edit();
 						edLogin.caption = "Login";
-						add(edLogin, CENTER, AFTER + 60, PARENTSIZE + 90, PREFERRED);
+						add(edLogin, CENTER, AFTER + MaterialConstants.EIGHT_DP_SPACING, PARENTSIZE + 90, PREFERRED);
 
 						edPass = new Edit();
 						edPass.caption = "Password";
 						edPass.setMode(Edit.PASSWORD_ALL);
-						add(edPass, SAME, AFTER + 70, PARENTSIZE + 90, PREFERRED );
+						add(edPass, SAME, AFTER + MaterialConstants.FOUR_DP_SPACING, PARENTSIZE + 90, PREFERRED);
 
 						ch = new Check("Remember Me");
 						add(ch, LEFT + 86, AFTER + 100, PARENTSIZE, PREFERRED);
 
 						btLogin = new Button("Login");
 						btLogin.setBackColor(Color.WHITE);
-						add(btLogin, CENTER, AFTER + 140, PARENTSIZE + 80, PREFERRED);
+						add(btLogin, CENTER, AFTER + MaterialConstants.FOUR_DP_SPACING, PARENTSIZE + 80, PREFERRED);
 
 						btRegister = new Button("Register Now");
 						btRegister.transparentBackground = true;
