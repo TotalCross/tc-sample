@@ -66,19 +66,19 @@ public class MaterialWindowSample extends Container {
 
 						edLogin = new Edit();
 						edLogin.caption = "Login";
-						add(edLogin, CENTER, AFTER + 60, PARENTSIZE + 90, PREFERRED + 30);
+						add(edLogin, CENTER, AFTER + 60, PARENTSIZE + 90, PREFERRED);
 
 						edPass = new Edit();
 						edPass.caption = "Password";
 						edPass.setMode(Edit.PASSWORD_ALL);
-						add(edPass, SAME, AFTER + 70, PARENTSIZE + 90, PREFERRED + 30);
+						add(edPass, SAME, AFTER + 70, PARENTSIZE + 90, PREFERRED );
 
 						ch = new Check("Remember Me");
-						add(ch, LEFT + 86, AFTER + 100, PARENTSIZE, PREFERRED + 30);
+						add(ch, LEFT + 86, AFTER + 100, PARENTSIZE, PREFERRED);
 
 						btLogin = new Button("Login");
 						btLogin.setBackColor(Color.WHITE);
-						add(btLogin, CENTER, AFTER + 140, PARENTSIZE + 80, PREFERRED + 60);
+						add(btLogin, CENTER, AFTER + 140, PARENTSIZE + 80, PREFERRED);
 
 						btRegister = new Button("Register Now");
 						btRegister.transparentBackground = true;
