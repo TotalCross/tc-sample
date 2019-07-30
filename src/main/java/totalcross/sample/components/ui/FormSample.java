@@ -66,7 +66,9 @@ public class FormSample extends ScrollContainer {
 		  
 	      phoneEdit = new Edit("(99)99999-9999");
 	      phoneEdit.caption = "Phone";
+	      Edit.useNativeNumericPad = true;
 	      phoneEdit.setMode(Edit.NORMAL,true);
+	      phoneEdit.setKeyboard(Edit.KBD_NUMERIC);
 	      phoneEdit.setValidChars(Edit.numbersSet);
 	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
 	      
