@@ -30,10 +30,16 @@ public class CardSearch extends Container {
       btSearch.setBorder(Button.BORDER_NONE);
 
       add(btSearch, RIGHT - UnitsConverter.toPixels(DP + 8), CENTER, DP + 48, DP + 48);
-      add(edtSearch, LEFT + UnitsConverter.toPixels(DP + 8), CENTER, FIT - UnitsConverter.toPixels(DP + 8), PREFERRED);
-
+      add(edtSearch, LEFT + UnitsConverter.toPixels(DP + 8), CENTER,
+              FIT - UnitsConverter.toPixels(DP + 8), DP + 48);
+      resizeHeight();
     } catch (ImageException | IOException e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public int getPreferredHeight() {
+    return UnitsConverter.toPixels(DP + 48);
   }
 }

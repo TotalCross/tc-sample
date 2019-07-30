@@ -3,6 +3,7 @@ package totalcross.sample.components.cards;
 import totalcross.io.IOException;
 import totalcross.sample.util.Images;
 import totalcross.sys.Settings;
+import totalcross.sys.Vm;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
@@ -32,7 +33,8 @@ public class CardProfile extends Container {
   private Button btOthers;
 
   public void initUI() {
-
+    int gap = UnitsConverter.toPixels(DP + 4);
+    final int margin = UnitsConverter.toPixels(DP + 8);
     try {
 
       setBackColor(0xFFFFFF);
@@ -44,12 +46,13 @@ public class CardProfile extends Container {
             @Override
             public void initUI() {
               setBackColor(0x215968);
-
+              setInsets(margin, margin, margin, margin);
+              int imageSize = UnitsConverter.toPixels(DP + 64);
               try {
                 imgProfile =
                     new ImageControl(
                         new Image("images/profile.png")
-                            .hwScaledFixedAspectRatio((int) (Settings.screenDensity * 56), true));
+                            .hwScaledFixedAspectRatio(imageSize, true));
                 imgProfile.centerImage = true;
               } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -71,18 +74,19 @@ public class CardProfile extends Container {
               lbDay.setFont(Font.getFont("Lato Medium", false, lbDay.getFont().size + 8));
               lbDay.setForeColor(Color.WHITE);
 
-              add(imgProfile, LEFT + 50, CENTER, (int) (Settings.screenDensity * 64), DP + 64);
-              add(lbHour, AFTER + UnitsConverter.toPixels(DP + 8), CENTER, PREFERRED, PREFERRED);
-              add(lbDay, AFTER + UnitsConverter.toPixels(DP + 8), TOP + UnitsConverter.toPixels(DP + 2), PREFERRED, PREFERRED);
-              add(lbDate, AFTER + UnitsConverter.toPixels(DP + 8), BOTTOM - UnitsConverter.toPixels(DP + 2), PREFERRED, PREFERRED, lbHour);
+              add(lbHour, RIGHT, TOP);
+              add(lbDay, RIGHT, AFTER + UnitsConverter.toPixels(DP + 4));
+              add(lbDate, RIGHT, AFTER + UnitsConverter.toPixels(DP + 4 ));
+              add(imgProfile, LEFT, TOP);
+              resizeHeight();
+
             }
           };
-      add(cont, LEFT, TOP, PARENTSIZE, PARENTSIZE + 40);
-
+      add(cont, LEFT, TOP, FILL, PREFERRED);
       cont2 = new Container();
       cont2.setBackColor(0xD3D3D3);
 
-      add(cont2, LEFT, AFTER, PARENTSIZE, PARENTSIZE + 30);
+      add(cont2, LEFT, AFTER, PARENTSIZE, PREFERRED);
 
       lbInboxValue = new Label("8");
       lbInboxValue.setFont(Font.getFont("Lato Medium", false, lbInboxValue.getFont().size + 5));
@@ -108,13 +112,13 @@ public class CardProfile extends Container {
       lbSpam.setFont(Font.getFont("Lato Medium", false, lbSpam.getFont().size));
       lbSpam.setForeColor(0x215968);
 
-      cont2.add(lbDraftValue, CENTER, TOP, PREFERRED, PREFERRED);
-      cont2.add(lbInboxValue, BEFORE - fmH * 18, TOP, PREFERRED, PREFERRED);
-      cont2.add(lbSpamValue, AFTER + fmH * 18, TOP, PREFERRED, PREFERRED, lbDraftValue);
-      cont2.add(lbInbox, CENTER_OF, AFTER, PREFERRED, PREFERRED, lbInboxValue);
-      cont2.add(lbDraft, CENTER_OF, AFTER, PREFERRED, PREFERRED, lbDraftValue);
-      cont2.add(lbSpam, CENTER_OF, AFTER, PREFERRED, PREFERRED, lbSpamValue);
-
+      cont2.add(lbDraftValue, CENTER, TOP);
+      cont2.add(lbInboxValue, BEFORE - lbInbox.getPreferredWidth() - gap, TOP, PREFERRED, PREFERRED, lbDraftValue);
+      cont2.add(lbSpamValue, AFTER + lbSpam.getPreferredWidth() + gap, TOP, PREFERRED, PREFERRED, lbDraftValue);
+      cont2.add(lbInbox, CENTER_OF, AFTER + gap, PREFERRED, PREFERRED, lbInboxValue);
+      cont2.add(lbDraft, CENTER_OF, AFTER + gap, PREFERRED, PREFERRED, lbDraftValue);
+      cont2.add(lbSpam, CENTER_OF, AFTER + gap, PREFERRED, PREFERRED, lbSpamValue);
+      cont2.resizeHeight();
       btSend = new Button(Images.aplyColor(new Image("images/send.png"), 0xffffff));
       btSend.setBackColor(0xC10828);
       btSend.imageHeightFactor = 50;
@@ -129,36 +133,22 @@ public class CardProfile extends Container {
           new Container() {
             @Override
             public void initUI() {
-              add(btAttach, CENTER, CENTER, DP + 80, DP + 40);
-              add(
-                  new Container() {
-                    @Override
-                    public void initUI() {
-                      add(btSend, CENTER, CENTER, DP + 80, DP + 40);
-                    }
-                  },
-                  LEFT,
-                  TOP,
-                  FIT,
-                  FILL);
-              add(
-                  new Container() {
-                    @Override
-                    public void initUI() {
-                      add(btOthers, CENTER, CENTER, DP + 80, DP + 40);
-                    }
-                  },
-                  AFTER,
-                  TOP,
-                  FILL,
-                  FILL,
-                  btAttach);
+              setInsets(margin, margin, margin, margin);
+              int btnWidth = UnitsConverter.toPixels(DP + 80);
+              add(btAttach, CENTER, TOP, btnWidth, DP + 40);
+              reposition();
+              add(btSend, LEFT  + (btAttach.getX() - btnWidth)/2, TOP, btnWidth, DP + 40, btAttach);
+              add(btOthers, RIGHT - (btAttach.getX() - btnWidth)/2, TOP,  btnWidth, DP + 40, btAttach);
+              reposition();
+              resizeHeight();
             }
           },
           LEFT,
           AFTER,
           FILL,
-          FILL);
+          PREFERRED);
+      reposition();
+      resizeHeight();
     } catch (ImageException | IOException e) {
       e.printStackTrace();
     }

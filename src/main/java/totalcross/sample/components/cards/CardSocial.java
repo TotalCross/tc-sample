@@ -53,6 +53,7 @@ public class CardSocial extends Container {
           FILL,
           FILL,
           btInstagram);
+      resizeHeight();
     } catch (ImageException | IOException e) {
       e.printStackTrace();
     }
