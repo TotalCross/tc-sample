@@ -56,7 +56,15 @@ public class Login extends ScrollContainer {
 			btLogin = new Button("Login");
 			btLogin.setBackColor(Color.WHITE);
 			add(btLogin, CENTER, AFTER + UnitsConverter.toPixels(DP + 21), PARENTSIZE + 80, PREFERRED + UnitsConverter.toPixels(DP + 9));
-			
+			btLogin.addPressListener(e -> {
+				try{
+					if(e.target == btLogin){
+						doInsert();
+					}
+				}catch(Exception ee){
+					MessageBox.showException(ee, true);
+				}
+			});
 			btRegister = new Button("Register Now");
 			btRegister.transparentBackground = true;
 			btRegister.setBorder(BORDER_NONE);
@@ -76,19 +84,7 @@ public class Login extends ScrollContainer {
 			e.printStackTrace();
 		}
 	}
-	
-	public void onEvent(Event e){
-		try{
-			switch(e.type){
-				case ControlEvent.PRESSED:
-					if(e.target == btLogin){
-						doInsert();
-					}
-			}
-		}catch(Exception ee){
-			MessageBox.showException(ee, true);
-		}
-	}
+
 	
 	private void doInsert() throws SQLException, InvalidDateException, ImageException {
 		if (edLogin.getLength() == 0 || edPass.getLength() == 0){
@@ -104,7 +100,7 @@ public class Login extends ScrollContainer {
 			st.executeUpdate();
 			st.close();		
 			
-			MessageBox mbox = new MessageBox(null,"Data inserted successfully!");
+			MessageBox mbox = new MessageBox(" ","Data inserted successfully!");
 			mbox.setBackForeColors(Color.WHITE, Color.BLACK);
 			mbox.popup();
 			
