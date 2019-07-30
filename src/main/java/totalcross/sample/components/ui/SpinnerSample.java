@@ -3,14 +3,7 @@ package totalcross.sample.components.ui;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
-import totalcross.ui.Button;
-import totalcross.ui.Container;
-import totalcross.ui.Label;
-import totalcross.ui.Radio;
-import totalcross.ui.RadioGroupController;
-import totalcross.ui.ScrollContainer;
-import totalcross.ui.Spacer;
-import totalcross.ui.Spinner;
+import totalcross.ui.*;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
@@ -60,11 +53,6 @@ public class SpinnerSample extends ScrollContainer {
 			add(sp, CENTER, CENTER, FONTSIZE + 200, FONTSIZE + 200);
 			add(status, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
 
-			sp.addTimerListener((e) -> {
-				sp.stop();
-				sp.removeTimer(e);
-			});
-
 			add(bt = new Button("Start"), CENTER, BOTTOM - gap, SCREENSIZE + 50, PREFERRED + (int)(Settings.screenDensity * 80));
 			bt.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 
@@ -95,14 +83,20 @@ public class SpinnerSample extends ScrollContainer {
 					status.setVisible(true);
 
 					int end = Vm.getTimeStamp() + 5000;
-					while (Vm.getTimeStamp() < end) {
-						// Ygor: I deprecated the update() method because it is synchronous and
-						// blocking.
-						// The start() and stop() methods should be used instead.
-						sp.update();
-						repaintNow();
-					}
-					onRemove();
+					sp.start();
+					new Thread() {
+						@Override
+						public void run() {
+							while (Vm.getTimeStamp() < end) {
+								try {
+									Thread.sleep(200);
+								} catch (InterruptedException ex) {
+									ex.printStackTrace();
+								}
+							}
+							MainWindow.getMainWindow().runOnMainThread(() -> onRemove());
+						}
+					}.start();
 				}
 			}
 		}
@@ -113,5 +107,6 @@ public class SpinnerSample extends ScrollContainer {
 	{
 		status.setVisible(false);
 		bt.setVisible(true);
+		sp.stop();
 	}
 }
