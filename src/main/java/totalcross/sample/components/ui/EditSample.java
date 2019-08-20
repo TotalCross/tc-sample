@@ -91,13 +91,13 @@ public class EditSample extends Container {
 			
 			noPredictionEdit = new Edit();
 			noPredictionEdit.caption = "No Prediction Edit";
-			noPredictionEdit.setPrediction(false);
+			//noPredictionEdit.setPrediction(false);
 			
 			noPredictionMultiEdit = new MultiEdit();
 			noPredictionMultiEdit.caption = "No Prediction MultiEdit";
-			noPredictionMultiEdit.setPrediction(false);
+			//noPredictionMultiEdit.setPrediction(false);
 			
-			sc.add(simpleEdit, LEFT, AFTER + GAP);
+			sc.add(simpleEdit, LEFT, AFTER + UnitsConverter.toPixels(DP + 100));
 			sc.add(outlinedEdit, LEFT , AFTER + GAP);
 			sc.add(multiEdit, LEFT, AFTER + GAP, FILL - GAP, DP + 120);
 			sc.add(numericEdit, LEFT, AFTER + GAP);
