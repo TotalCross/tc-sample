@@ -70,8 +70,8 @@ public class TCSample extends MainWindow {
 
 	static {
 		Settings.applicationId = "VKSS";
-		Settings.appVersion = "2.0.1";
-		Settings.iosCFBundleIdentifier = "com.totalcross.showcase";
+		Settings.appVersion = "5.0";
+		Settings.iosCFBundleIdentifier = "com.tc.tcsample";
 	}
 
 	public TCSample() {
