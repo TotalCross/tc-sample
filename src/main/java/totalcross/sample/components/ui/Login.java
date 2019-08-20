@@ -69,7 +69,7 @@ public class Login extends ScrollContainer {
 			btRegister.transparentBackground = true;
 			btRegister.setBorder(BORDER_NONE);
 			add(btRegister, CENTER, AFTER, PARENTSIZE + 30, PREFERRED + UnitsConverter.toPixels(DP + 3));
-			btRegister.addPressListener(e -> {Vm.exec("url", "http://www.totalcross.com", 0, true);});
+			btRegister.addPressListener(e -> {Vm.exec("webview", "http://www.totalcross.com", 0, true);});
 			
 			//Creating Database
 			util = new SQLiteUtil(Settings.appPath,"database.db");
