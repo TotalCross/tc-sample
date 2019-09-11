@@ -1,17 +1,22 @@
 package totalcross.sample.components.sys;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.ListBox;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.font.Font;
 
-public class SettingsSample extends ScrollContainer{
+public class SettingsSample extends BaseScreen {
+
+	public SettingsSample () {
+		super("https://totalcross.gitbook.io/playbook/apis/totalcross.sys#settings");
+	}
+
 	@Override
-	  public void initUI() {
-	    super.initUI();
+	  public void onContent(ScrollContainer content) {
 	    ListBox lb = new ListBox();
-	    add(lb, LEFT, TOP, FILL, FILL);
+	    content.add(lb, LEFT, TOP, FILL, FILL);
 	    lb.add("Version is " + Settings.versionStr);
 	    lb.add("Build number is " + Settings.buildNumber);
 	    lb.add("Platform is " + Settings.platform);

@@ -17,6 +17,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.io.IOException;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
@@ -28,23 +29,27 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 
-public class TabbedContainerSample extends ScrollContainer {
+public class TabbedContainerSample extends BaseScreen {
 	private final int gap = (int)(Settings.screenDensity * 30);
 
-	@Override
-	public void initUI() {
-		try {
-			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+	public TabbedContainerSample () {
+		super("https://totalcross.gitbook.io/playbook/components/tabbed-container");
+	}
 
-			CreateImageAndTextTabbedContainer();
-			CreateTextOnlyTabbedContainer();
-			CreateBulletsTabbedContainer();
+	@Override
+	public void onContent(ScrollContainer content) {
+		try {
+			content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+
+			CreateImageAndTextTabbedContainer(content);
+			CreateTextOnlyTabbedContainer(content);
+			CreateBulletsTabbedContainer(content);
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);
 		}
 	}
 
-	private void CreateImageAndTextTabbedContainer() throws ImageException, IOException {
+	private void CreateImageAndTextTabbedContainer(ScrollContainer content) throws ImageException, IOException {
 		String[] caps = { 
 			"Social 1", 
 			"Social 2", 
@@ -58,10 +63,10 @@ public class TabbedContainerSample extends ScrollContainer {
 
 		Label sampleTitle = new Label("This is a icon and text Tabbed Container", CENTER);
 		sampleTitle.autoSplit = true;
-		add(sampleTitle, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
+		content.add(sampleTitle, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
 		
 		Container spacing = new Container();
-		add(spacing, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
+		content.add(spacing, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
 		
 		final TabbedContainer tc = new TabbedContainer(caps);
 		tc.setBackColor(Color.DARK);
@@ -78,7 +83,7 @@ public class TabbedContainerSample extends ScrollContainer {
 			tc.getContainer(i).add(new Label("Container " + (i+1)), CENTER, CENTER);
 	}
 
-	private void CreateTextOnlyTabbedContainer() throws ImageException, IOException {
+	private void CreateTextOnlyTabbedContainer(ScrollContainer content) throws ImageException, IOException {
 		String[] caps = new String[3];
 		caps[0] = "Home";
 		caps[1] = "Photos";
@@ -87,7 +92,7 @@ public class TabbedContainerSample extends ScrollContainer {
 		
 		Label sampleTitle = new Label("This is a text only Tabbed Container", CENTER);
 		sampleTitle.autoSplit = true;
-		add(sampleTitle, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
+		content.add(sampleTitle, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
 		
 		Container spacing = new Container();
 		add(spacing, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
@@ -106,7 +111,7 @@ public class TabbedContainerSample extends ScrollContainer {
 			tc.getContainer(i).add(new Label("Container " + (i+1)), CENTER, CENTER);
 	}
 
-	private void CreateBulletsTabbedContainer() throws ImageException, IOException {
+	private void CreateBulletsTabbedContainer(ScrollContainer content) throws ImageException, IOException {
 		Image[] images = new Image[3];
 		Image empty = new Image("images/bullet_empty.png").getSmoothScaledInstance(fmH, fmH);
 		Image filled = new Image("images/bullet_full.png").getSmoothScaledInstance(fmH, fmH);
@@ -118,10 +123,10 @@ public class TabbedContainerSample extends ScrollContainer {
 		
 		Label sampleTitle = new Label("This is a image-only Tabbed Container", CENTER);
 		sampleTitle.autoSplit = true;
-		add(sampleTitle, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
+		content.add(sampleTitle, LEFT + gap, AFTER + gap*2, FILL - gap, PREFERRED);
 		
 		Container spacing = new Container();
-		add(spacing, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
+		content.add(spacing, LEFT + gap*2, AFTER + gap/2, FILL - gap*2, (int) (Settings.screenHeight * 0.3));
 
 		final TabbedContainer tc = new TabbedContainer(images);
 		tc.setActiveIcon(filled);

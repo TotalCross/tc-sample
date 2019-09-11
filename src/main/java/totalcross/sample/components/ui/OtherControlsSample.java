@@ -17,6 +17,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.io.File;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
@@ -45,21 +46,19 @@ import totalcross.ui.image.ImageException;
 import totalcross.unit.UIRobotEvent;
 import totalcross.util.UnitsConverter;
 
-public class OtherControlsSample extends ScrollContainer {
+public class OtherControlsSample extends BaseScreen {
 	private SpinList sl;
 	private Label lName, lStatus, lTimeBox, lInputBox, lColorChooserBox, lSpinList, lRuler, lFileChooser;
 	private Container timeBoxC, inputBoxC, colorChooserC, spinListC, fileChooserC;
 	private int gap = UnitsConverter.toPixels(Control.DP + 20);
 
 	@Override
-	public void initUI() {
+	public void onContent(ScrollContainer content) {
 		try {
-			super.initUI();
-			
-			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+			content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 			int mar = Settings.screenWidth / 10;
 
-			add(timeBoxC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(timeBoxC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			timeBoxC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 			lTimeBox = new Label("TimeBox");
 			lTimeBox.transparentBackground = true;
@@ -67,7 +66,7 @@ public class OtherControlsSample extends ScrollContainer {
 			addClock();
 			timeBoxC.add(new Spacer(), CENTER, AFTER + gap);
 			timeBoxC.resizeHeight();
-			add(inputBoxC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(inputBoxC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			inputBoxC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 
 			final Button btnInput;
@@ -92,7 +91,7 @@ public class OtherControlsSample extends ScrollContainer {
 				}
 			});
 
-			add(colorChooserC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(colorChooserC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			colorChooserC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 
 			final Button btnChooseColor;
@@ -115,7 +114,7 @@ public class OtherControlsSample extends ScrollContainer {
 				}
 			});
 
-			add(spinListC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(spinListC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			spinListC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 
 			lSpinList = new Label("SpinList");
@@ -127,7 +126,7 @@ public class OtherControlsSample extends ScrollContainer {
 			spinListC.add(new Spacer(), CENTER, AFTER + gap);
 			spinListC.resizeHeight();
 
-			add(fileChooserC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(fileChooserC = new Container(), LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			fileChooserC.setBackForeColors(Colors.SURFACE, Colors.ON_SURFACE);
 
 			lFileChooser = new Label("FileChooser");

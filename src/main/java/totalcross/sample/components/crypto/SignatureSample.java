@@ -20,6 +20,7 @@ import totalcross.crypto.digest.SHA1Digest;
 import totalcross.crypto.digest.SHA256Digest;
 import totalcross.crypto.signature.PKCS1Signature;
 import totalcross.crypto.signature.Signature;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
@@ -34,7 +35,7 @@ import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
 import totalcross.util.UnitsConverter;
 
-public class SignatureSample extends ScrollContainer {
+public class SignatureSample extends BaseScreen {
 	private Object[] signatures;
 	private Key[] sigKeys;
 	private Key[] verKeys;
@@ -66,10 +67,12 @@ public class SignatureSample extends ScrollContainer {
 
 	private static final byte[] RSA_E = new byte[] { (byte) 1, (byte) 0, (byte) 1 };
 
+	public SignatureSample () {
+		super("https://totalcross.gitbook.io/playbook/apis/visao-geral-da-api#totalcross-crypto");
+	}
+
 	@Override
-	public void initUI() {
-		super.initUI();
-		this.setScrollBars(true, true);
+	public void onContent(ScrollContainer content) {
 		signatures = new Object[3];
 		try {
 			signatures[0] = new PKCS1Signature(new MD5Digest());
@@ -98,58 +101,49 @@ public class SignatureSample extends ScrollContainer {
 
 		btnGo = new Button(" Go! ");
 		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
+		btnGo.addPressListener(c -> {
+			int index = cboSignatures.getSelectedIndex();
+			String message = edtInput.getText();
+			byte[] data = message.getBytes();
 
-		add(menu, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
+			Signature signer = (Signature) signatures[index];
+			result = new ScrollContainer();
+			result.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+			try {
+
+				String sgn = cboSignatures.getSelectedItem().toString();
+				content.add(result, LEFT + gap * 3, AFTER + gap, FILL - gap * 3, (int) (Settings.screenHeight * 0.22));
+
+				Label title = new Label(sgn.toString(), CENTER);
+				title.setFont(Font.getFont(true, 16));
+
+				result.add(title, CENTER, TOP + gap / 2);
+				result.add(new Label("Message: '" + message + "'"), LEFT + gap, AFTER + gap / 2);
+
+				signer.reset(Signature.OPERATION_SIGN, sigKeys[index]);
+				signer.update(data);
+				byte[] signature = signer.sign();
+
+				result.add(new Label(
+								"Signature: " + Convert.bytesToHexString(signature) + " (" + signature.length + " bytes)"),
+						LEFT + gap, AFTER + gap / 2);
+
+				signer.reset(Signature.OPERATION_VERIFY, verKeys[index]);
+				signer.update(data);
+
+				result.add(
+						new Label("" + (signer.verify(signature) ? "Signature verified!" : "Invalid signature!")),
+						LEFT + gap, AFTER + gap / 2);
+			} catch (CryptoException ex) {
+				result.add(new Label("Exception: " + ex.toString()), LEFT + gap, AFTER + gap / 2);
+			}
+		});
+		content.add(menu, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
 		Label lbl = new Label("Message:");
 		menu.add(lbl, LEFT + gap, TOP + gap / 2);
 		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
 		menu.add(cboSignatures, LEFT + gap, AFTER + gap, edtInput);
 		menu.resizeHeight();
-		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME);
-	}
-
-	@Override
-	public void onEvent(Event e) {
-		switch (e.type) {
-		case ControlEvent.PRESSED:
-			if (e.target == btnGo) {
-				int index = cboSignatures.getSelectedIndex();
-				String message = edtInput.getText();
-				byte[] data = message.getBytes();
-
-				Signature signer = (Signature) signatures[index];
-				result = new ScrollContainer();
-				result.setBackForeColors(Colors.P_600, Colors.ON_P_600);
-				try {
-
-					String sgn = cboSignatures.getSelectedItem().toString();
-					add(result, LEFT + gap * 3, AFTER + gap, FILL - gap * 3, (int) (Settings.screenHeight * 0.22));
-
-					Label title = new Label(sgn.toString(), CENTER);
-					title.setFont(Font.getFont(true, 16));
-
-					result.add(title, CENTER, TOP + gap / 2);
-					result.add(new Label("Message: '" + message + "'"), LEFT + gap, AFTER + gap / 2);
-
-					signer.reset(Signature.OPERATION_SIGN, sigKeys[index]);
-					signer.update(data);
-					byte[] signature = signer.sign();
-
-					result.add(new Label(
-							"Signature: " + Convert.bytesToHexString(signature) + " (" + signature.length + " bytes)"),
-							LEFT + gap, AFTER + gap / 2);
-
-					signer.reset(Signature.OPERATION_VERIFY, verKeys[index]);
-					signer.update(data);
-
-					result.add(
-							new Label("" + (signer.verify(signature) ? "Signature verified!" : "Invalid signature!")),
-							LEFT + gap, AFTER + gap / 2);
-				} catch (CryptoException ex) {
-					result.add(new Label("Exception: " + ex.toString()), LEFT + gap, AFTER + gap / 2);
-				}
-			}
-			break;
-		}
+		content.add(btnGo, AFTER + gap, SAME, FILL - gap, SAME);
 	}
 }

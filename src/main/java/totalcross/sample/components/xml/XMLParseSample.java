@@ -1,6 +1,8 @@
 package totalcross.sample.components.xml;
 
 import java.util.ArrayList;
+
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.User;
 import totalcross.sys.Settings;
@@ -19,7 +21,7 @@ import totalcross.xml.ContentHandler;
 import totalcross.xml.SyntaxException;
 import totalcross.xml.XmlReader;
 
-public class XMLParseSample extends ScrollContainer{
+public class XMLParseSample extends BaseScreen {
 	
 	private Grid grid;
 	private Label status;
@@ -27,9 +29,8 @@ public class XMLParseSample extends ScrollContainer{
 	private int gap = (int) (Settings.screenDensity * 20);
 	
 	@Override
-	public void initUI()
+	public void onContent(ScrollContainer content)
 	{
-		super.initUI();
 
 		try {
 			
@@ -51,9 +52,9 @@ public class XMLParseSample extends ScrollContainer{
 		    status.setForeColor(Colors.RED);
 		    status.setFont(Font.getFont(16));
 		    
-		    add(readXmlButton, LEFT + gap, BOTTOM - gap, FILL - gap, 50 + DP);
-		    add(status, LEFT, BEFORE);
-		    add(grid, LEFT + gap, TOP + gap, FILL - gap, FIT);
+		    content.add(readXmlButton, LEFT + gap, BOTTOM - gap, FILL - gap, 50 + DP);
+			content.add(status, LEFT, BEFORE);
+			content.add(grid, LEFT + gap, TOP + gap, FILL - gap, FIT);
 		    
 			readXmlButton.addPressListener(new PressListener() {
 		        @Override

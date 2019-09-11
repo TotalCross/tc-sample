@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
@@ -10,7 +11,7 @@ import totalcross.ui.event.Event;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 
-public class SpinnerSample extends ScrollContainer {
+public class SpinnerSample extends BaseScreen {
 	private int gap = (int) (Settings.screenDensity * 20);
 	private Container menu;
 	private Spinner sp;
@@ -19,12 +20,14 @@ public class SpinnerSample extends ScrollContainer {
 	private RadioGroupController rg;
 	private Image triplex;
 
-	@Override
-	public void initUI() {
-		try {
-			super.initUI();
+	public SpinnerSample () {
+		super("https://totalcross.gitbook.io/playbook/components/spinner");
+	}
 
-			add(menu = new Container(), LEFT, TOP , FILL, WILL_RESIZE);
+	@Override
+	public void onContent(ScrollContainer content) {
+		try {
+			content.add(menu = new Container(), LEFT, TOP , FILL, WILL_RESIZE);
 			menu.setBackForeColors(Colors.PRIMARY, Colors.ON_PRIMARY);
 
 			rg = new RadioGroupController();
@@ -50,10 +53,10 @@ public class SpinnerSample extends ScrollContainer {
 
 			triplex = new Image("images/triplex.gif");
 			sp = new Spinner(Spinner.IPHONE);
-			add(sp, CENTER, CENTER, FONTSIZE + 200, FONTSIZE + 200);
-			add(status, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
+			content.add(sp, CENTER, CENTER, FONTSIZE + 200, FONTSIZE + 200);
+			content.add(status, LEFT + gap, AFTER + gap, FILL - gap, PREFERRED);
 
-			add(bt = new Button("Start"), CENTER, BOTTOM - gap, SCREENSIZE + 50, PREFERRED + (int)(Settings.screenDensity * 80));
+			content.add(bt = new Button("Start"), CENTER, BOTTOM - gap, SCREENSIZE + 50, PREFERRED + (int)(Settings.screenDensity * 80));
 			bt.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 
 		} catch (Exception ee) {

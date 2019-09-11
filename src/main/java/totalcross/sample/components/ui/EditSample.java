@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.Util;
 import totalcross.sys.Settings;
@@ -11,7 +12,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.util.UnitsConverter;
 
-public class EditSample extends Container {
+public class EditSample extends BaseScreen {
 
 	private ScrollContainer sc;
 	private Edit simpleEdit;
@@ -31,8 +32,12 @@ public class EditSample extends Container {
 	private int GAP = UnitsConverter.toPixels(DP + 15);
 	private int focusColor = Color.GREEN;
 
+	public EditSample () {
+		super("https://totalcross.gitbook.io/playbook/components/edit");
+	}
+
 	@Override
-	public void initUI() {
+	public void onContent(ScrollContainer content) {
 		try {
 
 			Settings.is24Hour = true;
@@ -40,22 +45,20 @@ public class EditSample extends Container {
 			UIColors.numericboxBack = Colors.BACKGROUND;
 			UIColors.calendarBack = Colors.BACKGROUND;
 			UIColors.timeboxVisorBack = Colors.BACKGROUND;
-			sc = new ScrollContainer(false, true);
-			sc.setInsets(GAP, GAP, GAP, GAP);
-			sc.sbV.ignoreInsets = true;
-			add(sc, LEFT, TOP, FILL, FILL);
+			content.setInsets(GAP, GAP, GAP, GAP);
+			content.sbV.ignoreInsets = true;
 			simpleEdit = new Edit();
 			simpleEdit.caption = "Simple Edit";
 			simpleEdit.setBackColor(Color.BRIGHT);
 			simpleEdit.transparentBackground = true;
-			
+
 			outlinedEdit = new OutlinedEdit();
 			outlinedEdit.caption = "OutlinedEdit";
 			outlinedEdit.captionColor = Color.getRGB(176, 46, 247);
 
 			multiEdit = new MultiEdit();
 			multiEdit.caption = "MultiEdit";
-			
+
 			numericEdit = new Edit();
 			numericEdit.caption = "NumericBox Edit";
 			numericEdit.setMode(Edit.CURRENCY);
@@ -88,27 +91,27 @@ public class EditSample extends Container {
 			maskedEdit.caption = "Masked Edit (999.999.999-99)";
 			maskedEdit.setMode(Edit.NORMAL, true);
 			maskedEdit.setValidChars(Edit.numbersSet);
-			
+
 			noPredictionEdit = new Edit();
 			noPredictionEdit.caption = "No Prediction Edit";
 			//noPredictionEdit.setPrediction(false);
-			
+
 			noPredictionMultiEdit = new MultiEdit();
 			noPredictionMultiEdit.caption = "No Prediction MultiEdit";
 			//noPredictionMultiEdit.setPrediction(false);
-			
-			sc.add(simpleEdit, LEFT, AFTER + UnitsConverter.toPixels(DP + 100));
-			sc.add(outlinedEdit, LEFT , AFTER + GAP);
-			sc.add(multiEdit, LEFT, AFTER + GAP, FILL - GAP, DP + 120);
-			sc.add(numericEdit, LEFT, AFTER + GAP);
-			sc.add(calculatorEdit, LEFT, AFTER + GAP);
-			sc.add(calendarEdit, LEFT , AFTER + GAP);
-			sc.add(timerEdit, LEFT, AFTER + GAP);
-			sc.add(passwordShowEdit, LEFT, AFTER + GAP);
-			sc.add(passwordHidenEdit, LEFT, AFTER + GAP);
-			sc.add(maskedEdit, LEFT, AFTER + GAP);
-			sc.add(noPredictionEdit, LEFT, AFTER + GAP);
-			sc.add(noPredictionMultiEdit, LEFT, AFTER + GAP, FILL, DP + 120);
+
+			content.add(simpleEdit, LEFT, AFTER + UnitsConverter.toPixels(DP + 100));
+			content.add(outlinedEdit, LEFT , AFTER + GAP);
+			content.add(multiEdit, LEFT, AFTER + GAP, FILL - GAP, DP + 120);
+			content.add(numericEdit, LEFT, AFTER + GAP);
+			content.add(calculatorEdit, LEFT, AFTER + GAP);
+			content.add(calendarEdit, LEFT , AFTER + GAP);
+			content.add(timerEdit, LEFT, AFTER + GAP);
+			content.add(passwordShowEdit, LEFT, AFTER + GAP);
+			content.add(passwordHidenEdit, LEFT, AFTER + GAP);
+			content.add(maskedEdit, LEFT, AFTER + GAP);
+			content.add(noPredictionEdit, LEFT, AFTER + GAP);
+			content.add(noPredictionMultiEdit, LEFT, AFTER + GAP, FILL, DP + 120);
 
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);

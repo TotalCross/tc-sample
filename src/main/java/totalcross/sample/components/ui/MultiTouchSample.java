@@ -1,10 +1,12 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Container;
 import totalcross.ui.ImageControl;
 import totalcross.ui.Label;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.DragEvent;
 import totalcross.ui.event.MultiTouchEvent;
@@ -12,8 +14,9 @@ import totalcross.ui.event.MultiTouchListener;
 import totalcross.ui.event.PenEvent;
 import totalcross.ui.event.PenListener;
 import totalcross.ui.image.Image;
+import totalcross.util.pdf.Base;
 
-public class MultiTouchSample extends Container {
+public class MultiTouchSample extends BaseScreen {
 	final int gap = (int) (Settings.screenDensity * 20);
 	private ImageControl ic;
 	public static Image screenShot;
@@ -22,15 +25,15 @@ public class MultiTouchSample extends Container {
 	private boolean hasTimer;
 	
 	@Override
-	public void initUI() {
-		
-		setFont(getFont().adjustedBy(2));
-		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+	public void onContent(ScrollContainer content) {
+
+		content.setFont(getFont().adjustedBy(2));
+		content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		
 		if (!Settings.isOpenGL && !Settings.onJavaSE) {
 			Label error = new Label("This sample works only on iOS, Android and Windows Phone.", CENTER);
 			error.autoSplit = true;
-			add(error, LEFT + gap, CENTER, FILL - gap, PREFERRED);
+			content.add(error, LEFT + gap, CENTER, FILL - gap, PREFERRED);
 		} else {
 			try {
 				imgLenna = new Image("images/lenna_full.png").getHwScaledInstance(Settings.screenWidth*2/3, Settings.screenWidth*2/3);
@@ -44,9 +47,9 @@ public class MultiTouchSample extends Container {
 				
 				Label message = new Label("Use a pinch movement to reveal the image", CENTER);
 				message.autoSplit = true;
-				add(message, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
+				content.add(message, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
 
-				add(status = new Label("Waiting for a MultiTouch event...", CENTER),
+				content.add(status = new Label("Waiting for a MultiTouch event...", CENTER),
 						LEFT + gap, BOTTOM - gap, FILL - gap, PREFERRED);
 				status.autoSplit = true;
 				
@@ -58,8 +61,8 @@ public class MultiTouchSample extends Container {
 					hasTimer = false;
 				});
 				hasTimer = false;
-				
-				add(ic, LEFT, AFTER + gap, FILL, FIT, message);
+
+				content.add(ic, LEFT, AFTER + gap, FILL, FIT, message);
 				
 				ic.addMultiTouchListener(new MultiTouchListener() {
 					@Override

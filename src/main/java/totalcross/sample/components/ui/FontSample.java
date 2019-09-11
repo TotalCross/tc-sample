@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Check;
@@ -19,7 +20,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.gfx.Graphics;
 import totalcross.util.UnitsConverter;
 
-public class FontSample extends Container {
+public class FontSample extends BaseScreen {
 	class FontBox extends Control {
 		@Override
 		public void onPaint(Graphics g) {
@@ -143,10 +144,9 @@ public class FontSample extends Container {
 	Samples samples;
 
 	@Override
-	public void initUI() {
-		super.initUI();
-		add(selector = new Selector(), LEFT, TOP + 2, FILL, PREFERRED);
-		add(samples = new Samples(), LEFT, AFTER, PARENTSIZE + 100, FILL);
+	public void onContent(ScrollContainer content) {
+		content.add(selector = new Selector(), LEFT, TOP + 2, FILL, PREFERRED);
+		content.add(samples = new Samples(), LEFT, AFTER, PARENTSIZE + 100, FILL);
 		samples.setBackColor(Color.darker(getBackColor(), 10)); // darker background
 	}
 

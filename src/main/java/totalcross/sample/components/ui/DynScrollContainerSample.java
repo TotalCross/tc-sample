@@ -1,16 +1,10 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
-import totalcross.ui.Button;
-import totalcross.ui.Check;
-import totalcross.ui.Container;
-import totalcross.ui.Control;
-import totalcross.ui.DynamicScrollContainer;
-import totalcross.ui.Edit;
-import totalcross.ui.Label;
-import totalcross.ui.Spacer;
+import totalcross.ui.*;
 import totalcross.ui.dialog.ProgressBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
@@ -18,7 +12,7 @@ import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.util.UnitsConverter;
 
-public class DynScrollContainerSample extends Container {
+public class DynScrollContainerSample extends BaseScreen {
 	final int gap = UnitsConverter.toPixels(DP + 8);
 	private Button goButton;
 	private Edit numberRangeEdit;
@@ -31,6 +25,7 @@ public class DynScrollContainerSample extends Container {
 	private int rowCount0;
 
 	public DynScrollContainerSample() {
+		super("https://totalcross.gitbook.io/playbook/components/dynamic-scroll");
 		setFont(Font.getFont("Roboto", false, 16));
 	}
 	
@@ -113,18 +108,19 @@ public class DynScrollContainerSample extends Container {
 		return ed;
 	}
 
+
+
 	@Override
-	public void initUI() {
-		super.initUI();
+	public void onContent(ScrollContainer content) {
 		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		c1 = new Container();
-		add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
-		
-		c1.add(new Spacer(0, 0), LEFT, TOP, 1, gap/2); 
+		content.add(c1, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
+
+		c1.add(new Spacer(0, 0), LEFT, TOP, 1, gap/2);
 		numberRangeEdit = add("Select your number range: ", c1, Color.WHITE, Color.BLACK);
 		numberRangeEdit.setBackForeColors(Color.WHITE, Color.BLACK);
 		numberRangeEdit.useNativeNumericPad = true;
-		
+
 		c1.add(new Spacer(0, 0), LEFT, AFTER + gap/2);
 		onlyPrimeChk = new Check("Show only prime numbers");
 		onlyPrimeChk.setBackForeColors(Color.WHITE, Color.BLACK);
@@ -137,16 +133,15 @@ public class DynScrollContainerSample extends Container {
 		c1.add(warning = new Label("Prime in grey"),CENTER, AFTER + gap/2, PREFERRED, PREFERRED);
 		warning.transparentBackground = true;
 		warning.setForeColor(Color.RED);
-		c1.add(new Spacer(0, 0), LEFT, AFTER, 1, gap/2); 
+		c1.add(new Spacer(0, 0), LEFT, AFTER, 1, gap/2);
 		c1.resizeHeight();
 		c1.setBackColor(Color.WHITE);
-		
+
 		vsc = new DynamicScrollContainer();
 		vsc.setBackColor(Color.WHITE);
 		vsc.setBorderStyle(BORDER_SIMPLE);
-		add(vsc, LEFT + gap, AFTER + gap*2, FILL - gap, FILL - gap*2);
+		content.add(vsc, LEFT + gap, AFTER + gap*2, FILL - gap, FILL - gap*2);
 		numberRangeEdit.setText(String.valueOf(rowCount0 = 30));
-		
 	}
 
 	@Override

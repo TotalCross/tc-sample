@@ -3,6 +3,7 @@ package totalcross.sample.components.io;
 import totalcross.io.DataStream;
 import totalcross.io.File;
 import totalcross.io.IOException;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.sys.Time;
@@ -21,10 +22,11 @@ import totalcross.util.InvalidDateException;
 import totalcross.util.UnitsConverter;
 import totalcross.util.Vector;
 
-public class FileSample extends ScrollContainer implements Runnable {
+public class FileSample extends BaseScreen implements Runnable {
 
 	private String rootPath = Settings.appPath + "/";
 	private int gap = UnitsConverter.toPixels(DP + 8);
+	private ScrollContainer content;
 
 	private boolean recursiveList(String path, Vector v) {
 		if (path == null) {
@@ -81,7 +83,7 @@ public class FileSample extends ScrollContainer implements Runnable {
 		if(success) {
 			Container box = new Container();
 			box.setBackForeColors(Colors.P_200, Colors.ON_P_200);
-			add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			Label title = new Label("List of All Files Found", CENTER);
 			title.setBackForeColors(Colors.P_700, Colors.ON_P_700);
 			title.setFont(font.asBold());
@@ -297,7 +299,7 @@ public class FileSample extends ScrollContainer implements Runnable {
 		testDirectory();
 		testFileRename();
 		testFileReadWrite();
-		add(new Spacer(), LEFT, AFTER, 1, gap/3);
+		content.add(new Spacer(), LEFT, AFTER, 1, gap/3);
 		mb.unpop();
 	}
 
@@ -323,8 +325,8 @@ public class FileSample extends ScrollContainer implements Runnable {
 	}
 
 	@Override
-	public void initUI() {
-		super.initUI();
+	public void onContent(ScrollContainer content) {
+		this.content = content;
 		MainWindow.getMainWindow().runOnMainThread(this); // allow animation
 	}
 	
@@ -333,7 +335,7 @@ public class FileSample extends ScrollContainer implements Runnable {
 		Container box = new Container();
 		box.setBackForeColors(Colors.P_200, Colors.ON_P_200);
 		
-		add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+		content.add(box, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 
 		title.setFont(font.asBold());
 		title.setBackForeColors(Colors.P_700, Colors.ON_P_700);
@@ -349,7 +351,7 @@ public class FileSample extends ScrollContainer implements Runnable {
 		if(!successful) {
 			status.setForeColor(Colors.RED);
 			status.setText("FAIL");
-			add(status, LEFT, AFTER + gap, FILL, PREFERRED);
+			content.add(status, LEFT, AFTER + gap, FILL, PREFERRED);
 		}
 		
 		box.add(status, LEFT, AFTER + gap, FILL, PREFERRED);

@@ -3,6 +3,7 @@ package totalcross.sample.components.json;
 import java.util.List;
 
 import totalcross.json.JSONFactory;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.ui.Container;
@@ -13,17 +14,21 @@ import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.gfx.Color;
 import totalcross.util.UnitsConverter;
 
-public class JSONSample extends ScrollContainer {
+public class JSONSample extends BaseScreen {
+
 	private int gap = UnitsConverter.toPixels(DP + 8);
+
+	public JSONSample () {
+		super("https://totalcross.gitbook.io/playbook/apis/json");
+	}
+
 	@Override
-	public void initUI() {
-		super.initUI();
-		setScrollBars(false, true);
-		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+	public void onContent(ScrollContainer content) {
+		content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		try {
 			Container inputBox = new Container();
 			inputBox.setBackForeColors(Colors.P_200, Colors.ON_P_200);
-			add(inputBox, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
+			content.add(inputBox, LEFT + gap, TOP + gap, FILL - gap, WILL_RESIZE);
 			
 			Label title1 = new Label("Input line", CENTER);
 			title1.setFont(font.asBold());
@@ -40,7 +45,7 @@ public class JSONSample extends ScrollContainer {
 			
 			Container arrayBox = new Container();
 			arrayBox.setBackForeColors(Colors.S_300, Colors.ON_S_300);
-			add(arrayBox, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(arrayBox, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			
 			Label title2 = new Label("As array (The return function is an array)", CENTER);
 			title2.autoSplit = true;
@@ -73,7 +78,7 @@ public class JSONSample extends ScrollContainer {
 			
 			Container listBox = new Container();
 			listBox.setBackForeColors(Colors.S_300, Colors.ON_S_300);
-			add(listBox, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
+			content.add(listBox, LEFT + gap, AFTER + gap, FILL - gap, WILL_RESIZE);
 			
 			Label title3 = new Label("As list (The return function is a list)", CENTER);
 			title3.setFont(font.asBold());
@@ -104,7 +109,7 @@ public class JSONSample extends ScrollContainer {
 			listBox.setInsets(0, 0, 0, gap/3);
 			listBox.resizeHeight();
 			
-			add(new Spacer(), LEFT, AFTER, 1, gap/3);
+			content.add(new Spacer(), LEFT, AFTER, 1, gap/3);
 		} catch (Exception ee) {
 			MessageBox.showException(ee, true);
 		}

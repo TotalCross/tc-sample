@@ -18,14 +18,11 @@ package totalcross.sample.components.phone;
 
 import totalcross.io.IOException;
 import totalcross.phone.Dial;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.components.layout.CalculatorHBoxVBoxSample;
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.MaterialConstants;
-import totalcross.ui.Button;
-import totalcross.ui.Container;
-import totalcross.ui.Edit;
-import totalcross.ui.PushButtonGroup;
-import totalcross.ui.Spacer;
+import totalcross.ui.*;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.dialog.keyboard.Builder;
 import totalcross.ui.event.ControlEvent;
@@ -36,32 +33,31 @@ import totalcross.ui.layout.HBox;
 import totalcross.ui.layout.VBox;
 import totalcross.util.UnitsConverter;
 
-public class PhoneDialerSample extends Container {
+public class PhoneDialerSample extends BaseScreen {
   VBox vboxAll;
   private  Edit ed;
   private Button dial;
 
   @Override
-  public void initUI() {
-    super.initUI();
+  public void onContent(ScrollContainer content) {
     int margin = MaterialConstants.EIGHT_DP_SPACING;
-    setInsets(margin, margin, margin, margin);
+    content.setInsets(margin, margin, margin, margin);
 
-    setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+    content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
     Font big = Font.getFont(true, Font.NORMAL_SIZE + 2);
     ed = new Edit();
     ed.setFont(Font.getFont(true, Font.NORMAL_SIZE * 2));
     ed.setEnabled(false);
     ed.alignment = CENTER;
-    add(ed, LEFT, TOP, FILL, SCREENSIZE+8);
+    content.add(ed, LEFT, TOP, FILL, SCREENSIZE+8);
     
-    add(new Spacer(),LEFT, AFTER, 1, SCREENSIZE+5);
+    content.add(new Spacer(),LEFT, AFTER, 1, SCREENSIZE+5);
 
 //    pbg = new PushButtonGroup(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "P", "0", " << " }, 5, 4);
 //    pbg.setFont(big);
 //    add(pbg, CENTER, AFTER, SCREENSIZE + 80, SCREENSIZE+65);
 //    pbg.setFocusLess(true);
-    add(new Spacer(),LEFT, AFTER, 1, SCREENSIZE+2);
+    content.add(new Spacer(),LEFT, AFTER, 1, SCREENSIZE+2);
     dial = new Button("Dial");
     dial.setFont(big);
     dial.setBackForeColors(Colors.P_600, Colors.ON_P_600);
@@ -109,7 +105,7 @@ public class PhoneDialerSample extends Container {
     );
 
     int dialButtonHeight = UnitsConverter.toPixels(DP + 64);
-    this.add(vboxAll, CENTER, AFTER, PARENTSIZE,
+    content.add(vboxAll, CENTER, AFTER, PARENTSIZE,
             FILL - dialButtonHeight - MaterialConstants.EIGHT_DP_SPACING);
 
     dial.addPressListener((c) -> { // Call
@@ -119,7 +115,7 @@ public class PhoneDialerSample extends Container {
         MessageBox.showException(ex, true);
       }
     });
-    add(dial, CENTER, AFTER + margin, PARENTSIZE, FILL);
+    content.add(dial, CENTER, AFTER + margin, PARENTSIZE, FILL);
 
 
   }

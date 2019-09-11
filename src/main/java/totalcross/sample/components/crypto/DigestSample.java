@@ -16,6 +16,7 @@ import totalcross.crypto.digest.Digest;
 import totalcross.crypto.digest.MD5Digest;
 import totalcross.crypto.digest.SHA1Digest;
 import totalcross.crypto.digest.SHA256Digest;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
@@ -27,8 +28,9 @@ import totalcross.ui.Label;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.font.Font;
 import totalcross.util.UnitsConverter;
+import totalcross.util.pdf.Base;
 
-public class DigestSample extends ScrollContainer {
+public class DigestSample extends BaseScreen {
 	private int gap = UnitsConverter.toPixels(DP + 8);
 	private Container menu;
 	private Edit edtInput;
@@ -37,6 +39,7 @@ public class DigestSample extends ScrollContainer {
 	private Object[] comboItems;
 
 	public DigestSample() {
+		super("https://totalcross.gitbook.io/playbook/apis/visao-geral-da-api#totalcross-crypto");
 		try {
 			comboItems = new Object[] { new MD5Digest(), new SHA1Digest(), new SHA256Digest() };
 		} catch (NoSuchAlgorithmException e) {
@@ -44,9 +47,9 @@ public class DigestSample extends ScrollContainer {
 		}
 	}
 
+
 	@Override
-	public void initUI() {
-		super.initUI();
+	public void onContent(ScrollContainer content) {
 		menu = new Container();
 		menu.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 		edtInput = new Edit();
@@ -56,14 +59,14 @@ public class DigestSample extends ScrollContainer {
 		btnGo = new Button(" Go! ");
 		btnGo.setBackForeColors(Colors.S_600, Colors.ON_S_600);
 		
-		add(menu, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
+		content.add(menu, LEFT + gap, TOP + gap, SCREENSIZE + 80, WILL_RESIZE);
 		menu.setInsets(gap/4, gap/4, gap/4, gap/4);
 		Label lbl = new Label("Message:");
 		menu.add(lbl, LEFT + gap, TOP + gap/2);
 		menu.add(edtInput, AFTER + gap, SAME, FILL - gap, PREFERRED);
 		menu.add(cboDigests, SAME, AFTER + gap);
 		menu.resizeHeight();
-		add(btnGo, AFTER + gap, SAME, FILL - gap, SAME, menu);
+		content.add(btnGo, AFTER + gap, SAME, FILL - gap, SAME, menu);
 		
 		btnGo.addPressListener((e) -> {
 			Digest alg = (Digest) cboDigests.getSelectedItem();
@@ -75,7 +78,7 @@ public class DigestSample extends ScrollContainer {
 			
 			ScrollContainer sc = new ScrollContainer();
 			sc.setBackForeColors(Colors.P_600, Colors.ON_P_600);
-			add(sc, LEFT + gap*3, AFTER + gap, FILL - gap*3, (int)(Settings.screenHeight * 0.18));
+			content.add(sc, LEFT + gap*3, AFTER + gap, FILL - gap*3, (int)(Settings.screenHeight * 0.18));
 			Label title = new Label(alg.toString(), CENTER);
 			
 			title.setFont(Font.getFont(true, 16));

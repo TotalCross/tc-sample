@@ -30,7 +30,7 @@ public class FormSample extends ScrollContainer {
 	private final int GAP = UnitsConverter.toPixels(DP + 8);
 	private int focusColor = 0xF0F8FF;
 	private int numUsers = 0;
-	
+
 	@Override
 	public void reposition() {
 		super.reposition();
@@ -48,22 +48,22 @@ public class FormSample extends ScrollContainer {
 		    add(status, LEFT + GAP, BEFORE, FILL - GAP, PREFERRED, saveButton);
 		}
 	}
-	
+
 	@Override
 	public void initUI()
-	{	
+	{
 		super.initUI();
 		setScrollBars(false, true);
 		try
 	    {
 	      Settings.is24Hour = true;
 	      Edit.useNativeNumericPad = true;
-	      
+
 		  nameEdit = new Edit();
 		  nameEdit.caption = "Name";
 		  nameEdit.focusColor = focusColor;
 		  nameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
-		  
+
 	      phoneEdit = new Edit("(99)99999-9999");
 	      phoneEdit.caption = "Phone";
 	      Edit.useNativeNumericPad = true;
@@ -71,20 +71,20 @@ public class FormSample extends ScrollContainer {
 	      phoneEdit.setKeyboard(Edit.KBD_NUMERIC);
 	      phoneEdit.setValidChars(Edit.numbersSet);
 	      phoneEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
-	      
-	      
+
+
 	      nickNameEdit = new Edit();
 		  nickNameEdit.caption = "NickName";
 		  nickNameEdit.focusColor = focusColor;
 		  nickNameEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
-	      
+
 	      passwordEdit = new Edit("");
 	      passwordEdit.caption = "Password";
-	      passwordEdit.setMode(Edit.PASSWORD); 
+	      passwordEdit.setMode(Edit.PASSWORD);
 	      passwordEdit.setBackForeColors(Colors.P_600, Colors.ON_P_500);
-	      
+
 	      status.setFont(Font.getFont(true, 18));
-	      
+
 	      saveButton = new Button("Save");
 	      saveButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 	      saveButton.setForeColor(Color.WHITE);
@@ -95,7 +95,7 @@ public class FormSample extends ScrollContainer {
 	      add(passwordEdit, LEFT + GAP, AFTER + GAP, FILL - GAP,PREFERRED);
 	      add(saveButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP,PREFERRED);
 	      add(status, LEFT + GAP, BEFORE, FILL - GAP, PREFERRED, saveButton);
-	      
+
 	      saveButton.addPressListener(new PressListener() {
 		        @Override
 		        public void controlPressed(ControlEvent e)
@@ -103,22 +103,22 @@ public class FormSample extends ScrollContainer {
 		        	if(!"".equals(nameEdit.getText()) && !"".equals(phoneEdit.getText()) && !"".equals(nickNameEdit.getText()) && !"".equals(passwordEdit.getText())) {
 		        		User user = new User(nameEdit.getText(), phoneEdit.getText(), nickNameEdit.getText(), passwordEdit.getText());
 		        		Boolean success = SQLiteManager.getInstance().insertUsers(user);
-		        		
+
 		        		if (success) {
 		        			++numUsers;
 		        			updateStatus();
 		        			MessageBox mb = new MessageBox("Message" , "User successfully saved.", new String[]{"Close"});
 				        	mb.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 				        	mb.popup();
-		        			
+
 		        		} else {
-		        			
+
 		        			MessageBox mb = new MessageBox("Message" , "Error saving user.", new String[]{"Close"});
 		        			mb.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 				        	mb.popup();
-		        			
+
 		        		}
-		        		
+
 		        	}else {
 		        		MessageBox mb = new MessageBox("Message" , "Complete all fields.", new String[]{"Close"});
 		        		mb.setBackForeColors(Colors.P_300, Colors.ON_P_300);
@@ -126,14 +126,14 @@ public class FormSample extends ScrollContainer {
 		        	}
 		        }
 		    });
-	      
+
 	    }
 	    catch (Exception ee)
 	    {
 	      MessageBox.showException(ee,true);
 	    }
 	}
-	
+
 	public void updateStatus() {
 		this.status.setText(numUsers + " user(s) registred");
 	}

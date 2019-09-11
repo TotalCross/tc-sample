@@ -1,22 +1,23 @@
 package totalcross.sample.components.lang.thread;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.gfx.Color;
 import totalcross.util.UnitsConverter;
 
-public class ThreadSample extends Container implements Runnable {
+public class ThreadSample extends BaseScreen implements Runnable {
 	private int gap = UnitsConverter.toPixels(DP + 8);
 
-	static interface SetX {
-		public void incX(int x);
-
-		public void setX(int x);
+	interface SetX {
+		void incX(int x);
+		void setX(int x);
 	}
 
 	Button directionButton;
@@ -29,29 +30,34 @@ public class ThreadSample extends Container implements Runnable {
 	boolean running, finished;
 
 	@Override
-	public void initUI() {
-		super.initUI();
+	public void onContent(ScrollContainer content) {
 		Button.commonGap = fmH / 4;
 		Vm.tweak(Vm.TWEAK_DUMP_MEM_STATS, true);
+
 		directionButton = new Button("Switch Direction");
 		directionButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+		directionButton.addPressListener(e -> restartThread(true));
+
 		pauseButton = new Button("Pause");
 		pauseButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);
+		pauseButton.addPressListener(e -> pause());
+
 		unpauseButton = new Button("Unpause");
 		unpauseButton.setBackForeColors(Colors.S_600, Colors.ON_S_600);
+		unpauseButton.addPressListener(e -> pause());
 
 		containers = new SetX[3];
 		containers[0] = new TypingContainer(true);
 		containers[1] = new HTTPContainer();
 		containers[2] = new TypingContainer(false);
-		add(directionButton, LEFT + gap/2, TOP + gap/2);
-		add(unpauseButton, RIGHT - gap/2, SAME);
-		add(pauseButton, RIGHT - gap/2, SAME, unpauseButton.getWidth(), PREFERRED);
+		content.add(directionButton, LEFT + gap/2, TOP + gap/2);
+		content.add(unpauseButton, RIGHT - gap/2, SAME);
+		content.add(pauseButton, RIGHT - gap/2, SAME, unpauseButton.getWidth(), PREFERRED);
 		unpauseButton.setVisible(false);
 		Button.commonGap = 0;
 
 		for (int i = 0; i < containers.length; i++) {
-			add((Container) containers[i], i == 0 ? LEFT : AFTER, i == 0 ? AFTER + gap : SAME, SCREENSIZE, FILL,
+			content.add((Container) containers[i], i == 0 ? LEFT : AFTER, i == 0 ? AFTER + gap : SAME, SCREENSIZE, FILL,
 					i == 0 ? pauseButton : null);
 		}
 
@@ -63,18 +69,6 @@ public class ThreadSample extends Container implements Runnable {
 		paused = !paused;
 		pauseButton.setVisible(!paused);
 		unpauseButton.setVisible(paused);
-	}
-
-	@Override
-	public void onEvent(Event event) {
-		if (event.type == ControlEvent.PRESSED) {
-			if (event.target == directionButton) {
-				restartThread(true);
-			} else if (event.target == pauseButton || event.target == unpauseButton) {
-				pause();
-			}
-		}
-		super.onEvent(event);
 	}
 
 	private void restartThread(boolean changeDir) {

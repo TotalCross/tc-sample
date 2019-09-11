@@ -3,25 +3,25 @@ package totalcross.sample.components;
 import totalcross.io.IOException;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
+import totalcross.sys.Vm;
 import totalcross.ui.*;
+import totalcross.ui.event.Event;
 import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 import totalcross.util.UnitsConverter;
 
-public class Home extends Container {
+public class Home  extends Container{
 
-  @Override
   public void initUI() {
     try {
-      setBackColor(Colors.PRIMARY);
-
+    	setBackColor(Colors.PRIMARY);
       ImageControl ic = new ImageControl(new Image("images/logoV.png"));
+
       ic.scaleToFit = true;
       ic.centerImage = true;
       add(ic, CENTER, AFTER + UnitsConverter.toPixels(Control.DP + 50), PARENTSIZE, PARENTSIZE + 20);
-
       Label lbWelcome = new Label("Welcome!");
       lbWelcome.setFont(Font.getFont("Lato Light", false, lbWelcome.getFont().size + 30));
       lbWelcome.setForeColor(Color.WHITE);

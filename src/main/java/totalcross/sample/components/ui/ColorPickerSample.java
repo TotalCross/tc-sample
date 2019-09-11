@@ -1,12 +1,9 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sys.Convert;
 import totalcross.sys.Settings;
-import totalcross.ui.AlignedLabelsContainer;
-import totalcross.ui.Edit;
-import totalcross.ui.ImageControl;
-import totalcross.ui.Label;
-import totalcross.ui.ScrollContainer;
+import totalcross.ui.*;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.DragEvent;
 import totalcross.ui.event.PenEvent;
@@ -15,7 +12,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.gfx.Graphics;
 import totalcross.ui.image.Image;
 
-public class ColorPickerSample extends ScrollContainer {
+public class ColorPickerSample extends BaseScreen {
 	private final int gap = 50;
 	private double h, s, v;
 	private Graphics gImage, gImValue;
@@ -32,17 +29,16 @@ public class ColorPickerSample extends ScrollContainer {
 		Settings.uiAdjustmentsBasedOnFontHeight = true;
 	}
 
-	@Override
-	public void reposition() {
-		super.reposition();
+	public void reposition(Container content) {
+		content.reposition();
 		if (Settings.screenWidth > Settings.screenHeight) {
 			try {
 				alc.removeAll();
-				removeAll();
+				content.removeAll();
 				this.clear();
 
 				// putting back the label
-				add(lblTitulo, CENTER, TOP + gap, PREFERRED, PREFERRED);
+				content.add(lblTitulo, CENTER, TOP + gap, PREFERRED, PREFERRED);
 
 				imWidth = (int) (Settings.screenWidth * 0.4);
 				imHeight = (int) (Settings.screenHeight * 0.6);
@@ -60,16 +56,16 @@ public class ColorPickerSample extends ScrollContainer {
 
 				// putting the image on screen
 				imcGen = new ImageControl(imGen);
-				add(imcGen, LEFT + gap, AFTER + gap, lblTitulo);
+				content.add(imcGen, LEFT + gap, AFTER + gap, lblTitulo);
 
 				// putting the value chooser on screen
-				add(imcValue, AFTER + gap, SAME, 20, SAME, imcGen);
+				content.add(imcValue, AFTER + gap, SAME, 20, SAME, imcGen);
 
 				// putting the value indicator on screen
-				add(lblValue, AFTER + (gap / 2), SAME - gap, PREFERRED, PREFERRED, imcValue);
+				content.add(lblValue, AFTER + (gap / 2), SAME - gap, PREFERRED, PREFERRED, imcValue);
 
 				// putting on screen the aligned label
-				add(alc, AFTER + gap, Settings.screenHeight / 2 - (int) (alc.getPreferredWidth() * 0.8), FILL,
+				content.add(alc, AFTER + gap, Settings.screenHeight / 2 - (int) (alc.getPreferredWidth() * 0.8), FILL,
 						PREFERRED, lblValue);
 				alc.add(lblColor, LEFT + gap, alc.getLineY(0), FILL - gap, 20);
 				alc.add(cr, LEFT + gap, alc.getLineY(1));
@@ -83,11 +79,11 @@ public class ColorPickerSample extends ScrollContainer {
 		} else {
 			try {
 				alc.removeAll();
-				removeAll();
-				this.clear();
+				content.removeAll();
+				content.clear();
 
 				// putting back the label
-				add(lblTitulo, CENTER, TOP + gap);
+				content.add(lblTitulo, CENTER, TOP + gap);
 
 				imWidth = Settings.screenWidth - 70;
 				imHeight = Settings.screenHeight / 2;
@@ -105,19 +101,19 @@ public class ColorPickerSample extends ScrollContainer {
 
 				// putting the image on screen
 				imcGen = new ImageControl(imGen);
-				add(imcGen, LEFT + gap, AFTER + gap);
+				content.add(imcGen, LEFT + gap, AFTER + gap);
 				
 				//putting Value chooser on screen
-				add(imcValue, AFTER + gap, SAME, 20, SAME, imcGen);
+				content.add(imcValue, AFTER + gap, SAME, 20, SAME, imcGen);
 				
 				// getting the graphics to edit the image
 				gImValue = imValue.getGraphics();
 
 				// putting the value indicator on screen
-				add(lblValue, AFTER + (gap / 2), SAME - gap, PREFERRED, PREFERRED, imcValue);
+				content.add(lblValue, AFTER + (gap / 2), SAME - gap, PREFERRED, PREFERRED, imcValue);
 
 				// putting on screen the aligned label
-				add(alc, CENTER, AFTER + gap * 2, SCREENSIZE + 95, PREFERRED, imcGen);
+				content.add(alc, CENTER, AFTER + gap * 2, SCREENSIZE + 95, PREFERRED, imcGen);
 				alc.add(lblColor, LEFT + gap, alc.getLineY(0), FILL - gap, 20);
 				alc.add(cr, LEFT + gap, alc.getLineY(1));
 				alc.add(cg, LEFT + gap, alc.getLineY(2));
@@ -131,7 +127,7 @@ public class ColorPickerSample extends ScrollContainer {
 	}
 
 	@Override
-	public void initUI() {
+	public void onContent(ScrollContainer content) {
 		try {
 			// instantiating the title with bold
 			lblTitulo = new Label("Test the color picker here:", CENTER, Color.BLACK, true);
@@ -164,7 +160,7 @@ public class ColorPickerSample extends ScrollContainer {
 			v = 1;
 
 			// changing background color of the screen
-			setBackColor(Color.WHITE);
+			content.setBackColor(Color.WHITE);
 
 			// setting the labels to be displayed on the AlignedLabel.
 			alc = new AlignedLabelsContainer(new String[] { "Color:", "R:", "G:", "B:" });

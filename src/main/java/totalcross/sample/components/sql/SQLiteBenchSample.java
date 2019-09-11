@@ -16,6 +16,7 @@
 
 package totalcross.sample.components.sql;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sql.Connection;
 import totalcross.sql.DriverManager;
@@ -31,10 +32,12 @@ import totalcross.ui.ScrollContainer;
 import totalcross.ui.Spacer;
 import totalcross.ui.dialog.MessageBox;
 
+import java.util.List;
+
 /**
  * Performs a benchmark in the SQLite.
  */
-public class SQLiteBenchSample extends ScrollContainer {
+public class SQLiteBenchSample extends BaseScreen {
 	private int gap = 50;
 	/**
 	 * The connection with SQLite.
@@ -80,11 +83,13 @@ public class SQLiteBenchSample extends ScrollContainer {
 	 * The log label to print out results.
 	 */
 	private Label logLabel;
+	private ScrollContainer content;
 
 	/**
 	 * The constructor.
 	 */
 	public SQLiteBenchSample() {
+		super("https://totalcross.gitbook.io/playbook/learn-totalcross/how-to-store-data-sqlite");
 		if (Settings.onJavaSE) {
 			Settings.showDesktopMessages = false;
 		}
@@ -376,20 +381,19 @@ public class SQLiteBenchSample extends ScrollContainer {
 	 * Initializes the user interface.
 	 */
 	@Override
-	public void initUI() {
-		super.initUI();
-		setScrollBars(false, true);
-		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+	public void onContent(ScrollContainer content) {
+		this.content = content;
+		content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		MessageBox x = new MessageBox("Waiting", "Wait for the data to load.", null);
 		x.setBackForeColors(Colors.P_300, Colors.ON_P_300);
 		x.popupNonBlocking();
 		
 		// User interface.
 		pbTotal = new ProgressBar(0, TOTAL_OF_OPERATIONS);
-		add(pbInserts = new ProgressBar(0, 500), LEFT + gap, TOP + gap, FILL - gap, PREFERRED + fmH*2);
+		content.add(pbInserts = new ProgressBar(0, 500), LEFT + gap, TOP + gap, FILL - gap, PREFERRED + fmH*2);
 		pbInserts.setForeColor(Colors.P_500);
 		pbInserts.textColor = Colors.ON_P_500;
-		add(pbTotal, LEFT + gap, AFTER + fmH*2, FILL - gap, PREFERRED + fmH*2);
+		content.add(pbTotal, LEFT + gap, AFTER + fmH*2, FILL - gap, PREFERRED + fmH*2);
 		pbTotal.setForeColor(Colors.P_500);
 		pbTotal.textColor = Colors.ON_P_500;
 		
@@ -397,9 +401,9 @@ public class SQLiteBenchSample extends ScrollContainer {
 		pbTotal.suffix = " of " + TOTAL_OF_OPERATIONS;
 		
 		// Executes the bench operations.
-		repaintNow();
+		content.repaintNow();
 		try {
-			add(new Spacer(), LEFT, AFTER, FILL, gap/2);
+			content.add(new Spacer(), LEFT, AFTER, FILL, gap/2);
 			createTable();
 
 			driver.setAutoCommit(false);
@@ -490,6 +494,6 @@ public class SQLiteBenchSample extends ScrollContainer {
 	{
 		Label logLabel = new Label(s);
 		logLabel.autoSplit = true;
-		add(logLabel, LEFT + gap, AFTER + 2, FILL - gap, PREFERRED);
+		content.add(logLabel, LEFT + gap, AFTER + 2, FILL - gap, PREFERRED);
 	}
 }

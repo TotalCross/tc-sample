@@ -1,6 +1,7 @@
 package totalcross.sample.components.ui;
 
 import totalcross.io.IOException;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.MaterialConstants;
 import totalcross.sys.Vm;
@@ -20,9 +21,14 @@ import totalcross.ui.layout.HBox;
 import totalcross.ui.layout.VBox;
 import totalcross.util.UnitsConverter;
 
-public class MaterialWindowSample extends Container {
+public class MaterialWindowSample extends BaseScreen {
+
+	public MaterialWindowSample () {
+		super("https://totalcross.gitbook.io/playbook/components/material-window");
+	}
+
 	@Override
-	public void initUI() {
+	public void onContent(ScrollContainer content) {
 		Button btn1 = new Button("Material Window (Instant)");
 		btn1.setBackForeColors(Colors.P_500, Colors.ON_P_500);
 
@@ -44,7 +50,7 @@ public class MaterialWindowSample extends Container {
 			MaterialWindow mw = new MaterialWindow("Material Window (Delayed)", true, getPresenter());
 			mw.popup();
 		});
-		add(vBox, CENTER, CENTER, DP + 240, PREFERRED);
+		content.add(vBox, CENTER, CENTER, DP + 240, PREFERRED);
 	}
 
 	private Presenter getPresenter() {
@@ -92,7 +98,7 @@ public class MaterialWindowSample extends Container {
 						btRegister.setBorder(BORDER_NONE);
 						add(btRegister, CENTER, AFTER, PARENTSIZE + 30, PREFERRED + 20);
 						btRegister.addPressListener(e -> {
-							Vm.exec("url", "http://www.totalcross.com", 0, true);
+							Vm.exec("webview", "http://www.totalcross.com", 0, true);
 						});
 					}
 				};

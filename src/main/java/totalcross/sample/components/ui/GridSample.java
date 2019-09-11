@@ -2,19 +2,22 @@ package totalcross.sample.components.ui;
 
 import java.util.ArrayList;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sample.util.SQLiteManager;
 import totalcross.sample.util.User;
 import totalcross.ui.Button;
 import totalcross.ui.Container;
 import totalcross.ui.Grid;
+import totalcross.ui.ScrollContainer;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
 import totalcross.util.UnitsConverter;
+import totalcross.util.pdf.Base;
 
-public class GridSample extends Container {
+public class GridSample extends BaseScreen {
 	private ArrayList<User> users;
 	private Grid grid;
 	private Button loadButton;
@@ -22,11 +25,12 @@ public class GridSample extends Container {
 	private final int H = 225;
 	
 	public GridSample() {
+		super("https://totalcross.gitbook.io/playbook/components/gridcontainer");
 		users = SQLiteManager.getInstance().getUsers();
 	}
 
 	@Override
-	public void initUI() {
+	public void onContent(ScrollContainer content) {
 
 		String[] gridCaptions = { "Name", "Phone", "Email" };
 		int gridWidths[] = { -35, -35, -30 };
@@ -43,8 +47,8 @@ public class GridSample extends Container {
 		loadButton.setBackForeColors(Colors.P_600, Colors.ON_P_600);
 		loadButton.setForeColor(Color.WHITE);
 
-		add(grid, LEFT + GAP, TOP + GAP, FILL - GAP, FILL - GAP * 9);
-		add(loadButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP, PREFERRED);
+		content.add(grid, LEFT + GAP, TOP + GAP, FILL - GAP, FILL - GAP * 9);
+		content.add(loadButton, LEFT + GAP, BOTTOM - GAP, FILL - GAP, PREFERRED);
 
 		loadButton.addPressListener(new PressListener() {
 			@Override

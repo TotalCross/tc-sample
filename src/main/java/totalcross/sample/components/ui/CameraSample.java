@@ -1,28 +1,25 @@
 package totalcross.sample.components.ui;
 
 import totalcross.io.File;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Convert;
 import totalcross.sys.InvalidNumberException;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
-import totalcross.ui.Button;
-import totalcross.ui.ComboBox;
+import totalcross.ui.*;
 import totalcross.ui.Container;
-import totalcross.ui.Control;
-import totalcross.ui.ImageControl;
-import totalcross.ui.Label;
-import totalcross.ui.Radio;
-import totalcross.ui.RadioGroupController;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.Event;
 import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
+import totalcross.ui.layout.HBox;
 import totalcross.ui.media.Camera;
 import totalcross.util.UnitsConverter;
 
-public class CameraSample extends Container {
+public class CameraSample extends BaseScreen {
+
 
 	private int GAP = UnitsConverter.toPixels(Control.DP + 12);
 
@@ -38,13 +35,15 @@ public class CameraSample extends Container {
 	private Radio nativeRadio;
 	private Radio galleryRadio;
 
+	public CameraSample() {
+		super("https://totalcross.gitbook.io/playbook/apis/camera");
+	}
+
 	@Override
-	public void initUI() {
-		super.initUI();
-		
-		setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
+	public void onContent(ScrollContainer content) {
+		content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 		Settings.showMemoryMessagesAtExit = false;
-		
+
 		btnFilm = new Button("Film");
 		btnFilm.setBackColor(Colors.BLUE);
 		btnFilm.setForeColor(Color.WHITE);
@@ -55,13 +54,13 @@ public class CameraSample extends Container {
 		btnRotate.setBackColor(Colors.BLUE);
 		btnRotate.setForeColor(Color.WHITE);
 		btnRotate.setEnabled(false);
-		
+
 		cbRes = new ComboBox(Camera.getSupportedResolutions());
 		cbRes.setSelectedIndex(0);
-		
+
 		radioGroup = new RadioGroupController();
 		radioGroup.setSelectedIndex(0, false);
-		
+
 		customRadio = new Radio("Custom", radioGroup);
 		customRadio.leftJustify = true;
 		nativeRadio = new Radio("Native", radioGroup);
@@ -69,22 +68,30 @@ public class CameraSample extends Container {
 		galleryRadio = new Radio("Gallery", radioGroup);
 		galleryRadio.leftJustify = true;
 
-		add(l = new Label(""), LEFT, BOTTOM);
-		add(btnFilm, LEFT + GAP, BEFORE);
-		add(btnPhoto, AFTER + GAP, SAME, SAME, SAME);
-		add(btnRotate, AFTER + GAP, SAME, SAME, SAME);
-		add(cbRes, AFTER + GAP, SAME, SAME, SAME);
+		Container subContent = new Container();
+		content.add(subContent, LEFT, TOP, PARENTSIZE, PARENTSIZE);
+		subContent.add(l = new Label(""), LEFT, BOTTOM);
 
-		add(galleryRadio, LEFT + GAP, BEFORE - GAP);
-		add(nativeRadio, LEFT + GAP, BEFORE - GAP);
-		add(customRadio, AFTER + GAP, SAME);
-		
-		add(ic = new ImageControl(), LEFT + GAP, GAP, FILL - GAP, FIT);
+		HBox box = new HBox();
+		box.setLayout(HBox.LAYOUT_FILL, HBox.ALIGNMENT_CENTER);
+		box.setSpacing(UnitsConverter.toPixels(DP + 8));
+		subContent.add(box, LEFT, BEFORE, PARENTSIZE, DP + 48);
+
+		box.add(new Control [] {
+				btnFilm, btnPhoto, btnRotate, cbRes
+				});
+
+		subContent.add(galleryRadio, LEFT + GAP, BEFORE - GAP);
+		subContent.add(nativeRadio, LEFT + GAP, BEFORE - GAP);
+		subContent.add(customRadio, AFTER + GAP, SAME);
+
+		subContent.add(ic = new ImageControl(), LEFT + GAP, GAP, FILL - GAP, FIT);
+		ic.scaleToFit = true;
 		ic.setEventsEnabled(true);
 		camera = new Camera();
 		camera.allowRotation = true;
-		
-		
+
+
 		if (Settings.isIOS() || Settings.platform.equals(Settings.WINDOWSPHONE)) {
 			btnFilm.setVisible(false);
 		}

@@ -2,6 +2,7 @@ package totalcross.sample.components.ui;
 
 import totalcross.io.IOException;
 import totalcross.res.Resources;
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
@@ -20,9 +21,13 @@ import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 import totalcross.util.UnitsConverter;
 
-public class TopMenuSample extends ScrollContainer {
+public class TopMenuSample extends BaseScreen {
 	final int gap = UnitsConverter.toPixels(DP + 20);
 	private TopMenu topMenu;
+
+	public TopMenuSample () {
+		super("https://totalcross.gitbook.io/playbook/components/side-menu");
+	}
 
 	private class FilterContainer extends Container implements PressListener {
 		@Override
@@ -55,7 +60,7 @@ public class TopMenuSample extends ScrollContainer {
 	}
 
 	@Override
-	public void initUI() {
+	public void onContent(ScrollContainer content) {
 		Control[] items = { new TopMenu.Item("Videocalls", Resources.warning),
 				new TopMenu.Item("Insert emoticon", Resources.exit),
 				new ComboBox(new String[] { "Smile", "Sad", "Laugh" }), new TopMenu.Item("Add text", Resources.back),
@@ -66,25 +71,25 @@ public class TopMenuSample extends ScrollContainer {
 		
 		Label message = new Label("Click on the buttons to show the TopMenu", CENTER);
 		message.autoSplit = true;
-		add(message, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
+		content.add(message, LEFT + gap, TOP + gap, FILL - gap, PREFERRED);
 		
 		Button[] tmBtn = new Button[4];
 		Button[] filterBtn = new Button[2];
 		tmBtn[0] = new Button("TOP");
-		add(tmBtn[0], CENTER, AFTER + gap);
+		content.add(tmBtn[0], CENTER, AFTER + gap);
 		tmBtn[0].addPressListener(e -> {
 			topMenu = new TopMenu(items, TOP);
 			topMenu.popup();
 		});
 
 		tmBtn[1] = new Button("RIGHT");
-		add(tmBtn[1], RIGHT - gap, CENTER);
+		content.add(tmBtn[1], RIGHT - gap, CENTER);
 		tmBtn[1].addPressListener(e -> {
 			topMenu = new TopMenu(items, RIGHT);
 			topMenu.popup();
 		});
 		filterBtn[0] = new Button("Filter RIGHT");
-		add(filterBtn[0], RIGHT - gap, AFTER + gap);
+		content.add(filterBtn[0], RIGHT - gap, AFTER + gap);
 		filterBtn[0].addPressListener(e -> {
 			topMenu = new TopMenu(new Control[] { new FilterContainer() }, RIGHT);
 			topMenu.totalTime = 500;
@@ -100,20 +105,20 @@ public class TopMenuSample extends ScrollContainer {
 		});
 		
 		tmBtn[2] = new Button("BOTTOM");
-		add(tmBtn[2], CENTER, BOTTOM - gap);
+		content.add(tmBtn[2], CENTER, BOTTOM - gap);
 		tmBtn[2].addPressListener(e -> {
 			topMenu = new TopMenu(items, BOTTOM);
 			topMenu.popup();		
 		});
 		
 		tmBtn[3] = new Button("LEFT");
-		add(tmBtn[3], LEFT + gap, CENTER);
+		content.add(tmBtn[3], LEFT + gap, CENTER);
 		tmBtn[3].addPressListener(e -> {
 			topMenu = new TopMenu(items, LEFT);
 			topMenu.popup();
 		});
 		filterBtn[1] = new Button("Filter LEFT");
-		add(filterBtn[1], LEFT + gap, AFTER + gap);
+		content.add(filterBtn[1], LEFT + gap, AFTER + gap);
 		filterBtn[1].addPressListener(e -> {
 			topMenu = new TopMenu(new Control[] { new FilterContainer() }, LEFT);
 			topMenu.totalTime = 500;

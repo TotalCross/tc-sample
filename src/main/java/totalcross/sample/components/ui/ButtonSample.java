@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
 import totalcross.ui.Button;
@@ -10,7 +11,7 @@ import totalcross.ui.gfx.Color;
 import totalcross.ui.image.Image;
 import totalcross.util.UnitsConverter;
 
-public class ButtonSample extends ScrollContainer{
+public class ButtonSample extends BaseScreen {
 
 	
 	private Button btnDefaultColor;
@@ -31,18 +32,17 @@ public class ButtonSample extends ScrollContainer{
 	private Label lImages = new Label("Images", CENTER);
 	
 	public ButtonSample() {
+		super("https://totalcross.gitbook.io/playbook/components/button");
 		center = Settings.screenWidth/2;
 	}
-	
-	@Override
-	public void initUI()
-	{
-		super.initUI();
 
+
+	@Override
+	public void onContent(ScrollContainer content) {
 		try {
-			setInsets(0, 0, 0, UnitsConverter.toPixels(DP + 8));
-			setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
-			setScrollBars(false, true);
+
+			content.setInsets(0, 0, 0, UnitsConverter.toPixels(DP + 8));
+			content.setBackForeColors(Colors.BACKGROUND, Colors.ON_BACKGROUND);
 			//Colors
 			Label lColors = new Label("Colors", CENTER);
 			Font bold = lColors.getFont().asBold();
@@ -65,7 +65,7 @@ public class ButtonSample extends ScrollContainer{
 			btnBorderless = new Button("Borderless Button", Button.BORDER_NONE);
 			btnBorderless.setForeColor(Colors.P_700);
 			btnOutlined = new Button("Outlined Button", Button.BORDER_OUTLINED);
-			
+
 			btnOutlined.setBackForeColors(Colors.P_700, Color.WHITE);
 			//Images
 			lImages.setFont(bold);
@@ -87,30 +87,30 @@ public class ButtonSample extends ScrollContainer{
 			btnSmall = new Button("Small");
 			btnSmall.setFont(Font.getFont(btnLarge.getFont().size*3/4));
 			btnSmall.setBackForeColors(Colors.P_700, Color.WHITE);
-			
-			add(lColors, LEFT, TOP + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
-			add(btnDefaultColor, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
-			add(btnGreen, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
-			add(btnRed, BEFORE - UnitsConverter.toPixels(DP + 8), SAME);
-			add(btnBlue, AFTER + UnitsConverter.toPixels(DP + 8), SAME, btnGreen);
-			add(lShapes, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
-			add(btnFull, CENTER, AFTER + UnitsConverter.toPixels(DP + 8), PARENTSIZE + 95, PREFERRED);
-			add(btnRounded, CENTER, AFTER + UnitsConverter.toPixels(DP + 8), PARENTSIZE + 95, PREFERRED);
-			add(btnOutlined, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
-			add(btnBorderless, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
-			add(lImages, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
-			add(btnRightImage, center + UnitsConverter.toPixels(DP + 4), AFTER + UnitsConverter.toPixels(DP + 8));
-			add(btnLeftImage, BEFORE - UnitsConverter.toPixels(DP + 4), SAME);
-			add(btnImage, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
-			add(lSizes, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
-			add(btnLarge, LEFT + UnitsConverter.toPixels(DP + 2), AFTER + UnitsConverter.toPixels(DP + 8), btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + UnitsConverter.toPixels(DP + 48), DP + 54);
-			add(btnDefaultSize, AFTER +UnitsConverter.toPixels(DP + 2) , CENTER_OF);
-			add(btnSmall, AFTER + UnitsConverter.toPixels(DP + 2), CENTER_OF, btnSmall.getPreferredWidth() <= 24 ? DP + 48 : btnSmall.getPreferredWidth() + UnitsConverter.toPixels(DP + 24), DP + 27, btnDefaultSize);
+			content.add(lColors, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
+			content.add(btnDefaultColor, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
+			content.add(btnGreen, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
+			content.add(btnRed, BEFORE - UnitsConverter.toPixels(DP + 8), SAME);
+			content.add(btnBlue, AFTER + UnitsConverter.toPixels(DP + 8), SAME, btnGreen);
+			content.add(lShapes, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
+			content.add(btnFull, CENTER, AFTER + UnitsConverter.toPixels(DP + 8), PARENTSIZE + 95, PREFERRED);
+			content.add(btnRounded, CENTER, AFTER + UnitsConverter.toPixels(DP + 8), PARENTSIZE + 95, PREFERRED);
+			content.add(btnOutlined, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
+			content.add(btnBorderless, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
+			content.add(lImages, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
+			content.add(btnRightImage, center + UnitsConverter.toPixels(DP + 4), AFTER + UnitsConverter.toPixels(DP + 8));
+			content.add(btnLeftImage, BEFORE - UnitsConverter.toPixels(DP + 4), SAME);
+			content.add(btnImage, CENTER, AFTER + UnitsConverter.toPixels(DP + 8));
+			content.add(lSizes, LEFT, AFTER + UnitsConverter.toPixels(DP + 8), FILL, DP + 36);
+			content.add(btnLarge, LEFT + UnitsConverter.toPixels(DP + 2), AFTER + UnitsConverter.toPixels(DP + 8), btnLarge.getPreferredWidth() <= 48 ? DP + 96 : btnLarge.getPreferredWidth() + UnitsConverter.toPixels(DP + 48), DP + 54);
+			content.add(btnDefaultSize, AFTER +UnitsConverter.toPixels(DP + 2) , CENTER_OF);
+			content.add(btnSmall, AFTER + UnitsConverter.toPixels(DP + 2), CENTER_OF, btnSmall.getPreferredWidth() <= 24 ? DP + 48 : btnSmall.getPreferredWidth() + UnitsConverter.toPixels(DP + 24), DP + 27, btnDefaultSize);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void reposition() {
 		center = Settings.screenWidth/2;

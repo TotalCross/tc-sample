@@ -1,6 +1,8 @@
 package totalcross.sample.components.layout;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.ui.Button;
+import totalcross.ui.Container;
 import totalcross.ui.Control;
 import totalcross.ui.ScrollContainer;
 import totalcross.ui.gfx.Color;
@@ -9,20 +11,16 @@ import totalcross.ui.layout.HBox;
 import totalcross.ui.layout.VBox;
 import totalcross.util.UnitsConverter;
 
-public class HBoxVBoxSample extends ScrollContainer {
+public class HBoxVBoxSample extends BaseScreen {
 	boolean hbox = true;
 	
 	public HBoxVBoxSample(boolean hbox) {
+		allowHorizontalScroll = true;
 		this.hbox = hbox;
 	}
 	
 	@Override
-	public void initUI() {
-		super.initUI();
-		
-		ScrollContainer scroll = new ScrollContainer();
-		this.add(scroll, LEFT, TOP + 40, PARENTSIZE, PARENTSIZE);
-		
+	public void onContent(ScrollContainer content) {
 		int xpos;
 		int ypos;
 		int width = hbox ? DP + 240 : DP + 68;
@@ -38,7 +36,7 @@ public class HBoxVBoxSample extends ScrollContainer {
 				v.setLayout(l, a);
 				v.setBackColor(0xCCCCCC);				
 				v.add(generateButtons());
-				scroll.add(v, xpos + 10, ypos, width, height);
+				content.add(v, xpos + 10, ypos, width, height);
 			}
 		}
 	}

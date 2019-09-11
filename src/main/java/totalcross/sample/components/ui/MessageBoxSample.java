@@ -2,19 +2,19 @@ package totalcross.sample.components.ui;
 
 import java.util.Random;
 
+import totalcross.sample.components.BaseScreen;
 import totalcross.sample.util.Colors;
-import totalcross.ui.Button;
-import totalcross.ui.Container;
-import totalcross.ui.ScrollContainer;
-import totalcross.ui.Toast;
+import totalcross.ui.*;
 import totalcross.ui.chart.ColumnChart;
 import totalcross.ui.chart.Series;
 import totalcross.ui.dialog.MessageBox;
 import totalcross.ui.event.ControlEvent;
 import totalcross.ui.event.PressListener;
 import totalcross.ui.gfx.Color;
+import totalcross.util.UnitsConverter;
+import totalcross.util.pdf.Base;
 
-public class MessageBoxSample extends Container {
+public class MessageBoxSample extends BaseScreen {
 
 	private ScrollContainer sc;
 	private Button btnQuestion;
@@ -26,8 +26,12 @@ public class MessageBoxSample extends Container {
 	private MessageBox mb;
 	private int wrongAnswers, correctAnswers;
 
+	public MessageBoxSample() {
+		super("https://totalcross.gitbook.io/playbook/components/messagebox");
+	}
+
 	@Override
-	public void initUI() {
+	public void onContent(ScrollContainer content) {
 		wrongAnswers = 0;
 		correctAnswers = 0;
 		String[] facts = { "Scotland has 421 words for /“snow/”",
@@ -46,8 +50,6 @@ public class MessageBoxSample extends Container {
 		int difficulty = 5;
 		Random r = new Random();
 
-		sc = new ScrollContainer(false, true);
-		add(sc, LEFT, TOP, FILL, FILL);
 
 		btnFact = new Button("Random fact");
 		btnFact.setBackForeColors(Colors.P_700, Colors.ON_P_700);
@@ -155,12 +157,12 @@ public class MessageBoxSample extends Container {
 		chart.setYAxis(0, 15, 5);
 		chart.showCategories = true;
 
-		sc.setFont(font.asBold());
-		sc.add(btnFact, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-		sc.add(btnQuestion, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
-		sc.add(chart, LEFT, AFTER, FILL, SCREENSIZE + 40);
-		sc.add(btnClear, CENTER, AFTER + GAP, SCREENSIZE + 90, PREFERRED + H);
-
+		content.setFont(font.asBold());
+		content.add(btnFact, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+		content.add(btnQuestion, LEFT + GAP, AFTER + GAP, FILL - GAP, PREFERRED + H);
+		content.add(chart, LEFT, AFTER, FILL, SCREENSIZE + 40);
+		content.add(btnClear, CENTER, AFTER + GAP, SCREENSIZE + 90, PREFERRED + H);
+		content.add(new Spacer(), LEFT, AFTER + UnitsConverter.toPixels(DP + 24));
 		chart.setBackColor(Color.WHITE);
 	}
 }
