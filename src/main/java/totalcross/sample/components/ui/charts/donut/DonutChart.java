@@ -26,9 +26,7 @@ public class DonutChart extends Container {
     
     @Override
     public void initUI() {
-        centerX = this.x + this.width / 2;
-        centerY = this.y + this.height / 2;
-        r = Math.min(this.width, this.height) / 4;
+        r = Math.min(this.width, this.height) / 3;
         
         Slice s1 = new Slice();
 //        s1.centerX = centerX;
@@ -64,8 +62,9 @@ public class DonutChart extends Container {
     public void onPaint(Graphics g) {
         // TODO Auto-generated method stub
         super.onPaint(g);
-        int centerX = this.x + this.width / 2;
-        int centerY = this.y + this.height / 2;
+        
+        centerX = this.width / 2;
+        centerY = this.height / 2;
         g.backColor = Color.RED;
         
         int currentAngle = startAngle;
@@ -96,7 +95,6 @@ public class DonutChart extends Container {
             g.fillPie(centerX + selectedGap, centerY - selectedGap, r / 2, currentAngle - 1, currentAngle + slice.sweepAngle + 1);
             currentAngle += slice.sweepAngle;
         }
-
     }
     
     @Override
