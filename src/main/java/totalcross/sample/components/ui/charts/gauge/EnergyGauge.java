@@ -21,8 +21,9 @@ public class EnergyGauge extends Gauge {
     @Override
     protected void onDrawSections(Graphics graphics, int radius, int startAngle, int endAngle) {
         graphics.backColor = graphics.foreColor = 0;
+        graphics.foreColor = Color.WHITE;
         int thickness = (int)(radius*0.25);
-        int delta = (int)getSectionAngle(UnitsConverter.toPixels(4 + DP), radius - thickness);
+        int delta = (int)getSectionAngle(UnitsConverter.toPixels(8 + DP), radius - thickness);
 
         int currentSection = 0;
         int currentSum = 0;
@@ -70,7 +71,7 @@ public class EnergyGauge extends Gauge {
 //             4);
         }
         graphics.foreColor = valueColor;
-        onDisplayValue2(graphics, value+"", valuePrefix, valueSuffix, radius, startAngle, endAngle);
+        onDisplayValue2(graphics, value+"", valuePrefix, valueSuffix, radius, startAngle, endAngle, valueColor);
     }
 
     @Override
@@ -88,13 +89,16 @@ public class EnergyGauge extends Gauge {
 
     }
 
-    protected void onDisplayValue2(Graphics g, String value, String preffix, String suffix, int radius, int startAngle, int endAngle) {
+    protected void onDisplayValue2(Graphics g, String value, String preffix, String suffix, int radius, int startAngle, int endAngle, int valueColor) {
         Font f = getFont().getFont(getMostSuitableFontSize((int)(0.33*width)));
         String resultingValue = preffix+value+suffix;
         g.setFont(f);
-        g.drawText(resultingValue,
-                centerX - f.fm.stringWidth(resultingValue)/2,
-                centerY - (angleRange <= 180? f.fm.height : f.fm.height/2));
+        int tx = centerX - f.fm.stringWidth(resultingValue)/2;
+        int ty = centerY - (angleRange <= 180? f.fm.height : f.fm.height/2);
+        g.backColor = g.foreColor = backColor;
+        g.fillRect(tx, ty, f.fm.stringWidth(resultingValue), f.fm.height);
+        g.foreColor = valueColor;
+        g.drawText(resultingValue, tx, ty);
     }
 
     private double [][] getColorsInterval() {

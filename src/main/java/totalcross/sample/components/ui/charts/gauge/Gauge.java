@@ -126,6 +126,8 @@ public class Gauge extends Control {
 
     @Override
     public void onPaint(Graphics g) {
+        g.backColor = g.foreColor = backColor;
+        g.fillRect(0, 0, width, height);
         int remainder = (angleRange - 180)/2;
         startAngle = 180 + remainder;
         endAngle = 0 - remainder;
@@ -221,6 +223,7 @@ public class Gauge extends Control {
 
         int incremntSum = 0;
         int minorTickThickness = UnitsConverter.toPixels(DP + 1);
+        g.foreColor = foreColor;
         // draw thicks from end to start
         for (int i = 0; i <= max; i += minorTicksInterval) {
             double angle = (double)(i - min)/(double)(max - min); // normalized in function of min and max value
@@ -251,8 +254,8 @@ public class Gauge extends Control {
 
     protected Coord getCoordEndVectorWith(int centerX, int centerY, int radius, int angle) {
         Coord result = new Coord();
-        result.x = centerX + (int) (Math.cos(angle*Math.PI/180)*radius);
-        result.y = centerY - (int) (Math.sin(angle*Math.PI/180)*radius);
+        result.x = centerX + (int) (Math.cos(Math.toRadians(angle))*radius);
+        result.y = centerY - (int) (Math.sin(Math.toRadians(angle))*radius);
         return result;
     }
 
@@ -280,15 +283,22 @@ public class Gauge extends Control {
 
     protected void onDisplayValue(Graphics g, String value, String preffix, String suffix, int radius, int startAngle, int endAngle) {
         // Draw value Label
-        Font f = valueLabelFont.getFont(getMostSuitableFontSize((int)(0.33*width)));
+        Font f = valueLabelFont.getFont(getMostSuitableFontSize((int)(0.40*width)));
         String valueString = preffix + "" + value + "" + suffix;
         int maxY = height - 1, minY;
         g.foreColor = Color.BLACK;
 
         g.setFont(f);
+        int remainderAngle = angleRange/2 - 90;
+        int tx = centerX - (f.fm.stringWidth(valuePrefix+value+valueSuffix)/2);
+        int ty = centerY + (int)(radius*(Math.sin(Math.toRadians(remainderAngle))) - f.fm.height/2);
+        g.foreColor = g.backColor = backColor;
+        g.fillRect(centerX - (f.fm.stringWidth(max + "" + valuePrefix + valueSuffix)/2), ty,
+                f.fm.stringWidth(max + "" + valuePrefix + valueSuffix), f.fm.height);
+        g.foreColor = Color.WHITE;
         g.drawText(valueString,
-                centerX - (f.fm.stringWidth(valuePrefix+value+valueSuffix)/2),
-                centerY - (0), true, Color.WHITE);
+                tx,
+                ty);
 
     }
 

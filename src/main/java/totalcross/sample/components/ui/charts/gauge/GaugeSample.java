@@ -1,7 +1,11 @@
 package totalcross.sample.components.ui.charts.gauge;
 
 
+import totalcross.sample.components.ui.charts.AnimationFunctions;
+import totalcross.sys.Vm;
 import totalcross.ui.Container;
+import totalcross.ui.MainWindow;
+import totalcross.ui.event.UpdateListener;
 import totalcross.ui.font.Font;
 import totalcross.util.UnitsConverter;
 
@@ -9,7 +13,7 @@ public class GaugeSample extends Container {
     public GaugeSample() {
 
     }
-
+    UpdateListener updateListener;
     @Override
     public void initUI() {
         int Color1 = 0x2ECC40;
@@ -34,7 +38,7 @@ public class GaugeSample extends Container {
         stylishSectionsGauge.section(80, Color2);
         stylishSectionsGauge.section(80, Color3);
         stylishSectionsGauge.setValueLabelFont(Font.getFont(25));
-        stylishSectionsGauge.setValueSuffix("RPM");
+        stylishSectionsGauge.setValueSuffix(" RPM");
         stylishSectionsGauge.setForeColor(0x0);
         stylishSectionsGauge.setValue(80);
 
@@ -49,5 +53,45 @@ public class GaugeSample extends Container {
         storageGauge.setValue(80);
 
         add(storageGauge, AFTER, SAME, FILL, SAME, energyGauge);
+
+        updateListener  = new UpdateListener() {
+            AnimationFunctions af = new AnimationFunctions();
+            int rpmTotalTime = 3000;
+            int currentime = 0;
+            @Override
+            public void updateListenerTriggered(int elapsedMilliseconds) {
+                currentime += elapsedMilliseconds;
+                double ratio = rpmAnimationFunction(currentime%rpmTotalTime, rpmTotalTime);
+                stylishSectionsGauge
+                        .setValue((int)((stylishSectionsGauge.max - stylishSectionsGauge.min)*ratio)
+                                - stylishSectionsGauge.min);
+                stylishSectionsGauge.repaintNow();
+
+                energyGauge
+                        .setValue((int)((energyGauge.max - energyGauge.min)*ratio)
+                                - energyGauge.min);
+                energyGauge.repaintNow();
+            }
+
+            public double rpmAnimationFunction(int time, int totalTime) {
+                double ratio = time/(double)totalTime;
+                if(ratio < .30) {
+                    ratio = ratio/0.30;
+                    return af.easeOutQuad(ratio);
+                }
+                else {
+                    ratio = (ratio - 0.30)/0.70;
+                    return 1.0 - af.easeOutSine(ratio);
+                }
+            }
+        };
+        MainWindow.getMainWindow().addUpdateListener(updateListener);
+    }
+
+
+
+    @Override
+    protected void onRemove() {
+        MainWindow.getMainWindow().removeUpdateListener(updateListener);
     }
 }
