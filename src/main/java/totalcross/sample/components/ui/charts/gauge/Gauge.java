@@ -58,6 +58,7 @@ public class Gauge extends Control {
             this.angleRange = angleRange;
         }
         valueLabel = new Label(valuePrefix+value+valueSuffix);
+        this.transparentBackground = true;
     }
 
     public Gauge section(int value, int color) {
@@ -125,14 +126,11 @@ public class Gauge extends Control {
 
     @Override
     public void onPaint(Graphics g) {
-        g.backColor = this.backColor;
-        g.fillRect(0, 0, width, height);
         int remainder = (angleRange - 180)/2;
         startAngle = 180 + remainder;
         endAngle = 0 - remainder;
 
-        final int center = getWidth() / 2;
-        int radius = (int) (getWidth() * 0.49f);
+        int radius = (int) (this.width * 0.49f);
         if(showTicks) radius = radius - fm.stringWidth(""+min) - fm.stringWidth(""+max);
         final int maxHeight = height - 1;
         centerY = angleRange <= 180? maxHeight:
@@ -164,10 +162,8 @@ public class Gauge extends Control {
 
         onDisplayValue(g, value + "", valuePrefix, valueSuffix, radius, startAngle, endAngle);
 
-        setRect(getRect());
         if(showTicks) onDrawTicks(g, majorTicksInterval, minorTicksInterval, radius);
         drawArrow(g, radius, startAngle, endAngle);
-
     }
 
     protected void getTickLabelPlacement (String label, int angle, int radius, int margin, Coord out) {
