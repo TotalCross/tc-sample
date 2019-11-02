@@ -16,7 +16,7 @@ class Slice {
         }
         if(start < 0) start = 360 + start;
         if(end < 0) end = 360 + end;
-        System.out.println(theta + ", " + start + ", " + end);
+//        System.out.println(theta + ", " + start + ", " + end);
         return theta <= start && theta >= end;
     }
 }

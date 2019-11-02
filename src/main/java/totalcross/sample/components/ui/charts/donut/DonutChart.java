@@ -143,7 +143,7 @@ public class DonutChart extends Container {
 
             }
             double theta = Math.toDegrees(Math.atan2(pe.y - centerY, pe.x - centerX));
-            System.out.println(String.valueOf(theta));
+//            System.out.println(String.valueOf(theta));
         } else if (event.type == MouseEvent.MOUSE_MOVE) {
             MouseEvent pe = (MouseEvent) event;
 //            if (isInside(pe.x, pe.y, r) && !isInside(pe.x, pe.y, r / 2)) {
@@ -171,7 +171,7 @@ public class DonutChart extends Container {
         Coord center = new Coord();
         center.x = centerX + (int)(gap*Math.cos(Math.toRadians(angle)));
         center.y = centerY - (int)(gap*Math.sin(Math.toRadians(angle)));
-        System.out.println(angle + ", " +  center.x + ", " + center.y);
+//        System.out.println(angle + ", " +  center.x + ", " + center.y);
         return center;
     }
     
