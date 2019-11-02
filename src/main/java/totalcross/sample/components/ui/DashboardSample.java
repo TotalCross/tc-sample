@@ -1,5 +1,6 @@
 package totalcross.sample.components.ui;
 
+import totalcross.sample.components.ui.charts.column.DashboardColumnChart;
 import totalcross.sample.components.ui.charts.donut.DonutChart;
 import totalcross.sample.components.ui.charts.donut.Section;
 import totalcross.sample.components.ui.charts.gauge.GaugeSample;
@@ -34,7 +35,7 @@ public class DashboardSample extends Container {
                 add(new Section("Donut", new DonutChart()), LEFT + GAP, SAME, FIT - GAP, SAME);
 
                 add(new Section("WTE", null), RIGHT - GAP, AFTER, PARENTSIZE + 30, FILL - GAP, center);
-                add(new Section("Columns", null), LEFT + GAP, SAME, FIT - GAP, SAME);
+                add(new Section("Columns", new DashboardColumnChart()), LEFT + GAP, SAME, FIT - GAP, SAME);
 
             }
         }, LEFT, AFTER, FILL, FILL);
