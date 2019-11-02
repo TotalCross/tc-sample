@@ -9,15 +9,14 @@ class Slice {
     int fillColor;
     
     public boolean isInside(double theta) {
-        int start = 360 - startAngle > 360 ? startAngle - 360 : startAngle;
-        int end = start + sweepAngle;
-        if (end > 360) {
-            end -= 360;
+        int start = startAngle;
+        int end = start - sweepAngle;
+        if(start > 0 && end < 0) {
+            return theta <= start || (theta - 360) >= end;
         }
-        
-        theta = theta >= 0 ? theta : 360 + theta;
-        
+        if(start < 0) start = 360 + start;
+        if(end < 0) end = 360 + end;
         System.out.println(theta + ", " + start + ", " + end);
-        return start < end ? (theta >= start && theta <= end) : (theta > start || theta < end);
+        return theta <= start && theta >= end;
     }
 }
