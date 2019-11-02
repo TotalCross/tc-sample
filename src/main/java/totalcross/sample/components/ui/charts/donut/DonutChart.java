@@ -87,28 +87,32 @@ public class DonutChart extends Container {
 
                g.foreColor = Color.WHITE;
                g.drawLine(x, y, point2.x, point2.y);
+               int tw = fm.stringWidth(String.valueOf(selectedSlice.sweepAngle));
+               int tipHeight = fm.height + UnitsConverter.toPixels(DP + 4);
                if(tipAngle < 0) tipAngle = 360 + tipAngle;
+
                if(tipAngle >= 0 && tipAngle < 90) {
                    point2.x += 10;
-                   point2.y -= 30;
+                   point2.y -= tipHeight;
                }
                 if(tipAngle >= 90 && tipAngle < 180) {
-                    point2.x -= 60;
-                    point2.y -= 30;
+                    point2.x -= tw;
+                    point2.y -= tipHeight;
                 }
                 if(tipAngle >= 180 && tipAngle < 270) {
-                    point2.x -= 70;
+                    point2.x -= tw + 10;
                 }
-               g.foreColor = this.getBackColor();
+               g.foreColor = Color.WHITE;
                g.backColor = selectedSlice.fillColor;
-//               g.fillPolygon(
-//                       new int[] { point2.x, point2.x + 70, point2.x + 60, point2.x - 10 },
-//                       new int[] { point2.y, point2.y, point2.y + 30, point2.y + 30 }, 4);
+
+               g.fillPolygon(
+                       new int[] { point2.x, point2.x + tw + 10, point2.x + tw, point2.x - 10 },
+                       new int[] { point2.y, point2.y, point2.y + tipHeight, point2.y + tipHeight }, 4);
                g.foreColor = Color.WHITE; //this.getBackColor();
                String valueStr = String.valueOf(selectedSlice.sweepAngle);
                g.drawText(valueStr,
-                       point2.x + 35 - fm.stringWidth(valueStr)/2,
-                       point2.y + 15 - fm.height/2);
+                       point2.x,
+                       point2.y + tipHeight/2 - fm.height/2);
             }
             
             g.foreColor = this.getBackColor();
