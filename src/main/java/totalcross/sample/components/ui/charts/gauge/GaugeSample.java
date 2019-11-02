@@ -27,7 +27,7 @@ public class GaugeSample extends Container {
         energyGauge.setForeColor(0x0);
         energyGauge.setValue(60);
         
-        add(energyGauge, CENTER, TOP, PARENTSIZE + 50, PARENTSIZE + 50);
+        add(energyGauge, CENTER, TOP, PARENTSIZE + 33, PARENTSIZE);
 
         Gauge stylishSectionsGauge = new StylishSectionsGauge(0, 180, 270);
         stylishSectionsGauge.section(80, Color1);
@@ -38,7 +38,7 @@ public class GaugeSample extends Container {
         stylishSectionsGauge.setForeColor(0x0);
         stylishSectionsGauge.setValue(80);
 
-        add(stylishSectionsGauge, LEFT, AFTER, PARENTSIZE + 50, PARENTSIZE + 50);
+        add(stylishSectionsGauge, LEFT, SAME, FIT, SAME);
 
         Gauge storageGauge = new StorageGauge(0, 180, 270);
 
@@ -48,6 +48,6 @@ public class GaugeSample extends Container {
         storageGauge.showTickValues(false);
         storageGauge.setValue(80);
 
-        add(storageGauge, RIGHT, SAME, PARENTSIZE + 50, PARENTSIZE + 50);
+        add(storageGauge, AFTER, SAME, FILL, SAME, energyGauge);
     }
 }

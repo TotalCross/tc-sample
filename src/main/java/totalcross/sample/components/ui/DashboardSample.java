@@ -30,8 +30,7 @@ public class DashboardSample extends Container {
                 Spacer center = new Spacer();
                 add(center, CENTER, CENTER);
 
-                add(new Section("Gauge", new GaugeSample()), RIGHT - GAP, TOP, PARENTSIZE + 30, FIT - GAP);
-                add(new Section("Values", null), BEFORE - GAP, SAME, PARENTSIZE + 30, SAME);
+                add(new Section("Gauge", new GaugeSample()), RIGHT - GAP, TOP, PARENTSIZE + 60, FIT - GAP);
                 add(new Section("Donut", new DonutChart()), LEFT + GAP, SAME, FIT - GAP, SAME);
 
                 add(new Section("WTE", null), RIGHT - GAP, AFTER, PARENTSIZE + 30, FILL - GAP, center);
