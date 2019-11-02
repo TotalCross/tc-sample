@@ -67,12 +67,11 @@ public class DonutChart extends Container {
         
         centerX = this.width / 2;
         centerY = this.height / 2;
-        g.backColor = Color.RED;
         
         int currentAngle = startAngle;
         g.foreColor = this.getBackColor();
         for (Slice slice : slices) {
-            g.foreColor = slice.fillColor;
+            g.foreColor = this.getBackColor();
             g.backColor = slice.fillColor;
             slice.startAngle = currentAngle;
             int selectedGap = selectedSlice == slice ? 10 : 0;
