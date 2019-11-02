@@ -24,6 +24,7 @@ import totalcross.sample.components.ui.ButtonSample;
 import totalcross.sample.components.ui.CameraSample;
 import totalcross.sample.components.ui.CheckRadioSample;
 import totalcross.sample.components.ui.ComboListSample;
+import totalcross.sample.components.ui.DashboardSample;
 import totalcross.sample.components.ui.DynScrollContainerSample;
 import totalcross.sample.components.ui.EditSample;
 import totalcross.sample.components.ui.FontSample;
@@ -87,6 +88,7 @@ public class TCSample extends MainWindow {
 		MainWindow.getMainWindow().addTimer(100);
 		
 		SideMenuContainer.Item home = new SideMenuContainer.Item("Home", MaterialIcons._HOME, Color.BLACK, false, () -> { return new Home(); });
+		SideMenuContainer.Item dashboard = new SideMenuContainer.Item("Dashboard", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new DashboardSample(); });
 		SideMenuContainer.Sub uiGroup = createUISubGroup();
 		SideMenuContainer.Sub layoutGroup = createLayoutSubGroup();
 		SideMenuContainer.Sub sqlGroup = createSQLSubGroup();
@@ -103,6 +105,7 @@ public class TCSample extends MainWindow {
 		
 		sideMenu = new SideMenuContainer(null,
 				home, 
+				dashboard,
 				uiGroup,
 				layoutGroup,
 				chartGroup,
@@ -205,7 +208,7 @@ public class TCSample extends MainWindow {
 	
 	private Sub createChartSubGroup() {
 		return new SideMenuContainer.Sub("Chart", 
-			new SideMenuContainer.Item("Arc Chart", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new ArcChartSample(); }),
+	        new SideMenuContainer.Item("Arc Chart", MaterialIcons._BUBBLE_CHART, Color.BLACK,  () -> { return new ArcChartSample(); }),
 			new SideMenuContainer.Item("Column Chart", MaterialIcons._INSERT_CHART, Color.BLACK,  () -> { return new ColumnChartSample(); }),
 			new SideMenuContainer.Item("Line Chart", MaterialIcons._SHOW_CHART, Color.BLACK,  () -> { return new LineChartSample(); }),
 			new SideMenuContainer.Item("Pie Chart", MaterialIcons._PIE_CHART, Color.BLACK,  () -> { return new PieChartSample(); }));
