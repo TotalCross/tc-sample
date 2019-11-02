@@ -99,11 +99,12 @@ public class DonutChart extends Container {
                 if(tipAngle >= 180 && tipAngle < 270) {
                     point2.x -= 70;
                 }
-               g.foreColor = g.backColor = selectedSlice.fillColor;
-               g.fillPolygon(
-                       new int[] { point2.x, point2.x + 70, point2.x + 60, point2.x - 10 },
-                       new int[] { point2.y, point2.y, point2.y + 30, point2.y + 30 }, 4);
                g.foreColor = this.getBackColor();
+               g.backColor = selectedSlice.fillColor;
+//               g.fillPolygon(
+//                       new int[] { point2.x, point2.x + 70, point2.x + 60, point2.x - 10 },
+//                       new int[] { point2.y, point2.y, point2.y + 30, point2.y + 30 }, 4);
+               g.foreColor = Color.WHITE; //this.getBackColor();
                String valueStr = String.valueOf(selectedSlice.sweepAngle);
                g.drawText(valueStr,
                        point2.x + 35 - fm.stringWidth(valueStr)/2,
