@@ -63,11 +63,11 @@ public class EnergyGauge extends Gauge {
             int markWidth = UnitsConverter.toPixels(DP + 2);
             int deltaX = (int)(markWidth*Math.cos(180 - i));
             int deltaY = (int)(markWidth*Math.sin(180 - i));
-//            graphics.drawThickLine(extCoord.x, extCoord.y, innerCoord.x, innerCoord.y, UnitsConverter.toPixels(DP + 3));
-            graphics.fillPolygon(
-                    new int[] {innerCoord.x, extCoord.x, innerCoord.x - deltaX, extCoord.x - deltaX},
-                    new int[] {innerCoord.y, extCoord.y, innerCoord.y - deltaY, extCoord.y - deltaY},
-             4);
+            graphics.drawThickLine(extCoord.x, extCoord.y, innerCoord.x, innerCoord.y, UnitsConverter.toPixels(DP + 3));
+//            graphics.fillPolygon(
+//                    new int[] {innerCoord.x, extCoord.x, innerCoord.x - deltaX, extCoord.x - deltaX},
+//                    new int[] {innerCoord.y, extCoord.y, innerCoord.y - deltaY, extCoord.y - deltaY},
+//             4);
         }
         graphics.foreColor = valueColor;
         onDisplayValue2(graphics, value+"", valuePrefix, valueSuffix, radius, startAngle, endAngle);
