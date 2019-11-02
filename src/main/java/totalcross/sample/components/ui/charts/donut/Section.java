@@ -22,8 +22,6 @@ public class Section extends Container {
 
     @Override
     public void initUI() {
-        this.borderColor = Color.getRGB(47, 47, 47);
-        this.setBorderStyle(BORDER_ROUNDED);
         this.setBackColor(Color.getRGB(47, 47, 47));
         
         Button btMore = new Button(String.valueOf(MaterialIcons._MORE_VERT), Button.BORDER_NONE);
