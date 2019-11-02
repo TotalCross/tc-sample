@@ -17,18 +17,10 @@ public class DashboardSample extends Container {
         add(new Container() {
             @Override
             public void initUI() {
-                this.setBackColor(Color.getRGB(41, 45, 57));
+
             }
 
         }, LEFT, TOP, PARENTSIZE, DP + 56);
-
-        add(new Container() {
-            @Override
-            public void initUI() {
-
-            }
-
-        }, LEFT, AFTER, PARENTSIZE, DP + 56);
 
         add(new Container() {
             @Override
