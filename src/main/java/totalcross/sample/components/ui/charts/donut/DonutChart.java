@@ -67,7 +67,7 @@ public class DonutChart extends Container {
         
         centerX = this.width / 2;
         centerY = this.height / 2;
-        
+        r = r - 2*(fm.height + UnitsConverter.toPixels(DP + 8)) + 10;
         int currentAngle = startAngle;
         g.foreColor = this.getBackColor();
         for (Slice slice : slices) {
@@ -85,10 +85,11 @@ public class DonutChart extends Container {
                int x = point.x;
                int y = point.y;
 
-               g.foreColor = Color.WHITE;
-               g.drawLine(x, y, point2.x, point2.y);
                int tw = fm.stringWidth(String.valueOf(selectedSlice.sweepAngle));
                int tipHeight = fm.height + UnitsConverter.toPixels(DP + 4);
+               g.foreColor = Color.WHITE;
+               g.drawLine(x, y, point2.x, point2.y);
+
                if(tipAngle < 0) tipAngle = 360 + tipAngle;
 
                if(tipAngle >= 0 && tipAngle < 90) {
@@ -117,7 +118,7 @@ public class DonutChart extends Container {
             
             g.foreColor = this.getBackColor();
             g.backColor = this.getBackColor();
-            g.fillPie(sliceCenter.x, sliceCenter.y, r / 2, currentAngle - slice.sweepAngle,
+            g.fillPie(sliceCenter.x, sliceCenter.y, r / 3, currentAngle - slice.sweepAngle,
                     currentAngle);
             currentAngle -= slice.sweepAngle;
         }

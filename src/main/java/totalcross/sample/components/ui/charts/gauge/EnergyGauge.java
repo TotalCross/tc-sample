@@ -53,7 +53,8 @@ public class EnergyGauge extends Gauge {
             if(i <= getAngle()) {
                 if(!colorChanged) {
                     colorChanged = true;
-                    valueColor = graphics.foreColor;
+                    if(graphics.backColor != Color.getCursorColor(backColor))
+                        valueColor = graphics.foreColor;
                 }
                 graphics.backColor = graphics.foreColor = Color.getCursorColor(backColor);
             }
@@ -70,7 +71,6 @@ public class EnergyGauge extends Gauge {
 //                    new int[] {innerCoord.y, extCoord.y, innerCoord.y - deltaY, extCoord.y - deltaY},
 //             4);
         }
-        graphics.foreColor = valueColor;
         onDisplayValue2(graphics, value+"", valuePrefix, valueSuffix, radius, startAngle, endAngle, valueColor);
     }
 
