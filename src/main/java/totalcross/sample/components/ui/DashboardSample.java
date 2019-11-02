@@ -2,6 +2,7 @@ package totalcross.sample.components.ui;
 
 import totalcross.sample.components.ui.charts.donut.DonutChart;
 import totalcross.sample.components.ui.charts.donut.Section;
+import totalcross.sample.components.ui.charts.gauge.GaugeSample;
 import totalcross.ui.Container;
 import totalcross.ui.Spacer;
 import totalcross.ui.gfx.Color;
@@ -37,7 +38,7 @@ public class DashboardSample extends Container {
                 Spacer center = new Spacer();
                 add(center, CENTER, CENTER);
 
-                add(new Section("Gauge", null), RIGHT - GAP, TOP, PARENTSIZE + 30, FIT - GAP);
+                add(new Section("Gauge", new GaugeSample()), RIGHT - GAP, TOP, PARENTSIZE + 30, FIT - GAP);
                 add(new Section("Values", null), BEFORE - GAP, SAME, PARENTSIZE + 30, SAME);
                 add(new Section("Donut", new DonutChart()), LEFT + GAP, SAME, FIT - GAP, SAME);
 
