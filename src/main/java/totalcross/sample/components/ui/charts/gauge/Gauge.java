@@ -158,7 +158,7 @@ public class Gauge extends Control {
 //            maxY = out.y + ticksLabelFont.fm.height;
 //        }
 
-        g.backColor = this.backColor;
+        g.foreColor = g.backColor = this.backColor;
         g.fillPie(centerX, centerY, (int)(radius * (1 - markWidthScale)), start, lastStart);
 
 
