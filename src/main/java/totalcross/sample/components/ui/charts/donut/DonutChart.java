@@ -28,7 +28,7 @@ public class DonutChart extends Container {
     
     @Override
     public void initUI() {
-        r = Math.min(this.width, this.height) / 3;
+        r = Math.min(this.width, this.height) * 2 / 7;
         
         Slice s1 = new Slice();
 //        s1.centerX = centerX;
@@ -67,7 +67,7 @@ public class DonutChart extends Container {
         
         centerX = this.width / 2;
         centerY = this.height / 2;
-        r = r - 2*(fm.height + UnitsConverter.toPixels(DP + 8)) + 10;
+        
         int currentAngle = startAngle;
         g.foreColor = this.getBackColor();
         for (Slice slice : slices) {
@@ -85,11 +85,10 @@ public class DonutChart extends Container {
                int x = point.x;
                int y = point.y;
 
-               int tw = fm.stringWidth(String.valueOf(selectedSlice.sweepAngle));
-               int tipHeight = fm.height + UnitsConverter.toPixels(DP + 4);
                g.foreColor = Color.WHITE;
                g.drawLine(x, y, point2.x, point2.y);
-
+               int tw = fm.stringWidth(String.valueOf(selectedSlice.sweepAngle));
+               int tipHeight = fm.height + UnitsConverter.toPixels(DP + 4);
                if(tipAngle < 0) tipAngle = 360 + tipAngle;
 
                if(tipAngle >= 0 && tipAngle < 90) {
@@ -109,7 +108,7 @@ public class DonutChart extends Container {
                g.fillPolygon(
                        new int[] { point2.x, point2.x + tw + 10, point2.x + tw, point2.x - 10 },
                        new int[] { point2.y, point2.y, point2.y + tipHeight, point2.y + tipHeight }, 4);
-               g.foreColor = Color.WHITE; //this.getBackColor();
+               g.foreColor = this.getBackColor();
                String valueStr = String.valueOf(selectedSlice.sweepAngle);
                g.drawText(valueStr,
                        point2.x,
@@ -118,7 +117,7 @@ public class DonutChart extends Container {
             
             g.foreColor = this.getBackColor();
             g.backColor = this.getBackColor();
-            g.fillPie(sliceCenter.x, sliceCenter.y, r / 3, currentAngle - slice.sweepAngle,
+            g.fillPie(sliceCenter.x, sliceCenter.y, r / 2, currentAngle - slice.sweepAngle,
                     currentAngle);
             currentAngle -= slice.sweepAngle;
         }
