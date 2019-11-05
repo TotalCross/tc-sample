@@ -25,7 +25,7 @@ public class DashboardSample extends Container {
 
             }
 
-        }, LEFT, TOP, PARENTSIZE, DP + 56);
+        }, LEFT, TOP, PARENTSIZE, DP + 8);
 
         add(new Container() {
             @Override
@@ -33,7 +33,7 @@ public class DashboardSample extends Container {
                 final int GAP = UnitsConverter.toPixels(DP + 8);
 
                 Spacer center = new Spacer();
-                add(center, CENTER, CENTER);
+                add(center, CENTER, CENTER - GAP * 2);
 
                 add(new Section("Gauge", new GaugeSample()), RIGHT - GAP, TOP, PARENTSIZE + 60, FIT - GAP);
                 add(new Section("Donut", new DonutChart()), LEFT + GAP, SAME, FIT - GAP, SAME);
