@@ -7,6 +7,8 @@ import totalcross.sample.util.Colors;
 import totalcross.sample.util.User;
 import totalcross.sys.Settings;
 import totalcross.sys.Vm;
+import totalcross.sys.AbstractCharacterConverter;
+import totalcross.sys.Convert;
 import totalcross.ui.Button;
 import totalcross.ui.Grid;
 import totalcross.ui.Label;
@@ -75,12 +77,14 @@ public class XMLParseSample extends BaseScreen {
 			XmlReader rdr = new XmlReader();
 			rdr.setContentHandler(userHandler);
 			
-			byte[] xml = Vm.getFile("user.xml");
+			byte[] b = Vm.getFile("user.xml");
+			char[] xml = ((AbstractCharacterConverter) Convert.charsetForName("UTF-8")).bytes2chars(b, 0, b.length);
 			
 			if (xml != null) {
 				
 				rdr.parse(xml, 0, xml.length);
 				
+   				
 				ArrayList<User> users = userHandler.getUsers();
 				
 				if (users.size() > 0) {
