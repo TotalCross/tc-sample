@@ -8,6 +8,6 @@ public class TCSampleApplication {
 	    TotalCrossApplication.run(
 	        TCSample.class,
 	        "/r",
-	        "544353541A8E8B2A28D5B8E0");
+	        "5443444B3018A93884C5D622");
 	  }
 }

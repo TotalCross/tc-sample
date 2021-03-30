@@ -13,15 +13,11 @@ import totalcross.sample.components.Login;
 import totalcross.sample.components.MessageBoxSample;
 import totalcross.sample.util.Colors;
 import totalcross.sys.Settings;
-import totalcross.ui.Container;
-import totalcross.ui.ImageControl;
-import totalcross.ui.Label;
 import totalcross.ui.MainWindow;
 import totalcross.ui.SideMenuContainer;
-import totalcross.ui.font.Font;
 import totalcross.ui.gfx.Color;
-import totalcross.ui.icon.Icon;
-import totalcross.ui.icon.MaterialIcons;
+// import totalcross.ui.icon.Icon;
+// import totalcross.ui.icon.MaterialIcons;
 import totalcross.ui.image.Image;
 import totalcross.ui.image.ImageException;
 
@@ -75,46 +71,46 @@ public class TCSample extends MainWindow {
 	        		messageBox
 	        ); 
 			
-			sideMenu.topMenu.header = new Container() {
-				@Override
-				public void initUI() {
+			// sideMenu.topMenu.header = new Container() {
+			// 	@Override
+			// 	public void initUI() {
 					
-					try {
-						setBackColor(Colors.REDDESIGN);
+			// 		try {
+			// 			setBackColor(Colors.REDDESIGN);
 						
-						ImageControl profile = new ImageControl(new Image("images/logoV.png"));
-						profile.scaleToFit = true;
-						profile.transparentBackground = true;
-						add(profile, CENTER+65, BOTTOM-250, PARENTSIZE, PARENTSIZE+40);
+			// 			ImageControl profile = new ImageControl(new Image("images/logoV.png"));
+			// 			profile.scaleToFit = true;
+			// 			profile.transparentBackground = true;
+			// 			add(profile, CENTER+65, BOTTOM-250, PARENTSIZE, PARENTSIZE+40);
 						
-						Label title = new Label("Components", CENTER, Color.WHITE, false);
-						title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
-						title.setForeColor(Color.WHITE);
-						add(title, LEFT+45, BOTTOM-45, PARENTSIZE+38, PREFERRED);
+			// 			Label title = new Label("Components", CENTER, Color.WHITE, false);
+			// 			title.setFont(Font.getFont("Lato Bold", false, this.getFont().size + 5));
+			// 			title.setForeColor(Color.WHITE);
+			// 			add(title, LEFT+45, BOTTOM-45, PARENTSIZE+38, PREFERRED);
 						
-					} catch (IOException | ImageException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+			// 		} catch (IOException | ImageException e) {
+			// 			// TODO Auto-generated catch block
+			// 			e.printStackTrace();
+			// 		}
+			// 	}
 				
-				@Override
-				public int getPreferredHeight() {
-					return 350;
-				}
-			};
+			// 	@Override
+			// 	public int getPreferredHeight() {
+			// 		return 350;
+			// 	}
+			// };
 			
 			
-			sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
+			// sideMenu.setBarFont(Font.getFont(Font.getDefaultFontSize() + 5));
 	        sideMenu.setBackColor(Colors.PRIMARY);
 	        sideMenu.setForeColor(Color.WHITE);
-	        sideMenu.setItemForeColor(Color.BLACK);
-	        sideMenu.topMenu.drawSeparators = false;
-	        sideMenu.topMenu.itemHeightFactor = 3;
+	      //   sideMenu.setItemForeColor(Color.BLACK);
+	      //   sideMenu.topMenu.drawSeparators = false;
+	      //   sideMenu.topMenu.itemHeightFactor = 3;
 	        
-	        Icon icon = new Icon(MaterialIcons._MENU);
-	        icon.setBackColor(Color.WHITE);
-	        add(icon, LEFT, TOP);
+	      //   Icon icon = new Icon(MaterialIcons._MENU);
+	      //   icon.setBackColor(Color.WHITE);
+	      //   add(icon, LEFT, TOP);
 			add(sideMenu, LEFT, TOP, PARENTSIZE, PARENTSIZE);
 		
 		} catch (ImageException | IOException e) {
